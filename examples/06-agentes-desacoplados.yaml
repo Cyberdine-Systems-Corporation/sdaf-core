@@ -1,0 +1,30 @@
+# Agentes desacoplados: sin fusiones. Más handoffs, roles más estrechos.
+# Uso: post-MVP, o varios humanos/agentes en paralelo sin pisar archivos.
+# testing y review son activos distintos (el core envía ambos como stub; aquí se activan).
+# No incluir testing-review en active (sería un tercer dueño de tests/review).
+# domain y application activos por separado: el router elige por tipo de salida (modelo vs slice).
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - domain
+    - application
+    - testing
+    - review
+  stubs:
+    - product
+    - devops
+  fusions: {}

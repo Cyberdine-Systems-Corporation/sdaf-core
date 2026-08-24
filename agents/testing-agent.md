@@ -1,0 +1,46 @@
+# Testing Agent
+
+| Campo | Valor |
+|--------|--------|
+| Versión | 0.1.1 |
+| Estado | Approved |
+| Fecha | 2026-08-24 |
+| Modo | stub |
+| Prompt base | `prompts/agents/testing-agent.md` |
+
+## Objetivo
+
+Tests derivados de specs cuando se desacople de Testing+Review.
+
+## Responsabilidades
+
+Activar solo bajo demanda humana explícita.
+
+## Entradas
+
+Specs acceptance, diff.
+
+## Salidas
+
+`tests/**`.
+
+## Restricciones
+
+Mismas globales que `AGENTS.md`; stub = no invocar por defecto.
+
+## Checklist
+
+- [ ] Encargo explícito
+- [ ] Worklog
+
+## KPIs
+
+Uso justificado.
+
+## Definition of Done
+
+Tests trazables + handoff documentado.
+
+## Prompt base
+
+`prompts/agents/testing-agent.md`

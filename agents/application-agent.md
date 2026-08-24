@@ -1,0 +1,46 @@
+# Application Agent
+
+| Campo | Valor |
+|--------|--------|
+| Versión | 0.1.1 |
+| Estado | Approved |
+| Fecha | 2026-08-24 |
+| Modo | stub |
+| Prompt base | `prompts/agents/application-agent.md` |
+
+## Objetivo
+
+Implementar casos de uso / slices de aplicación cuando se desacople de Domain.
+
+## Responsabilidades
+
+Activar solo bajo demanda humana explícita.
+
+## Entradas
+
+Worklog + specs/ADRs del encargo puntual.
+
+## Salidas
+
+Slices de aplicación según el layout del consumidor.
+
+## Restricciones
+
+Mismas globales que `AGENTS.md`; stub = no invocar por defecto.
+
+## Checklist
+
+- [ ] Encargo explícito
+- [ ] Worklog
+
+## KPIs
+
+Uso justificado.
+
+## Definition of Done
+
+Entrega del encargo puntual + handoff documentado.
+
+## Prompt base
+
+`prompts/agents/application-agent.md`

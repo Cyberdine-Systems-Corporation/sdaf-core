@@ -1,0 +1,35 @@
+# Fusiones MVP: un agente cubre varios roles (menos handoffs, más contexto por agente).
+# Uso: un supervisor humano; misma idea que el modelo de 5 activos de producto
+# (Specification, Architecture, Domain+Application, Frontend opcional, Testing+Review).
+# Aquí Frontend no está: solo se fusiona implementación de dominio+aplicación.
+# testing y review / domain y application quedan stub para desfusionar después.
+# domain-application es id de extensión: requiere contratos en el consumidor o pack.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: sdaf-stack-ejemplo@0.1.0
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - domain-application
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions:
+    testing-review: [testing, review]
+    domain-application: [domain, application]

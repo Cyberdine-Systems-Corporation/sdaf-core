@@ -1,0 +1,37 @@
+# Techo v0.1: todas las claves del esquema, explícitas.
+# Uso: plantilla de auditoría o para no depender de defaults. No es el default recomendado
+# (muchos activos + pack + fusiones + rutas custom = más superficie de handoff).
+# Combina: version, name, language, pack, src_path, tests_path, active, stubs, fusions.
+# Ids de extensión (frontend, infrastructure, ai, domain-application) exigen pack o contratos locales.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: sdaf-stack-ejemplo@0.1.0
+  src_path: apps/web
+  tests_path: tests/acceptance
+
+agents:
+  active:
+    - specification
+    - architecture
+    - domain-application
+    - frontend
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - infrastructure
+    - devops
+    - review
+    - testing
+    - ai
+  fusions:
+    testing-review: [testing, review]
+    domain-application: [domain, application]

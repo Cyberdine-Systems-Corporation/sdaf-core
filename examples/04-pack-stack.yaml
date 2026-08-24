@@ -1,0 +1,31 @@
+# Pack de stack sin cambiar el modelo de agentes del core.
+# Uso: quieres playbooks técnicos (coding standards, slice de API, runtime local)
+# pero la implementación la hacen humanos u otros agentes aún stub.
+# El pack NO sustituye ADRs de stack: sigue haciendo falta ADR si cambias runtime.
+# Sustituye sdaf-stack-ejemplo por el id real (p. ej. sdaf-stack-dotnet@0.1.0) cuando exista.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: sdaf-stack-ejemplo@0.1.0
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

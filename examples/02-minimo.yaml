@@ -1,0 +1,27 @@
+# Mínimo válido: mismas reglas que 01, YAML corto.
+# Uso: bootstrap rápido. src_path y tests_path se omiten → default src y tests.
+# fusions omitido → equivalente a {}.
+# No omitir sdaf.version, project.*, stack.pack ni agents.active/stubs.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing

@@ -1,0 +1,29 @@
+# Copia de examples/01-default-core.yaml (configuración recomendada v0.1).
+# Catálogo de claves: sdaf.config.schema.yaml
+# Todos los escenarios: examples/README.md
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

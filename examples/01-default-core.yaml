@@ -1,0 +1,30 @@
+# Recomendado en v0.1: núcleo sin pack ni fusiones extra.
+# Uso: primer proyecto SDAF, o laboratorio de método. Tres activos evitan thrash.
+# Materializar AGENTS.md con project.name; Gate 0 usa src/ y tests/ por defecto.
+# Qué no hace: no añade Frontend ni skills de un lenguaje.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

@@ -1,0 +1,38 @@
+# Pack + agente Frontend (extensión). El core no incluye contrato frontend.
+# Uso: hay UI y el pack (o el consumidor) aporta agents/frontend-agent.md y su prompt.
+# El framework concreto (web, móvil, etc.) lo fija un ADR del consumidor, no esta config.
+# infrastructure y ai siguen stub: no se invocan en el handoff canónico.
+# Handoff típico: Specification → Architecture → domain-application → frontend
+#                                                      ↘ testing-review ↗
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: sdaf-stack-ejemplo@0.1.0
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - domain-application
+    - frontend
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - infrastructure
+    - devops
+    - review
+    - testing
+    - ai
+  fusions:
+    testing-review: [testing, review]
+    domain-application: [domain, application]

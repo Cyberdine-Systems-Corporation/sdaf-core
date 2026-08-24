@@ -1,0 +1,76 @@
+# AGENTS.md — Router de agentes {{PROJECT_NAME}}
+
+| Campo | Valor |
+|--------|--------|
+| Versión | 0.1.0 |
+| Estado | Draft |
+| Fecha | YYYY-MM-DD |
+| Norma | `handbook/13-ai-agent-framework.md`, `handbook/14-prompt-engineering-standard.md`, `handbook/15-agent-traceability.md`, `skills/README.md` |
+| Config | `sdaf.config.yaml` |
+
+---
+
+## Propósito
+
+Índice operativo para invocar agentes de **ingeniería** (no la IA de producto, si el proyecto la tiene).
+Antes de cualquier feature: Gate 0 (`handbook/09-development-workflow.md`).
+
+## Modelo
+
+Los agentes **activos** y **stubs** los declara `sdaf.config.yaml`. El core propone por defecto:
+
+| Estado | Agentes |
+|--------|---------|
+| **Activo** | Specification, Architecture, Testing+Review |
+| **Stub** | Product, Domain, Application, DevOps, Review, Testing |
+
+El consumidor puede añadir fusiones (p. ej. Domain+Application, Frontend) vía pack de stack o config. Esas fusiones **no** forman parte del núcleo.
+
+## Handoff canónico (core)
+
+```text
+Specification → Architecture → (agentes de implementación del consumidor)
+                                      ↘ Testing+Review ↗
+```
+
+El saliente cierra worklog con “siguiente agente”. El entrante lee worklog + specs; no depende del chat efímero.
+
+## Inventario
+
+| Agente | Contrato | Prompt | Estado |
+|--------|----------|--------|--------|
+| Specification | [agents/specification-agent.md](agents/specification-agent.md) | [prompts/agents/specification-agent.md](prompts/agents/specification-agent.md) | active |
+| Architecture | [agents/architecture-agent.md](agents/architecture-agent.md) | [prompts/agents/architecture-agent.md](prompts/agents/architecture-agent.md) | active |
+| Testing+Review | [agents/testing-review-agent.md](agents/testing-review-agent.md) | [prompts/agents/testing-review-agent.md](prompts/agents/testing-review-agent.md) | active |
+| Product | [agents/product-agent.md](agents/product-agent.md) | [prompts/agents/product-agent.md](prompts/agents/product-agent.md) | stub |
+| Domain | [agents/domain-agent.md](agents/domain-agent.md) | [prompts/agents/domain-agent.md](prompts/agents/domain-agent.md) | stub |
+| Application | [agents/application-agent.md](agents/application-agent.md) | [prompts/agents/application-agent.md](prompts/agents/application-agent.md) | stub |
+| DevOps | [agents/devops-agent.md](agents/devops-agent.md) | [prompts/agents/devops-agent.md](prompts/agents/devops-agent.md) | stub |
+| Review | [agents/review-agent.md](agents/review-agent.md) | [prompts/agents/review-agent.md](prompts/agents/review-agent.md) | stub |
+| Testing | [agents/testing-agent.md](agents/testing-agent.md) | [prompts/agents/testing-agent.md](prompts/agents/testing-agent.md) | stub |
+
+## Skills
+
+Playbooks en [`skills/`](skills/) (tool-agnostic; **no** bajo `.cursor/skills/`).
+
+Citar `skill-id@version` en worklogs (H13 §6, H14).
+
+| Prioridad | Skills (core) |
+|-----------|----------------|
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router` |
+| Media | `spec-draft-pbi`, `adr-propose` |
+
+Skills de stack o dominio las aporta el pack o el producto, no este core.
+
+## Gobernanza
+
+- Prompt de sistema: [prompts/system/master-architect.md](prompts/system/master-architect.md)
+- Biblioteca: [prompts/README.md](prompts/README.md)
+- Skills: [skills/README.md](skills/README.md)
+- Worklogs: `worklogs/` del **consumidor** (ATF)
+- Idioma: castellano (`.cursor/rules/idioma-castellano.mdc`)
+- Coding standards: ADR del **consumidor** (o pack de stack); el core no fija lenguaje de programación.
+
+## Restricciones globales
+
+Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa alcance Out del MVP del consumidor; introduce secretos; reescribe historia git sin orden humana.

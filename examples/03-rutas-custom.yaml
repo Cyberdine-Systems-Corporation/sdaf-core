@@ -1,0 +1,30 @@
+# Rutas de código/tests no canónicas.
+# Uso: monorepo, repo con apps/, backend/, packages/.
+# Gate 0 y Testing+Review miran stack.src_path y stack.tests_path, no "src/" a ciegas.
+# El árbol SDAF (specs/, worklogs/, handbook) sigue en la raíz; solo cambia el código.
+
+sdaf:
+  version: "0.1.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+  src_path: apps/api
+  tests_path: apps/api/tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

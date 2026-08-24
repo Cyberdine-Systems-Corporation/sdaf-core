@@ -1,0 +1,84 @@
+# Esquema de `sdaf.config.yaml` (consumidor) — v0.1
+
+Documento de claves. No es JSON Schema ejecutable.
+
+El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional) y el modelo de agentes.
+
+Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
+
+---
+
+## Claves
+
+### `sdaf` (obligatorio)
+
+| Clave | Tipo | Obligatorio | Valores | Uso |
+|-------|------|-------------|---------|-----|
+| `sdaf.version` | string semver | sí | p. ej. `"0.1.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
+
+### `project` (obligatorio)
+
+| Clave | Tipo | Obligatorio | Valores | Uso |
+|-------|------|-------------|---------|-----|
+| `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |
+| `project.language` | string | sí | `es` en v0.1 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.1 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
+
+### `stack` (obligatorio como bloque; campos internos con default)
+
+Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime: el pack es un overlay opcional.
+
+| Clave | Tipo | Obligatorio | Default | Uso |
+|-------|------|-------------|---------|-----|
+| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
+| `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
+| `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
+
+### `agents` (obligatorio)
+
+| Clave | Tipo | Obligatorio | Uso |
+|-------|------|-------------|-----|
+| `agents.active` | lista de ids | sí (≥1) | Agentes que entran en el handoff por defecto. Deben tener contrato + prompt. |
+| `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |
+| `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |
+
+#### Ids reconocidos por el core v0.1
+
+| Id | Rol | En el core |
+|----|-----|------------|
+| `specification` | Specs | activo típico |
+| `architecture` | ADRs / boundaries | activo típico |
+| `testing-review` | Tests + review (fusión) | activo típico |
+| `product` | Backlog / PO | stub |
+| `domain` | Modelo de dominio | stub |
+| `application` | Slices de aplicación | stub |
+| `devops` | CI / runtime | stub |
+| `review` | Review puro | stub |
+| `testing` | Tests puros | stub |
+
+#### Ids de extensión (pack o consumidor; no van en el núcleo)
+
+| Id | Cuándo |
+|----|--------|
+| `domain-application` | Fusión MVP de implementación |
+| `frontend` | UI (el pack define el framework) |
+| `infrastructure` | Persistencia / adapters |
+| `ai` | Ingeniería de prompts de producto (no confundir con agentes SDAF) |
+
+#### Invariantes
+
+1. Un id **no** puede estar a la vez en `active` y `stubs`.
+2. Toda clave de `fusions` debe aparecer en `active`.
+3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).
+4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía.
+
+---
+
+## Relación con artefactos
+
+```text
+sdaf.config.yaml
+    → AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)
+    → sdaf-gate0         (stack.src_path)
+    → sdaf-agent-router  (active / stubs / fusions)
+    → pack de stack      (si pack != null)
+```
