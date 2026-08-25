@@ -17,7 +17,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 ## Qué no es
 
 - No es un producto (no hay `src/` de aplicación).
-- No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (`sdaf-stack-*`) puede añadir playbooks técnicos (ver [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md)).
+- No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (`sdaf-stack-*`) puede añadir playbooks técnicos (ver [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md)). Pack de referencia: [`sdaf-stack-dotnet`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet).
 - No rellena `specs/`: exige que existan y estén Approved antes de implementar.
 
 ## Contenido (v0.2)

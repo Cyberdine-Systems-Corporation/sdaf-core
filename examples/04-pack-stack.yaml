@@ -2,7 +2,7 @@
 # Uso: quieres playbooks técnicos (coding standards, slice de API, runtime local)
 # pero la implementación la hacen humanos u otros agentes aún stub.
 # El pack NO sustituye ADRs de stack: sigue haciendo falta ADR si cambias runtime.
-# Sustituye sdaf-stack-ejemplo por el id real (p. ej. sdaf-stack-dotnet@0.1.0) cuando exista.
+# Pack de referencia: sdaf-stack-dotnet@0.1.0
 
 sdaf:
   version: "0.2.0"
@@ -12,7 +12,7 @@ project:
   language: es
 
 stack:
-  pack: sdaf-stack-ejemplo@0.1.0
+  pack: sdaf-stack-dotnet@0.1.0
   src_path: src
   tests_path: tests
 
