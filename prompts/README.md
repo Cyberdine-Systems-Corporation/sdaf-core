@@ -1,6 +1,6 @@
 # Prompts — biblioteca versionada
 
-Norma: `handbook/14-prompt-engineering-standard.md`.  
+Norma: `handbook/07-prompt-engineering-standard.md`.  
 Router: `AGENTS.md.template`.
 
 ## Catálogo v0.1
@@ -11,4 +11,4 @@ Router: `AGENTS.md.template`.
 | `agents/` | prompts base (activos + stubs) |
 | `documentation/` | handbook, specification, adr authors |
 
-Los prompts de la biblioteca están **Approved** (v0.1.1). Citar `ID@version` en worklogs.
+Los prompts de la biblioteca están **Approved** (v0.2.0). Citar `ID@version` en worklogs.

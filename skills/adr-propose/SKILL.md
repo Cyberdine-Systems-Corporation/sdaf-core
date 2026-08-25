@@ -8,11 +8,11 @@ description: Propone o enmienda ADRs en Draft con plantilla y consecuencias. Usa
 | Campo | Valor |
 |--------|--------|
 | ID | adr-propose |
-| Versión | 0.1.1 |
+| Versión | 0.2.0 |
 | Estado | Approved |
 | Prioridad | media |
-| Fecha | 2026-08-24 |
-| Norma | [handbook/09](../../handbook/09-development-workflow.md) G0.3, `architecture/decisions/` |
+| Fecha | 2026-08-25 |
+| Norma | [handbook/05](../../handbook/05-development-workflow.md) G0.3, `architecture/decisions/` |
 
 ## Disparadores
 
@@ -25,7 +25,7 @@ description: Propone o enmienda ADRs en Draft con plantilla y consecuencias. Usa
 3. Estado **Propuesto**; no “Aceptado” sin humano.
 4. Actualizar índice `architecture/decisions/README.md` si aplica.
 5. Si impacta handbook, proponer enmienda Draft del capítulo (no auto-aprobar).
-6. Worklog Architecture + `adr-propose@0.1.1`.
+6. Worklog Architecture + `adr-propose@0.2.0`.
 
 ## Definition of Done
 

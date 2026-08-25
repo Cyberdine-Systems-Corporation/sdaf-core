@@ -1,9 +1,9 @@
-# Copia de examples/01-default-core.yaml (configuración recomendada v0.1).
+# Copia de examples/01-default-core.yaml (configuración recomendada v0.2).
 # Catálogo de claves: sdaf.config.schema.yaml
 # Todos los escenarios: examples/README.md
 
 sdaf:
-  version: "0.1.0"
+  version: "0.2.0"
 
 project:
   name: MiProyecto

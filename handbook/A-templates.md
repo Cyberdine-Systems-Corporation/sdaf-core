@@ -1,12 +1,12 @@
-# Apéndice B — Templates
+# Apéndice A — Templates
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
+| **Fecha** | 2026-08-25 |
 | **Parte** | Apéndices |
-| **Norma superior** | Caps. 08, 09, 13, 14, 15; copias operativas en `templates/` |
+| **Norma superior** | Caps. 04, 05, 06, 07, 08; copias operativas en `templates/` |
 
 ---
 
@@ -22,6 +22,7 @@
 | Contrato de agente | `templates/agent-contract.md` |
 | Prompt | `templates/prompt.md` |
 | Skill | `templates/skill.md` |
+| Handbook de producto | `templates/handbook-product.md` |
 
 Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no se duplican aquí para no divergir.
 
@@ -31,5 +32,6 @@ Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no s
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renombrado B→A; plantilla handbook de producto |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Índice genérico (ADR-008) |

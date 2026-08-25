@@ -5,7 +5,7 @@
 # Sustituye sdaf-stack-ejemplo por el id real (p. ej. sdaf-stack-dotnet@0.1.0) cuando exista.
 
 sdaf:
-  version: "0.1.0"
+  version: "0.2.0"
 
 project:
   name: MiProyecto

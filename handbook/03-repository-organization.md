@@ -1,12 +1,12 @@
-# 07 — Repository Organization
+# 03 — Repository Organization
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | II — SDAF |
-| **Norma superior** | [05-sdaf-framework.md](05-sdaf-framework.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | I — Método SDAF |
+| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md) |
 | **Deriva hacia** | Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor |
 
 ---
@@ -54,6 +54,8 @@ Carpetas obligatorias del método; las de código y contrato HTTP son del consum
 ```
 
 `postman/` u otros contratos de API son opcionales y no sustituyen specs.
+
+El método SDAF puede referenciarse en el consumidor vía pin (submodule u otra ruta) a un **tag** de sdaf-core. El procedimiento de adopción y upgrade está en [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md); este capítulo no fija una única ruta de carpeta como norma.
 
 ---
 
@@ -107,5 +109,6 @@ Si el código descubre un error de spec: se enmienda la spec (y el test), no se 
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-07); pin a sdaf-core → docs de adopción |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Árbol genérico; sin asumir runtime concreto (ADR-008) |

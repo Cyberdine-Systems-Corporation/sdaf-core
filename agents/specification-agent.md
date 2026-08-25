@@ -24,7 +24,7 @@ Transformar `knowledge/` en especificaciones testeables (`specs/`) sin inventar 
 
 ## Salidas
 
-Archivos en `specs/**` (cabecera según cap. 08).
+Archivos en `specs/**` (cabecera según cap. 04).
 
 ## Restricciones
 

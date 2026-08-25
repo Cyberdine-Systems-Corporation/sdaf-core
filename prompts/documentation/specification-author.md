@@ -14,7 +14,7 @@ Apoyar autoría de specs (alias cercano a Specification Agent).
 
 ## Contexto
 
-`handbook/08-specification-standard.md`; `templates/spec.md`.
+`handbook/04-specification-standard.md`; `templates/spec.md`.
 
 ## Entradas
 

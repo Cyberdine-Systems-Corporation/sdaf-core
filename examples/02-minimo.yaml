@@ -4,7 +4,7 @@
 # No omitir sdaf.version, project.*, stack.pack ni agents.active/stubs.
 
 sdaf:
-  version: "0.1.0"
+  version: "0.2.0"
 
 project:
   name: MiProyecto

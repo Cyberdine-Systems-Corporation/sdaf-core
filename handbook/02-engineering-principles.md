@@ -1,12 +1,12 @@
-# 06 — Engineering Principles
+# 02 — Engineering Principles
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | II — SDAF |
-| **Norma superior** | [05-sdaf-framework.md](05-sdaf-framework.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | I — Método SDAF |
+| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md) |
 | **Deriva hacia** | Workflow, arquitectura del consumidor, testing, agentes |
 
 ---
@@ -104,5 +104,6 @@ Identificadores de código pueden seguir convenciones técnicas en inglés si el
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-06); Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

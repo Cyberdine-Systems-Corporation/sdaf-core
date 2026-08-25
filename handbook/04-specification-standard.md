@@ -1,13 +1,13 @@
-# 08 — Specification Standard
+# 04 — Specification Standard
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | II — SDAF |
-| **Norma superior** | [05-sdaf-framework.md](05-sdaf-framework.md), [07-repository-organization.md](07-repository-organization.md) |
-| **Deriva hacia** | `specs/` del consumidor, [09-development-workflow.md](09-development-workflow.md), tests, backlog |
+| **Fecha** | 2026-08-25 |
+| **Parte** | I — Método SDAF |
+| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [03-repository-organization.md](03-repository-organization.md) |
+| **Deriva hacia** | `specs/` del consumidor, [05-development-workflow.md](05-development-workflow.md), tests, backlog |
 
 ---
 
@@ -127,5 +127,6 @@ Una spec no sustituye un ADR de stack o de límites.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-08); Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica; `specs/` = verdad operativa del consumidor (ADR-008) |

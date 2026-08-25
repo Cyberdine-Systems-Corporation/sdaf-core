@@ -1,13 +1,13 @@
-# 05 — SDAF Framework
+# 01 — SDAF Framework
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | II — SDAF |
+| **Fecha** | 2026-08-25 |
+| **Parte** | I — Método SDAF |
 | **Norma superior** | [00-preface.md](00-preface.md) |
-| **Deriva hacia** | [06-engineering-principles.md](06-engineering-principles.md), [07-repository-organization.md](07-repository-organization.md), [08-specification-standard.md](08-specification-standard.md), [09-development-workflow.md](09-development-workflow.md) |
+| **Deriva hacia** | [02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md) |
 
 ---
 
@@ -29,7 +29,7 @@ SDAF no es un conjunto de prompts sueltos.
 4. El **código** y los **tests** se derivan de las specs (nunca al revés como norma).
 5. Los **agentes IA** ejecutan el pipeline bajo supervisión humana y trazabilidad.
 
-El core **exige** la carpeta `specs/` y su estándar (cap. 08). **No** incluye el contenido de specs de ningún producto.
+El core **exige** la carpeta `specs/` y su estándar (cap. 04). **No** incluye el contenido de specs de ningún producto.
 
 ---
 
@@ -107,14 +107,16 @@ Si falta alguno → **STOP**. Proponer su creación; no improvisar código.
 
 El core **no** fija el stack: exige que las decisiones de stack/límites queden en ADRs (gobernanza). El pack de stack es opcional.
 
-Detalle operativo en el capítulo 09.
+El pack **no puede contradecir** capítulos Approved de este handbook. El contrato operativo del pack está en [`docs/contrato-pack-stack.md`](../docs/contrato-pack-stack.md) (no se duplica el detalle aquí).
+
+Detalle operativo en el capítulo 05.
 
 ---
 
 ## 7. Agentes en SDAF (resumen)
 
 - Equipo especializado, no un único agente omnisciente.
-- Activos y stubs se declaran en `sdaf.config.yaml` del consumidor (detalle en Parte IV).
+- Activos y stubs se declaran en `sdaf.config.yaml` del consumidor (detalle en Parte II).
 - El humano aprueba handoffs relevantes y todo capítulo Approved.
 - Ningún agente puede autodeclarar Approved ni saltarse el gate del §6.
 
@@ -130,5 +132,6 @@ Este capítulo **debe** poder aplicarse a otro producto y otro stack con un hand
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-05); ancla normativa del pack → docs; Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008): norma de `specs/` y gobernanza de stack explícitas |

@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.0 |
-| Estado | Draft |
+| Versión | 0.2.0 |
+| Estado | Approved |
 | Fecha | YYYY-MM-DD |
-| Norma | `handbook/13-ai-agent-framework.md`, `handbook/14-prompt-engineering-standard.md`, `handbook/15-agent-traceability.md`, `skills/README.md` |
+| Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `skills/README.md` |
 | Config | `sdaf.config.yaml` |
 
 ---
@@ -13,7 +13,7 @@
 ## Propósito
 
 Índice operativo para invocar agentes de **ingeniería** (no la IA de producto, si el proyecto la tiene).
-Antes de cualquier feature: Gate 0 (`handbook/09-development-workflow.md`).
+Antes de cualquier feature: Gate 0 (`handbook/05-development-workflow.md`).
 
 ## Modelo
 
@@ -53,12 +53,12 @@ El saliente cierra worklog con “siguiente agente”. El entrante lee worklog +
 
 Playbooks en [`skills/`](skills/) (tool-agnostic; **no** bajo `.cursor/skills/`).
 
-Citar `skill-id@version` en worklogs (H13 §6, H14).
+Citar `skill-id@version` en worklogs (H06 §6, H07).
 
 | Prioridad | Skills (core) |
 |-----------|----------------|
-| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router` |
-| Media | `spec-draft-pbi`, `adr-propose` |
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
 
 Skills de stack o dominio las aporta el pack o el producto, no este core.
 
@@ -70,6 +70,7 @@ Skills de stack o dominio las aporta el pack o el producto, no este core.
 - Worklogs: `worklogs/` del **consumidor** (ATF)
 - Idioma: castellano (`.cursor/rules/idioma-castellano.mdc`)
 - Coding standards: ADR del **consumidor** (o pack de stack); el core no fija lenguaje de programación.
+- Adopción / upgrade: `docs/adopcion-y-upgrade.md` del core
 
 ## Restricciones globales
 

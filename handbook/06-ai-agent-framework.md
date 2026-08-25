@@ -1,13 +1,13 @@
-# 13 — AI Agent Framework
+# 06 — AI Agent Framework
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | IV — Ingeniería IA |
-| **Norma superior** | [05-sdaf-framework.md](05-sdaf-framework.md), [09-development-workflow.md](09-development-workflow.md) |
-| **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [14-prompt-engineering-standard.md](14-prompt-engineering-standard.md), [15-agent-traceability.md](15-agent-traceability.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | II — Ingeniería IA |
+| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
+| **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
 
 ---
 
@@ -34,7 +34,7 @@ Los agentes ejecutan el pipeline SDAF. No son un nivel normativo. No aprueban ca
 
 **Decisión del core:** pocos **activos** + **stubs** (contrato + prompt listos). La lista concreta la fija `sdaf.config.yaml`.
 
-Por defecto en v0.1:
+Por defecto en v0.2:
 
 ### 3.1 Activos
 
@@ -77,7 +77,7 @@ Specification → Architecture → (implementación del consumidor)
 
 ## 6. Skills
 
-Las **skills** viven en `skills/` (índice: [`skills/README.md`](../skills/README.md)). Tool-agnostic: no dependen de `.cursor/skills/`.
+Las **skills** viven en `skills/` (índice vivo: [`skills/README.md`](../skills/README.md)). Tool-agnostic: no dependen de `.cursor/skills/`.
 
 | Capa | Contiene |
 |------|----------|
@@ -87,7 +87,12 @@ Las **skills** viven en `skills/` (índice: [`skills/README.md`](../skills/READM
 
 Citar `skill-id@version` en el worklog. Gate 0 manda sobre cualquier skill de implementación.
 
-Catálogo core (prioridad alta/media): `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `spec-draft-pbi`, `adr-propose`.
+Catálogo core:
+
+| Prioridad | Skills |
+|-----------|--------|
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
 
 ---
 
@@ -99,7 +104,7 @@ Catálogo core (prioridad alta/media): `sdaf-gate0`, `sdaf-worklog-handoff`, `sd
 - No marcar Approved.
 - No force-push ni destruir history sin orden humana.
 - No introducir secretos.
-- Economía de tokens (cap. 14).
+- Economía de tokens (cap. 07).
 
 ---
 
@@ -107,5 +112,6 @@ Catálogo core (prioridad alta/media): `sdaf-gate0`, `sdaf-worklog-handoff`, `sd
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Agentes genéricos; implementación de stack fuera del core (ADR-008) |

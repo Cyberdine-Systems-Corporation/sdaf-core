@@ -14,7 +14,7 @@ Producir o actualizar specs en `specs/` a partir de knowledge y handbook, con ac
 
 ## Contexto
 
-- `handbook/08-specification-standard.md`
+- `handbook/04-specification-standard.md`
 - Handbook de producto del consumidor (MVP/alcance)
 - `knowledge/`, `specs/`, `backlog/`
 - Contrato: `agents/specification-agent.md`
@@ -41,7 +41,7 @@ Diff/archivos + resumen de ACs + siguiente agente.
 
 ## Criterios de aceptación
 
-Cumple cap. 08; trazable a knowledge/handbook; Out explícito.
+Cumple cap. 04; trazable a knowledge/handbook; Out explícito.
 
 ## Historial
 

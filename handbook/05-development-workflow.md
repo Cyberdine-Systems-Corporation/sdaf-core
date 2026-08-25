@@ -1,12 +1,12 @@
-# 09 — Development Workflow
+# 05 — Development Workflow
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | II — SDAF |
-| **Norma superior** | [05-sdaf-framework.md](05-sdaf-framework.md), [08-specification-standard.md](08-specification-standard.md), [06-engineering-principles.md](06-engineering-principles.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | I — Método SDAF |
+| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md) |
 | **Deriva hacia** | `worklogs/`, `backlog/`, agentes |
 
 ---
@@ -20,6 +20,8 @@ Un solo camino. No hay atajo de agente.
 ---
 
 ## 2. Flujo de extremo a extremo
+
+**Paso 0 — Bootstrap del repo** (skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md)): árbol y `sdaf.config.yaml` listos según [cap. 03](03-repository-organization.md) y [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md). En un repo vacío, Gate 0 → **STOP** esperado hasta specs Approved.
 
 ```text
 1. Knowledge disponible (si dominio)
@@ -111,5 +113,6 @@ Debe registrarse, revertirse o regularizarse (spec retroactiva **prohibida** com
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-09); paso 0 bootstrap; Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Gates genéricos; sin roles de stack concreto (ADR-008) |
