@@ -1,12 +1,12 @@
-# 15 — Agent Traceability Framework
+# 08 — Agent Traceability Framework
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | IV — Ingeniería IA |
-| **Norma superior** | [13-ai-agent-framework.md](13-ai-agent-framework.md), [14-prompt-engineering-standard.md](14-prompt-engineering-standard.md), [09-development-workflow.md](09-development-workflow.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | II — Ingeniería IA |
+| **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `worklogs/` del consumidor, templates |
 
 ---
@@ -76,5 +76,6 @@ Los worklogs se conservan durante la vida del proyecto. No reescribir historia p
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-15); Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica; worklogs en el consumidor (ADR-008) |

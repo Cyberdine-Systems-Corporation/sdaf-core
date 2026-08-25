@@ -1,8 +1,10 @@
-# Esquema de `sdaf.config.yaml` (consumidor) — v0.1
+# Esquema de `sdaf.config.yaml` (consumidor) — v0.2
 
-Documento de claves. No es JSON Schema ejecutable.
+Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sdaf.config.schema.json`](sdaf.config.schema.json).
 
 El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional) y el modelo de agentes.
+
+Si `stack.pack` ≠ null, cumplir [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md).
 
 Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
@@ -14,14 +16,14 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
-| `sdaf.version` | string semver | sí | p. ej. `"0.1.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
+| `sdaf.version` | string semver | sí | p. ej. `"0.2.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
 
 ### `project` (obligatorio)
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
 | `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |
-| `project.language` | string | sí | `es` en v0.1 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.1 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
+| `project.language` | string | sí | `es` en v0.2 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.2 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 
@@ -41,7 +43,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 | `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |
 | `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |
 
-#### Ids reconocidos por el core v0.1
+#### Ids reconocidos por el core v0.2
 
 | Id | Rol | En el core |
 |----|-----|------------|

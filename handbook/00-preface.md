@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
+| **Fecha** | 2026-08-25 |
 | **Parte** | Front matter |
 | **Norma superior** | Ninguna (inaugura la constitución del método) |
 | **Deriva hacia** | Todo este handbook |
@@ -72,11 +72,11 @@ Ninguno justifica sacrificar al otro sin decisión explícita.
 ## 5. Cómo leer este handbook
 
 1. Este preface y el [índice](README.md).
-2. Parte II **antes** de escribir código o prompts de implementación.
-3. Parte IV según rol de agente.
-4. Apéndice B para plantillas.
+2. Parte I **antes** de escribir código o prompts de implementación.
+3. Parte II según rol de agente.
+4. Apéndice A para plantillas.
 
-Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) + criterio de aceptación, **párate** y vuelve a la Parte II.
+Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) + criterio de aceptación, **párate** y vuelve a la Parte I.
 
 ---
 
@@ -98,5 +98,6 @@ Arquitecto / director técnico, Product Owner, desarrolladores, agentes IA del r
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumeración correlativa; orden de lectura Parte I / II / Apéndice A |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica desde laboratorio SDAF (ADR-008) |

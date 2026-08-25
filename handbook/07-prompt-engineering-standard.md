@@ -1,12 +1,12 @@
-# 14 — Prompt Engineering Standard
+# 07 — Prompt Engineering Standard
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.1.1 |
+| **Versión** | 0.2.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-24 |
-| **Parte** | IV — Ingeniería IA |
-| **Norma superior** | [13-ai-agent-framework.md](13-ai-agent-framework.md), [07-repository-organization.md](07-repository-organization.md) |
+| **Fecha** | 2026-08-25 |
+| **Parte** | II — Ingeniería IA |
+| **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md) |
 | **Deriva hacia** | `prompts/`, `skills/`, worklogs, agentes |
 
 ---
@@ -81,7 +81,7 @@ Prompts = rol; skills = playbooks de flujo. Enlazar `skills/<id>/SKILL.md`; no p
 
 ## 9. Relación con IDEs
 
-`.cursor/rules/` contiene reglas **finas** que apuntan al handbook. No duplicar Partes II–IV. El trabajo debe poder reproducirse desde `prompts/` + `skills/` + repo.
+`.cursor/rules/` contiene reglas **finas** que apuntan al handbook. No duplicar Partes I–II. El trabajo debe poder reproducirse desde `prompts/` + `skills/` + repo.
 
 ---
 
@@ -89,5 +89,6 @@ Prompts = rol; skills = playbooks de flujo. Enlazar `skills/<id>/SKILL.md`; no p
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Renumerado (ex-14); Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |
