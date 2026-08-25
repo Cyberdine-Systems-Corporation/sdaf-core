@@ -29,3 +29,7 @@ El pack aporta playbooks. El **stack concreto** (lenguaje, UI, BD, topología) s
 ## Cumplimiento
 
 Gate 0 y el router leen `stack.pack`. Si el pack no cumple este contrato, el consumidor debe corregir el pack o quitar la referencia.
+
+## Pack de referencia
+
+Primer pack publicado: [`sdaf-stack-dotnet@0.1.0`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.1.0).
