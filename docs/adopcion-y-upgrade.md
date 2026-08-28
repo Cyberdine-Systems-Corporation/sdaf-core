@@ -65,6 +65,12 @@ Partes: antigua “Parte II / IV” → **Parte I (método)** / **Parte II (IA)*
 
 Si `stack.pack` ≠ `null`, cumplir [`contrato-pack-stack.md`](contrato-pack-stack.md).
 
+### Materialización en el consumidor
+
+Preferir **symlinks relativos** (Git mode `120000`) de skills, agentes, prompts y reglas del core y del pack hacia la raíz del consumidor. En repos de referencia (p. ej. ShiftFlow-sdaf) hay un script documentado `scripts/materialize-submodules.ps1` + HOWTO `docs/materializacion-submodules.md`. Superficie Cursor opcional: `.cursor/skills/<id>` enlazada al submodule.
+
+Copia literal solo como fallback documentado. **No** usar junctions de Windows (`mklink /J`).
+
 ## Fuera de 0.2.0
 
 Sin implementar en esta release:
