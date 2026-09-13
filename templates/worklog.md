@@ -6,7 +6,11 @@
 | Agente | |
 | Modelo | |
 | Versión prompt | |
+| Prompt base | prompt_id@version |
+| Prompts adicionales | ninguno |
 | Skills | |
+| Reglas IDE | |
+| Ad hoc | ninguno |
 | Contexto | |
 | Especificaciones utilizadas | |
 | Archivos leídos | |
@@ -18,3 +22,7 @@
 | Pruebas ejecutadas | |
 | Estado | en_curso / hecho / bloqueado / abortado |
 | Siguiente agente | |
+
+## Línea de decisión
+
+- N/A (o spec/ADR/capítulo § que justificó cada elección)

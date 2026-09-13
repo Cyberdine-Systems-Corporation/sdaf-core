@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.1 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-13 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md) |
 | **Deriva hacia** | `prompts/`, `skills/`, worklogs, agentes |
@@ -24,7 +24,7 @@ Los prompts son **artefactos versionados**, no texto libre improvisado como norm
 3. **Reutilizar** artefactos Approved por referencia.
 4. **Sin duplicar** la constitución.
 5. **Castellano** en instrucciones y criterios.
-6. Toda ejecución relevante **cita la versión** del prompt en el worklog.
+6. Toda ejecución relevante **cita la versión** del prompt en el worklog (recibo ATF: ver cap. 08).
 
 ---
 
@@ -70,6 +70,10 @@ Solo experimentos locales o incrustados en el worklog de esa iteración. Si se r
 | Citar capítulo/sección | Obligatorio cuando basen la decisión |
 | Pegar specs enteras irrelevantes | Evitar |
 | Multi-agente en un mega-prompt | Prohibido; usar handoff |
+| Resumen como sustituto del prompt versionado | Prohibido; el resumen es índice (`id@version` + 1 línea) |
+| Mega-resumen de todos los agentes activos en un system prompt | Prohibido (sigue siendo mega-prompt) |
+
+Un resumen compatible **apunta** a `prompts/<id>@versión`, skills y secciones de spec/ADR. No duplica la constitución. Si resumen y prompt discrepan, **gana el prompt**.
 
 ---
 
@@ -89,6 +93,7 @@ Prompts = rol; skills = playbooks de flujo. Enlazar `skills/<id>/SKILL.md`; no p
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.1 | 2026-09-13 | Resumen = índice; mega-resumen y sustituto del prompt prohibidos |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-14); Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

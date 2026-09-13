@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.1 |
+| Versión | 0.1.2 |
 | Estado | Approved |
-| Fecha | 2026-08-24 |
+| Fecha | 2026-09-13 |
 | Modo | stub |
 | Prompt base | `prompts/agents/domain-agent.md` |
 
@@ -44,3 +44,15 @@ Entrega del encargo puntual + handoff documentado.
 ## Prompt base
 
 `prompts/agents/domain-agent.md`
+
+## Contexto autorizado
+
+Índice. Stub: solo contrato + prompt base hasta activación humana explícita. No mega-prompt.
+
+| Capa | Artefacto | Resumen (1 línea) | Obligatorio |
+|------|-----------|-------------------|-------------|
+| Rol | `prompts/agents/domain-agent.md` | Modelo de dominio bajo demanda | sí (si se activa) |
+| Flujo | `skills/sdaf-gate0` | Gate 0 si hay código de producto | si implementación |
+| Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
+| IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+

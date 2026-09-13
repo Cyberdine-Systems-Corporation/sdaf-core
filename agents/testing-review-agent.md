@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.1 |
+| Versión | 0.1.2 |
 | Estado | Approved |
-| Fecha | 2026-08-24 |
+| Fecha | 2026-09-13 |
 | Modo | active |
 | Prompt base | `prompts/agents/testing-review-agent.md` |
 
@@ -49,3 +49,15 @@ QG aplicables en verde o hallazgos severizados; handoff humano/merge.
 ## Prompt base
 
 `prompts/agents/testing-review-agent.md`
+
+## Contexto autorizado
+
+Índice. No sustituye al prompt base. No concatenar en un mega-prompt.
+
+| Capa | Artefacto | Resumen (1 línea) | Obligatorio |
+|------|-----------|-------------------|-------------|
+| Rol | `prompts/agents/testing-review-agent.md` | Tests derivados y review / quality gates | sí |
+| Flujo | `skills/sdaf-gate0` | Gate 0 antes de código de producto | si hay implementación |
+| Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
+| IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+

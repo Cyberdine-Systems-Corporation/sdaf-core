@@ -71,6 +71,8 @@ Preferir **symlinks relativos** (Git mode `120000`) de skills, agentes, prompts 
 
 Copia literal solo como fallback documentado. **No** usar junctions de Windows (`mklink /J`).
 
+Parche **0.2.1** (opcional hasta pin `v0.2.1`): contexto autorizado en contratos; recibo y línea de decisión en worklogs **nuevos**. Sin backfill. `sdaf.version` puede seguir `0.2.0`.
+
 ## Fuera de 0.2.0
 
 Sin implementar en esta release:

@@ -2,16 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.0 |
+| Versión | 0.2.1 |
 | Estado | Approved |
-| Fecha | 2026-08-25 |
+| Fecha | 2026-09-13 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
 
 Playbooks operativos reutilizables. Viven en **`skills/`**. **No** dependen de Cursor ni de `.cursor/skills/`.
 
 Citar `skill-id@version` en worklogs del consumidor.
 
-## Catálogo v0.2
+## Catálogo v0.2.x
 
 | ID | Prioridad | Ruta |
 |----|-----------|------|

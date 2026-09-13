@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.1 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-13 |
 | **Parte** | Apéndices |
 | **Norma superior** | Caps. 04, 05, 06, 07, 08; copias operativas en `templates/` |
 
@@ -32,6 +32,7 @@ Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no s
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.1 | 2026-09-13 | Worklog: recibo y línea de decisión; contrato: contexto autorizado |
 | 0.2.0 | 2026-08-25 | Renombrado B→A; plantilla handbook de producto |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Índice genérico (ADR-008) |
