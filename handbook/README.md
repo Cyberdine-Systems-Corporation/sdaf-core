@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.0 |
+| Versión | 0.2.1 |
 | Estado | Approved |
 | Idioma | Español |
 | Clasificación | Constitución del método (no del producto) |
-| Última actualización | 2026-08-25 |
+| Última actualización | 2026-09-13 |
 
 ---
 
@@ -77,7 +77,7 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 | A | [A-templates.md](A-templates.md) | Templates | Approved |
 | — | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones | Approved |
 
-**Alcance 0.2:** constitución correlativa del método; adopción/upgrade y contrato de pack en `docs/`; skills `sdaf-bootstrap` y `sdaf-upgrade`.
+**Alcance 0.2.x:** constitución correlativa del método; parche 0.2.1 = contexto autorizado y recibo ATF (opcionales). Adopción/upgrade y contrato de pack en `docs/`; skills `sdaf-bootstrap` y `sdaf-upgrade`.
 
 **Fuera de 0.2 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); testing/devops/security y métricas de sprint detallados; glosario de dominio; idiomas distintos de `es`.
 

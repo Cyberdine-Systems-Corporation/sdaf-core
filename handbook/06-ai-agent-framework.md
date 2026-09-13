@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.1 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-13 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
@@ -56,7 +56,9 @@ Agentes de implementación de UI/infra/stack (p. ej. Frontend) los aporta el **p
 
 ## 4. Contrato de agente (obligatorio)
 
-Cada agente en `agents/` documenta: objetivo, responsabilidades, entradas, salidas, restricciones, checklist, KPIs, Definition of Done, prompt base.
+Cada agente en `agents/` documenta: objetivo, responsabilidades, entradas, salidas, restricciones, checklist, KPIs, Definition of Done, prompt base y **contexto autorizado**.
+
+El contexto autorizado es un **índice** (tabla de capas: rol, flujo/skills, reglas IDE). El agente **abre** esos artefactos; no los concatena en un mega-prompt. El resumen de una línea no sustituye al prompt versionado: si discrepan, gana el prompt.
 
 `AGENTS.md` en el consumidor actúa como **router** (materializado desde `AGENTS.md.template`).
 
@@ -112,6 +114,7 @@ Catálogo core:
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.1 | 2026-09-13 | Contexto autorizado en el contrato (índice; no mega-prompt) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Agentes genéricos; implementación de stack fuera del core (ADR-008) |

@@ -1,5 +1,16 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.2.1 — 2026-09-13
+
+Parche (no breaking). Campos opcionales un ciclo.
+
+- H06 §4: contexto autorizado en el contrato (índice; el agente abre artefactos, no mega-prompt).
+- H07 §7: resumen = índice (`id@version` + 1 línea); prohibido como sustituto del prompt o como mega-resumen multi-agente.
+- H08 §4: recibo de iteración y línea de decisión opcionales; sin backfill de worklogs.
+- Plantillas `templates/worklog.md` y `templates/agent-contract.md`.
+
+`sdaf.version` del consumidor puede seguir en `0.2.0` hasta pin al tag `v0.2.1`.
+
 ## 0.2.0 — 2026-08-25
 
 ### Breaking: renumeración correlativa

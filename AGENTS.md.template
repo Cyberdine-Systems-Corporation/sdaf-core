@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.0 |
+| Versión | 0.2.1 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DD |
 | Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `skills/README.md` |
@@ -36,6 +36,32 @@ Specification → Architecture → (agentes de implementación del consumidor)
 El saliente cierra worklog con “siguiente agente”. El entrante lee worklog + specs; no depende del chat efímero.
 
 ## Inventario
+
+| Agente | Contrato | Prompt | Estado |
+|--------|----------|--------|--------|
+| Specification | [agents/specification-agent.md](agents/specification-agent.md) | [prompts/agents/specification-agent.md](prompts/agents/specification-agent.md) | active |
+| Architecture | [agents/architecture-agent.md](agents/architecture-agent.md) | [prompts/agents/architecture-agent.md](prompts/agents/architecture-agent.md) | active |
+| Testing+Review | [agents/testing-review-agent.md](agents/testing-review-agent.md) | [prompts/agents/testing-review-agent.md](prompts/agents/testing-review-agent.md) | active |
+| Product | [agents/product-agent.md](agents/product-agent.md) | [prompts/agents/product-agent.md](prompts/agents/product-agent.md) | stub |
+| Domain | [agents/domain-agent.md](agents/domain-agent.md) | [prompts/agents/domain-agent.md](prompts/agents/domain-agent.md) | stub |
+| Application | [agents/application-agent.md](agents/application-agent.md) | [prompts/agents/application-agent.md](prompts/agents/application-agent.md) | stub |
+| DevOps | [agents/devops-agent.md](agents/devops-agent.md) | [prompts/agents/devops-agent.md](prompts/agents/devops-agent.md) | stub |
+| Review | [agents/review-agent.md](agents/review-agent.md) | [prompts/agents/review-agent.md](prompts/agents/review-agent.md) | stub |
+| Testing | [agents/testing-agent.md](agents/testing-agent.md) | [prompts/agents/testing-agent.md](prompts/agents/testing-agent.md) | stub |
+
+## Contexto autorizado (activos)
+
+Índice. Abrir los artefactos; no concatenar en un mega-prompt. Detalle en cada contrato.
+
+| Agente | Rol | Flujo típico | IDE |
+|--------|-----|--------------|-----|
+| Specification | `prompts/agents/specification-agent.md` | `spec-draft-pbi`, `sdaf-worklog-handoff` | `idioma-castellano` |
+| Architecture | `prompts/agents/architecture-agent.md` | `adr-propose`, `sdaf-worklog-handoff` | `idioma-castellano` |
+| Testing+Review | `prompts/agents/testing-review-agent.md` | `sdaf-gate0`, `sdaf-worklog-handoff` | `idioma-castellano` |
+
+**Stubs:** solo contrato + prompt base hasta activación humana explícita.
+
+`PROMPT-SYS-001` (`prompts/system/master-architect.md`) es gobernanza de director técnico; **no** forma parte del paquete de agentes de implementación.
 
 | Agente | Contrato | Prompt | Estado |
 |--------|----------|--------|--------|

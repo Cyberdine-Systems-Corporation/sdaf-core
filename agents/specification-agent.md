@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.1 |
+| Versión | 0.1.2 |
 | Estado | Approved |
-| Fecha | 2026-08-24 |
+| Fecha | 2026-09-13 |
 | Modo | active |
 | Prompt base | `prompts/agents/specification-agent.md` |
 
@@ -50,3 +50,15 @@ Spec(s) listas para revisión humana; worklog con siguiente agente (Architecture
 ## Prompt base
 
 `prompts/agents/specification-agent.md`
+
+## Contexto autorizado
+
+Índice. No sustituye al prompt base. No concatenar en un mega-prompt.
+
+| Capa | Artefacto | Resumen (1 línea) | Obligatorio |
+|------|-----------|-------------------|-------------|
+| Rol | `prompts/agents/specification-agent.md` | Specs testeables desde knowledge | sí |
+| Flujo | `skills/spec-draft-pbi` | Draft de spec + PBI | según encargo |
+| Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
+| IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+

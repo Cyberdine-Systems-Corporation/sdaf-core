@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.1 |
+| Versión | 0.1.2 |
 | Estado | Approved |
-| Fecha | 2026-08-24 |
+| Fecha | 2026-09-13 |
 | Modo | active |
 | Prompt base | `prompts/agents/architecture-agent.md` |
 
@@ -49,3 +49,15 @@ ADR listo para aceptación humana o N/A justificado; handoff al agente de implem
 ## Prompt base
 
 `prompts/agents/architecture-agent.md`
+
+## Contexto autorizado
+
+Índice. No sustituye al prompt base. No concatenar en un mega-prompt.
+
+| Capa | Artefacto | Resumen (1 línea) | Obligatorio |
+|------|-----------|-------------------|-------------|
+| Rol | `prompts/agents/architecture-agent.md` | ADRs y boundaries; stack lo decide el consumidor | sí |
+| Flujo | `skills/adr-propose` | Proponer/enmendar ADR | según encargo |
+| Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
+| IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+
