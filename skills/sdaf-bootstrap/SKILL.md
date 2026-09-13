@@ -25,8 +25,8 @@ description: Inicializa un repo consumidor SDAF (config, AGENTS.md, árbol vací
 2. Escribir `sdaf.config.yaml` en la raíz del consumidor (`project.name`, `sdaf.version` = versión del core pinneada).
 3. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../../AGENTS.md.template): sustituir `{{PROJECT_NAME}}` y alinear active/stubs/fusions con la config.
 4. Crear árbol vacío según [H03](../../handbook/03-repository-organization.md): `knowledge/raw`, `knowledge/curated`, `specs/{product,domain,application,acceptance}`, `architecture/decisions`, `backlog`, `worklogs`, `agents`, `prompts`, `skills`, `templates`, `docs`; stub de handbook de producto desde [`templates/handbook-product.md`](../../templates/handbook-product.md).
-5. Si `stack.pack` ≠ `null`, verificar [`docs/contrato-pack-stack.md`](../../docs/contrato-pack-stack.md) y materializar aportes del pack.
-6. Copiar regla de idioma si aplica (`.cursor/rules/idioma-castellano.mdc`). **No** crear código de producto en `src/` sin Gate 0.
+5. Si `stack.pack` ≠ `null`, verificar [`docs/contrato-pack-stack.md`](../../docs/contrato-pack-stack.md) y materializar aportes del pack + core con symlinks relativos en el consumidor (script documentado `scripts/materialize-submodules.ps1` o manual según [`docs/adopcion-y-upgrade.md`](../../docs/adopcion-y-upgrade.md)); opcional `.cursor/skills/` → submodule.
+6. Copiar regla de idioma si aplica (`.cursor/rules/idioma-castellano.mdc` vía materialización). **No** crear código de producto en `src/` sin Gate 0.
 7. Ejecutar checklist Gate 0 en vacío → **STOP** esperado (sin specs Approved). Abrir worklog de bootstrap y citar `sdaf-bootstrap@0.2.0`.
 
 ## Definition of Done
