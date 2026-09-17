@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md) |
 | **Deriva hacia** | Workflow, arquitectura del consumidor, testing, agentes |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Principios](#2-principios) · [Anti-patrones](#3-anti-patrones-prohibidos)
 
 ## 1. Propósito
 
@@ -100,10 +102,19 @@ Identificadores de código pueden seguir convenciones técnicas en inglés si el
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [01-sdaf-framework.md](01-sdaf-framework.md) | Jerarquía normativa |
+| [05-development-workflow.md](05-development-workflow.md) | Un solo pipeline; gates |
+| [04-specification-standard.md](04-specification-standard.md) | Specs como verdad operativa |
+
 ## 4. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-06); Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

@@ -13,7 +13,9 @@
 ## Propósito
 
 Índice operativo para invocar agentes de **ingeniería** (no la IA de producto, si el proyecto la tiene).
-Antes de cualquier feature: Gate 0 (`handbook/05-development-workflow.md`).
+
+> [!CAUTION]
+> Antes de cualquier feature: Gate 0 ([handbook/05](handbook/05-development-workflow.md)).
 
 ## Modelo
 
@@ -28,9 +30,16 @@ El consumidor puede añadir fusiones (p. ej. Domain+Application, Frontend) vía 
 
 ## Handoff canónico (core)
 
-```text
-Specification → Architecture → (agentes de implementación del consumidor)
-                                      ↘ Testing+Review ↗
+```mermaid
+flowchart LR
+  Spec[Specification] --> Arch[Architecture]
+  Arch --> Impl[Implementación del consumidor]
+  Impl --> Test[Testing+Review]
+  Arch --> Test
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class Spec,Arch,Test ok
+  class Impl stub
 ```
 
 El saliente cierra worklog con “siguiente agente”. El entrante lee worklog + specs; no depende del chat efímero.
@@ -63,18 +72,6 @@ El saliente cierra worklog con “siguiente agente”. El entrante lee worklog +
 
 `PROMPT-SYS-001` (`prompts/system/master-architect.md`) es gobernanza de director técnico; **no** forma parte del paquete de agentes de implementación.
 
-| Agente | Contrato | Prompt | Estado |
-|--------|----------|--------|--------|
-| Specification | [agents/specification-agent.md](agents/specification-agent.md) | [prompts/agents/specification-agent.md](prompts/agents/specification-agent.md) | active |
-| Architecture | [agents/architecture-agent.md](agents/architecture-agent.md) | [prompts/agents/architecture-agent.md](prompts/agents/architecture-agent.md) | active |
-| Testing+Review | [agents/testing-review-agent.md](agents/testing-review-agent.md) | [prompts/agents/testing-review-agent.md](prompts/agents/testing-review-agent.md) | active |
-| Product | [agents/product-agent.md](agents/product-agent.md) | [prompts/agents/product-agent.md](prompts/agents/product-agent.md) | stub |
-| Domain | [agents/domain-agent.md](agents/domain-agent.md) | [prompts/agents/domain-agent.md](prompts/agents/domain-agent.md) | stub |
-| Application | [agents/application-agent.md](agents/application-agent.md) | [prompts/agents/application-agent.md](prompts/agents/application-agent.md) | stub |
-| DevOps | [agents/devops-agent.md](agents/devops-agent.md) | [prompts/agents/devops-agent.md](prompts/agents/devops-agent.md) | stub |
-| Review | [agents/review-agent.md](agents/review-agent.md) | [prompts/agents/review-agent.md](prompts/agents/review-agent.md) | stub |
-| Testing | [agents/testing-agent.md](agents/testing-agent.md) | [prompts/agents/testing-agent.md](prompts/agents/testing-agent.md) | stub |
-
 ## Skills
 
 Playbooks en [`skills/`](skills/) (tool-agnostic; **no** bajo `.cursor/skills/`).
@@ -96,7 +93,7 @@ Skills de stack o dominio las aporta el pack o el producto, no este core.
 - Worklogs: `worklogs/` del **consumidor** (ATF)
 - Idioma: castellano (`.cursor/rules/idioma-castellano.mdc`)
 - Coding standards: ADR del **consumidor** (o pack de stack); el core no fija lenguaje de programación.
-- Adopción / upgrade: `docs/adopcion-y-upgrade.md` del core
+- Adopción / upgrade: [docs/adopcion-y-upgrade.md](docs/adopcion-y-upgrade.md) del core
 
 ## Restricciones globales
 

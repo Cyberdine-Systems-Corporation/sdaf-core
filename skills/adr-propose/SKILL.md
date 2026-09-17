@@ -39,7 +39,9 @@ description: Propone o enmienda ADRs en Draft con plantilla y consecuencias. Usa
 - No contradecir handbook Approved sin enmienda explícita.
 - No imponer un stack en el método; registrarlo como ADR del consumidor.
 
-## Referencias
+## Relacionado
 
-- [prompts/agents/architecture-agent.md](../../prompts/agents/architecture-agent.md)
-- [templates/adr.md](../../templates/adr.md)
+| Destino | Por qué |
+|---------|---------|
+| [architecture-agent](../../prompts/agents/architecture-agent.md) | Prompt del rol |
+| [templates/adr.md](../../templates/adr.md) | Plantilla ADR |

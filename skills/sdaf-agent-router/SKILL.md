@@ -51,8 +51,10 @@ description: Resuelve qué agente SDAF debe actuar leyendo AGENTS.md y el contra
 |---------|--------|--------|
 | 0.2.1 | 2026-09-13 | Leer contexto autorizado; no mega-prompt |
 
-## Referencias
+## Relacionado
 
-- [AGENTS.md.template](../../AGENTS.md.template)
-- [handbook/07-prompt-engineering-standard.md](../../handbook/07-prompt-engineering-standard.md)
-- [skills/README.md](../README.md)
+| Destino | Por qué |
+|---------|---------|
+| [AGENTS.md.template](../../AGENTS.md.template) | Inventario de agentes |
+| [H07](../../handbook/07-prompt-engineering-standard.md) | No mega-prompt |
+| [skills/README.md](../README.md) | Catálogo |

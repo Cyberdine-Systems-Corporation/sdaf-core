@@ -2,13 +2,15 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.1 |
+| Versión | 0.2.2 |
 | Estado | Approved |
 | Idioma | Español |
 | Clasificación | Constitución del método (no del producto) |
-| Última actualización | 2026-09-13 |
+| Última actualización | 2026-09-17 |
 
 ---
+
+**En esta página:** [Propósito](#propósito) · [Mapa normativo](#mapa-normativo-consumidor) · [Índice](#índice) · [Estados](#estados-de-capítulo) · [Prioridad](#prioridad-ante-conflicto-en-un-repo-consumidor) · [Relacionado](#relacionado)
 
 ## Propósito
 
@@ -22,22 +24,33 @@ No es un tutorial ni un dump de requisitos de un producto.
 
 El **handbook de producto** (charter, vision, MVP, arquitectura de solución) vive en el repo consumidor y **no** forma parte de este core.
 
-Los HOWTO de adopción, upgrade y contrato de pack viven en [`docs/`](../docs/) de este core (no sustituyen este handbook).
+Los HOWTO de adopción, upgrade y contrato de pack viven en [`docs/`](../docs/README.md) de este core (no sustituyen este handbook).
 
----
+> [!NOTE]
+> Este handbook es constitución. Los procedimientos de pin y bootstrap están en [docs/](../docs/README.md).
 
 ## Mapa normativo (consumidor)
 
-```text
-Knowledge (inmutable, en el consumidor)
-    → Handbook SDAF (este core) + handbook de producto (consumidor)
-    → Specs en specs/ del consumidor  ← verdad operativa para implementar
-    → Architecture + ADRs
-    → Backlog
-    → Implementation ∥ Spec-derived Tests
-    → Review / Quality Gates
-    → Release
+```mermaid
+flowchart TD
+  K[Knowledge inmutable] --> HB[Handbook SDAF + handbook de producto]
+  HB --> S[Specs del consumidor]
+  S --> ADR[Architecture + ADRs]
+  ADR --> B[Backlog]
+  B --> IMP[Implementation]
+  B --> TST[Spec-derived Tests]
+  IMP --> G[Review / Quality Gates]
+  TST --> G
+  G --> REL[Release]
+  classDef norm fill:#d0e3f8,stroke:#1e4d8b,color:#1a1a1a;
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class K,HB,ADR norm
+  class S,G,REL ok
+  class B,IMP,TST stub
 ```
+
+Las specs en `specs/` del consumidor son la **verdad operativa** para implementar.
 
 Los **agentes IA** no son un nivel normativo: ejecutan el pipeline bajo estas reglas.
 Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, no sustituyen al handbook.
@@ -50,34 +63,34 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
-| 00 | [00-preface.md](00-preface.md) | Preface | Approved |
+| 00 | [00-preface.md](00-preface.md) | Preface | ✅ Approved |
 
 ### Parte I — Método SDAF
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
-| 01 | [01-sdaf-framework.md](01-sdaf-framework.md) | SDAF Framework | Approved |
-| 02 | [02-engineering-principles.md](02-engineering-principles.md) | Engineering Principles | Approved |
-| 03 | [03-repository-organization.md](03-repository-organization.md) | Repository Organization | Approved |
-| 04 | [04-specification-standard.md](04-specification-standard.md) | Specification Standard | Approved |
-| 05 | [05-development-workflow.md](05-development-workflow.md) | Development Workflow | Approved |
+| 01 | [01-sdaf-framework.md](01-sdaf-framework.md) | SDAF Framework | ✅ Approved |
+| 02 | [02-engineering-principles.md](02-engineering-principles.md) | Engineering Principles | ✅ Approved |
+| 03 | [03-repository-organization.md](03-repository-organization.md) | Repository Organization | ✅ Approved |
+| 04 | [04-specification-standard.md](04-specification-standard.md) | Specification Standard | ✅ Approved |
+| 05 | [05-development-workflow.md](05-development-workflow.md) | Development Workflow | ✅ Approved |
 
 ### Parte II — Ingeniería IA
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
-| 06 | [06-ai-agent-framework.md](06-ai-agent-framework.md) | AI Agent Framework | Approved |
-| 07 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Prompt Engineering Standard | Approved |
-| 08 | [08-agent-traceability.md](08-agent-traceability.md) | Agent Traceability Framework | Approved |
+| 06 | [06-ai-agent-framework.md](06-ai-agent-framework.md) | AI Agent Framework | ✅ Approved |
+| 07 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Prompt Engineering Standard | ✅ Approved |
+| 08 | [08-agent-traceability.md](08-agent-traceability.md) | Agent Traceability Framework | ✅ Approved |
 
 ### Apéndices
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
-| A | [A-templates.md](A-templates.md) | Templates | Approved |
-| — | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones | Approved |
+| A | [A-templates.md](A-templates.md) | Templates | ✅ Approved |
+| — | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones | ✅ Approved |
 
-**Alcance 0.2.x:** constitución correlativa del método; parche 0.2.1 = contexto autorizado y recibo ATF (opcionales). Adopción/upgrade y contrato de pack en `docs/`; skills `sdaf-bootstrap` y `sdaf-upgrade`.
+**Alcance 0.2.x:** constitución correlativa del método; parche 0.2.1 = contexto autorizado y recibo ATF (opcionales); parche 0.2.2 = navegación y diagramas (sin cambio de norma). Adopción/upgrade y contrato de pack en `docs/`; skills `sdaf-bootstrap` y `sdaf-upgrade`.
 
 **Fuera de 0.2 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); testing/devops/security y métricas de sprint detallados; glosario de dominio; idiomas distintos de `es`.
 
@@ -87,8 +100,8 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 
 | Estado | Significado |
 |--------|-------------|
-| **Draft** | Borrador; usable como guía, no cerrado |
-| **Approved** | Norma vigente; cambios requieren revisión formal y CHANGELOG |
+| 📝 **Draft** | Borrador; usable como guía, no cerrado |
+| ✅ **Approved** | Norma vigente; cambios requieren revisión formal y CHANGELOG |
 
 Ningún agente puede autodeclarar Approved.
 
@@ -102,3 +115,12 @@ Ningún agente puede autodeclarar Approved.
 4. Specs en `specs/`
 5. Backlog
 6. Implementación / prompts / worklogs
+
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [README del core](../README.md) | Tres puertas: adoptar, constitución, Gate 0 |
+| [Adopción y upgrade](../docs/adopcion-y-upgrade.md) | Pin a tag y bootstrap (HOWTO, no constitución) |
+| [mapa-navegacion.md](../docs/mapa-navegacion.md) | Ocho tareas y clics |
+| [00-preface.md](00-preface.md) | Qué es y qué no es este handbook |

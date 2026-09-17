@@ -21,27 +21,23 @@ Catálogo de claves: [`../sdaf.config.schema.yaml`](../sdaf.config.schema.yaml).
 
 ## Cómo elegir escenario
 
-```text
-¿Solo gobernanza, sin playbooks de lenguaje/UI?
-    → 01 (o 02 si quieres el YAML más corto)
-
-¿Monorepo / código no está en src/?
-    → 03
-
-¿Quieres skills de un stack (p. ej. .NET) sin decidir aún fusiones de implementación?
-    → 04
-
-¿Un humano y poco contexto (fusiones MVP)?
-    → 05
-
-¿Varios agentes de implementación y review dedicado?
-    → 06
-
-¿Hay UI y un pack que define el agente Frontend?
-    → 07
-
-¿Auditoría / plantilla “todo declarado”?
-    → 08
+```mermaid
+flowchart TD
+  Q1{Solo metodo sin pack?}
+  Q1 -->|YAML corto| E02[02-minimo]
+  Q1 -->|Recomendado| E01[01-default-core]
+  Q1 -->|No| Q2{Codigo fuera de src?}
+  Q2 -->|Si| E03[03-rutas-custom]
+  Q2 -->|No| Q3{Que overlay?}
+  Q3 -->|Pack de stack| E04[04-pack-stack]
+  Q3 -->|Fusiones MVP| E05[05-fusiones-mvp]
+  Q3 -->|Agentes desacoplados| E06[06-agentes-desacoplados]
+  Q3 -->|Pack y frontend| E07[07-pack-frontend]
+  Q3 -->|Todo declarado| E08[08-completo]
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class E01 ok
+  class E02,E03,E04,E05,E06,E07,E08 stub
 ```
 
 ---
@@ -108,6 +104,9 @@ No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o 
 
 ## Errores frecuentes
 
+> [!WARNING]
+> Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config antes de implementar.
+
 | Config | Problema |
 |--------|----------|
 | Mismo id en `active` y `stubs` | Ambigüedad; el router no sabe si invocar |
@@ -116,3 +115,11 @@ No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o 
 | `frontend` activo y `pack: null` | Id de extensión sin playbook |
 | `language: en` | No soportado en v0.2 |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
+
+## Relacionado
+
+| | Destino | Por qué |
+|--|---------|---------|
+| 🛠️ | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Dónde copiar el escenario |
+| | [sdaf.config.schema.yaml](../sdaf.config.schema.yaml) | Catálogo de claves |
+| 📦 | [contrato-pack-stack.md](../docs/contrato-pack-stack.md) | Si `stack.pack` ≠ `null` |

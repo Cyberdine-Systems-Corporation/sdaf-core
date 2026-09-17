@@ -42,10 +42,12 @@ description: Inicializa un repo consumidor SDAF (config, AGENTS.md, árbol vací
 - No saltar Gate 0 “para empezar ya el código”.
 - Castellano en artefactos de ingeniería.
 
-## Referencias
+## Relacionado
 
-- [docs/adopcion-y-upgrade.md](../../docs/adopcion-y-upgrade.md)
-- [skills/sdaf-gate0](../sdaf-gate0/SKILL.md)
+| Destino | Por qué |
+|---------|---------|
+| [docs/adopcion-y-upgrade.md](../../docs/adopcion-y-upgrade.md) | Pin y pasos canónicos |
+| [sdaf-gate0](../sdaf-gate0/SKILL.md) | STOP esperado en repo vacío |
 
 ## Historial
 

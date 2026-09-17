@@ -1,5 +1,16 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.2.2 — 2026-09-17
+
+Parche de navegación y formato (no breaking, **sin** cambio de significado normativo).
+
+- TOC «En esta página» y bloque Relacionado en capítulos 00–08 y A.
+- Diagramas Mermaid (con color semántico) en el índice, H01, H04, H05, H06, H08 y HOWTO de adopción.
+- Alertas GFM (NOTE/TIP/WARNING/CAUTION/IMPORTANT) y vocabulario visual cerrado en README, `docs/` y skills.
+- Checker de enlaces sobre todo el árbol markdown; checklist de página y mapa de clics en `docs/`.
+
+`sdaf.version` del consumidor puede seguir en `0.2.0`. El pin de árbol recomendado sigue siendo el tag `v0.2.1` hasta el próximo tag.
+
 ## 0.2.1 — 2026-09-13
 
 Parche (no breaking). Campos opcionales un ciclo.

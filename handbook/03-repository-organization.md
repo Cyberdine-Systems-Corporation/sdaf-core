@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md) |
 | **Deriva hacia** | Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Árbol](#2-árbol-normativo-consumidor) · [Carpetas](#3-responsabilidad-por-carpeta) · [Knowledge](#4-reglas-de-knowledge) · [Separación](#5-separación-knowledge-specs-código) · [Idioma](#6-idioma-y-nombres)
 
 ## 1. Propósito
 
@@ -105,10 +107,19 @@ Si el código descubre un error de spec: se enmienda la spec (y el test), no se 
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Cómo pinnear sdaf-core |
+| [04-specification-standard.md](04-specification-standard.md) | Qué vive en `specs/` |
+| [A-templates.md](A-templates.md) | Plantillas del árbol |
+
 ## 7. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-07); pin a sdaf-core → docs de adopción |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Árbol genérico; sin asumir runtime concreto (ADR-008) |

@@ -49,9 +49,9 @@ description: Cierra o inicia iteraciones ATF y handoffs entre agentes con planti
 |---------|--------|--------|
 | 0.2.1 | 2026-09-13 | Recibo ATF y línea de decisión en worklogs nuevos |
 
-## Referencias
+## Relacionado
 
-- [handbook/08-agent-traceability.md](../../handbook/08-agent-traceability.md)
-- [handbook/07-prompt-engineering-standard.md](../../handbook/07-prompt-engineering-standard.md)
-- [handbook/A-templates.md](../../handbook/A-templates.md)
-- [templates/worklog.md](../../templates/worklog.md)
+| Destino | Por qué |
+|---------|---------|
+| [H08](../../handbook/08-agent-traceability.md) | ATF: campos y retención |
+| [templates/worklog.md](../../templates/worklog.md) | Plantilla |

@@ -30,6 +30,9 @@ description: Verifica Gate 0 (specs Approved, acceptance, ADR si aplica, backlog
 7. Si falta algún ítem → **STOP**. Listar gaps; no implementar producto. Ofrecer solo docs/specs/ADR Draft.
 8. Si todo OK → registrar `sdaf-gate0@0.2.0` en worklog y continuar con el agente de implementación.
 
+> [!CAUTION]
+> ⛔ Si falta G0.1–G0.5: **STOP**. No implementar producto.
+
 ## Definition of Done
 
 - [ ] Checklist G0.1–G0.5 marcado con evidencias (rutas).
@@ -40,9 +43,11 @@ description: Verifica Gate 0 (specs Approved, acceptance, ADR si aplica, backlog
 
 - No saltar Gate 0 “por demo”.
 - No marcar specs/handbook como Approved.
-- Spike técnico solo con ADR de excepción (H9).
+- Spike técnico solo con ADR de excepción (H05).
 
-## Referencias
+## Relacionado
 
-- [handbook/05-development-workflow.md](../../handbook/05-development-workflow.md)
-- [AGENTS.md.template](../../AGENTS.md.template)
+| | Destino | Por qué |
+|--|---------|---------|
+| ⛔ | [H05 §3](../../handbook/05-development-workflow.md#3-gate-0-pre-implementación-stop) | Checklist G0.1–G0.5 |
+| 🧭 | [AGENTS.md.template](../../AGENTS.md.template) | Router tras el gate |
