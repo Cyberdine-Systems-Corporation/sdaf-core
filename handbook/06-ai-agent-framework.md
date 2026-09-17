@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.1 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-13 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Distinción](#2-distinción-crítica) · [Modelo](#3-modelo-operativo) · [Contrato](#4-contrato-de-agente-obligatorio) · [Handoffs](#5-orquestación-y-handoffs) · [Skills](#6-skills) · [Restricciones](#7-restricciones-globales)
 
 ## 1. Propósito
 
@@ -66,9 +68,16 @@ El contexto autorizado es un **índice** (tabla de capas: rol, flujo/skills, reg
 
 ## 5. Orquestación y handoffs
 
-```text
-Specification → Architecture → (implementación del consumidor)
-                                      ↘ Testing+Review ↗
+```mermaid
+flowchart LR
+  Spec[Specification] --> Arch[Architecture]
+  Arch --> Impl[Implementación del consumidor]
+  Impl --> Test[Testing+Review]
+  Arch --> Test
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class Spec,Arch,Test ok
+  class Impl stub
 ```
 
 1. El saliente cierra worklog con “siguiente agente”.
@@ -110,10 +119,19 @@ Catálogo core:
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [skills/README.md](../skills/README.md) | Catálogo de playbooks |
+| [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
+| [AGENTS.md.template](../AGENTS.md.template) | Router a materializar |
+
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama con color (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Contexto autorizado en el contrato (índice; no mega-prompt) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

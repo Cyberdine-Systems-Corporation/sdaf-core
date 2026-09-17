@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | Front matter |
 | **Norma superior** | Ninguna (inaugura la constitución del método) |
 | **Deriva hacia** | Todo este handbook |
 
 ---
+
+**En esta página:** [Por qué existe](#1-por-qué-existe-este-handbook) · [Qué es y qué no es](#2-qué-es-y-qué-no-es) · [Autoridad](#3-autoridad) · [Doble entregable](#4-doble-entregable) · [Cómo leer](#5-cómo-leer-este-handbook) · [Idioma](#6-idioma-y-estilo) · [Audiencia](#7-audiencia)
 
 ## 1. Por qué existe este handbook
 
@@ -76,7 +78,10 @@ Ninguno justifica sacrificar al otro sin decisión explícita.
 3. Parte II según rol de agente.
 4. Apéndice A para plantillas.
 
-Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) + criterio de aceptación, **párate** y vuelve a la Parte I.
+Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) + criterio de aceptación, vuelve a la Parte I.
+
+> [!CAUTION]
+> Sin spec + ADR (si aplica) + criterio de aceptación: no implementar.
 
 ---
 
@@ -94,10 +99,19 @@ Arquitecto / director técnico, Product Owner, desarrolladores, agentes IA del r
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [README del handbook](README.md) | Índice y estados de capítulo |
+| [01-sdaf-framework.md](01-sdaf-framework.md) | Definición del marco |
+| [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | HOWTO de pin y bootstrap |
+
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC, Relacionado y alerta de lectura (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumeración correlativa; orden de lectura Parte I / II / Apéndice A |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica desde laboratorio SDAF (ADR-008) |

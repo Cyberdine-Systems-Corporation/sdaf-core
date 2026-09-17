@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md) |
 | **Deriva hacia** | `worklogs/`, `backlog/`, agentes |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Flujo](#2-flujo-de-extremo-a-extremo) · [Gate 0](#3-gate-0-pre-implementación-stop) · [Gate 1](#4-gate-1-durante-la-implementación) · [Gate 2](#5-gate-2-listo-para-revisión-merge) · [Gate 3](#6-gate-3-cierre-de-release-demo) · [Roles](#7-roles-en-el-flujo) · [Violaciones](#8-violaciones)
 
 ## 1. Propósito
 
@@ -22,6 +24,26 @@ Un solo camino. No hay atajo de agente.
 ## 2. Flujo de extremo a extremo
 
 **Paso 0 — Bootstrap del repo** (skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md)): árbol y `sdaf.config.yaml` listos según [cap. 03](03-repository-organization.md) y [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md). En un repo vacío, Gate 0 → **STOP** esperado hasta specs Approved.
+
+```mermaid
+flowchart TD
+  B[0 Bootstrap / Gate 0] --> S[1-2 Specs Approved]
+  S --> ADR[3 ADR si aplica]
+  ADR --> P[4-5 PBI + worklog]
+  P --> T[6 Tests de aceptación]
+  T --> I[7 Implementación]
+  I --> R[8 Tests verdes + review]
+  R --> W[9 Worklog cerrado]
+  W --> D[10 Integración / demo]
+  classDef stop fill:#f8d0d0,stroke:#8b1e1e,color:#1a1a1a;
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class B stop
+  class S,R,W,D ok
+  class ADR,P,T,I stub
+```
+
+Pasos en texto:
 
 ```text
 1. Knowledge disponible (si dominio)
@@ -52,9 +74,11 @@ Antes de escribir código de producto, **deben** cumplirse:
 | G0.4 | PBI/backlog enlazado | `backlog/` |
 | G0.5 | Worklog de iteración iniciado | `worklogs/...` |
 
-Si falta cualquiera → **STOP**.
+> [!CAUTION]
+> Gate 0. Si falta G0.1–G0.5, **STOP**. No hay atajo de agente.
 
-**Excepción:** spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.
+> [!NOTE]
+> **Excepción:** spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.
 
 ---
 
@@ -104,15 +128,25 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 
 ## 8. Violaciones
 
-Implementación de producto fusionada o presentada **sin** Gate 0 es violación SDAF.  
-Debe registrarse, revertirse o regularizarse (spec retroactiva **prohibida** como hábito; solo con ADR de excepción y plan de corrección).
+> [!CAUTION]
+> Implementación de producto fusionada o presentada **sin** Gate 0 es violación SDAF.
+> Debe registrarse, revertirse o regularizarse (spec retroactiva **prohibida** como hábito; solo con ADR de excepción y plan de corrección).
 
 ---
+
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [skills/sdaf-gate0](../skills/sdaf-gate0/SKILL.md) | Playbook del Gate 0 |
+| [08-agent-traceability.md](08-agent-traceability.md) | Worklog obligatorio (G0.5) |
+| [03-repository-organization.md](03-repository-organization.md) | Árbol que el bootstrap debe dejar listo |
 
 ## 9. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-09); paso 0 bootstrap; Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Gates genéricos; sin roles de stack concreto (ADR-008) |

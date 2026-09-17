@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.1 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-13 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md) |
 | **Deriva hacia** | `prompts/`, `skills/`, worklogs, agentes |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Principios](#2-principios) · [Árbol](#3-árbol-de-la-biblioteca) · [Estructura](#4-estructura-obligatoria) · [Versionado](#5-versionado) · [Ad hoc](#6-prompts-ad-hoc) · [Tokens](#7-economía-de-tokens) · [Skills](#8-relación-con-skills) · [IDEs](#9-relación-con-ides)
 
 ## 1. Propósito
 
@@ -89,10 +91,19 @@ Prompts = rol; skills = playbooks de flujo. Enlazar `skills/<id>/SKILL.md`; no p
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [08-agent-traceability.md](08-agent-traceability.md) | Citar `prompt_id@version` en el worklog |
+| [prompts/README.md](../prompts/README.md) | Catálogo de la biblioteca |
+| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Contrato y contexto autorizado |
+
 ## 10. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Resumen = índice; mega-resumen y sustituto del prompt prohibidos |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-14); Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

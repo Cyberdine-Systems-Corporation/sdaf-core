@@ -40,10 +40,12 @@ description: Actualiza el pin de sdaf-core en un consumidor (tag, sdaf.version, 
 - No aprobar norma ni specs.
 - No reescribir historia git del consumidor sin orden humana.
 
-## Referencias
+## Relacionado
 
-- [docs/adopcion-y-upgrade.md](../../docs/adopcion-y-upgrade.md)
-- [docs/contrato-pack-stack.md](../../docs/contrato-pack-stack.md)
+| Destino | Por qué |
+|---------|---------|
+| [docs/adopcion-y-upgrade.md](../../docs/adopcion-y-upgrade.md) | Checklist de upgrade |
+| [handbook/CHANGELOG.md](../../handbook/CHANGELOG.md) | Breaking y parches |
 
 ## Historial
 

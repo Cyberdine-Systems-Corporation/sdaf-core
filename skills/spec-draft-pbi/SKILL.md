@@ -38,7 +38,9 @@ description: Redacta o actualiza specs Draft (DOM/APP/ACC), índices y backlog s
 - No implementar código de producto desde esta skill.
 - No inventar alcance Out del MVP del consumidor.
 
-## Referencias
+## Relacionado
 
-- [prompts/agents/specification-agent.md](../../prompts/agents/specification-agent.md)
-- [templates/spec.md](../../templates/spec.md)
+| Destino | Por qué |
+|---------|---------|
+| [specification-agent](../../prompts/agents/specification-agent.md) | Prompt del rol |
+| [templates/spec.md](../../templates/spec.md) | Cabecera de spec |

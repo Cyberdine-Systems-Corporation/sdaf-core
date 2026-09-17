@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.1 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-13 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `worklogs/` del consumidor, templates |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Principio](#2-principio) · [Organización](#3-organización) · [Campos](#4-campos-obligatorios) · [Cuándo](#5-cuándo-crear-worklog) · [Cadena](#6-cadena-de-trazabilidad) · [Retención](#7-retención)
 
 ## 1. Propósito
 
@@ -21,6 +23,7 @@ Sin ATF, SDAF no es demostrable.
 
 ## 2. Principio
 
+> [!IMPORTANT]
 > Si no está en el worklog (o en un artefacto enlazado desde él), **no forma parte del contexto oficial** del handoff.
 
 El chat es efímero. El worklog es evidencia. Los worklogs viven en el **repo consumidor**, no en este core.
@@ -76,8 +79,20 @@ Apartado breve que cita spec/ADR/capítulo **§** que justificó cada elección 
 
 ## 6. Cadena de trazabilidad
 
-```text
-Backlog (PBI) → Specs / ADRs → Prompt@version → Worklog → Diff → Tests → Review
+```mermaid
+flowchart LR
+  PBI[Backlog PBI] --> Spec[Specs / ADRs]
+  Spec --> Prompt[Prompt@version]
+  Prompt --> WL[Worklog]
+  WL --> Diff[Diff]
+  Diff --> Tests[Tests]
+  Tests --> Rev[Review]
+  classDef norm fill:#d0e3f8,stroke:#1e4d8b,color:#1a1a1a;
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class PBI,Spec,Prompt norm
+  class WL,Tests,Rev ok
+  class Diff stub
 ```
 
 ---
@@ -88,10 +103,19 @@ Los worklogs se conservan durante la vida del proyecto. No reescribir historia p
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [templates/worklog.md](../templates/worklog.md) | Plantilla ATF |
+| [skills/sdaf-worklog-handoff](../skills/sdaf-worklog-handoff/SKILL.md) | Cerrar y pasar el testigo |
+| [05-development-workflow.md](05-development-workflow.md) | G0.5 exige worklog abierto |
+
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alerta ATF (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Recibo de iteración y línea de decisión (opcionales; sin backfill) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-15); Parte II |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

@@ -2,14 +2,16 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.0 |
+| **Versión** | 0.2.2 |
 | **Estado** | Approved |
-| **Fecha** | 2026-08-25 |
+| **Fecha** | 2026-09-17 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [03-repository-organization.md](03-repository-organization.md) |
 | **Deriva hacia** | `specs/` del consumidor, [05-development-workflow.md](05-development-workflow.md), tests, backlog |
 
 ---
+
+**En esta página:** [Propósito](#1-propósito) · [Definición](#2-definición) · [Tipos](#3-tipos-y-ubicación) · [Cabecera](#4-cabecera-obligatoria) · [Contenido](#5-contenido-mínimo-por-tipo) · [Pipeline](#6-pipeline-de-elaboración) · [Versionado](#7-versionado-y-cambios) · [ADRs](#8-relación-con-adrs)
 
 ## 1. Propósito
 
@@ -88,13 +90,19 @@ Entonces [resultado observable]
 
 ## 6. Pipeline de elaboración
 
-```text
-knowledge/raw|curated
-    → specs/domain (glossary → model → rules)
-    → specs/application (use cases)
-    → specs/acceptance
-    → tests (derivados)
-    → implementación
+```mermaid
+flowchart TD
+  K[knowledge/raw y curated] --> D[specs/domain]
+  D --> A[specs/application]
+  A --> ACC[specs/acceptance]
+  ACC --> T[tests derivados]
+  T --> I[implementación]
+  classDef norm fill:#d0e3f8,stroke:#1e4d8b,color:#1a1a1a;
+  classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
+  classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
+  class K,D,A norm
+  class ACC ok
+  class T,I stub
 ```
 
 1. No saltar de knowledge a código.
@@ -123,10 +131,19 @@ Una spec no sustituye un ADR de stack o de límites.
 
 ---
 
+## Relacionado
+
+| Destino | Por qué |
+|---------|---------|
+| [03-repository-organization.md](03-repository-organization.md) | Dónde vive `specs/` |
+| [05-development-workflow.md](05-development-workflow.md) | Gate 0 exige specs Approved |
+| [templates/spec.md](../templates/spec.md) | Plantilla de cabecera |
+
 ## 9. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.2 | 2026-09-17 | TOC, Relacionado y diagrama (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-08); Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica; `specs/` = verdad operativa del consumidor (ADR-008) |
