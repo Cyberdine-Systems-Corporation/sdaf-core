@@ -1,0 +1,131 @@
+site_name: SDAF Core
+site_description: Constitución, agentes, prompts y skills del Spec-Driven AI Development Framework
+repo_url: https://github.com/Cyberdine-Systems-Corporation/sdaf-core
+repo_name: sdaf-core
+edit_uri: edit/main/
+docs_dir: .
+site_dir: site
+
+exclude_docs: |
+  .venv/
+  site/
+  scripts/
+  .github/
+  *.yaml
+  *.yml
+  *.json
+  LICENSE
+  requirements-docs.txt
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      toggle: { icon: material/brightness-7, name: Modo oscuro }
+    - scheme: slate
+      toggle: { icon: material/brightness-4, name: Modo claro }
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - pymdownx.blocks.admonition:
+      types: [note, tip, warning, caution, danger]
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Inicio: README.md
+  - Handbook:
+      - handbook/README.md
+      - 00 Preface: handbook/00-preface.md
+      - 01 SDAF Framework: handbook/01-sdaf-framework.md
+      - 02 Engineering Principles: handbook/02-engineering-principles.md
+      - 03 Repository Organization: handbook/03-repository-organization.md
+      - 04 Specification Standard: handbook/04-specification-standard.md
+      - 05 Development Workflow: handbook/05-development-workflow.md
+      - 06 AI Agent Framework: handbook/06-ai-agent-framework.md
+      - 07 Prompt Engineering Standard: handbook/07-prompt-engineering-standard.md
+      - 08 Agent Traceability: handbook/08-agent-traceability.md
+      - A Templates: handbook/A-templates.md
+      - Changelog: handbook/CHANGELOG.md
+  - Adopción y operación:
+      - docs/README.md
+      - Adopción y upgrade: docs/adopcion-y-upgrade.md
+      - Contrato de pack: docs/contrato-pack-stack.md
+      - Mapa de navegación: docs/mapa-navegacion.md
+      - Checklist de página: docs/checklist-pagina-docs.md
+  - Agentes:
+      - agents/README.md
+      - Product: agents/product-agent.md
+      - Domain: agents/domain-agent.md
+      - Application: agents/application-agent.md
+      - Architecture: agents/architecture-agent.md
+      - Specification: agents/specification-agent.md
+      - Testing: agents/testing-agent.md
+      - Testing Review: agents/testing-review-agent.md
+      - Review: agents/review-agent.md
+      - DevOps: agents/devops-agent.md
+  - Prompts:
+      - prompts/README.md
+      - System:
+          - Master Architect: prompts/system/master-architect.md
+      - Agentes:
+          - Product: prompts/agents/product-agent.md
+          - Domain: prompts/agents/domain-agent.md
+          - Application: prompts/agents/application-agent.md
+          - Architecture: prompts/agents/architecture-agent.md
+          - Specification: prompts/agents/specification-agent.md
+          - Testing: prompts/agents/testing-agent.md
+          - Testing Review: prompts/agents/testing-review-agent.md
+          - Review: prompts/agents/review-agent.md
+          - DevOps: prompts/agents/devops-agent.md
+      - Documentación:
+          - Handbook Author: prompts/documentation/handbook-author.md
+          - Specification Author: prompts/documentation/specification-author.md
+          - ADR Author: prompts/documentation/adr-author.md
+  - Skills:
+      - skills/README.md
+      - sdaf-gate0: skills/sdaf-gate0/SKILL.md
+      - sdaf-bootstrap: skills/sdaf-bootstrap/SKILL.md
+      - sdaf-upgrade: skills/sdaf-upgrade/SKILL.md
+      - sdaf-agent-router: skills/sdaf-agent-router/SKILL.md
+      - sdaf-worklog-handoff: skills/sdaf-worklog-handoff/SKILL.md
+      - spec-draft-pbi: skills/spec-draft-pbi/SKILL.md
+      - adr-propose: skills/adr-propose/SKILL.md
+  - Plantillas:
+      - templates/spec.md
+      - templates/adr.md
+      - templates/worklog.md
+      - templates/agent-contract.md
+      - templates/prompt.md
+      - templates/skill.md
+      - templates/handbook-product.md
+  - Configuración:
+      - Esquema sdaf.config.yaml: configuracion/schema.md
+      - Escenarios de referencia: configuracion/escenarios.md
