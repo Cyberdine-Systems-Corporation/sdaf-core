@@ -6,6 +6,16 @@ edit_uri: edit/main/
 docs_dir: src
 site_dir: ../site
 
+# MkDocs excluye por defecto '.*' y '/templates/' del docs_dir (ver
+# https://www.mkdocs.org/user-guide/configuration/#exclude_docs). Se niegan
+# aquí porque sdaf-core tiene contenido real en templates/ y .github/, y se
+# vuelve a excluir lo que sí es tooling puro dentro de .github/ y examples/.
+exclude_docs: |
+  !/templates/
+  !/.github/
+  /.github/workflows/
+  /examples/*.yaml
+
 theme:
   name: material
   language: es
