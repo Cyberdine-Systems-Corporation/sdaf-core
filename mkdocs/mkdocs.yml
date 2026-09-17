@@ -3,19 +3,8 @@ site_description: Constitución, agentes, prompts y skills del Spec-Driven AI De
 repo_url: https://github.com/Cyberdine-Systems-Corporation/sdaf-core
 repo_name: sdaf-core
 edit_uri: edit/main/
-docs_dir: .
-site_dir: site
-
-exclude_docs: |
-  .venv/
-  site/
-  scripts/
-  .github/
-  *.yaml
-  *.yml
-  *.json
-  LICENSE
-  requirements-docs.txt
+docs_dir: src
+site_dir: ../site
 
 theme:
   name: material
