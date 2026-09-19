@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.0 |
+| Versión | 0.3.1 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DD |
 | Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `handbook/10-code-review-and-quality-gates.md`, `skills/README.md` |
@@ -98,4 +98,4 @@ Skills de stack o dominio las aporta el pack o el producto, no este core.
 
 ## Restricciones globales
 
-Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa alcance Out del MVP del consumidor; introduce secretos; reescribe historia git sin orden humana.
+Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa alcance Out del MVP del consumidor; introduce secretos; altera el remoto del proyecto ni crea commit local sin petición humana explícita (H06 §7; la excepción en `AGENTS.md`/ADR debe enumerar qué permite); ejecuta force-push, reescribe historia o auto-merge sin orden humana.

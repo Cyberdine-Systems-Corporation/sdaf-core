@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.0 |
+| **Versión** | 0.3.1 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-18 |
+| **Fecha** | 2026-09-19 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md) |
 | **Deriva hacia** | `worklogs/`, `backlog/`, agentes |
@@ -90,7 +90,7 @@ Antes de escribir código de producto, **deben** cumplirse:
 | G1.2 | No ampliar alcance Out del MVP del consumidor sin enmienda |
 | G1.3 | Preferir cambios en una vertical slice coherente |
 | G1.4 | Actualizar worklog al cerrar la iteración |
-| G1.5 | Commits en castellano |
+| G1.5 | Commits en castellano. Cuándo crearlos o escribir el remoto: [H06 §7](06-ai-agent-framework.md#7-restricciones-globales) (petición explícita; excepción del consumidor acotada) |
 
 ---
 
@@ -142,11 +142,13 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 | [08-agent-traceability.md](08-agent-traceability.md) | Worklog obligatorio (G0.5) |
 | [03-repository-organization.md](03-repository-organization.md) | Árbol que el bootstrap debe dejar listo |
 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG técnicos; no redefinen G0–G3 |
+| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Cuándo un agente puede commit o escribir el remoto (G1.5) |
 
 ## 9. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.1 | 2026-09-19 | G1.5: idioma de commits; el cuándo (local y remoto) queda en H06 §7 (sin redefinir G0–G3) |
 | 0.3.0 | 2026-09-19 | Gate 2: se retira el calificador Draft de H10/H11 (sin redefinir G0–G3) |
 | 0.3.0 | 2026-09-18 | Gate 2 enlaza H10/H11 (sin redefinir G0–G3) |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma) |
