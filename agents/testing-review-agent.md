@@ -34,8 +34,8 @@ Specs acceptance, diff del PBI, worklogs, runbook del consumidor si aplica.
 
 ## Checklist
 
-- [ ] Tests trazan a AC (H09 Draft si pin 0.3)
-- [ ] Checklist H10 (Draft) + coding standards del consumidor si hay ADR
+- [ ] Tests trazan a AC (H09 si pin 0.3)
+- [ ] Checklist H10 + coding standards del consumidor si hay ADR
 - [ ] QG-Sec si el diff toca auth/secretos (`security-review`)
 - [ ] Worklog con estado
 
@@ -59,8 +59,8 @@ QG aplicables en verde o hallazgos severizados; handoff humano/merge.
 |------|-----------|-------------------|-------------|
 | Rol | `prompts/agents/testing-review-agent.md` | Tests derivados y review / quality gates | sí |
 | Flujo | `skills/sdaf-gate0` | Gate 0 antes de código de producto | si hay implementación |
-| Flujo | `skills/testing-review-pr` | Gate 2 / dictamen merge (Draft 0.3.0) | sí (si pin 0.3) |
-| Flujo | `skills/security-review` | QG-Sec si hay superficie de auth/secretos (Draft 0.3.0) | si aplica |
+| Flujo | `skills/testing-review-pr` | Gate 2 / dictamen merge | sí (si pin 0.3) |
+| Flujo | `skills/security-review` | QG-Sec si hay superficie de auth/secretos | si aplica |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 

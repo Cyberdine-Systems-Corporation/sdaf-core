@@ -9,9 +9,9 @@ description: Ejecuta Gate 2 / review de PR con checklist H10, acceptance del PBI
 |--------|--------|
 | ID | testing-review-pr |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Prioridad | alta |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 | Norma | [handbook/10](../../handbook/10-code-review-and-quality-gates.md), [handbook/05](../../handbook/05-development-workflow.md) §Gate 2, [handbook/09](../../handbook/09-testing-framework.md) |
 
 ## Disparadores

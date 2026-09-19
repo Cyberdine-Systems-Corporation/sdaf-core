@@ -109,14 +109,15 @@ Identificadores de código pueden seguir convenciones técnicas en inglés si el
 | [01-sdaf-framework.md](01-sdaf-framework.md) | Jerarquía normativa |
 | [05-development-workflow.md](05-development-workflow.md) | Un solo pipeline; gates |
 | [04-specification-standard.md](04-specification-standard.md) | Specs como verdad operativa |
-| [09-testing-framework.md](09-testing-framework.md) | Test from Specs (Draft 0.3.0) |
-| [11-devops.md](11-devops.md) | Runtime local canónico (Draft 0.3.0) |
+| [09-testing-framework.md](09-testing-framework.md) | Test from Specs |
+| [11-devops.md](11-devops.md) | Runtime local canónico |
 
 ## 4. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
-| 0.3.0 | 2026-09-18 | Relacionado: H09 y H11 Draft (sin cambio de norma) |
+| 0.3.0 | 2026-09-19 | Relacionado: se retira el calificador Draft de H09/H11 (sin cambio de norma) |
+| 0.3.0 | 2026-09-18 | Relacionado: H09 y H11 (sin cambio de norma) |
 | 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-06); Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | **Versión** | 0.3.0 |
-| **Estado** | Draft |
-| **Fecha** | 2026-09-18 |
+| **Estado** | Approved |
+| **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
 | **Norma superior** | [02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | Runbooks en `docs/` del consumidor, `.github/`, skill `devops-ci-gate` |
@@ -12,9 +12,6 @@
 ---
 
 **En esta página:** [Propósito](#1-propósito) · [Objetivos](#2-objetivos-del-método) · [Runtime local](#3-runtime-local) · [Runbook](#4-runbook-obligatorio) · [Entornos](#5-entornos) · [CI](#6-ci-cloud)
-
-> [!NOTE]
-> 📝 Capítulo **Draft** (trasplante 0.3.0). Orienta el trabajo; no es norma Approved hasta revisión humana.
 
 ## 1. Propósito
 
@@ -101,4 +98,5 @@ Playbook: [`skills/devops-ci-gate`](../skills/devops-ci-gate/SKILL.md). El agent
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H18; orquestación concreta fuera del core |

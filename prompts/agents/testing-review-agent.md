@@ -16,7 +16,7 @@ Escribir/ejecutar tests derivados de acceptance y completar checklist de review/
 
 - `agents/testing-review-agent.md`
 - Specs acceptance del PBI; diff
-- [H09](../../handbook/09-testing-framework.md), [H10](../../handbook/10-code-review-and-quality-gates.md) (Draft 0.3.0)
+- [H09](../../handbook/09-testing-framework.md), [H10](../../handbook/10-code-review-and-quality-gates.md)
 - ADR de coding standards del consumidor, si existe (no forma parte de este core)
 - Skills `testing-review-pr`, `security-review` si aplica
 
@@ -44,6 +44,7 @@ Trazabilidad AC→test; checklist de review del consumidor cubierto si aplica.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
-| 0.3.0 | 2026-09-18 | Contexto H09/H10 y skills Parte III (Draft) |
+| 0.3.0 | 2026-09-19 | Contexto H09/H10 y skills Parte III (Approved) |
+| 0.3.0 | 2026-09-18 | Contexto H09/H10 y skills Parte III |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica; coding standards de stack fuera del core (ADR-008) |

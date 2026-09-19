@@ -4,9 +4,9 @@
 |--------|--------|
 | ID | PROMPT-REV-SPEC-001 |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Agente / rol | specification / review |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 
 ## Objetivo
 
@@ -42,4 +42,5 @@ Trazable a H04; acceptance testeable.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract cap. 08 → H04 |

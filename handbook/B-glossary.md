@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | **Versión** | 0.3.0 |
-| **Estado** | Draft |
-| **Fecha** | 2026-09-18 |
+| **Estado** | Approved |
+| **Fecha** | 2026-09-19 |
 | **Parte** | Apéndices |
 | **Norma superior** | Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor |
 
@@ -13,7 +13,7 @@
 **En esta página:** [Propósito](#1-propósito) · [Términos](#2-términos)
 
 > [!NOTE]
-> 📝 Apéndice **Draft** (trasplante 0.3.0). Glosario de **método**, no de dominio de producto.
+> Glosario de **método**, no de dominio de producto.
 
 ## 1. Propósito
 
@@ -60,4 +60,5 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: términos de método (extract A; sin dominio de producto) |
