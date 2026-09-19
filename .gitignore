@@ -7,3 +7,6 @@
 venv/
 __pycache__/
 *.pyc
+
+# Brand tooling (ffmpeg frames, etc.)
+docs/assets/_tools/

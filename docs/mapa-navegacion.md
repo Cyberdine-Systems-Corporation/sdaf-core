@@ -41,7 +41,7 @@ Ninguna tarea de adopción o constitución exige más de **tres** clics desde el
 | Carpeta | Rol | Libertad editorial |
 |---------|-----|--------------------|
 | `handbook/` | Constitución del método | Claridad y navegación; **sin** cambiar el significado normativo |
-| `docs/` | HOWTO (adopción, pack, este mapa) | Alta |
+| `docs/` | HOWTO (adopción, pack, mapa, branding) | Alta |
 | `README.md` | Puerta de entrada | Alta |
 | `skills/`, `examples/` | Playbooks y escenarios | Alta |
 | `templates/`, `prompts/`, `agents/` | Contratos operativos | Claridad; no contradecir H06–H08 |
@@ -53,5 +53,6 @@ Ninguna tarea de adopción o constitución exige más de **tres** clics desde el
 | 🧭 | [README.md](../README.md) | Tres puertas de entrada |
 | 🛠️ | [docs/README.md](README.md) | Índice HOWTO |
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Pin, bootstrap, upgrade |
+| 🖼️ | [branding.md](branding.md) | Mark, lockups, paleta y motion |
 | 📝 | [checklist-pagina-docs.md](checklist-pagina-docs.md) | DoD de una página markdown |
 | 📝 | [Plantilla de PR](../.github/pull_request_template.md) | Checklist en el DoD del PR |

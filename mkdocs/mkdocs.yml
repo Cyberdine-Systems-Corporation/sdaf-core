@@ -3,7 +3,8 @@ site_description: Constitución, agentes, prompts y skills del Spec-Driven AI De
 repo_url: https://github.com/Cyberdine-Systems-Corporation/sdaf-core
 repo_name: sdaf-core
 edit_uri: edit/main/
-docs_dir: src
+# Raíz del repo (antes: symlink mkdocs/src → ..). Así logo/favicon y docs/assets resuelven igual en CI.
+docs_dir: ..
 site_dir: ../site
 
 # MkDocs excluye por defecto '.*' y '/templates/' del docs_dir (ver
@@ -12,19 +13,29 @@ site_dir: ../site
 # .cursor/rules/, y se vuelve a excluir lo que sí es tooling puro dentro
 # de .github/ y examples/.
 exclude_docs: |
+  /mkdocs/
+  /site/
   !/templates/
   !/.github/
   !/.cursor/
   /.github/workflows/
   /examples/*.yaml
+  /docs/assets/_tools/
+  /docs/assets/*.html
 
 theme:
   name: material
   language: es
+  logo: docs/assets/sdaf-core-icon.svg
+  favicon: docs/assets/sdaf-core-icon.svg
   palette:
     - scheme: default
+      primary: custom
+      accent: custom
       toggle: { icon: material/brightness-7, name: Modo oscuro }
     - scheme: slate
+      primary: custom
+      accent: custom
       toggle: { icon: material/brightness-4, name: Modo claro }
   features:
     - navigation.tabs
@@ -35,6 +46,9 @@ theme:
     - search.suggest
     - content.code.copy
     - content.action.edit
+
+extra_css:
+  - docs/stylesheets/branding.css
 
 markdown_extensions:
   - admonition
@@ -88,6 +102,7 @@ nav:
       - Adopción y upgrade: docs/adopcion-y-upgrade.md
       - Contrato de pack: docs/contrato-pack-stack.md
       - Mapa de navegación: docs/mapa-navegacion.md
+      - Branding: docs/branding.md
       - Checklist de página: docs/checklist-pagina-docs.md
   - Agentes:
       - agents/README.md
