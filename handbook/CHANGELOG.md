@@ -1,5 +1,17 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.3.0 — 2026-09-18
+
+Línea nueva de constitución (**no** breaking de citas `H00`–`H08`). Caps. 09–12 y apéndice B aterrizan en **Draft** hasta aprobación humana.
+
+- Parte III — Calidad y entrega: H09 Testing, H10 Review/QG, H11 DevOps, H12 Security (trasplante genérico extract H16/H17/H18/H20; stack y producto fuera).
+- Apéndice B: glosario de método (sin ubiquitous language de dominio).
+- Skills `testing-review-pr`, `security-review`, `devops-ci-gate`.
+- Prompts `prompts/review/`, `prompts/quality/`, `prompts/planning/`.
+- Plantilla `templates/security.md` (el consumidor materializa `SECURITY.md`).
+
+El consumidor puede seguir pinneado a `v0.2.1` / `sdaf.version` `0.2.0` hasta que adopte esta línea. Pin de árbol 0.3.0: tras Approve y tag.
+
 ## 0.2.2 — 2026-09-17
 
 Parche de navegación y formato (no breaking, **sin** cambio de significado normativo).

@@ -11,7 +11,7 @@ No contiene código ni specs de un producto concreto.
 | | Si quieres… | Empieza aquí |
 |--|-------------|--------------|
 | 🛠️ | **Adoptar** el método en un repo | [Adopción y upgrade](docs/adopcion-y-upgrade.md) — pin a tag, `sdaf.config.yaml`, bootstrap |
-| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–08 y apéndice A |
+| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–08 y apéndice A; Parte III 09–12 y B en Draft (0.3.0) |
 | ⛔ | **Operar un PBI** | [Gate 0](skills/sdaf-gate0/SKILL.md) antes de código; [worklog / ATF](handbook/08-agent-traceability.md) para dejar evidencia |
 
 🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md).
@@ -36,7 +36,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 
 | | Ruta | Rol |
 |--|------|-----|
-| 📖 | `handbook/` | Constitución del método (00, Parte I 01–05, Parte II 06–08, apéndice A) |
+| 📖 | `handbook/` | Constitución del método (00, Parte I 01–05, Parte II 06–08, Parte III 09–12 Draft, apéndices A–B) |
 | 🛠️ | `docs/` | HOWTO adopción/upgrade, contrato de pack, mapa de navegación |
 | 📝 | `templates/` | Spec, ADR, worklog, agente, prompt, skill, handbook de producto |
 | | `agents/` + `prompts/` | Contratos y prompts genéricos |
@@ -64,9 +64,10 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 
 | | Artefacto | Estado |
 |--|-----------|--------|
-| ✅ | Handbook del método | **Approved** (v0.2.2, parche de navegación; sin cambio de norma) |
-| ✅ | Agentes, prompts y skills | **Approved** (v0.2.1) |
-| | Release del árbol (tag) | **v0.2.1** hasta el próximo tag |
+| ✅ | Handbook del método | **Approved** 00–08 y A (v0.2.2); Parte III 09–12 y B **Draft** (v0.3.0) |
+| ✅ | Agentes, prompts y skills 0.2 | **Approved** (v0.2.1) |
+| 📝 | Skills/prompts Parte III | **Draft** (`testing-review-pr`, `security-review`, `devops-ci-gate`, review/quality/planning) |
+| | Release del árbol (tag) | **v0.2.1** hasta Approve 0.3.0 y tag |
 
 ## Origen
 

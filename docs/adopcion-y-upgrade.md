@@ -13,7 +13,7 @@
 |----------|-----|
 | Tag Git `vX.Y.Z` | Release del árbol sdaf-core |
 | `sdaf.version` en `sdaf.config.yaml` | Misma semver **mayor.menor** del core adoptado |
-| Capítulos / skills | Alineados a la misma línea 0.2.x |
+| Capítulos / skills | Alineados a la misma línea (`0.2.x` o `0.3.x` según pin) |
 
 > [!TIP]
 > El pin recomendado del árbol es `v0.2.1`. `sdaf.version` puede seguir `0.2.0` hasta que el consumidor actualice el YAML.
@@ -103,11 +103,25 @@ Parche **0.2.1** (hasta pin `v0.2.1`): contexto autorizado en contratos; recibo 
 
 Parche **0.2.2** (docs): navegación, diagramas y vocabulario visual; no cambia la norma. No exige retag ni cambio de `sdaf.version`.
 
-## Fuera de 0.2.x
+## 0.3.0 (opt-in)
+
+Línea nueva de constitución. **No** rompe citas `H00`–`H08`. Quien se quede en `v0.2.1` no está obligado.
+
+Al pinnear 0.3.0 (tras Approve y tag):
+
+1. Leer Parte III Draft → Approved: [H09](../handbook/09-testing-framework.md)–[H12](../handbook/12-security-standards.md).
+2. Adoptar QG-Sec y runbook local si no existían.
+3. Materializar `SECURITY.md` desde [`templates/security.md`](../templates/security.md).
+4. Opcional: ADR de coding standards para QG-Docs (pack o consumidor).
+5. Actualizar `sdaf.version` a `0.3.0` y materializar skills nuevas (`testing-review-pr`, `security-review`, `devops-ci-gate`).
+
+Métricas de sprint detalladas siguen en el handbook de **producto**, no en el core.
+
+## Fuera de 0.3.x
 
 Sin implementar en esta línea:
 
-- Capítulos detallados de testing / devops / security / métricas de sprint en el handbook del método
+- Métricas de sprint / capacidad humana detallada (producto)
 - Glosario de dominio (pertenece al producto)
 - `project.language` distinto de `es`
 - CLI de materialización (las skills playbook bastan)

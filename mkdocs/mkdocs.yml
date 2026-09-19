@@ -71,7 +71,12 @@ nav:
       - 06 AI Agent Framework: handbook/06-ai-agent-framework.md
       - 07 Prompt Engineering Standard: handbook/07-prompt-engineering-standard.md
       - 08 Agent Traceability: handbook/08-agent-traceability.md
+      - 09 Testing Framework: handbook/09-testing-framework.md
+      - 10 Code Review and Quality Gates: handbook/10-code-review-and-quality-gates.md
+      - 11 DevOps: handbook/11-devops.md
+      - 12 Security Standards: handbook/12-security-standards.md
       - A Templates: handbook/A-templates.md
+      - B Glossary: handbook/B-glossary.md
       - Changelog: handbook/CHANGELOG.md
   - Adopción y operación:
       - docs/README.md
@@ -108,6 +113,17 @@ nav:
           - Handbook Author: prompts/documentation/handbook-author.md
           - Specification Author: prompts/documentation/specification-author.md
           - ADR Author: prompts/documentation/adr-author.md
+      - Review:
+          - Code Review: prompts/review/code-review.md
+          - Architecture Review: prompts/review/architecture-review.md
+          - Specification Review: prompts/review/specification-review.md
+      - Quality:
+          - Quality Gates: prompts/quality/quality-gates.md
+          - Testing Strategy: prompts/quality/testing-strategy.md
+      - Planning:
+          - Sprint Planning: prompts/planning/sprint-planning.md
+          - Backlog Refinement: prompts/planning/backlog-refinement.md
+          - Roadmap Planning: prompts/planning/roadmap-planning.md
   - Skills:
       - skills/README.md
       - sdaf-gate0: skills/sdaf-gate0/SKILL.md
@@ -117,6 +133,9 @@ nav:
       - sdaf-worklog-handoff: skills/sdaf-worklog-handoff/SKILL.md
       - spec-draft-pbi: skills/spec-draft-pbi/SKILL.md
       - adr-propose: skills/adr-propose/SKILL.md
+      - testing-review-pr: skills/testing-review-pr/SKILL.md
+      - security-review: skills/security-review/SKILL.md
+      - devops-ci-gate: skills/devops-ci-gate/SKILL.md
   - Plantillas:
       - templates/spec.md
       - templates/adr.md
@@ -125,6 +144,7 @@ nav:
       - templates/prompt.md
       - templates/skill.md
       - templates/handbook-product.md
+      - templates/security.md
   - Configuración:
       - Esquema sdaf.config.yaml: configuracion/schema.md
       - Escenarios de referencia: configuracion/escenarios.md

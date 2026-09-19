@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.2 |
+| **Versión** | 0.3.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
+| **Fecha** | 2026-09-18 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
@@ -102,8 +102,9 @@ Catálogo core:
 
 | Prioridad | Skills |
 |-----------|--------|
-| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap` |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr` (Draft 0.3.0) |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade`, `security-review` (Draft 0.3.0) |
+| Baja | `devops-ci-gate` (Draft 0.3.0) |
 
 ---
 
@@ -126,11 +127,13 @@ Catálogo core:
 | [skills/README.md](../skills/README.md) | Catálogo de playbooks |
 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
 | [AGENTS.md.template](../AGENTS.md.template) | Router a materializar |
+| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review (Draft 0.3.0) |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate (Draft) |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama con color (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Contexto autorizado en el contrato (índice; no mega-prompt) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |

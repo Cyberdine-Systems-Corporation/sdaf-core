@@ -2,10 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.1 |
+| Versión | 0.3.0 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DD |
-| Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `skills/README.md` |
+| Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `handbook/10-code-review-and-quality-gates.md`, `skills/README.md` |
 | Config | `sdaf.config.yaml` |
 
 ---
@@ -66,7 +66,7 @@ El saliente cierra worklog con “siguiente agente”. El entrante lee worklog +
 |--------|-----|--------------|-----|
 | Specification | `prompts/agents/specification-agent.md` | `spec-draft-pbi`, `sdaf-worklog-handoff` | `idioma-castellano` |
 | Architecture | `prompts/agents/architecture-agent.md` | `adr-propose`, `sdaf-worklog-handoff` | `idioma-castellano` |
-| Testing+Review | `prompts/agents/testing-review-agent.md` | `sdaf-gate0`, `sdaf-worklog-handoff` | `idioma-castellano` |
+| Testing+Review | `prompts/agents/testing-review-agent.md` | `sdaf-gate0`, `testing-review-pr`, `security-review` (si aplica), `sdaf-worklog-handoff` | `idioma-castellano` |
 
 **Stubs:** solo contrato + prompt base hasta activación humana explícita.
 
@@ -80,8 +80,9 @@ Citar `skill-id@version` en worklogs (H06 §6, H07).
 
 | Prioridad | Skills (core) |
 |-----------|----------------|
-| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap` |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade`, `security-review` |
+| Baja | `devops-ci-gate` |
 
 Skills de stack o dominio las aporta el pack o el producto, no este core.
 

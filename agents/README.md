@@ -3,7 +3,7 @@
 Contratos de agentes de ingeniería. Norma: [`handbook/06-ai-agent-framework.md`](../handbook/06-ai-agent-framework.md).  
 Router: materializar [`AGENTS.md.template`](../AGENTS.md.template) en el consumidor.
 
-Estado de contratos y prompts asociados: **Approved** (v0.2.1). Cada contrato incluye **contexto autorizado** (índice; no mega-prompt).
+Estado de contratos 0.2: **Approved**. Contexto autorizado de Testing+Review / DevOps incluye skills Draft 0.3.0.
 
 | Agente | Contrato |
 |--------|----------|
