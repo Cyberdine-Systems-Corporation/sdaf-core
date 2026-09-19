@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | **Versión** | 0.3.0 |
-| **Estado** | Draft |
-| **Fecha** | 2026-09-18 |
+| **Estado** | Approved |
+| **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
 | **Norma superior** | [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md) |
 | **Deriva hacia** | `tests/` del consumidor, Gate 2, [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) |
@@ -12,9 +12,6 @@
 ---
 
 **En esta página:** [Propósito](#1-propósito) · [Principio](#2-principio-rector) · [Pirámide](#3-pirámide-por-nivel) · [Cobertura](#4-cobertura-bloqueante) · [Organización](#5-organización-en-tests) · [Datos](#6-datos-de-prueba)
-
-> [!NOTE]
-> 📝 Capítulo **Draft** (trasplante 0.3.0). Orienta el trabajo; no es norma Approved hasta revisión humana.
 
 ## 1. Propósito
 
@@ -100,4 +97,5 @@ Nombrar tests según el escenario de acceptance, no según el detalle de impleme
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H16 (ADR-008) |

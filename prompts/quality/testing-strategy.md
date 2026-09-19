@@ -4,9 +4,9 @@
 |--------|--------|
 | ID | PROMPT-QUA-TEST-001 |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Agente / rol | quality / Testing+Review |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 
 ## Objetivo
 
@@ -41,4 +41,5 @@ Trazable a ACs del PBI; no exige cobertura de líneas como KPI.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract cap. 16 → H09; sin dominio de producto |

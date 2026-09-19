@@ -52,8 +52,8 @@ Entrega del encargo puntual + handoff documentado.
 | Capa | Artefacto | Resumen (1 línea) | Obligatorio |
 |------|-----------|-------------------|-------------|
 | Rol | `prompts/agents/devops-agent.md` | CI / runtime local bajo demanda | sí (si se activa) |
-| Flujo | `skills/devops-ci-gate` | QG locales / no inventar CI (Draft 0.3.0) | sí (si se activa) |
+| Flujo | `skills/devops-ci-gate` | QG locales / no inventar CI | sí (si se activa) |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
-| Norma | `handbook/11-devops.md` | Local-first y runbook (Draft 0.3.0) | sí (si se activa) |
+| Norma | `handbook/11-devops.md` | Local-first y runbook | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 

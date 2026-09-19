@@ -4,9 +4,9 @@
 |--------|--------|
 | ID | PROMPT-REV-ARCH-001 |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Agente / rol | architecture / review |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 
 ## Objetivo
 
@@ -42,4 +42,5 @@ Trazable a ADRs vigentes y a H10 QG-Arch.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract; Partes III/V → H02/H10 |

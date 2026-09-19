@@ -102,9 +102,9 @@ Catálogo core:
 
 | Prioridad | Skills |
 |-----------|--------|
-| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr` (Draft 0.3.0) |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade`, `security-review` (Draft 0.3.0) |
-| Baja | `devops-ci-gate` (Draft 0.3.0) |
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade`, `security-review` |
+| Baja | `devops-ci-gate` |
 
 ---
 
@@ -127,13 +127,14 @@ Catálogo core:
 | [skills/README.md](../skills/README.md) | Catálogo de playbooks |
 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
 | [AGENTS.md.template](../AGENTS.md.template) | Router a materializar |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review (Draft 0.3.0) |
+| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
-| 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate (Draft) |
+| 0.3.0 | 2026-09-19 | Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06) |
+| 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama con color (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Contexto autorizado en el contrato (índice; no mega-prompt) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |

@@ -3,10 +3,10 @@
 | Campo | Valor |
 |--------|--------|
 | Versión | 0.3.0 |
-| Estado | Approved (00–08, A) · Draft (09–12, B) |
+| Estado | Approved |
 | Idioma | Español |
 | Clasificación | Constitución del método (no del producto) |
-| Última actualización | 2026-09-18 |
+| Última actualización | 2026-09-19 |
 
 ---
 
@@ -87,20 +87,20 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
-| 09 | [09-testing-framework.md](09-testing-framework.md) | Testing Framework | 📝 Draft |
-| 10 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Code Review and Quality Gates | 📝 Draft |
-| 11 | [11-devops.md](11-devops.md) | DevOps | 📝 Draft |
-| 12 | [12-security-standards.md](12-security-standards.md) | Security Standards | 📝 Draft |
+| 09 | [09-testing-framework.md](09-testing-framework.md) | Testing Framework | ✅ Approved |
+| 10 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Code Review and Quality Gates | ✅ Approved |
+| 11 | [11-devops.md](11-devops.md) | DevOps | ✅ Approved |
+| 12 | [12-security-standards.md](12-security-standards.md) | Security Standards | ✅ Approved |
 
 ### Apéndices
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
 | A | [A-templates.md](A-templates.md) | Templates | ✅ Approved |
-| B | [B-glossary.md](B-glossary.md) | Glossary (método) | 📝 Draft |
+| B | [B-glossary.md](B-glossary.md) | Glossary (método) | ✅ Approved |
 | — | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones | ✅ Approved |
 
-**Alcance 0.3.0:** Parte III (testing, review/QG, devops, security) y glosario de método en **Draft** (trasplante ADR-008). Caps. 00–08 y A siguen Approved; no se renumeran. Adopción/upgrade y contrato de pack en `docs/`.
+**Alcance 0.3.0:** Parte III (testing, review/QG, devops, security) y glosario de método **Approved** (aprobación humana del director técnico). Caps. 00–08 y A no se renumeran. Adopción/upgrade y contrato de pack en `docs/`.
 
 **Fuera de 0.3 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); métricas de sprint detalladas; glosario de dominio; idiomas distintos de `es`.
 
@@ -134,4 +134,4 @@ Ningún agente puede autodeclarar Approved.
 | [Adopción y upgrade](../docs/adopcion-y-upgrade.md) | Pin a tag y bootstrap (HOWTO, no constitución) |
 | [mapa-navegacion.md](../docs/mapa-navegacion.md) | Ocho tareas y clics |
 | [00-preface.md](00-preface.md) | Qué es y qué no es este handbook |
-| [09-testing-framework.md](09-testing-framework.md) | Parte III Draft (calidad y entrega) |
+| [09-testing-framework.md](09-testing-framework.md) | Parte III (calidad y entrega) |

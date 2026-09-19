@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | **Versión** | 0.3.0 |
-| **Estado** | Draft |
-| **Fecha** | 2026-09-18 |
+| **Estado** | Approved |
+| **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
 | **Norma superior** | [02-engineering-principles.md](02-engineering-principles.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md), `templates/security.md`, Testing+Review, skill `security-review` |
@@ -12,9 +12,6 @@
 ---
 
 **En esta página:** [Propósito](#1-propósito) · [Alcance](#2-alcance-y-no-alcance) · [Referencias](#3-referencias-externas) · [Baseline](#4-baseline-obligatorio) · [Gates](#5-gates-y-review) · [Roles](#6-roles)
-
-> [!NOTE]
-> 📝 Capítulo **Draft** (trasplante 0.3.0). Orienta el trabajo; no es norma Approved hasta revisión humana.
 
 ## 1. Propósito
 
@@ -144,4 +141,5 @@ Skill operativa: [`skills/security-review`](../skills/security-review/SKILL.md).
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H20; auth concreta fuera del core |

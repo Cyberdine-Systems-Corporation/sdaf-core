@@ -4,9 +4,9 @@
 |--------|--------|
 | ID | PROMPT-PLN-001 |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Agente / rol | planning / product |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 
 ## Objetivo
 
@@ -42,4 +42,5 @@ Alineado al DoD / MVP del consumidor y a H05.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract H04/H19 → handbook de producto + H05 |

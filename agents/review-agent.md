@@ -52,7 +52,7 @@ Dictamen + handoff documentado.
 | Capa | Artefacto | Resumen (1 línea) | Obligatorio |
 |------|-----------|-------------------|-------------|
 | Rol | `prompts/agents/review-agent.md` | Review puro bajo demanda | sí (si se activa) |
-| Flujo | `skills/testing-review-pr` | Checklist H10 (Draft 0.3.0) | sí (si se activa y pin 0.3) |
+| Flujo | `skills/testing-review-pr` | Checklist H10 | sí (si se activa y pin 0.3) |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 

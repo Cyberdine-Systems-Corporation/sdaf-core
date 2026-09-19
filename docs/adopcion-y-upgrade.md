@@ -107,9 +107,9 @@ Parche **0.2.2** (docs): navegación, diagramas y vocabulario visual; no cambia 
 
 Línea nueva de constitución. **No** rompe citas `H00`–`H08`. Quien se quede en `v0.2.1` no está obligado.
 
-Al pinnear 0.3.0 (tras Approve y tag):
+Al pinnear 0.3.0 (tras el tag `v0.3.0`):
 
-1. Leer Parte III Draft → Approved: [H09](../handbook/09-testing-framework.md)–[H12](../handbook/12-security-standards.md).
+1. Leer Parte III: [H09](../handbook/09-testing-framework.md)–[H12](../handbook/12-security-standards.md).
 2. Adoptar QG-Sec y runbook local si no existían.
 3. Materializar `SECURITY.md` desde [`templates/security.md`](../templates/security.md).
 4. Opcional: ADR de coding standards para QG-Docs (pack o consumidor).

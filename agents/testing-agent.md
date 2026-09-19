@@ -52,7 +52,7 @@ Tests trazables + handoff documentado.
 | Capa | Artefacto | Resumen (1 línea) | Obligatorio |
 |------|-----------|-------------------|-------------|
 | Rol | `prompts/agents/testing-agent.md` | Tests derivados bajo demanda | sí (si se activa) |
-| Norma | `handbook/09-testing-framework.md` | Pirámide y tests desde specs (Draft 0.3.0) | sí (si se activa y pin 0.3) |
+| Norma | `handbook/09-testing-framework.md` | Pirámide y tests desde specs | sí (si se activa y pin 0.3) |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 

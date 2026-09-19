@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | Versión | 0.3.0 |
-| Estado | Draft |
-| Fecha | 2026-09-18 |
+| Estado | Approved |
+| Fecha | 2026-09-19 |
 | Norma | [handbook/12-security-standards.md](../handbook/12-security-standards.md) |
 
 El consumidor copia esta plantilla a `SECURITY.md` en la raíz de su repo. No sustituye H12 ni el ADR de auth.
@@ -27,4 +27,5 @@ Fuera de alcance del método salvo ADR: ASVS completo, pentest obligatorio, MFA/
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Borrador de plantilla para el trasplante H12 |

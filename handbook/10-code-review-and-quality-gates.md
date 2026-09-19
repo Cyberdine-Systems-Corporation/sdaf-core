@@ -3,8 +3,8 @@
 | Campo | Valor |
 |--------|--------|
 | **Versión** | 0.3.0 |
-| **Estado** | Draft |
-| **Fecha** | 2026-09-18 |
+| **Estado** | Approved |
+| **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
 | **Norma superior** | [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md) |
 | **Deriva hacia** | Agente Testing+Review, PRs, CI local del consumidor |
@@ -12,9 +12,6 @@
 ---
 
 **En esta página:** [Propósito](#1-propósito) · [Quién revisa](#2-quién-revisa) · [Checklist](#3-checklist-de-code-review) · [Quality gates](#4-quality-gates-técnicos) · [Severidad](#5-severidad-de-hallazgos)
-
-> [!NOTE]
-> 📝 Capítulo **Draft** (trasplante 0.3.0). Orienta el trabajo; no es norma Approved hasta revisión humana.
 
 ## 1. Propósito
 
@@ -136,4 +133,5 @@ Hallazgos del ADR de coding standards del consumidor, si ese ADR los declara blo
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H17; coding standards fuera del core |

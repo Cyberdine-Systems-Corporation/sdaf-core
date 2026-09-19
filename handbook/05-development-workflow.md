@@ -98,11 +98,11 @@ Antes de escribir código de producto, **deben** cumplirse:
 
 | # | Requisito |
 |---|-----------|
-| G2.1 | Acceptance tests del PBI en verde (o justificación ADR temporal) — detalle QG-Accept en [H10](10-code-review-and-quality-gates.md) (Draft 0.3.0) |
+| G2.1 | Acceptance tests del PBI en verde (o justificación ADR temporal) — detalle QG-Accept en [H10](10-code-review-and-quality-gates.md) |
 | G2.2 | Ninguna contradicción consciente con specs Approved |
 | G2.3 | Review con checklist ([H10](10-code-review-and-quality-gates.md) si el consumidor pinnea 0.3) |
 | G2.4 | Worklog cerrado / listo |
-| G2.5 | Runtime local sigue arrancando según runbook del consumidor (si aplica) — [H11](11-devops.md) (Draft 0.3.0) |
+| G2.5 | Runtime local sigue arrancando según runbook del consumidor (si aplica) — [H11](11-devops.md) |
 
 ---
 
@@ -141,13 +141,14 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 | [skills/sdaf-gate0](../skills/sdaf-gate0/SKILL.md) | Playbook del Gate 0 |
 | [08-agent-traceability.md](08-agent-traceability.md) | Worklog obligatorio (G0.5) |
 | [03-repository-organization.md](03-repository-organization.md) | Árbol que el bootstrap debe dejar listo |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG técnicos (Draft 0.3.0); no redefinen G0–G3 |
+| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG técnicos; no redefinen G0–G3 |
 
 ## 9. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
-| 0.3.0 | 2026-09-18 | Gate 2 enlaza H10/H11 Draft (sin redefinir G0–G3) |
+| 0.3.0 | 2026-09-19 | Gate 2: se retira el calificador Draft de H10/H11 (sin redefinir G0–G3) |
+| 0.3.0 | 2026-09-18 | Gate 2 enlaza H10/H11 (sin redefinir G0–G3) |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-09); paso 0 bootstrap; Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

@@ -9,9 +9,9 @@ description: Revisa diffs de auth, sesión, endpoints o secretos contra el basel
 |--------|--------|
 | ID | security-review |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Prioridad | media |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 | Norma | [handbook/12](../../handbook/12-security-standards.md), [handbook/10](../../handbook/10-code-review-and-quality-gates.md), `templates/security.md` |
 
 ## Disparadores

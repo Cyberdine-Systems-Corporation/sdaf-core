@@ -9,10 +9,10 @@ description: Playbook stub-aware para quality gates locales y huecos de CI. Usar
 |--------|--------|
 | ID | devops-ci-gate |
 | Versión | 0.3.0 |
-| Estado | Draft |
+| Estado | Approved |
 | Prioridad | baja |
 | Nota | stub-aware (agente DevOps stub) |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 | Norma | [handbook/11](../../handbook/11-devops.md), [handbook/10](../../handbook/10-code-review-and-quality-gates.md) |
 
 ## Disparadores
