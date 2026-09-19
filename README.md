@@ -2,7 +2,7 @@
 
 Núcleo reutilizable del **Spec-Driven AI Development Framework** (SDAF): constitución del método, agentes, prompts, skills y plantillas.
 
-![release](https://img.shields.io/badge/release-v0.2.1-2d6a4f) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
+![release](https://img.shields.io/badge/release-v0.3.2-2d6a4f) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
 
 No contiene código ni specs de un producto concreto.
 
@@ -52,13 +52,13 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 
 Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resumen:
 
-1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.2.1` recomendado; subtree o copia también documentados).
+1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.3.2` recomendado; subtree o copia también documentados).
 2. Crear `sdaf.config.yaml` copiando un escenario de [`examples/`](examples/README.md). Claves: [`sdaf.config.schema.yaml`](sdaf.config.schema.yaml) / [`sdaf.config.schema.json`](sdaf.config.schema.json).
 3. Ejecutar skill `sdaf-bootstrap` (o materializar `AGENTS.md` y el árbol a mano).
 4. Añadir handbook de **producto** (plantilla `templates/handbook-product.md`).
 5. ⛔ Gate 0 (`skills/sdaf-gate0`) antes de código de producto.
 
-`sdaf.version` en el YAML puede seguir en `0.2.0` hasta que el consumidor pinnee `v0.2.1`.
+`sdaf.version` en el YAML puede seguir en `0.3.0` con pin `v0.3.2`. Quien se quede en `v0.2.1` no está obligado.
 
 ## Estado
 
@@ -67,7 +67,7 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 | ✅ | Handbook del método | **Approved** 00–12 y A–B (v0.3.2) |
 | ✅ | Agentes, prompts y skills | **Approved** (v0.3.2; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
-| | Release del árbol (tag) | **v0.2.1** hasta el tag `v0.3.0` |
+| | Release del árbol (tag) | **v0.3.2** |
 
 ## Origen
 

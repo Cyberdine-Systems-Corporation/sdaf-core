@@ -16,7 +16,7 @@
 | Capítulos / skills | Alineados a la misma línea (`0.2.x` o `0.3.x` según pin) |
 
 > [!TIP]
-> El pin recomendado del árbol es `v0.2.1`. `sdaf.version` puede seguir `0.2.0` hasta que el consumidor actualice el YAML.
+> El pin recomendado del árbol es `v0.3.2`. `sdaf.version` puede seguir `0.3.0`. Quien se quede en `v0.2.1` no está obligado.
 
 Subir de `0.1.x` a `0.2.0` es un upgrade consciente (breaking de citas de handbook).
 
@@ -38,10 +38,10 @@ flowchart TD
 
 ```text
 git submodule add -b main <url-sdaf-core> .sdaf
-cd .sdaf && git checkout v0.2.1
+cd .sdaf && git checkout v0.3.2
 ```
 
-2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version: "0.2.0"` es válido con pin `v0.2.1`).
+2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version: "0.3.0"` es válido con pin `v0.3.2`).
 3. Ejecutar la skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) (o seguir sus pasos a mano).
 4. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template).
 
@@ -107,7 +107,7 @@ Parche **0.2.2** (docs): navegación, diagramas y vocabulario visual; no cambia 
 
 Línea nueva de constitución. **No** rompe citas `H00`–`H08`. Quien se quede en `v0.2.1` no está obligado.
 
-Al pinnear 0.3.0 (tras el tag `v0.3.0`):
+Al pinnear la línea 0.3 (tag `v0.3.2`):
 
 1. Leer Parte III: [H09](../handbook/09-testing-framework.md)–[H12](../handbook/12-security-standards.md).
 2. Adoptar QG-Sec y runbook local si no existían.
