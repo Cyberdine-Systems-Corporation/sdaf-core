@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.2 |
+| **Versión** | 0.3.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
+| **Fecha** | 2026-09-18 |
 | **Parte** | Apéndices |
-| **Norma superior** | Caps. 04, 05, 06, 07, 08; copias operativas en `templates/` |
+| **Norma superior** | Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/` |
 
 ---
 
@@ -25,6 +25,7 @@
 | Prompt | [`templates/prompt.md`](../templates/prompt.md) |
 | Skill | [`templates/skill.md`](../templates/skill.md) |
 | Handbook de producto | [`templates/handbook-product.md`](../templates/handbook-product.md) |
+| Seguridad (reporte) | [`templates/security.md`](../templates/security.md) |
 
 Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no se duplican aquí para no divergir.
 
@@ -37,11 +38,13 @@ Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no s
 | [04-specification-standard.md](04-specification-standard.md) | Cabecera de spec |
 | [08-agent-traceability.md](08-agent-traceability.md) | Campos del worklog |
 | [06-ai-agent-framework.md](06-ai-agent-framework.md) | Contrato de agente |
+| [12-security-standards.md](12-security-standards.md) | Plantilla SECURITY.md (Draft 0.3.0) |
 
 ## 2. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-18 | Plantilla `templates/security.md` |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado y enlaces a plantillas (sin cambio de norma) |
 | 0.2.1 | 2026-09-13 | Worklog: recibo y línea de decisión; contrato: contexto autorizado |
 | 0.2.0 | 2026-08-25 | Renombrado B→A; plantilla handbook de producto |

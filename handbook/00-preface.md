@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.2 |
+| **Versión** | 0.3.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
+| **Fecha** | 2026-09-18 |
 | **Parte** | Front matter |
 | **Norma superior** | Ninguna (inaugura la constitución del método) |
 | **Deriva hacia** | Todo este handbook |
@@ -76,7 +76,8 @@ Ninguno justifica sacrificar al otro sin decisión explícita.
 1. Este preface y el [índice](README.md).
 2. Parte I **antes** de escribir código o prompts de implementación.
 3. Parte II según rol de agente.
-4. Apéndice A para plantillas.
+4. Parte III (Draft en 0.3.0) para testing, review/QG, devops y seguridad.
+5. Apéndices A (plantillas) y B (glosario de método, Draft).
 
 Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) + criterio de aceptación, vuelve a la Parte I.
 
@@ -105,12 +106,14 @@ Arquitecto / director técnico, Product Owner, desarrolladores, agentes IA del r
 |---------|---------|
 | [README del handbook](README.md) | Índice y estados de capítulo |
 | [01-sdaf-framework.md](01-sdaf-framework.md) | Definición del marco |
+| [09-testing-framework.md](09-testing-framework.md) | Parte III Draft: tests desde specs |
 | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | HOWTO de pin y bootstrap |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-18 | Orden de lectura: Parte III y apéndice B (sin cambio de norma de 00–08) |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado y alerta de lectura (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumeración correlativa; orden de lectura Parte I / II / Apéndice A |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

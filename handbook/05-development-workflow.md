@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.2.2 |
+| **Versión** | 0.3.0 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
+| **Fecha** | 2026-09-18 |
 | **Parte** | I — Método SDAF |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md) |
 | **Deriva hacia** | `worklogs/`, `backlog/`, agentes |
@@ -98,11 +98,11 @@ Antes de escribir código de producto, **deben** cumplirse:
 
 | # | Requisito |
 |---|-----------|
-| G2.1 | Acceptance tests del PBI en verde (o justificación ADR temporal) |
+| G2.1 | Acceptance tests del PBI en verde (o justificación ADR temporal) — detalle QG-Accept en [H10](10-code-review-and-quality-gates.md) (Draft 0.3.0) |
 | G2.2 | Ninguna contradicción consciente con specs Approved |
-| G2.3 | Review con checklist |
+| G2.3 | Review con checklist ([H10](10-code-review-and-quality-gates.md) si el consumidor pinnea 0.3) |
 | G2.4 | Worklog cerrado / listo |
-| G2.5 | Runtime local sigue arrancando según runbook del consumidor (si aplica) |
+| G2.5 | Runtime local sigue arrancando según runbook del consumidor (si aplica) — [H11](11-devops.md) (Draft 0.3.0) |
 
 ---
 
@@ -141,11 +141,13 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 | [skills/sdaf-gate0](../skills/sdaf-gate0/SKILL.md) | Playbook del Gate 0 |
 | [08-agent-traceability.md](08-agent-traceability.md) | Worklog obligatorio (G0.5) |
 | [03-repository-organization.md](03-repository-organization.md) | Árbol que el bootstrap debe dejar listo |
+| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG técnicos (Draft 0.3.0); no redefinen G0–G3 |
 
 ## 9. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-09-18 | Gate 2 enlaza H10/H11 Draft (sin redefinir G0–G3) |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma) |
 | 0.2.0 | 2026-08-25 | Renumerado (ex-09); paso 0 bootstrap; Parte I |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

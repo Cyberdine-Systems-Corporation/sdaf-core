@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.2 |
-| Estado | Approved |
+| Versión | 0.3.0 |
+| Estado | Approved (00–08, A) · Draft (09–12, B) |
 | Idioma | Español |
 | Clasificación | Constitución del método (no del producto) |
-| Última actualización | 2026-09-17 |
+| Última actualización | 2026-09-18 |
 
 ---
 
@@ -83,16 +83,26 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 | 07 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Prompt Engineering Standard | ✅ Approved |
 | 08 | [08-agent-traceability.md](08-agent-traceability.md) | Agent Traceability Framework | ✅ Approved |
 
+### Parte III — Calidad y entrega
+
+| Cap. | Archivo | Título | Estado |
+|------|---------|--------|--------|
+| 09 | [09-testing-framework.md](09-testing-framework.md) | Testing Framework | 📝 Draft |
+| 10 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Code Review and Quality Gates | 📝 Draft |
+| 11 | [11-devops.md](11-devops.md) | DevOps | 📝 Draft |
+| 12 | [12-security-standards.md](12-security-standards.md) | Security Standards | 📝 Draft |
+
 ### Apéndices
 
 | Cap. | Archivo | Título | Estado |
 |------|---------|--------|--------|
 | A | [A-templates.md](A-templates.md) | Templates | ✅ Approved |
+| B | [B-glossary.md](B-glossary.md) | Glossary (método) | 📝 Draft |
 | — | [CHANGELOG.md](CHANGELOG.md) | Historial de versiones | ✅ Approved |
 
-**Alcance 0.2.x:** constitución correlativa del método; parche 0.2.1 = contexto autorizado y recibo ATF (opcionales); parche 0.2.2 = navegación y diagramas (sin cambio de norma). Adopción/upgrade y contrato de pack en `docs/`; skills `sdaf-bootstrap` y `sdaf-upgrade`.
+**Alcance 0.3.0:** Parte III (testing, review/QG, devops, security) y glosario de método en **Draft** (trasplante ADR-008). Caps. 00–08 y A siguen Approved; no se renumeran. Adopción/upgrade y contrato de pack en `docs/`.
 
-**Fuera de 0.2 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); testing/devops/security y métricas de sprint detallados; glosario de dominio; idiomas distintos de `es`.
+**Fuera de 0.3 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); métricas de sprint detalladas; glosario de dominio; idiomas distintos de `es`.
 
 ---
 
@@ -124,3 +134,4 @@ Ningún agente puede autodeclarar Approved.
 | [Adopción y upgrade](../docs/adopcion-y-upgrade.md) | Pin a tag y bootstrap (HOWTO, no constitución) |
 | [mapa-navegacion.md](../docs/mapa-navegacion.md) | Ocho tareas y clics |
 | [00-preface.md](00-preface.md) | Qué es y qué no es este handbook |
+| [09-testing-framework.md](09-testing-framework.md) | Parte III Draft (calidad y entrega) |

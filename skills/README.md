@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.2.1 |
-| Estado | Approved |
-| Fecha | 2026-09-13 |
+| Versión | 0.3.0 |
+| Estado | Approved (catálogo 0.2) · Draft (skills Parte III) |
+| Fecha | 2026-09-18 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
 
 Playbooks operativos reutilizables. Viven en **`skills/`**. **No** dependen de Cursor ni de `.cursor/skills/`.
@@ -14,17 +14,20 @@ Citar `skill-id@version` en worklogs del consumidor.
 > [!CAUTION]
 > ⛔ No saltar Gate 0. No aprobar handbook, specs ni ADR.
 
-## Catálogo v0.2.x
+## Catálogo v0.3.x
 
-| | ID | Prioridad | Ruta |
-|--|----|-----------|------|
-| ⛔ | `sdaf-gate0` | alta | [sdaf-gate0/SKILL.md](sdaf-gate0/SKILL.md) |
-| 📝 | `sdaf-worklog-handoff` | alta | [sdaf-worklog-handoff/SKILL.md](sdaf-worklog-handoff/SKILL.md) |
-| 🧭 | `sdaf-agent-router` | alta | [sdaf-agent-router/SKILL.md](sdaf-agent-router/SKILL.md) |
-| 🛠️ | `sdaf-bootstrap` | alta | [sdaf-bootstrap/SKILL.md](sdaf-bootstrap/SKILL.md) |
-| 📝 | `spec-draft-pbi` | media | [spec-draft-pbi/SKILL.md](spec-draft-pbi/SKILL.md) |
-| 📝 | `adr-propose` | media | [adr-propose/SKILL.md](adr-propose/SKILL.md) |
-| 🛠️ | `sdaf-upgrade` | media | [sdaf-upgrade/SKILL.md](sdaf-upgrade/SKILL.md) |
+| | ID | Prioridad | Estado | Ruta |
+|--|----|-----------|--------|------|
+| ⛔ | `sdaf-gate0` | alta | Approved | [sdaf-gate0/SKILL.md](sdaf-gate0/SKILL.md) |
+| 📝 | `sdaf-worklog-handoff` | alta | Approved | [sdaf-worklog-handoff/SKILL.md](sdaf-worklog-handoff/SKILL.md) |
+| 🧭 | `sdaf-agent-router` | alta | Approved | [sdaf-agent-router/SKILL.md](sdaf-agent-router/SKILL.md) |
+| 🛠️ | `sdaf-bootstrap` | alta | Approved | [sdaf-bootstrap/SKILL.md](sdaf-bootstrap/SKILL.md) |
+| 📝 | `testing-review-pr` | alta | Draft | [testing-review-pr/SKILL.md](testing-review-pr/SKILL.md) |
+| 📝 | `spec-draft-pbi` | media | Approved | [spec-draft-pbi/SKILL.md](spec-draft-pbi/SKILL.md) |
+| 📝 | `adr-propose` | media | Approved | [adr-propose/SKILL.md](adr-propose/SKILL.md) |
+| 🛠️ | `sdaf-upgrade` | media | Approved | [sdaf-upgrade/SKILL.md](sdaf-upgrade/SKILL.md) |
+| ⛔ | `security-review` | media | Draft | [security-review/SKILL.md](security-review/SKILL.md) |
+| 🛠️ | `devops-ci-gate` | baja | Draft | [devops-ci-gate/SKILL.md](devops-ci-gate/SKILL.md) |
 
 Skills de stack o dominio no forman parte de este core.
 
@@ -44,3 +47,4 @@ Skills de stack o dominio no forman parte de este core.
 | ⛔ | [sdaf-gate0](sdaf-gate0/SKILL.md) | STOP antes de código de producto |
 | 🛠️ | [sdaf-bootstrap](sdaf-bootstrap/SKILL.md) | Primera materialización |
 | 🛠️ | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Pin y upgrade |
+| 📖 | [H10](../handbook/10-code-review-and-quality-gates.md) | testing-review-pr / QG (Draft 0.3.0) |
