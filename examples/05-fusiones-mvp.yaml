@@ -6,14 +6,14 @@
 # domain-application es id de extensión: requiere contratos en el consumidor o pack.
 
 sdaf:
-  version: "0.2.0"
+  version: "0.3.0"
 
 project:
   name: MiProyecto
   language: es
 
 stack:
-  pack: sdaf-stack-dotnet@0.1.0
+  pack: sdaf-stack-dotnet@0.1.1
   src_path: src
   tests_path: tests
 

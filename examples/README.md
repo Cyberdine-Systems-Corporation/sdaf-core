@@ -1,6 +1,6 @@
 # Ejemplos de `sdaf.config.yaml`
 
-Cada archivo es un escenario **completo y válido** en v0.2. Copia el que más se acerque y cambia `project.name`.
+Cada archivo es un escenario **completo y válido** en v0.3. Copia el que más se acerque y cambia `project.name`.
 
 | Archivo | Qué ilustra |
 |---------|-------------|
@@ -46,7 +46,7 @@ flowchart TD
 
 ### `sdaf.version`
 
-Pinnea el método. Si el consumidor dice `0.1.0` y el core avanza a `0.2.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso.
+Pinnea el método. Si el consumidor dice `0.2.0` y el core avanza a `0.3.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Con pin `v0.3.2`, `sdaf.version` es `"0.3.0"`.
 
 ### `project.name`
 
@@ -54,7 +54,7 @@ Nombre corto del producto. Se usa al generar `AGENTS.md` (`{{PROJECT_NAME}}`). N
 
 ### `project.language`
 
-En v0.2 **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.
+En v0.3 **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.
 
 ### `stack.pack`
 
@@ -113,7 +113,7 @@ No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o 
 | `fusions.foo` sin `foo` en `active` | Fusión fantasma |
 | `domain` y `domain-application` ambos `active` | Doble dueño del mismo diff |
 | `frontend` activo y `pack: null` | Id de extensión sin playbook |
-| `language: en` | No soportado en v0.2 |
+| `language: en` | No soportado en v0.3 |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
 
 ## Relacionado

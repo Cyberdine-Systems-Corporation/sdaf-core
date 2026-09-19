@@ -5,7 +5,7 @@
 # domain y application activos por separado: el router elige por tipo de salida (modelo vs slice).
 
 sdaf:
-  version: "0.2.0"
+  version: "0.3.0"
 
 project:
   name: MiProyecto
