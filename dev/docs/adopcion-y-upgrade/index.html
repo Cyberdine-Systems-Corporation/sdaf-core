@@ -3141,7 +3141,7 @@
 </table>
 <blockquote>
 <p>[!TIP]
-El pin recomendado del árbol es <code>v0.2.1</code>. <code>sdaf.version</code> puede seguir <code>0.2.0</code> hasta que el consumidor actualice el YAML.</p>
+El pin recomendado del árbol es <code>v0.3.2</code>. <code>sdaf.version</code> puede seguir <code>0.3.0</code>. Quien se quede en <code>v0.2.1</code> no está obligado.</p>
 </blockquote>
 <p>Subir de <code>0.1.x</code> a <code>0.2.0</code> es un upgrade consciente (breaking de citas de handbook).</p>
 <h2 id="adopcion-canonica">Adopción (canónica)<a class="headerlink" href="#adopcion-canonica" title="Permanent link">&para;</a></h2>
@@ -3158,10 +3158,10 @@ El pin recomendado del árbol es <code>v0.2.1</code>. <code>sdaf.version</code> 
 <li>Añadir sdaf-core como <strong>submodule</strong> pinneado a un tag, p. ej. en <code>.sdaf/</code>:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git submodule add -b main &lt;url-sdaf-core&gt; .sdaf
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.2.1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.3.2
 </code></pre></div>
 <ol>
-<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version: "0.2.0"</code> es válido con pin <code>v0.2.1</code>).</li>
+<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version: "0.3.0"</code> es válido con pin <code>v0.3.2</code>).</li>
 <li>Ejecutar la skill <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> (o seguir sus pasos a mano).</li>
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a>.</li>
 </ol>
@@ -3235,7 +3235,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <p>Parche <strong>0.2.2</strong> (docs): navegación, diagramas y vocabulario visual; no cambia la norma. No exige retag ni cambio de <code>sdaf.version</code>.</p>
 <h2 id="030-opt-in">0.3.0 (opt-in)<a class="headerlink" href="#030-opt-in" title="Permanent link">&para;</a></h2>
 <p>Línea nueva de constitución. <strong>No</strong> rompe citas <code>H00</code>–<code>H08</code>. Quien se quede en <code>v0.2.1</code> no está obligado.</p>
-<p>Al pinnear 0.3.0 (tras el tag <code>v0.3.0</code>):</p>
+<p>Al pinnear la línea 0.3 (tag <code>v0.3.2</code>):</p>
 <ol>
 <li>Leer Parte III: <a href="../../handbook/09-testing-framework/">H09</a>–<a href="../../handbook/12-security-standards/">H12</a>.</li>
 <li>Adoptar QG-Sec y runbook local si no existían.</li>
