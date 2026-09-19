@@ -46,7 +46,7 @@ flowchart TD
 
 ### `sdaf.version`
 
-Pinnea el método. Si el consumidor dice `0.2.0` y el core avanza a `0.3.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Con pin `v0.3.2`, `sdaf.version` es `"0.3.0"`.
+Pinnea el método. Si el consumidor dice `0.2.0` y el core avanza a `0.3.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Con pin `v0.3.3`, `sdaf.version` es `"0.3.0"`.
 
 ### `project.name`
 

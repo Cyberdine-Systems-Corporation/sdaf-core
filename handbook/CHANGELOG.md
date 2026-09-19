@@ -6,7 +6,7 @@ Parche (**no** breaking de citas `H00`–`H08`). H06 §7: **encargo vigente** = 
 
 Copia operativa: regla IDE `git-remoto-encargo`, `AGENTS.md.template`, `prompts/system/master-architect.md`.
 
-`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche.
+`sdaf.version` puede seguir `0.3.0`. Pin de árbol: `v0.3.3`.
 
 ## 0.3.2 — 2026-09-19
 
