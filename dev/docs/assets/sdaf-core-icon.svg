@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SDAF Core">
+  <!--
+    V1 � H�brido �N�cleo�portal�spec� (preferido)
+    A hex�gono � B placa/pliegue + chevron � C arco abierto
+    Variante C � solo mark. Wordmark: lockup-stacked / lockup-horizontal.
+    viewBox 512 � margen ~10%
+  -->
+  <defs>
+    <style>
+      :root {
+        --sdaf-brand: #2d6a4f;
+        --sdaf-ink: #14261c;
+        --sdaf-paper: #f4f7f5;
+      }
+    </style>
+  </defs>
+
+  <path
+    fill="none"
+    stroke="var(--sdaf-ink)"
+    stroke-width="28"
+    stroke-linecap="round"
+    d="M 128 355 A 168 168 0 1 1 384 355"/>
+
+  <path
+    fill="var(--sdaf-brand)"
+    d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+
+  <path
+    fill="var(--sdaf-paper)"
+    d="M 200 220 V 348 H 312 V 220 A 56 56 0 0 0 200 220 Z"/>
+
+  <path
+    fill="var(--sdaf-ink)"
+    d="M 224 236 H 288 L 304 252 V 320 Q 304 332 292 332 H 224 Q 212 332 212 320 V 248 Q 212 236 224 236 Z"/>
+  <path fill="var(--sdaf-paper)" d="M 288 236 L 304 252 H 288 Z"/>
+
+  <path
+    fill="none"
+    stroke="var(--sdaf-paper)"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M 236 292 L 256 272 L 276 292 M 256 272 V 312"/>
+</svg>
