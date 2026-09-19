@@ -2,11 +2,11 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.0 |
+| **Versión** | 0.3.2 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
-| **Norma superior** | [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md) |
+| **Norma superior** | [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md) |
 | **Deriva hacia** | Agente Testing+Review, PRs, CI local del consumidor |
 
 ---
@@ -25,11 +25,13 @@ Los Gates G0–G3 del [capítulo 05](05-development-workflow.md) siguen vigentes
 
 | Revisor | Alcance |
 |---------|---------|
-| Humano | Arquitectura sensible, alcance del MVP del consumidor, Approved |
-| Testing+Review | Checklist de este capítulo, tests, regresiones obvias |
+| Humano | Arquitectura sensible, alcance del MVP del consumidor, Approved, **merge** a la rama de demo/integración |
+| Testing+Review | Checklist de este capítulo, tests, regresiones obvias, **dictamen** (no el merge) |
 | Architecture | Solo si el diff toca boundaries / ADRs |
 
 Ningún agente aprueba enmiendas constitucionales.
+
+Completar el checklist §3 por un agente **no** satisface QG-Review. Auto-merge sigue prohibido ([H06 §7](06-ai-agent-framework.md#7-restricciones-globales)).
 
 ---
 
@@ -40,6 +42,8 @@ Ningún agente aprueba enmiendas constitucionales.
 - [ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog).
 - [ ] Sin alcance Out del MVP del consumidor.
 - [ ] Worklog actualizado y prompt versionado citado.
+- [ ] Si el diff toca código de producto: origen de cambios en el worklog ([H08 §4.3](08-agent-traceability.md#43-origen-de-cambios)).
+- [ ] Aprobación humana nominada del merge (QG-Review).
 
 ### 3.2 Dominio y arquitectura
 
@@ -67,11 +71,12 @@ Si no existe ese ADR, QG-Docs es N/A (justificar en worklog).
 
 ### 3.6 Seguridad (H12)
 
-Cuando el diff toque auth, sesión, endpoints, secretos o input externo — checklist en [12-security-standards.md](12-security-standards.md) §5.1:
+Cuando el diff toque auth, sesión, endpoints, secretos, dependencias o input externo — checklist en [12-security-standards.md](12-security-standards.md) §5.1:
 
 - [ ] Sin secretos nuevos en el diff.
 - [ ] Autorización coherente en API (y UI si aplica).
-- [ ] Sin injection obvia; alineado al ADR de auth / ACC si aplica.
+- [ ] Sin injection obvia; sin SSRF; CVE crítica identificada en dependencias nuevas/actualizadas o ADR de excepción.
+- [ ] Alineado al ADR de auth / ACC si aplica.
 
 ---
 
@@ -97,8 +102,8 @@ flowchart TD
 | QG-Accept | Acceptance del PBI / flujo tocado verdes | Merge a línea de demo |
 | QG-Arch | Sin violaciones nuevas de dependencia (manual o test de arquitectura) | Merge si hay infracción nueva |
 | QG-Docs | Diff cumple el ADR/pack de coding standards **si existe** | Merge |
-| QG-Sec | Diff no introduce secreto en claro ni bypass de auth especificado ([H12](12-security-standards.md)) | Merge |
-| QG-Review | Checklist §3 completado | Merge |
+| QG-Sec | Condiciones de [H12 §5.2](12-security-standards.md#52-qg-sec) (secreto, bypass de auth, injection, SSRF, CVE crítica identificada) | Merge |
+| QG-Review | Checklist §3 completado **y** aprobación humana nominada del merge | Merge |
 
 CI cloud elaborado es **opcional**. Los gates **deben** poder ejecutarse **en local** (H02 §2.10, H11).
 
@@ -114,7 +119,9 @@ Los comandos concretos los documenta el runbook / pack del consumidor.
 | Mayor | Corregir o ADR de excepción fechado |
 | Menor | Puede ir a deuda registrada en worklog / backlog |
 
-Hallazgos QG-Sec / H12 (secreto en claro, bypass de auth especificado) son **bloqueantes**.
+Hallazgos QG-Sec / H12 §5.2 son **bloqueantes**.
+
+QG-Review fallido (checklist incompleto o merge sin humano nominado) es **bloqueante**.
 
 Hallazgos del ADR de coding standards del consumidor, si ese ADR los declara bloqueantes, se tratan como bloqueantes en el diff.
 
@@ -127,11 +134,13 @@ Hallazgos del ADR de coding standards del consumidor, si ese ADR los declara blo
 | [05-development-workflow.md](05-development-workflow.md) | G0–G3; este capítulo detalla QG |
 | [09-testing-framework.md](09-testing-framework.md) | QG-Unit / QG-Accept |
 | [12-security-standards.md](12-security-standards.md) | QG-Sec y checklist §3.6 |
+| [08-agent-traceability.md](08-agent-traceability.md) | Origen de cambios en Gate 2 |
 | [skills/testing-review-pr](../skills/testing-review-pr/SKILL.md) | Playbook de Gate 2 |
 
 ## 6. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | QG-Review exige humano nominado; QG-Sec enlaza H12 §5.2; origen ATF en checklist |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H17; coding standards fuera del core |

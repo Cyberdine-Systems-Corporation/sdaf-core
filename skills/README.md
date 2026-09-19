@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.1 |
+| Versión | 0.3.2 |
 | Estado | Approved |
 | Fecha | 2026-09-19 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
@@ -23,10 +23,10 @@ Citar `skill-id@version` en worklogs del consumidor.
 | 🧭 | `sdaf-agent-router` | alta | Approved | [sdaf-agent-router/SKILL.md](sdaf-agent-router/SKILL.md) |
 | 🛠️ | `sdaf-bootstrap` | alta | Approved | [sdaf-bootstrap/SKILL.md](sdaf-bootstrap/SKILL.md) |
 | 📝 | `testing-review-pr` | alta | Approved | [testing-review-pr/SKILL.md](testing-review-pr/SKILL.md) |
+| ⛔ | `security-review` | alta | Approved | [security-review/SKILL.md](security-review/SKILL.md) |
 | 📝 | `spec-draft-pbi` | media | Approved | [spec-draft-pbi/SKILL.md](spec-draft-pbi/SKILL.md) |
 | 📝 | `adr-propose` | media | Approved | [adr-propose/SKILL.md](adr-propose/SKILL.md) |
 | 🛠️ | `sdaf-upgrade` | media | Approved | [sdaf-upgrade/SKILL.md](sdaf-upgrade/SKILL.md) |
-| ⛔ | `security-review` | media | Approved | [security-review/SKILL.md](security-review/SKILL.md) |
 | 🛠️ | `devops-ci-gate` | baja | Approved | [devops-ci-gate/SKILL.md](devops-ci-gate/SKILL.md) |
 
 Skills de stack o dominio no forman parte de este core.

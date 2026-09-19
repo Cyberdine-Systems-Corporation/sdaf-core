@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.1 |
+| Versión | 0.3.2 |
 | Estado | Approved |
 | Idioma | Español |
 | Clasificación | Constitución del método (no del producto) |
@@ -103,6 +103,8 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 **Alcance 0.3.0:** Parte III (testing, review/QG, devops, security) y glosario de método **Approved** (aprobación humana del director técnico). Caps. 00–08 y A no se renumeran. Adopción/upgrade y contrato de pack en `docs/`.
 
 **Parche 0.3.1:** H06 §7 — escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada.
+
+**Parche 0.3.2:** H12 §3 catálogo baseline/overlay/fuera del método; QG-Sec §5.2; QG-Review HITL; origen ATF (H08 §4.3).
 
 **Fuera de 0.3 (consumidor, packs o releases posteriores):** charter/MVP/arquitectura de solución (consumidor); métricas de sprint detalladas; glosario de dominio; idiomas distintos de `es`.
 

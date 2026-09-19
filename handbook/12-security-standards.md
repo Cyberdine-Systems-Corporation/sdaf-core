@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.0 |
+| **Versión** | 0.3.2 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | III — Calidad y entrega |
@@ -35,6 +35,7 @@ Este capítulo **no** convierte al producto consumidor en sistema hardened de pr
 - Certificación ASVS completa, pentest formal obligatorio, bug bounty.
 - SSO / OIDC / MFA, IAM multi-tenant, WAF, SIEM — salvo que el MVP del consumidor los declare In.
 - Cloud hardening como DoD del método (H11: local-first).
+- Overlays y marcos **fuera del método** de §3 (N/A salvo ADR o handbook de producto).
 
 Lo diferido en ADR/specs del consumidor **no** es “bug” por sí solo; sí lo es un bypass de lo **sí** especificado (p. ej. endpoint de producto sin auth cuando el ACC lo exige).
 
@@ -42,14 +43,25 @@ Lo diferido en ADR/specs del consumidor **no** es “bug” por sí solo; sí lo
 
 ## 3. Referencias externas (marco, no checklist interminable)
 
+Tres usos. El core nombra el gancho; **no** estatiza sector, jurisdicción ni herramienta.
+
+| Uso | Significado |
+|-----|-------------|
+| **Baseline** | Siempre; cualquier adopción |
+| **Overlay** | **N/A** salvo ADR del consumidor (mismo patrón que QG-Docs, H10 §3.4) |
+| **Fuera del método** | GRC o handbook de producto; el core no lo audita ni lo convierte en bug |
+
 | Referencia | Uso en el método |
 |------------|------------------|
-| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Mapa de riesgos; baseline §4 |
+| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | **Baseline** — mapa de riesgos; controles §4 |
 | OWASP ASVS (nivel 1, selectivo) | Inspiración; **no** se exige cobertura ASVS completa |
+| NIST SSDF (SP 800-218) / [SP 800-218A](https://csrc.nist.gov/pubs/sp/800/218/a/final) | **Overlay** — N/A salvo ADR (p. ej. umbral SCA, evidencia de pipeline) |
+| SBOM / AIBOM ([CycloneDX](https://cyclonedx.org/) 1.6 / [SPDX](https://spdx.dev/) 3.0) | **Overlay** — N/A salvo ADR (artefacto de Gate 3 si el consumidor lo declara) |
+| ISO/IEC 42001, ISO/IEC 23894, Reglamento Europeo de IA, Cyber Resilience Act | **Fuera del método** — el consumidor puede exigirlos en handbook de producto; SDAF aporta evidencias (ATF, gates, ADRs), no el AIMS ni la certificación |
 | ADR de auth del consumidor | Decisión concreta de sesión / roles |
 | `SECURITY.md` del consumidor | Cómo reportar vulnerabilidades (plantilla en `templates/security.md`) |
 
-Los agentes **enlazan** estas referencias; no pegan el Top 10 entero en cada PR.
+Los agentes **enlazan** estas referencias; no pegan el Top 10 ni un marco overlay entero en cada PR. Lo diferido en overlay **no** es bug; sí lo es violar un ADR que el consumidor **sí** aprobó.
 
 ---
 
@@ -77,9 +89,9 @@ Los agentes **enlazan** estas referencias; no pegan el Top 10 entero en cada PR.
 | Injection | Acceso a datos parametrizado; sin concatenar input en SQL/comandos; validar entradas de API |
 | Insecure Design | Specs + ADR antes de features sensibles; no inventar auth ad hoc |
 | Security Misconfiguration | No exponer trazas sensibles en demos; secretos fuera de git |
-| Vulnerable Components | Tras actualizar dependencias, QG-Build / tests verdes; anotar CVEs críticas si aparecen |
+| Vulnerable Components | Tras actualizar dependencias, QG-Build / tests verdes. CVE crítica **identificada en el review** → QG-Sec (§5.2) salvo ADR de excepción fechado. Scanner con umbral = overlay §3 |
 | Identification / Auth Failures | Cumplir ADR de auth; no registrar contraseñas |
-| Software / Data Integrity | No ejecutar scripts no versionados con secretos; PRs revisados (H10) |
+| Software / Data Integrity | No ejecutar scripts no versionados con secretos; PRs con QG-Review (H10) |
 | Security Logging Failures | Errores de auth sin filtrar secretos; no loguear passwords |
 | SSRF | No introducir fetch a URLs controladas por usuario sin spec/ADR |
 
@@ -93,19 +105,28 @@ Flags de cookie / token (HttpOnly, Secure, SameSite, etc.) los fija el ADR de au
 
 ### 5.1 Checklist (añadir a H10)
 
-Al tocar auth, sesión, endpoints, secretos o input externo:
+Al tocar auth, sesión, endpoints, secretos, dependencias o input externo:
 
 - [ ] Sin secretos nuevos en el diff.
 - [ ] Autorización coherente API (y UI si aplica).
 - [ ] Sin injection obvia (SQL / comandos).
+- [ ] Sin fetch a URL controlada por usuario sin spec/ADR (SSRF).
+- [ ] Dependencias nuevas o actualizadas: sin CVE crítica identificada en el review, o ADR de excepción fechado.
 - [ ] Alineado al ADR de auth / specs ACC si el PBI las toca.
+- [ ] Overlays de §3: N/A o cumplidos según ADR (justificar en worklog).
 - [ ] Runbook / `SECURITY.md` del consumidor no contradichos.
 
 ### 5.2 QG-Sec
 
-| Gate | Condición | Bloquea |
-|------|-----------|---------|
-| QG-Sec | Diff no introduce secreto en claro ni bypass de auth de lo especificado | Merge |
+QG-Sec **falla** (bloquea merge) si el diff introduce, sin spec/ADR que lo autorice, alguno de:
+
+1. Secreto en claro.
+2. Bypass de auth de lo especificado.
+3. Injection obvia (SQL o comandos concatenando input).
+4. Fetch a URL controlada por usuario (SSRF).
+5. Dependencia nueva o actualizada con CVE crítica **identificada en el review**, sin ADR de excepción fechado.
+
+No exige una herramienta de SCA. Un scanner con umbral es overlay (§3): N/A si no hay ADR; si el ADR existe, su umbral es bloqueante (como QG-Docs).
 
 Hallazgos QG-Sec son **bloqueantes** (H10 §5).
 
@@ -123,8 +144,8 @@ Skill operativa: [`skills/security-review`](../skills/security-review/SKILL.md).
 |-------|-----------------|
 | Architecture | ADR de auth / sesión / controles nuevos |
 | Implementación del consumidor | Cumplir baseline en el slice |
-| Testing+Review | Checklist §5 + ACC auth; dictamen merge |
-| Humano | Aprobar enmiendas de este capítulo; severidad en demos externas |
+| Testing+Review | Checklist §5 + ACC auth; dictamen merge (no el merge) |
+| Humano | Aprobar enmiendas de este capítulo; QG-Review (H10); severidad en demos externas |
 
 ---
 
@@ -141,5 +162,6 @@ Skill operativa: [`skills/security-review`](../skills/security-review/SKILL.md).
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | §3 catálogo baseline / overlay / fuera del método; QG-Sec alineado al mapa §4.3 (sin estatizar adopción) |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H20; auth concreta fuera del core |

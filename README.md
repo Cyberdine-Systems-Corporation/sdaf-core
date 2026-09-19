@@ -11,7 +11,7 @@ No contiene código ni specs de un producto concreto.
 | | Si quieres… | Empieza aquí |
 |--|-------------|--------------|
 | 🛠️ | **Adoptar** el método en un repo | [Adopción y upgrade](docs/adopcion-y-upgrade.md) — pin a tag, `sdaf.config.yaml`, bootstrap |
-| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–12 y apéndices A–B (0.3.1) |
+| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–12 y apéndices A–B (0.3.2) |
 | ⛔ | **Operar un PBI** | [Gate 0](skills/sdaf-gate0/SKILL.md) antes de código; [worklog / ATF](handbook/08-agent-traceability.md) para dejar evidencia |
 
 🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md).
@@ -32,7 +32,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 - No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (`sdaf-stack-*`) puede añadir playbooks técnicos (ver [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md)). Pack de referencia: [`sdaf-stack-dotnet`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet).
 - No rellena `specs/`: exige que existan y estén Approved antes de implementar.
 
-## Contenido (v0.3.1)
+## Contenido (v0.3.2)
 
 | | Ruta | Rol |
 |--|------|-----|
@@ -64,8 +64,8 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 
 | | Artefacto | Estado |
 |--|-----------|--------|
-| ✅ | Handbook del método | **Approved** 00–12 y A–B (v0.3.1) |
-| ✅ | Agentes, prompts y skills | **Approved** (v0.3.1; contratos 0.2 siguen vigentes) |
+| ✅ | Handbook del método | **Approved** 00–12 y A–B (v0.3.2) |
+| ✅ | Agentes, prompts y skills | **Approved** (v0.3.2; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
 | | Release del árbol (tag) | **v0.2.1** hasta el tag `v0.3.0` |
 

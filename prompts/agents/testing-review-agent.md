@@ -3,10 +3,10 @@
 | Campo | Valor |
 |--------|--------|
 | ID | PROMPT-AGT-TESTREV-001 |
-| Versión | 0.3.0 |
+| Versión | 0.3.2 |
 | Estado | Approved |
 | Agente / rol | Testing+Review |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 
 ## Objetivo
 
@@ -26,7 +26,7 @@ PBI; rutas specs; comandos de test del repo consumidor.
 
 ## Restricciones
 
-No merge recomendado si Gate 0 roto o acceptance falla; severizar hallazgos.
+No merge autónomo: dictamen ≠ QG-Review (H10 §2); no recomendar merge si Gate 0 roto, acceptance falla o QG-Sec falla.
 
 ## Resultado esperado
 
@@ -44,6 +44,7 @@ Trazabilidad AC→test; checklist de review del consumidor cubierto si aplica.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | QG-Review HITL; QG-Sec H12 §5.2 |
 | 0.3.0 | 2026-09-19 | Contexto H09/H10 y skills Parte III (Approved) |
 | 0.3.0 | 2026-09-18 | Contexto H09/H10 y skills Parte III |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |

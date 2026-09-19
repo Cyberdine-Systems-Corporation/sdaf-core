@@ -44,6 +44,7 @@ Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no s
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | Worklog: origen de cambios (H08 §4.3); sin cambio de norma de A |
 | 0.3.0 | 2026-09-19 | Plantilla `templates/security.md` Approved (sin cambio de norma de A) |
 | 0.3.0 | 2026-09-18 | Plantilla `templates/security.md` |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado y enlaces a plantillas (sin cambio de norma) |
