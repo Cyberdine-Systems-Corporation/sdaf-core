@@ -139,5 +139,6 @@ Ningún agente puede autodeclarar Approved.
 | [README del core](../README.md) | Tres puertas: adoptar, constitución, Gate 0 |
 | [Adopción y upgrade](../docs/adopcion-y-upgrade.md) | Pin a tag y bootstrap (HOWTO, no constitución) |
 | [mapa-navegacion.md](../docs/mapa-navegacion.md) | Ocho tareas y clics |
+| [branding.md](../docs/branding.md) | Identidad visual del core (HOWTO, no constitución) |
 | [00-preface.md](00-preface.md) | Qué es y qué no es este handbook |
 | [09-testing-framework.md](09-testing-framework.md) | Parte III (calidad y entrega) |

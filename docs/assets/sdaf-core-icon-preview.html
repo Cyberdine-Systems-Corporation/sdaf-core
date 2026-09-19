@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>SDAF Core — icono · iteración V1 / V2 / V3</title>
+  <style>
+    :root {
+      --sdaf-brand: #2d6a4f;
+      --sdaf-ink: #14261c;
+      --sdaf-paper: #f4f7f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.45 system-ui, sans-serif;
+      color: #14261c;
+      background: #cfd6d2;
+    }
+    header { padding: 1.25rem 1.5rem 0.5rem; max-width: 1200px; }
+    h1 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+    .note { opacity: 0.75; max-width: 52rem; margin: 0; }
+    .pick {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 1rem;
+      background: #fff8c5;
+      border-radius: 8px;
+      max-width: 52rem;
+      border: 1px solid #e6d98a;
+    }
+    .files { margin-top: 0.75rem; font-size: 12px; opacity: 0.8; }
+    .files a { color: inherit; }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1rem 1.5rem 0.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+    .card.dark { background: #0f1713; color: #e8eee9; }
+    .card.candidate { outline: 2px solid var(--sdaf-brand); outline-offset: 2px; }
+    .card h2 { font-size: 0.95rem; margin: 0 0 0.35rem; font-weight: 600; }
+    .card .why { font-size: 12px; opacity: 0.7; margin: 0 0 0.75rem; max-width: 280px; }
+    .label { font-size: 12px; opacity: 0.7; margin-top: 0.6rem; }
+    .sizes { display: flex; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+    .size-wrap { text-align: center; }
+    .size-wrap span { display: block; font-size: 11px; opacity: 0.65; margin-top: 0.35rem; }
+    section h3 {
+      margin: 0;
+      padding: 1.25rem 1.5rem 0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.55;
+    }
+    .legend-card { max-width: 1100px; }
+    .legend {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem 1.25rem;
+    }
+    .legend li {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0.65rem;
+      align-items: start;
+      font-size: 13px;
+    }
+    .legend .glyph {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: #eef2ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .legend .glyph svg { display: block; }
+    .legend strong { display: block; font-size: 13px; font-weight: 600; }
+    .legend span.desc { display: block; font-size: 12px; opacity: 0.7; margin-top: 0.1rem; }
+    .legend-meta {
+      margin: 0.85rem 0 0;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+    .keys {
+      list-style: none;
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0 0;
+      border-top: 1px solid rgba(20, 38, 28, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .card.dark .keys { border-top-color: rgba(232, 238, 233, 0.15); }
+    .keys li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 12px;
+      opacity: 0.85;
+    }
+    .keys .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex: 0 0 auto;
+    }
+    .keys .dot.brand { background: var(--sdaf-brand); }
+    .keys .dot.ink { background: var(--sdaf-ink); }
+    .keys .dot.paper { background: var(--sdaf-paper); border: 1px solid rgba(20, 38, 28, 0.25); }
+    .keys .dot.arc {
+      background: transparent;
+      border: 2px solid var(--sdaf-ink);
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+    }
+    .keys .off { opacity: 0.4; text-decoration: line-through; }
+    .lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      min-height: 200px;
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      background: #eef2ef;
+    }
+    .lockup.dark-bg { background: #0f1713; }
+    .lockup.stack {
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .lockup.row-lock {
+      flex-direction: row;
+      gap: 1.1rem;
+    }
+    .lockup .wordmark {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-weight: 650;
+      font-size: 2.75rem;
+      letter-spacing: 0.18em;
+      color: var(--sdaf-ink);
+      line-height: 1;
+      margin: 0;
+      padding-left: 0.08em; /* compensar tracking visual */
+    }
+    .lockup.dark-bg .wordmark { color: var(--sdaf-paper); }
+    .lockup.stack .wordmark { font-size: 2.35rem; letter-spacing: 0.22em; }
+    .lockup-note {
+      margin: 0.75rem 0 0;
+      font-size: 12px;
+      opacity: 0.75;
+      max-width: 320px;
+    }
+    .usage {
+      width: 100%;
+      max-width: 1100px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .usage th,
+    .usage td {
+      text-align: left;
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid rgba(20, 38, 28, 0.12);
+      vertical-align: top;
+    }
+    .usage th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.55;
+      font-weight: 600;
+    }
+    .usage code { font-size: 0.9em; }
+    .rules {
+      margin: 0.85rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 13px;
+      opacity: 0.85;
+      max-width: 52rem;
+    }
+    .rules li { margin: 0.25rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SDAF Core — sistema de marca (icono + lockups)</h1>
+    <p class="note">
+      Mark canónico: <strong>V1</strong>. Se mantienen las tres variantes de composición;
+      elige la que mejor encaje en cada contexto.
+      Guía: <a href="../branding.md"><code>docs/branding.md</code></a>.
+    </p>
+    <p class="files">
+      <a href="./sdaf-core-icon.svg">sdaf-core-icon.svg</a> ·
+      <a href="./sdaf-core-icon.png">sdaf-core-icon.png</a> ·
+      <a href="./sdaf-core-icon-mono.svg">sdaf-core-icon-mono.svg</a> ·
+      <a href="./sdaf-core-lockup-stacked.svg">sdaf-core-lockup-stacked.svg</a> ·
+      <a href="./sdaf-core-lockup-horizontal.svg">sdaf-core-lockup-horizontal.svg</a> ·
+      <a href="./sdaf-core-icon-build.svg">sdaf-core-icon-build.svg</a> ·
+      <a href="./sdaf-core-icon-build.gif">sdaf-core-icon-build.gif</a>
+      · Guía: <a href="../branding.md">branding.md</a>
+    </p>
+  </header>
+
+  <section>
+    <h3>Animación build → hold</h3>
+    <div class="row">
+      <div class="card">
+        <h2>GIF (README / embeds)</h2>
+        <p class="why"><code>sdaf-core-icon-build.gif</code> — ~4 s (1,4 s build + hold). Loop con cierre estático.</p>
+        <div class="lockup" style="min-height:280px">
+          <img src="./sdaf-core-icon-build.gif" width="256" height="256" alt="SDAF Core build GIF"/>
+        </div>
+        <ul class="keys" aria-label="Uso GIF">
+          <li><span class="dot brand"></span> Ideal para README / GitHub</li>
+          <li><span class="dot ink"></span> No usar como favicon</li>
+        </ul>
+      </div>
+      <div class="card legend-card">
+        <h2>SVG animado (nitido)</h2>
+        <p class="why" style="max-width:none">
+          <code>sdaf-core-icon-build.svg</code> — play once; estado final = mark V1.
+          Respeta <code>prefers-reduced-motion</code>.
+        </p>
+        <div class="lockup" id="build-stage" style="min-height:280px">
+          <!-- inline para que la animación CSS funcione en el preview -->
+          <svg id="build-svg" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 512 512" aria-label="SDAF Core build">
+            <defs>
+              <style>
+                #build-svg { --sdaf-brand:#2d6a4f; --sdaf-ink:#14261c; --sdaf-paper:#f4f7f5; }
+                #build-svg .arc { fill:none; stroke:var(--sdaf-ink); stroke-width:28; stroke-linecap:round; stroke-dasharray:800; stroke-dashoffset:800; animation:sda-arc .35s ease-out forwards; }
+                #build-svg .hex { fill:var(--sdaf-brand); opacity:0; transform-origin:256px 256px; transform:scale(.86); animation:sda-hex .3s ease-out .25s forwards; }
+                #build-svg .portal { fill:var(--sdaf-paper); opacity:0; transform-origin:256px 284px; transform:scaleY(.2); animation:sda-portal .3s ease-out .45s forwards; }
+                #build-svg .plate { fill:var(--sdaf-ink); opacity:0; transform-origin:256px 280px; transform:translateY(12px); animation:sda-plate .35s ease-out .65s forwards; }
+                #build-svg .fold { fill:var(--sdaf-paper); opacity:0; animation:sda-fade .2s ease-out .9s forwards; }
+                #build-svg .chevron { fill:none; stroke:var(--sdaf-paper); stroke-width:16; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:160; stroke-dashoffset:160; animation:sda-chev .4s ease-out 1s forwards; }
+                @keyframes sda-arc { to { stroke-dashoffset:0; } }
+                @keyframes sda-hex { to { opacity:1; transform:scale(1); } }
+                @keyframes sda-portal { to { opacity:1; transform:scaleY(1); } }
+                @keyframes sda-plate { to { opacity:1; transform:translateY(0); } }
+                @keyframes sda-fade { to { opacity:1; } }
+                @keyframes sda-chev { to { stroke-dashoffset:0; } }
+                @media (prefers-reduced-motion: reduce) {
+                  #build-svg .arc, #build-svg .hex, #build-svg .portal, #build-svg .plate, #build-svg .fold, #build-svg .chevron {
+                    animation:none !important; opacity:1 !important; transform:none !important; stroke-dashoffset:0 !important;
+                  }
+                }
+              </style>
+            </defs>
+            <rect width="512" height="512" fill="#eef2ef"/>
+            <path class="arc" d="M 128 355 A 168 168 0 1 1 384 355"/>
+            <path class="hex" d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+            <path class="portal" d="M 200 220 V 348 H 312 V 220 A 56 56 0 0 0 200 220 Z"/>
+            <path class="plate" d="M 224 236 H 288 L 304 252 V 320 Q 304 332 292 332 H 224 Q 212 332 212 320 V 248 Q 212 236 224 236 Z"/>
+            <path class="fold" d="M 288 236 L 304 252 H 288 Z"/>
+            <path class="chevron" d="M 236 292 L 256 272 L 276 292 M 256 272 V 312"/>
+          </svg>
+        </div>
+        <p style="margin:0.75rem 0 0">
+          <button type="button" id="build-replay" style="font:inherit;padding:0.4rem 0.85rem;border-radius:6px;border:1px solid rgba(20,38,28,.25);background:#fff;cursor:pointer">
+            Repetir animación
+          </button>
+        </p>
+        <ul class="keys" aria-label="Timeline">
+          <li><span class="dot arc"></span> 0,00–0,35 s · Arco</li>
+          <li><span class="dot brand"></span> 0,25–0,55 s · Hexágono</li>
+          <li><span class="dot paper"></span> 0,45–0,75 s · Portal</li>
+          <li><span class="dot ink"></span> 0,65–1,10 s · Placa + pliegue</li>
+          <li><span class="dot paper"></span> 1,00–1,40 s · Chevron</li>
+          <li><span class="dot ink"></span> 1,40 s+ · Hold estático</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("build-replay");
+      var stage = document.getElementById("build-stage");
+      if (!btn || !stage) return;
+      btn.addEventListener("click", function () {
+        var svg = document.getElementById("build-svg");
+        if (!svg) return;
+        var clone = svg.cloneNode(true);
+        svg.parentNode.replaceChild(clone, svg);
+      });
+    })();
+  </script>
+
+  <section>
+    <h3>Uso por circunstancia</h3>
+    <div class="row">
+      <div class="card legend-card">
+        <table class="usage">
+          <thead>
+            <tr>
+              <th>Variante</th>
+              <th>Archivo</th>
+              <th>Cuándo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>C · Solo mark</strong></td>
+              <td><code>sdaf-core-icon.svg</code> / <code>-mono.svg</code></td>
+              <td>Favicon, icono de app, avatar, PWA, badges ≤64&nbsp;px.</td>
+            </tr>
+            <tr>
+              <td><strong>B · Horizontal</strong></td>
+              <td><code>sdaf-core-lockup-horizontal.svg</code></td>
+              <td>Nav, cabeceras de docs, README, barras de producto.</td>
+            </tr>
+            <tr>
+              <td><strong>A · Apilado</strong></td>
+              <td><code>sdaf-core-lockup-stacked.svg</code></td>
+              <td>Hero, splash, portadas, espacios altos o centrados.</td>
+            </tr>
+            <tr>
+              <td><strong>Motion</strong></td>
+              <td><code>sdaf-core-icon-build.svg</code> / <code>.gif</code></td>
+              <td>README, docs, onboarding. Termina en mark estático; no favicon.</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="rules">
+          <li>Una sola geometría del mark (V1) compartida por todas las variantes.</li>
+          <li>Misma tipografía / tracking / color del wordmark en A y B (<code>--sdaf-ink</code> / <code>--sdaf-paper</code>).</li>
+          <li>En layouts estrechos: B → A (apilar). Nunca meter «SDAF» dentro del SVG del icono de app.</li>
+          <li>V2 y V3 quedan como referencia de austeridad; no son los artefactos canónicos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Simbología</h3>
+    <div class="row">
+      <div class="card legend-card">
+        <h2>Leyenda del híbrido «Núcleo–portal–spec»</h2>
+        <p class="why" style="max-width:none">Cada forma del mark corresponde a un concepto del método SDAF. Las versiones V1–V3 eligen qué símbolos incluir.</p>
+        <ul class="legend">
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <path fill="#2d6a4f" d="M16 3 L28 10 L28 22 L16 29 L4 22 L4 10 Z"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Hexágono · Núcleo (Core)</strong>
+              <span class="desc">Constitución reutilizable del framework: handbook, agentes, plantillas. Contenedor estable del método.</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <path fill="none" stroke="#14261c" stroke-width="3" stroke-linecap="round"
+                      d="M 5 22 A 12 12 0 1 1 27 22"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Arco abierto · Órbita / Gate</strong>
+              <span class="desc">Adopción en capas (órbita) y umbral de gobernanza (Gate 0). Abierto abajo = paso, no candado cerrado.</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <path fill="#2d6a4f" d="M4 4 H28 V28 H4 Z"/>
+                <path fill="#f4f7f5" d="M10 12 V26 H22 V12 A 6 6 0 0 0 10 12 Z"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Portal · Puerta / Gate</strong>
+              <span class="desc">Espacio negativo en arco: el control del método (no hay implementación sin gate). Luz sobre el núcleo.</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <path fill="#14261c" d="M8 6 H18 L24 12 V26 H8 Z"/>
+                <path fill="#f4f7f5" d="M18 6 L24 12 H18 Z"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Placa + pliegue · Spec</strong>
+              <span class="desc">Documento / especificación como verdad operativa. El pliegue marca «artefacto escrito», no UI genérica.</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <rect width="32" height="32" fill="#14261c" rx="4"/>
+                <path fill="none" stroke="#f4f7f5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                      d="M10 18 L16 12 L22 18 M16 12 V24"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Chevron · Construcción</strong>
+              <span class="desc">Código e implementación derivados de la spec (spec → build). Solo en V1; se omite si satura a 16 px.</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <rect x="2" y="2" width="10" height="10" fill="#2d6a4f"/>
+                <rect x="14" y="2" width="10" height="10" fill="#14261c"/>
+                <rect x="8" y="14" width="10" height="10" fill="#f4f7f5" stroke="#14261c" stroke-width="1"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Paleta (máx. 3)</strong>
+              <span class="desc"><code>--sdaf-brand</code> #2d6a4f · <code>--sdaf-ink</code> #14261c · <code>--sdaf-paper</code> #f4f7f5</span>
+            </div>
+          </li>
+          <li>
+            <div class="glyph" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32">
+                <text x="16" y="21" text-anchor="middle"
+                      font-family="Segoe UI, system-ui, sans-serif"
+                      font-size="9" font-weight="700" letter-spacing="0.5"
+                      fill="#14261c">SDAF</text>
+              </svg>
+            </div>
+            <div>
+              <strong>Wordmark · «SDAF»</strong>
+              <span class="desc">Nombre de marca. No va dentro del icono de app (ilegible a 16 px). Vive en lockup: debajo o a la derecha del mark.</span>
+            </div>
+          </li>
+        </ul>
+        <p class="legend-meta">Conceptos de origen: A núcleo+órbita · B spec→construcción · C puerta/gate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Lockups oficiales (V1)</h3>
+    <div class="row">
+      <div class="card">
+        <h2>A · Apilado</h2>
+        <p class="why"><code>sdaf-core-lockup-stacked.svg</code> — hero, splash, portadas.</p>
+        <div class="lockup stack" aria-label="Lockup texto debajo, fondo claro">
+          <svg width="128" height="128" viewBox="0 0 512 512"><use href="#v1"/></svg>
+          <p class="wordmark">SDAF</p>
+        </div>
+        <div class="lockup stack dark-bg" style="margin-top:0.75rem" aria-label="Lockup apilado sobre oscuro">
+          <svg width="128" height="128" viewBox="0 0 512 512"><use href="#v1-dark"/></svg>
+          <p class="wordmark">SDAF</p>
+        </div>
+        <p class="lockup-note">Archivo SVG exportable en <code>docs/assets/</code>. Sobre fondo oscuro, wordmark en <code>--sdaf-paper</code>.</p>
+        <ul class="keys" aria-label="Elementos del lockup A">
+          <li><span class="dot brand"></span> Mark V1 completo</li>
+          <li><span class="dot ink"></span> Wordmark debajo</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>B · Horizontal</h2>
+        <p class="why"><code>sdaf-core-lockup-horizontal.svg</code> — nav, docs, README.</p>
+        <div class="lockup row-lock" aria-label="Lockup horizontal, fondo claro">
+          <svg width="96" height="96" viewBox="0 0 512 512"><use href="#v1"/></svg>
+          <p class="wordmark">SDAF</p>
+        </div>
+        <div class="lockup row-lock dark-bg" style="margin-top:0.75rem" aria-label="Lockup horizontal sobre oscuro">
+          <svg width="96" height="96" viewBox="0 0 512 512"><use href="#v1-dark"/></svg>
+          <p class="wordmark">SDAF</p>
+        </div>
+        <p class="lockup-note">En móvil o columnas estrechas, sustituir por la variante A.</p>
+        <ul class="keys" aria-label="Elementos del lockup B">
+          <li><span class="dot brand"></span> Mark V1 completo</li>
+          <li><span class="dot ink"></span> Wordmark a la derecha</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>C · Solo mark</h2>
+        <p class="why"><code>sdaf-core-icon.svg</code> (+ mono) — app, favicon, avatar.</p>
+        <div class="lockup" aria-label="Solo mark, fondo claro">
+          <svg width="160" height="160" viewBox="0 0 512 512"><use href="#v1"/></svg>
+        </div>
+        <div class="lockup dark-bg" style="margin-top:0.75rem" aria-label="Solo mark, fondo oscuro">
+          <svg width="160" height="160" viewBox="0 0 512 512"><use href="#v1-dark"/></svg>
+        </div>
+        <p class="lockup-note">Sin letras en el viewBox. Escala 512 → 16.</p>
+        <ul class="keys" aria-label="Elementos del lockup C">
+          <li><span class="dot brand"></span> Mark V1 completo</li>
+          <li class="off"><span class="dot ink"></span> Wordmark (fuera del icono)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Comparativa a 256 px</h3>
+    <div class="row">
+      <!-- V1 -->
+      <div class="card">
+        <h2>V1 · Híbrido completo (canónico)</h2>
+        <p class="why">Arco + portal + placa + pliegue + chevron. Más narrativa; más ruido a 16 px.</p>
+        <svg width="256" height="256" viewBox="0 0 512 512" aria-label="V1">
+          <rect width="512" height="512" fill="#eef2ef"/>
+          <use href="#v1"/>
+        </svg>
+        <ul class="keys" aria-label="Simbología V1">
+          <li><span class="dot brand"></span> Hexágono · Núcleo</li>
+          <li><span class="dot arc"></span> Arco · Órbita / Gate</li>
+          <li><span class="dot paper"></span> Portal · Puerta</li>
+          <li><span class="dot ink"></span> Placa + pliegue · Spec</li>
+          <li><span class="dot paper"></span> Chevron · Construcción</li>
+        </ul>
+        <div class="sizes" style="margin-top:0.75rem">
+          <div class="size-wrap"><svg width="64" height="64" viewBox="0 0 512 512"><use href="#v1"/></svg><span>64</span></div>
+          <div class="size-wrap"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#v1"/></svg><span>32</span></div>
+          <div class="size-wrap"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#v1"/></svg><span>16</span></div>
+        </div>
+      </div>
+
+      <!-- V2 -->
+      <div class="card">
+        <h2>V2 · Austero</h2>
+        <p class="why">Sin chevron; portal y placa más grandes; trazo 32. Mejor silueta a favicon.</p>
+        <svg width="256" height="256" viewBox="0 0 512 512" aria-label="V2">
+          <rect width="512" height="512" fill="#eef2ef"/>
+          <use href="#v2"/>
+        </svg>
+        <ul class="keys" aria-label="Simbología V2">
+          <li><span class="dot brand"></span> Hexágono · Núcleo</li>
+          <li><span class="dot arc"></span> Arco · Órbita / Gate</li>
+          <li><span class="dot paper"></span> Portal · Puerta</li>
+          <li><span class="dot ink"></span> Placa + pliegue · Spec</li>
+          <li class="off"><span class="dot paper"></span> Chevron · Construcción</li>
+        </ul>
+        <div class="sizes" style="margin-top:0.75rem">
+          <div class="size-wrap"><svg width="64" height="64" viewBox="0 0 512 512"><use href="#v2"/></svg><span>64</span></div>
+          <div class="size-wrap"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#v2"/></svg><span>32</span></div>
+          <div class="size-wrap"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#v2"/></svg><span>16</span></div>
+        </div>
+      </div>
+
+      <!-- V3 -->
+      <div class="card">
+        <h2>V3 · Máxima austeridad</h2>
+        <p class="why">Sin arco ni pliegue: hexágono + portal + bloque. Solo lo que sobrevive a 16 px.</p>
+        <svg width="256" height="256" viewBox="0 0 512 512" aria-label="V3">
+          <rect width="512" height="512" fill="#eef2ef"/>
+          <use href="#v3"/>
+        </svg>
+        <ul class="keys" aria-label="Simbología V3">
+          <li><span class="dot brand"></span> Hexágono · Núcleo</li>
+          <li class="off"><span class="dot arc"></span> Arco · Órbita / Gate</li>
+          <li><span class="dot paper"></span> Portal · Puerta</li>
+          <li><span class="dot ink"></span> Bloque · Spec (sin pliegue)</li>
+          <li class="off"><span class="dot paper"></span> Chevron · Construcción</li>
+        </ul>
+        <div class="sizes" style="margin-top:0.75rem">
+          <div class="size-wrap"><svg width="64" height="64" viewBox="0 0 512 512"><use href="#v3"/></svg><span>64</span></div>
+          <div class="size-wrap"><svg width="32" height="32" viewBox="0 0 512 512"><use href="#v3"/></svg><span>32</span></div>
+          <div class="size-wrap"><svg width="16" height="16" viewBox="0 0 512 512"><use href="#v3"/></svg><span>16</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>V1 · fondos y monocromo (mark solo)</h3>
+    <div class="row">
+      <div class="card">
+        <h2>Color · claro</h2>
+        <svg width="320" height="320" viewBox="0 0 512 512" aria-label="V1 claro">
+          <rect width="512" height="512" fill="#eef2ef"/>
+          <use href="#v1"/>
+        </svg>
+      </div>
+      <div class="card dark">
+        <h2>Color · oscuro</h2>
+        <svg width="320" height="320" viewBox="0 0 512 512" aria-label="V1 oscuro">
+          <rect width="512" height="512" fill="#0f1713"/>
+          <use href="#v1-dark"/>
+        </svg>
+        <div class="label">Arco aclarado solo en este fondo</div>
+      </div>
+      <div class="card">
+        <h2>Monocromo</h2>
+        <svg width="320" height="320" viewBox="0 0 512 512" style="color:#14261c" aria-label="V1 mono">
+          <rect width="512" height="512" fill="#f7f7f7"/>
+          <use href="#v1-mono"/>
+        </svg>
+        <div class="label">currentColor · barras de estado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Symbols -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true">
+    <symbol id="v1" viewBox="0 0 512 512">
+      <path fill="none" stroke="#14261c" stroke-width="28" stroke-linecap="round"
+            d="M 128 355 A 168 168 0 1 1 384 355"/>
+      <path fill="#2d6a4f" d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+      <path fill="#f4f7f5" d="M 200 220 V 348 H 312 V 220 A 56 56 0 0 0 200 220 Z"/>
+      <path fill="#14261c" d="M 224 236 H 288 L 304 252 V 320 Q 304 332 292 332 H 224 Q 212 332 212 320 V 248 Q 212 236 224 236 Z"/>
+      <path fill="#f4f7f5" d="M 288 236 L 304 252 H 288 Z"/>
+      <path fill="none" stroke="#f4f7f5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"
+            d="M 236 292 L 256 272 L 276 292 M 256 272 V 312"/>
+    </symbol>
+
+    <symbol id="v1-dark" viewBox="0 0 512 512">
+      <path fill="none" stroke="#9fbfb0" stroke-width="28" stroke-linecap="round"
+            d="M 128 355 A 168 168 0 1 1 384 355"/>
+      <path fill="#2d6a4f" d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+      <path fill="#f4f7f5" d="M 200 220 V 348 H 312 V 220 A 56 56 0 0 0 200 220 Z"/>
+      <path fill="#14261c" d="M 224 236 H 288 L 304 252 V 320 Q 304 332 292 332 H 224 Q 212 332 212 320 V 248 Q 212 236 224 236 Z"/>
+      <path fill="#f4f7f5" d="M 288 236 L 304 252 H 288 Z"/>
+      <path fill="none" stroke="#f4f7f5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"
+            d="M 236 292 L 256 272 L 276 292 M 256 272 V 312"/>
+    </symbol>
+
+    <symbol id="v1-mono" viewBox="0 0 512 512">
+      <g fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 128 355 A 168 168 0 1 1 384 355"/>
+        <path d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+        <path d="M 208 228 V 340 H 304 V 228 A 48 48 0 0 0 208 228 Z"/>
+        <path d="M 232 248 H 280 L 296 264 V 308 H 232 Z"/>
+        <path d="M 244 300 L 256 288 L 268 300 M 256 288 V 316"/>
+      </g>
+    </symbol>
+
+    <symbol id="v2" viewBox="0 0 512 512">
+      <path fill="none" stroke="#14261c" stroke-width="32" stroke-linecap="round"
+            d="M 128 355 A 168 168 0 1 1 384 355"/>
+      <path fill="#2d6a4f" d="M 256 88 L 400 172 L 400 340 L 256 424 L 112 340 L 112 172 Z"/>
+      <path fill="#f4f7f5" d="M 184 208 V 360 H 328 V 208 A 72 72 0 0 0 184 208 Z"/>
+      <path fill="#14261c" d="M 208 228 H 288 L 312 252 V 328 Q 312 344 296 344 H 208 Q 192 344 192 328 V 244 Q 192 228 208 228 Z"/>
+      <path fill="#f4f7f5" d="M 288 228 L 312 252 H 288 Z"/>
+    </symbol>
+
+    <symbol id="v2-dark" viewBox="0 0 512 512">
+      <path fill="none" stroke="#9fbfb0" stroke-width="32" stroke-linecap="round"
+            d="M 128 355 A 168 168 0 1 1 384 355"/>
+      <path fill="#2d6a4f" d="M 256 88 L 400 172 L 400 340 L 256 424 L 112 340 L 112 172 Z"/>
+      <path fill="#f4f7f5" d="M 184 208 V 360 H 328 V 208 A 72 72 0 0 0 184 208 Z"/>
+      <path fill="#14261c" d="M 208 228 H 288 L 312 252 V 328 Q 312 344 296 344 H 208 Q 192 344 192 328 V 244 Q 192 228 208 228 Z"/>
+      <path fill="#f4f7f5" d="M 288 228 L 312 252 H 288 Z"/>
+    </symbol>
+
+    <symbol id="v2-mono" viewBox="0 0 512 512">
+      <g fill="none" stroke="currentColor" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 128 355 A 168 168 0 1 1 384 355"/>
+        <path d="M 256 88 L 400 172 L 400 340 L 256 424 L 112 340 L 112 172 Z"/>
+        <path d="M 192 216 V 352 H 320 V 216 A 64 64 0 0 0 192 216 Z"/>
+        <path d="M 216 244 H 280 L 304 268 V 320 H 216 Z"/>
+      </g>
+    </symbol>
+
+    <symbol id="v3" viewBox="0 0 512 512">
+      <path fill="#2d6a4f" d="M 256 88 L 400 172 L 400 340 L 256 424 L 112 340 L 112 172 Z"/>
+      <path fill="#f4f7f5" d="M 176 200 V 368 H 336 V 200 A 80 80 0 0 0 176 200 Z"/>
+      <path fill="#14261c" d="M 224 240 H 288 V 336 H 224 Z"/>
+    </symbol>
+  </svg>
+</body>
+</html>

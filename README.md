@@ -1,4 +1,8 @@
-﻿# SDAF Core
+﻿<p align="center">
+  <img src="docs/assets/sdaf-core-icon-build.gif" alt="SDAF Core — construcción del mark" width="160" height="160" />
+</p>
+
+# SDAF Core
 
 Núcleo reutilizable del **Spec-Driven AI Development Framework** (SDAF): constitución del método, agentes, prompts, skills y plantillas.
 
@@ -14,7 +18,7 @@ No contiene código ni specs de un producto concreto.
 | 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–12 y apéndices A–B (0.3.3) |
 | ⛔ | **Operar un PBI** | [Gate 0](skills/sdaf-gate0/SKILL.md) antes de código; [worklog / ATF](handbook/08-agent-traceability.md) para dejar evidencia |
 
-🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md).
+🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md). Identidad visual: [`docs/branding.md`](docs/branding.md).
 
 ## Qué es
 
@@ -37,7 +41,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 | | Ruta | Rol |
 |--|------|-----|
 | 📖 | `handbook/` | Constitución del método (00, Parte I 01–05, Parte II 06–08, Parte III 09–12, apéndices A–B) |
-| 🛠️ | `docs/` | HOWTO adopción/upgrade, contrato de pack, mapa de navegación |
+| 🛠️ | `docs/` | HOWTO adopción/upgrade, contrato de pack, mapa, [branding](docs/branding.md) |
 | 📝 | `templates/` | Spec, ADR, worklog, agente, prompt, skill, handbook de producto |
 | | `agents/` + `prompts/` | Contratos y prompts genéricos |
 | 🛠️ | `skills/` | Playbooks `sdaf-*`, `spec-draft-pbi`, `adr-propose`, `testing-review-pr`, `security-review`, `devops-ci-gate` |
