@@ -8,7 +8,7 @@ Usar en el DoD de un PR que toque markdown. Marcar lo aplicable.
 4. **En esta página** (TOC) si hay más de tres headings `##`.
 5. **Relacionado** al cierre (tabla destino / por qué), sin bucles vacíos.
 6. **Enlaces** relativos a archivos que existen (CI: `scripts/check-local-links.py`).
-7. **Anclas** coinciden con el slug GFM del heading (minúsculas, sin puntuación).
+7. **Anclas** coinciden con el slug GFM del heading (minúsculas, sin puntuación; tildes se conservan). MkDocs usa el mismo criterio (`slugify_unicode` en `mkdocs/mkdocs.yml`).
 8. **Un diagrama** (Mermaid) si hay un flujo de ≥3 pasos; árboles de carpetas pueden seguir en ` ```text `. Color: rojo STOP, verde Approved/listo, gris stub, azul constitución.
 9. **Tablas** para catálogos, gates y comparaciones; no párrafos-lista de 10 ítems.
 10. **Fences** con lenguaje (`text`, `yaml`, `markdown`, `mermaid`).

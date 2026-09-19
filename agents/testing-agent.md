@@ -55,4 +55,5 @@ Tests trazables + handoff documentado.
 | Norma | `handbook/09-testing-framework.md` | Pirámide y tests desde specs | sí (si se activa y pin 0.3) |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+| IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
 

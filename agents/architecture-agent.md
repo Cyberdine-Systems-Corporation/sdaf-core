@@ -60,4 +60,5 @@ ADR listo para aceptación humana o N/A justificado; handoff al agente de implem
 | Flujo | `skills/adr-propose` | Proponer/enmendar ADR | según encargo |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+| IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
 

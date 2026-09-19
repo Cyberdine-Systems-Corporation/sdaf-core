@@ -134,6 +134,14 @@ Ganchos de gobernanza **sin estatizar adopción**. Al pinnear un tag que incluya
 
 No rompe citas. `sdaf.version` puede seguir `0.3.0`.
 
+## 0.3.3 (parche)
+
+Enmienda de [H06 §7](../handbook/06-ai-agent-framework.md#7-restricciones-globales): **encargo vigente** = el mensaje de usuario de **este turno**. El historial de la conversación, un PR abierto o terminar archivos no autorizan commit ni escritura al remoto. Autoriza solo lo que este mensaje nombra.
+
+Copia operativa para agentes Cursor: `.cursor/rules/git-remoto-encargo.mdc` (materializar junto a `idioma-castellano.mdc`).
+
+No rompe citas. No exige cambiar `sdaf.version` si ya está en `0.3.0`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:

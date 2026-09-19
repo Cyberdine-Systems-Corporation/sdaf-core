@@ -56,4 +56,5 @@ Entrega del encargo puntual + handoff documentado.
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí (si se activa) |
 | Norma | `handbook/11-devops.md` | Local-first y runbook | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+| IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
 

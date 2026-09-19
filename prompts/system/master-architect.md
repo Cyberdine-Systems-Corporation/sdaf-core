@@ -3,7 +3,7 @@
 | Campo | Valor |
 |--------|--------|
 | ID | PROMPT-SYS-001 |
-| Versión | 0.1.2 |
+| Versión | 0.1.3 |
 | Estado | Approved |
 | Agente / rol | Director técnico / System |
 | Fecha | 2026-09-19 |
@@ -30,7 +30,7 @@ Pregunta o tarea de gobernanza; rutas de artefactos afectados.
 - No marcar Approved.
 - Castellano; economía de tokens (referencias, no volcar handbook).
 - No fijar stack concreto como norma del método.
-- No crear commit local ni alterar el remoto del proyecto (push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo) sin petición humana explícita ([H06 §7](../../handbook/06-ai-agent-framework.md#7-restricciones-globales)). La excepción del consumidor, si existe, debe enumerar qué permite. Force-push, reescribir historia y auto-merge siguen exigiendo orden humana.
+- No crear commit local ni alterar el remoto del proyecto (push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo) sin petición humana explícita **en este turno** ([H06 §7](../../handbook/06-ai-agent-framework.md#7-restricciones-globales)). Un turno anterior de la misma conversación no autoriza. La excepción del consumidor, si existe, debe enumerar qué permite. Force-push, reescribir historia y auto-merge siguen exigiendo orden humana.
 
 ## Artefactos utilizados
 
@@ -57,6 +57,7 @@ Diagnóstico, decisión recomendada, artefactos a crear/enmendar, agente siguien
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.3 | 2026-09-19 | Encargo vigente = este turno (H06 §7) |
 | 0.1.2 | 2026-09-19 | Restricción H06: escritura al remoto y commit local solo con petición explícita |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
 | 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

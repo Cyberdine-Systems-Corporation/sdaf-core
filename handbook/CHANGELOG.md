@@ -1,5 +1,13 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.3.3 — 2026-09-19
+
+Parche (**no** breaking de citas `H00`–`H08`). H06 §7: **encargo vigente** = el mensaje de usuario de **este turno**. El historial de la conversación, un PR abierto o terminar archivos no autorizan commit ni escritura al remoto. Autoriza solo lo que este mensaje nombra.
+
+Copia operativa: regla IDE `git-remoto-encargo`, `AGENTS.md.template`, `prompts/system/master-architect.md`.
+
+`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche.
+
 ## 0.3.2 — 2026-09-19
 
 Parche (**no** breaking de citas `H00`–`H08`). Ganchos de gobernanza **sin estatizar adopción**:

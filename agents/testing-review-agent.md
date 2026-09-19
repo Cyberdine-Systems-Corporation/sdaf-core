@@ -65,4 +65,5 @@ QG aplicables en verde o hallazgos severizados; dictamen de merge; QG-Review lo 
 | Flujo | `skills/security-review` | QG-Sec (H12 §5.2) | si aplica |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
+| IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
 

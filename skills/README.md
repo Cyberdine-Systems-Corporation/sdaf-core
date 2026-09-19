@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.2 |
+| Versión | 0.3.3 |
 | Estado | Approved |
 | Fecha | 2026-09-19 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
@@ -37,7 +37,7 @@ Skills de stack o dominio no forman parte de este core.
 - No saltar Gate 0.
 - No secretos en el repo.
 - Castellano en artefactos de ingeniería.
-- No commit local ni escritura al remoto (push, tags, releases, merge, PR, APIs, CI que escriba el repo) sin petición humana explícita (H06 §7). La excepción del consumidor debe enumerar qué permite.
+- No commit local ni escritura al remoto (push, tags, releases, merge, PR, APIs, CI que escriba el repo) sin petición humana explícita **en este turno** (H06 §7). El historial de la conversación no autoriza. La excepción del consumidor debe enumerar qué permite.
 - Plantilla: [`templates/skill.md`](../templates/skill.md).
 
 ## Relacionado
