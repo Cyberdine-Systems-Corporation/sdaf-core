@@ -2992,7 +2992,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.2.0</td>
+<td>0.2.1</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -3004,7 +3004,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-08-25</td>
+<td>2026-09-19</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -3024,8 +3024,8 @@
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../../AGENTS.md.template"><code>AGENTS.md.template</code></a>: sustituir <code>{{PROJECT_NAME}}</code> y alinear active/stubs/fusions con la config.</li>
 <li>Crear árbol vacío según <a href="../../../handbook/03-repository-organization/">H03</a>: <code>knowledge/raw</code>, <code>knowledge/curated</code>, <code>specs/{product,domain,application,acceptance}</code>, <code>architecture/decisions</code>, <code>backlog</code>, <code>worklogs</code>, <code>agents</code>, <code>prompts</code>, <code>skills</code>, <code>templates</code>, <code>docs</code>; stub de handbook de producto desde <a href="../../../templates/handbook-product/"><code>templates/handbook-product.md</code></a>.</li>
 <li>Si <code>stack.pack</code> ≠ <code>null</code>, verificar <a href="../../../docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a> y materializar aportes del pack + core con symlinks relativos en el consumidor (script documentado <code>scripts/materialize-submodules.ps1</code> o manual según <a href="../../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>); opcional <code>.cursor/skills/</code> → submodule.</li>
-<li>Copiar regla de idioma si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> vía materialización). <strong>No</strong> crear código de producto en <code>src/</code> sin Gate 0.</li>
-<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado (sin specs Approved). Abrir worklog de bootstrap y citar <code>sdaf-bootstrap@0.2.0</code>.</li>
+<li>Copiar reglas IDE si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> y <code>.cursor/rules/git-remoto-encargo.mdc</code> vía materialización). <strong>No</strong> crear código de producto en <code>src/</code> sin Gate 0. Bootstrap <strong>no</strong> incluye commit ni remoto salvo que este turno lo nombre (H06 §7).</li>
+<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado (sin specs Approved). Abrir worklog de bootstrap y citar <code>sdaf-bootstrap@0.2.1</code>.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
@@ -3039,6 +3039,7 @@
 <li>No aprobar handbook/specs/ADR.</li>
 <li>No saltar Gate 0 “para empezar ya el código”.</li>
 <li>Castellano en artefactos de ingeniería.</li>
+<li>No commit ni escritura al remoto sin petición <strong>en este turno</strong> (H06 §7).</li>
 </ul>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
@@ -3069,6 +3070,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.2.1</td>
+<td>2026-09-19</td>
+<td>Materializar <code>git-remoto-encargo</code>; bootstrap no implica git (H06 §7)</td>
+</tr>
 <tr>
 <td>0.2.0</td>
 <td>2026-08-25</td>

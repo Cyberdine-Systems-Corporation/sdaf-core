@@ -1,0 +1,28 @@
+---
+description: Idioma castellano para commits, PRs y artefactos de ingeniería
+alwaysApply: true
+---
+
+# Idioma del repositorio: castellano
+
+## Obligatorio
+
+- Mensajes de **commit**: siempre en castellano.
+- Títulos y cuerpos de **pull requests** e **issues**: en castellano.
+- Handbook, specs, ADRs, prompts, worklogs y contratos de agentes: en castellano (salvo citas o identificadores técnicos en inglés inevitable).
+
+## Estilo de commits
+
+- Preferir mensajes claros y en prosa breve (1–2 frases), centrados en el *porqué*.
+- Se puede usar un prefijo de tipo en castellano o convencional corto si aporta claridad, por ejemplo: `docs:`, `chore:`, `feat:`, `fix:` — el resto del mensaje en castellano.
+- Evitar mensajes solo en inglés del tipo "Add X" / "Update Y" / "Initialize repository".
+
+## Ejemplos
+
+- Bien: `docs: añadir constitución del handbook (H1) y carta de producto (H2).`
+- Bien: `chore: inicializar el repositorio.`
+- Mal: `Add SDAF repository layout and handbook constitution.`
+
+## Comunicación
+
+- Responder al usuario en castellano salvo que pida otro idioma.

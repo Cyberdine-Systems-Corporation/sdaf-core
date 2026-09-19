@@ -712,7 +712,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-proposito" class="md-nav__link">
+  <a href="#1-propósito" class="md-nav__link">
     <span class="md-ellipsis">
       1. Propósito
     </span>
@@ -721,7 +721,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-distincion-critica" class="md-nav__link">
+  <a href="#2-distinción-crítica" class="md-nav__link">
     <span class="md-ellipsis">
       2. Distinción crítica
     </span>
@@ -772,7 +772,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-orquestacion-y-handoffs" class="md-nav__link">
+  <a href="#5-orquestación-y-handoffs" class="md-nav__link">
     <span class="md-ellipsis">
       5. Orquestación y handoffs
     </span>
@@ -2952,7 +2952,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-proposito" class="md-nav__link">
+  <a href="#1-propósito" class="md-nav__link">
     <span class="md-ellipsis">
       1. Propósito
     </span>
@@ -2961,7 +2961,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-distincion-critica" class="md-nav__link">
+  <a href="#2-distinción-crítica" class="md-nav__link">
     <span class="md-ellipsis">
       2. Distinción crítica
     </span>
@@ -3012,7 +3012,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-orquestacion-y-handoffs" class="md-nav__link">
+  <a href="#5-orquestación-y-handoffs" class="md-nav__link">
     <span class="md-ellipsis">
       5. Orquestación y handoffs
     </span>
@@ -3090,7 +3090,7 @@
 <tbody>
 <tr>
 <td><strong>Versión</strong></td>
-<td>0.3.2</td>
+<td>0.3.3</td>
 </tr>
 <tr>
 <td><strong>Estado</strong></td>
@@ -3116,11 +3116,11 @@
 </table>
 <hr />
 <p><strong>En esta página:</strong> <a href="#1-propósito">Propósito</a> · <a href="#2-distinción-crítica">Distinción</a> · <a href="#3-modelo-operativo">Modelo</a> · <a href="#4-contrato-de-agente-obligatorio">Contrato</a> · <a href="#5-orquestación-y-handoffs">Handoffs</a> · <a href="#6-skills">Skills</a> · <a href="#7-restricciones-globales">Restricciones</a></p>
-<h2 id="1-proposito">1. Propósito<a class="headerlink" href="#1-proposito" title="Permanent link">&para;</a></h2>
+<h2 id="1-propósito">1. Propósito<a class="headerlink" href="#1-propósito" title="Permanent link">&para;</a></h2>
 <p>Definir el equipo de agentes de <strong>ingeniería</strong> (desarrollo). No confundir con una eventual IA de producto del consumidor.</p>
 <p>Los agentes ejecutan el pipeline SDAF. No son un nivel normativo. No aprueban capítulos Approved ni saltan Gate 0.</p>
 <hr />
-<h2 id="2-distincion-critica">2. Distinción crítica<a class="headerlink" href="#2-distincion-critica" title="Permanent link">&para;</a></h2>
+<h2 id="2-distinción-crítica">2. Distinción crítica<a class="headerlink" href="#2-distinción-crítica" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -3184,7 +3184,7 @@
 <p>El contexto autorizado es un <strong>índice</strong> (tabla de capas: rol, flujo/skills, reglas IDE). El agente <strong>abre</strong> esos artefactos; no los concatena en un mega-prompt. El resumen de una línea no sustituye al prompt versionado: si discrepan, gana el prompt.</p>
 <p><code>AGENTS.md</code> en el consumidor actúa como <strong>router</strong> (materializado desde <code>AGENTS.md.template</code>).</p>
 <hr />
-<h2 id="5-orquestacion-y-handoffs">5. Orquestación y handoffs<a class="headerlink" href="#5-orquestacion-y-handoffs" title="Permanent link">&para;</a></h2>
+<h2 id="5-orquestación-y-handoffs">5. Orquestación y handoffs<a class="headerlink" href="#5-orquestación-y-handoffs" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
   Spec[Specification] --&gt; Arch[Architecture]
   Arch --&gt; Impl[Implementación del consumidor]
@@ -3220,7 +3220,7 @@
 </tr>
 <tr>
 <td>Rules IDE</td>
-<td>Restricciones locales finas</td>
+<td>Restricciones locales finas (core: <code>idioma-castellano</code>, <code>git-remoto-encargo</code>; esta última copia §7, no la exceptúa)</td>
 </tr>
 </tbody>
 </table>
@@ -3256,7 +3256,8 @@
 <li>No inventar alcance Out del MVP del consumidor.</li>
 <li>No marcar Approved.</li>
 <li>No alterar <strong>refs ni contenidos del remoto del proyecto</strong> ni crear <strong>commit</strong> local sin petición humana <strong>explícita</strong> en el encargo vigente. El criterio es el <strong>efecto</strong> (el remoto cambia), no el comando: commit, push (cualquier remote), tags, releases, merge (incluido auto-merge), abrir o actualizar pull request, APIs de contenidos (p. ej. Contents/Git Data), disparar CI que escriba el repo. Terminar archivos, tests o un DoD <strong>no</strong> autoriza git ni escritura remota.</li>
-<li>El consumidor puede <strong>exceptuar</strong> la viñeta anterior por cláusula en su <code>AGENTS.md</code> o por ADR. La cláusula <strong>debe</strong> enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill <a href="../../skills/testing-review-pr/SKILL/"><code>testing-review-pr</code></a>).</li>
+<li><strong>Encargo vigente</strong> = el mensaje de usuario <strong>de este turno</strong>. Un turno anterior de la misma conversación, un PR abierto, «así se publica» o el hábito de la sesión <strong>no</strong> autorizan git ni el remoto. Si este mensaje no nombra commit, push, PR, tag, release o merge, esas acciones están <strong>prohibidas</strong>. Autoriza solo lo nombrado (p. ej. «commit» no implica push; «PR» implica el push de rama imprescindible para abrir ese PR).</li>
+<li>El consumidor puede <strong>exceptuar</strong> las dos viñetas anteriores por cláusula en su <code>AGENTS.md</code> o por ADR. La cláusula <strong>debe</strong> enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill <a href="../../skills/testing-review-pr/SKILL/"><code>testing-review-pr</code></a>).</li>
 <li>No force-push ni destruir history sin orden humana.</li>
 <li>No introducir secretos.</li>
 <li>Economía de tokens (cap. 07).</li>
@@ -3284,6 +3285,10 @@
 <td>Router a materializar; excepción acotada de git/remoto</td>
 </tr>
 <tr>
+<td><a href="../../.cursor/rules/git-remoto-encargo.mdc"><code>.cursor/rules/git-remoto-encargo.mdc</code></a></td>
+<td>Copia operativa Cursor de esta §7 (encargo = este turno)</td>
+</tr>
+<tr>
 <td><a href="../10-code-review-and-quality-gates/">10-code-review-and-quality-gates.md</a></td>
 <td>Checklist Testing+Review</td>
 </tr>
@@ -3299,6 +3304,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.3</td>
+<td>2026-09-19</td>
+<td>Encargo vigente = este turno; el historial de la conversación no autoriza git ni el remoto</td>
+</tr>
 <tr>
 <td>0.3.2</td>
 <td>2026-09-19</td>

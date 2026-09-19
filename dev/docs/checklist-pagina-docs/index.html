@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#checklist-de-pagina-docs-handbook-skills" class="md-skip">
+        <a href="#checklist-de-página-docs-handbook-skills" class="md-skip">
           Saltar a contenido
         </a>
       
@@ -2887,7 +2887,7 @@
   
 
 
-<h1 id="checklist-de-pagina-docs-handbook-skills">Checklist de página (docs / handbook / skills)<a class="headerlink" href="#checklist-de-pagina-docs-handbook-skills" title="Permanent link">&para;</a></h1>
+<h1 id="checklist-de-página-docs-handbook-skills">Checklist de página (docs / handbook / skills)<a class="headerlink" href="#checklist-de-página-docs-handbook-skills" title="Permanent link">&para;</a></h1>
 <p>Usar en el DoD de un PR que toque markdown. Marcar lo aplicable.</p>
 <ol>
 <li><strong>Título</strong> dice qué es la página en una línea.</li>
@@ -2896,7 +2896,7 @@
 <li><strong>En esta página</strong> (TOC) si hay más de tres headings <code>##</code>.</li>
 <li><strong>Relacionado</strong> al cierre (tabla destino / por qué), sin bucles vacíos.</li>
 <li><strong>Enlaces</strong> relativos a archivos que existen (CI: <code>scripts/check-local-links.py</code>).</li>
-<li><strong>Anclas</strong> coinciden con el slug GFM del heading (minúsculas, sin puntuación).</li>
+<li><strong>Anclas</strong> coinciden con el slug GFM del heading (minúsculas, sin puntuación; tildes se conservan). MkDocs usa el mismo criterio (<code>slugify_unicode</code> en <code>mkdocs/mkdocs.yml</code>).</li>
 <li><strong>Un diagrama</strong> (Mermaid) si hay un flujo de ≥3 pasos; árboles de carpetas pueden seguir en <code>```text</code>. Color: rojo STOP, verde Approved/listo, gris stub, azul constitución.</li>
 <li><strong>Tablas</strong> para catálogos, gates y comparaciones; no párrafos-lista de 10 ítems.</li>
 <li><strong>Fences</strong> con lenguaje (<code>text</code>, <code>yaml</code>, <code>markdown</code>, <code>mermaid</code>).</li>
