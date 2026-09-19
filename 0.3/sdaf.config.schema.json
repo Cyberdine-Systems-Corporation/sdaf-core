@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://sdaf.local/sdaf.config.schema.json",
   "title": "sdaf.config.yaml",
-  "description": "Configuración SDAF del repo consumidor (v0.2). Espejo validable del catálogo sdaf.config.schema.yaml.",
+  "description": "Configuración SDAF del repo consumidor (v0.3). Espejo validable del catálogo sdaf.config.schema.yaml.",
   "type": "object",
   "required": ["sdaf", "project", "stack", "agents"],
   "additionalProperties": false,

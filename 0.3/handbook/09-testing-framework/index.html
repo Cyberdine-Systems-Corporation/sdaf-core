@@ -775,7 +775,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-proposito" class="md-nav__link">
+  <a href="#1-propósito" class="md-nav__link">
     <span class="md-ellipsis">
       1. Propósito
     </span>
@@ -793,7 +793,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-piramide-por-nivel" class="md-nav__link">
+  <a href="#3-pirámide-por-nivel" class="md-nav__link">
     <span class="md-ellipsis">
       3. Pirámide por nivel
     </span>
@@ -811,7 +811,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-organizacion-en-tests" class="md-nav__link">
+  <a href="#5-organización-en-tests" class="md-nav__link">
     <span class="md-ellipsis">
       5. Organización en tests/
     </span>
@@ -2919,7 +2919,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-proposito" class="md-nav__link">
+  <a href="#1-propósito" class="md-nav__link">
     <span class="md-ellipsis">
       1. Propósito
     </span>
@@ -2937,7 +2937,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-piramide-por-nivel" class="md-nav__link">
+  <a href="#3-pirámide-por-nivel" class="md-nav__link">
     <span class="md-ellipsis">
       3. Pirámide por nivel
     </span>
@@ -2955,7 +2955,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-organizacion-en-tests" class="md-nav__link">
+  <a href="#5-organización-en-tests" class="md-nav__link">
     <span class="md-ellipsis">
       5. Organización en tests/
     </span>
@@ -3050,7 +3050,7 @@
 </table>
 <hr />
 <p><strong>En esta página:</strong> <a href="#1-propósito">Propósito</a> · <a href="#2-principio-rector">Principio</a> · <a href="#3-pirámide-por-nivel">Pirámide</a> · <a href="#4-cobertura-bloqueante">Cobertura</a> · <a href="#5-organización-en-tests">Organización</a> · <a href="#6-datos-de-prueba">Datos</a></p>
-<h2 id="1-proposito">1. Propósito<a class="headerlink" href="#1-proposito" title="Permanent link">&para;</a></h2>
+<h2 id="1-propósito">1. Propósito<a class="headerlink" href="#1-propósito" title="Permanent link">&para;</a></h2>
 <p>Definir la estrategia de pruebas del <strong>método</strong>: origen en specs, pirámide por nivel y qué es bloqueante para Gate 2 / demo.</p>
 <p>Las herramientas concretas (runner, contenedores, E2E) las fija el ADR o el pack de stack del consumidor. Este capítulo no nombra un runtime.</p>
 <hr />
@@ -3059,7 +3059,7 @@
 <p>Un test que no traza a spec es útil como caracterización, pero <strong>no</strong> sustituye el acceptance del PBI.</p>
 <p>Alinea H02 §2.8 (Test from Specs).</p>
 <hr />
-<h2 id="3-piramide-por-nivel">3. Pirámide por nivel<a class="headerlink" href="#3-piramide-por-nivel" title="Permanent link">&para;</a></h2>
+<h2 id="3-pirámide-por-nivel">3. Pirámide por nivel<a class="headerlink" href="#3-pirámide-por-nivel" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
   U[Unitario de dominio] --&gt; A[Aplicación]
   A --&gt; I[Integración]
@@ -3116,7 +3116,7 @@
 </ol>
 <p>La cobertura de líneas <strong>no</strong> es KPI primario del método.</p>
 <hr />
-<h2 id="5-organizacion-en-tests">5. Organización en <code>tests/</code><a class="headerlink" href="#5-organizacion-en-tests" title="Permanent link">&para;</a></h2>
+<h2 id="5-organización-en-tests">5. Organización en <code>tests/</code><a class="headerlink" href="#5-organización-en-tests" title="Permanent link">&para;</a></h2>
 <p>La carpeta <code>tests/</code> es normativa (H03). El layout interno (proyectos, namespaces) lo decide el consumidor.</p>
 <p>Nombrar tests según el escenario de acceptance, no según el detalle de implementación.</p>
 <hr />

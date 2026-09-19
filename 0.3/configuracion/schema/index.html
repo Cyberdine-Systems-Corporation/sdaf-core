@@ -2784,7 +2784,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#catalogo-humano" class="md-nav__link">
+  <a href="#catálogo-humano" class="md-nav__link">
     <span class="md-ellipsis">
       Catálogo humano
     </span>
@@ -2865,7 +2865,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#catalogo-humano" class="md-nav__link">
+  <a href="#catálogo-humano" class="md-nav__link">
     <span class="md-ellipsis">
       Catálogo humano
     </span>
@@ -2911,8 +2911,8 @@
 🛠️ Página generada por MkDocs; el contenido no se duplica, se incrusta en vivo desde <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a> (catálogo humano) y <a href="../../sdaf.config.schema.json"><code>sdaf.config.schema.json</code></a> (schema validable).</p>
 </blockquote>
 <p><strong>En esta página:</strong> <a href="#catálogo-humano">Catálogo humano</a> · <a href="#json-schema">JSON Schema</a> · <a href="#relacionado">Relacionado</a></p>
-<h2 id="catalogo-humano">Catálogo humano<a class="headerlink" href="#catalogo-humano" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Esquema de `sdaf.config.yaml` (consumidor) — v0.2</span>
+<h2 id="catálogo-humano">Catálogo humano<a class="headerlink" href="#catálogo-humano" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Esquema de `sdaf.config.yaml` (consumidor) — v0.3</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="l l-Scalar l-Scalar-Plain">Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sdaf.config.schema.json`](sdaf.config.schema.json).</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
@@ -2930,14 +2930,14 @@
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Valores | Uso |</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p p-Indicator">|</span><span class="err"> `sdaf.version` | string semver | sí | p. ej. `"0.2.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p p-Indicator">|</span><span class="err"> `sdaf.version` | string semver | sí | p. ej. `"0.3.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |</span>
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1">### `project` (obligatorio)</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Valores | Uso |</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p p-Indicator">|</span><span class="err"> `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p p-Indicator">|</span><span class="err"> `project.language` | string | sí | `es` en v0.2 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.2 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p p-Indicator">|</span><span class="err"> `project.language` | string | sí | `es` en v0.3 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.3 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1">### `stack` (obligatorio como bloque; campos internos con default)</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
@@ -2945,7 +2945,7 @@
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p p-Indicator">|</span><span class="err"> `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p p-Indicator">|</span><span class="err"> `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.1`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p p-Indicator">|</span><span class="err"> `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p p-Indicator">|</span><span class="err"> `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
@@ -2957,7 +2957,7 @@
 <a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p p-Indicator">|</span><span class="err"> `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |</span>
 <a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p p-Indicator">|</span><span class="err"> `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="c1">#### Ids reconocidos por el core v0.2</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="c1">#### Ids reconocidos por el core v0.3</span>
 <a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="p p-Indicator">|</span><span class="err"> Id | Rol | En el core |</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="p p-Indicator">|</span><span class="err">----|-----|------------|</span>
@@ -3005,7 +3005,7 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  "$schema": "https://json-schema.org/draft/2020-12/schema",
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  "$id": "https://sdaf.local/sdaf.config.schema.json",
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  "title": "sdaf.config.yaml",
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  "description": "Configuración SDAF del repo consumidor (v0.2). Espejo validable del catálogo sdaf.config.schema.yaml.",
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  "description": "Configuración SDAF del repo consumidor (v0.3). Espejo validable del catálogo sdaf.config.schema.yaml.",
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  "type": "object",
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  "required": ["sdaf", "project", "stack", "agents"],
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  "additionalProperties": false,
