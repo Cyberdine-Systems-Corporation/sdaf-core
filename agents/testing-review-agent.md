@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.0 |
+| Versión | 0.3.2 |
 | Estado | Approved |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 | Modo | active |
 | Prompt base | `prompts/agents/testing-review-agent.md` |
 
@@ -36,7 +36,9 @@ Specs acceptance, diff del PBI, worklogs, runbook del consumidor si aplica.
 
 - [ ] Tests trazan a AC (H09 si pin 0.3)
 - [ ] Checklist H10 + coding standards del consumidor si hay ADR
-- [ ] QG-Sec si el diff toca auth/secretos (`security-review`)
+- [ ] QG-Sec según H12 §5.2 si hay superficie de seguridad (`security-review`)
+- [ ] Origen de cambios en worklog si hay código de producto (H08 §4.3)
+- [ ] Dictamen; merge = humano (QG-Review)
 - [ ] Worklog con estado
 
 ## KPIs
@@ -45,7 +47,7 @@ Acceptance del PBI verdes; 0 merges con Gate 0 roto.
 
 ## Definition of Done
 
-QG aplicables en verde o hallazgos severizados; handoff humano/merge.
+QG aplicables en verde o hallazgos severizados; dictamen de merge; QG-Review lo cierra el humano.
 
 ## Prompt base
 
@@ -60,7 +62,7 @@ QG aplicables en verde o hallazgos severizados; handoff humano/merge.
 | Rol | `prompts/agents/testing-review-agent.md` | Tests derivados y review / quality gates | sí |
 | Flujo | `skills/sdaf-gate0` | Gate 0 antes de código de producto | si hay implementación |
 | Flujo | `skills/testing-review-pr` | Gate 2 / dictamen merge | sí (si pin 0.3) |
-| Flujo | `skills/security-review` | QG-Sec si hay superficie de auth/secretos | si aplica |
+| Flujo | `skills/security-review` | QG-Sec (H12 §5.2) | si aplica |
 | Flujo | `skills/sdaf-worklog-handoff` | Cierre ATF / handoff | sí |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 

@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.0 |
+| **Versión** | 0.3.2 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | Apéndices |
@@ -38,7 +38,10 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 | **Agente activo** | Agente de ingeniería en uso regular |
 | **Stub (agente)** | Contrato+prompt listos; activación bajo demanda |
 | **QG-Build / Unit / Accept / Arch / Docs / Sec / Review** | Quality gates técnicos de H10 |
-| **QG-Sec** | Gate: sin secretos en claro ni bypass de auth especificado (H12) |
+| **QG-Sec** | Gate de H12 §5.2: secreto en claro, bypass de auth, injection, SSRF o CVE crítica identificada en el review |
+| **QG-Review** | Checklist H10 §3 más aprobación humana nominada del merge; el dictamen de un agente no basta |
+| **Overlay (H12)** | Control N/A salvo ADR del consumidor (mismo patrón que QG-Docs) |
+| **Origen de cambios** | Campo ATF: `humano` / `ia` / `mixto` / `dependencia` (H08 §4.3) |
 | **OWASP Top 10** | Mapa de riesgos web usado como marco en el baseline de H12 |
 | **IA de producto** | Asistencia al usuario final en el producto consumidor |
 | **Agente de ingeniería** | Agente que produce artefactos del repo |
@@ -60,5 +63,6 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | QG-Sec §5.2, QG-Review HITL, overlay, origen de cambios |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: términos de método (extract A; sin dominio de producto) |

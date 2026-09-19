@@ -1,5 +1,17 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.3.2 — 2026-09-19
+
+Parche (**no** breaking de citas `H00`–`H08`). Ganchos de gobernanza **sin estatizar adopción**:
+
+- H12 §3: catálogo de referencias con uso **baseline** / **overlay** (N/A salvo ADR) / **fuera del método** (GRC o handbook de producto). SSDF/800-218A, SBOM/AIBOM y 42001/AI Act/CRA no entran en el baseline.
+- H12 §5.2 / H10: QG-Sec alineado al mapa §4.3 (secreto, bypass de auth, injection, SSRF, CVE crítica identificada en el review). Scanner con umbral = overlay.
+- H10: QG-Review exige aprobación humana nominada del merge; el dictamen del agente no basta.
+- H08 §4.3: origen de cambios (`humano` / `ia` / `mixto` / `dependencia`) en worklogs **nuevos** de código de producto; sin backfill.
+- Catálogo: `security-review` prioridad alta.
+
+`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche.
+
 ## 0.3.1 — 2026-09-19
 
 Parche (**no** breaking de citas `H00`–`H08`). Enmienda de H06: los agentes no crean commit local ni alteran el remoto del proyecto sin petición humana explícita. El criterio es el **efecto** (el remoto cambia), no el comando: push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo. Terminar archivos o un DoD no autoriza git.

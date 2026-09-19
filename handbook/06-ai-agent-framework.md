@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.1 |
+| **Versión** | 0.3.2 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | II — Ingeniería IA |
@@ -102,8 +102,8 @@ Catálogo core:
 
 | Prioridad | Skills |
 |-----------|--------|
-| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr` |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade`, `security-review` |
+| Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr`, `security-review` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
 | Baja | `devops-ci-gate` |
 
 ---
@@ -135,6 +135,7 @@ Catálogo core:
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | Catálogo: `security-review` pasa a prioridad alta (QG-Sec H12 §5.2) |
 | 0.3.1 | 2026-09-19 | Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-19 | Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06) |
 | 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate |

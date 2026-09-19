@@ -123,6 +123,17 @@ Enmienda de [H06 §7](../handbook/06-ai-agent-framework.md#7-restricciones-globa
 
 No rompe citas. No exige cambiar `sdaf.version` si ya está en `0.3.0`.
 
+## 0.3.2 (parche)
+
+Ganchos de gobernanza **sin estatizar adopción**. Al pinnear un tag que incluya 0.3.2:
+
+1. QG-Sec según [H12 §5.2](../handbook/12-security-standards.md#52-qg-sec) (no solo secreto y bypass de auth).
+2. Merge a demo/integración: humano nominado ([H10](../handbook/10-code-review-and-quality-gates.md) QG-Review).
+3. Worklogs **nuevos** de código de producto: origen de cambios ([H08 §4.3](../handbook/08-agent-traceability.md#43-origen-de-cambios)); sin backfill.
+4. Overlays (SSDF, SBOM, AIMS, …): **N/A** hasta que el consumidor apruebe un ADR. No son bug por sí solos.
+
+No rompe citas. `sdaf.version` puede seguir `0.3.0`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:

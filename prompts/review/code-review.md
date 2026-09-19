@@ -3,7 +3,7 @@
 | Campo | Valor |
 |--------|--------|
 | ID | PROMPT-REV-CODE-001 |
-| Versión | 0.3.0 |
+| Versión | 0.3.2 |
 | Estado | Approved |
 | Agente / rol | review / Testing+Review |
 | Fecha | 2026-09-19 |
@@ -24,7 +24,7 @@ Diff, PBI, specs/ADR aplicables.
 
 ## Restricciones
 
-Severizar hallazgos (H10 §5); no Approved autónomo; no ampliar Out.
+Severizar hallazgos (H10 §5); no Approved autónomo; no ampliar Out; dictamen ≠ QG-Review (merge = humano nominado).
 
 ## Resultado esperado
 
@@ -42,5 +42,6 @@ Trazable a H10 y a specs Approved del PBI.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.2 | 2026-09-19 | QG-Review exige humano nominado |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract cap. 17 → H10 |
