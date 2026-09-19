@@ -8,11 +8,13 @@ site_dir: ../site
 
 # MkDocs excluye por defecto '.*' y '/templates/' del docs_dir (ver
 # https://www.mkdocs.org/user-guide/configuration/#exclude_docs). Se niegan
-# aquí porque sdaf-core tiene contenido real en templates/ y .github/, y se
-# vuelve a excluir lo que sí es tooling puro dentro de .github/ y examples/.
+# aquí porque sdaf-core tiene contenido real en templates/, .github/ y
+# .cursor/rules/, y se vuelve a excluir lo que sí es tooling puro dentro
+# de .github/ y examples/.
 exclude_docs: |
   !/templates/
   !/.github/
+  !/.cursor/
   /.github/workflows/
   /examples/*.yaml
 
