@@ -1,6 +1,8 @@
 # MkDocs
 /site/
 .mkdocs_cache/
+# site_dir por defecto de mkdocs.yml (!ENV → /tmp/...); por si alguien usa SITE local en el repo
+/sdaf-core-mkdocs-site/
 
 # Python
 .venv/
