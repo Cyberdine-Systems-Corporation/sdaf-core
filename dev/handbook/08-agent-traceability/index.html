@@ -808,6 +808,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-origen-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Origen de cambios
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3006,6 +3015,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-origen-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Origen de cambios
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3090,7 +3108,7 @@
 <tbody>
 <tr>
 <td><strong>Versión</strong></td>
-<td>0.2.2</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td><strong>Estado</strong></td>
@@ -3098,7 +3116,7 @@
 </tr>
 <tr>
 <td><strong>Fecha</strong></td>
-<td>2026-09-17</td>
+<td>2026-09-19</td>
 </tr>
 <tr>
 <td><strong>Parte</strong></td>
@@ -3115,7 +3133,7 @@
 </tbody>
 </table>
 <hr />
-<p><strong>En esta página:</strong> <a href="#1-propósito">Propósito</a> · <a href="#2-principio">Principio</a> · <a href="#3-organización">Organización</a> · <a href="#4-campos-obligatorios">Campos</a> · <a href="#5-cuándo-crear-worklog">Cuándo</a> · <a href="#6-cadena-de-trazabilidad">Cadena</a> · <a href="#7-retención">Retención</a></p>
+<p><strong>En esta página:</strong> <a href="#1-propósito">Propósito</a> · <a href="#2-principio">Principio</a> · <a href="#3-organización">Organización</a> · <a href="#4-campos-obligatorios">Campos</a> · <a href="#43-origen-de-cambios">Origen</a> · <a href="#5-cuándo-crear-worklog">Cuándo</a> · <a href="#6-cadena-de-trazabilidad">Cadena</a> · <a href="#7-retención">Retención</a></p>
 <h2 id="1-proposito">1. Propósito<a class="headerlink" href="#1-proposito" title="Permanent link">&para;</a></h2>
 <p>Definir el <strong>Agent Traceability Framework (ATF)</strong>: registro de cada iteración para que el desarrollo sea auditable.</p>
 <p>Sin ATF, SDAF no es demostrable.</p>
@@ -3171,6 +3189,37 @@ Si no está en el worklog (o en un artefacto enlazado desde él), <strong>no for
 </table>
 <h3 id="42-linea-de-decision-opcional-en-021">4.2 Línea de decisión (opcional en 0.2.1)<a class="headerlink" href="#42-linea-de-decision-opcional-en-021" title="Permanent link">&para;</a></h3>
 <p>Apartado breve que cita spec/ADR/capítulo <strong>§</strong> que justificó cada elección normativa. No volcar el cuerpo del prompt. Si no hubo elección, omitir o escribir <code>N/A</code>.</p>
+<h3 id="43-origen-de-cambios">4.3 Origen de cambios<a class="headerlink" href="#43-origen-de-cambios" title="Permanent link">&para;</a></h3>
+<p>Obligatorio en worklogs <strong>nuevos</strong> cuya iteración toca código de producto (H08 §5). Los worklogs anteriores siguen válidos sin este campo; no se reescriben.</p>
+<p>Por archivo de producto modificado (o tabla resumen):</p>
+<table>
+<thead>
+<tr>
+<th>Valor</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>humano</code></td>
+<td>Escrito o dictado sin generación de modelo</td>
+</tr>
+<tr>
+<td><code>ia</code></td>
+<td>Generado por el modelo citado en <code>Modelo</code></td>
+</tr>
+<tr>
+<td><code>mixto</code></td>
+<td>Humano y modelo en el mismo archivo</td>
+</tr>
+<tr>
+<td><code>dependencia</code></td>
+<td>Vendored, lockfile o código de paquete</td>
+</tr>
+</tbody>
+</table>
+<p>Si la iteración <strong>no</strong> toca código de producto: <code>N/A</code>. Si el origen es <code>ia</code> o <code>mixto</code>, <code>Modelo</code> y <code>prompt_id@version</code> ya son campos obligatorios o de recibo.</p>
+<p>Gate 2 / QG-Review comprueba este campo cuando el diff toca código de producto (<a href="../10-code-review-and-quality-gates/">H10</a> §3.1).</p>
 <hr />
 <h2 id="5-cuando-crear-worklog">5. Cuándo crear worklog<a class="headerlink" href="#5-cuando-crear-worklog" title="Permanent link">&para;</a></h2>
 <table>
@@ -3243,6 +3292,10 @@ Si no está en el worklog (o en un artefacto enlazado desde él), <strong>no for
 <td><a href="../05-development-workflow/">05-development-workflow.md</a></td>
 <td>G0.5 exige worklog abierto</td>
 </tr>
+<tr>
+<td><a href="../10-code-review-and-quality-gates/">10-code-review-and-quality-gates.md</a></td>
+<td>Origen de cambios en Gate 2 / QG-Review</td>
+</tr>
 </tbody>
 </table>
 <h2 id="8-historial">8. Historial<a class="headerlink" href="#8-historial" title="Permanent link">&para;</a></h2>
@@ -3255,6 +3308,11 @@ Si no está en el worklog (o en un artefacto enlazado desde él), <strong>no for
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>Origen de cambios (<code>humano</code> / <code>ia</code> / <code>mixto</code> / <code>dependencia</code>) en worklogs nuevos de código de producto; sin backfill</td>
+</tr>
 <tr>
 <td>0.2.2</td>
 <td>2026-09-17</td>

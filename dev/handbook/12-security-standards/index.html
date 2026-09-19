@@ -3222,7 +3222,7 @@
 <tbody>
 <tr>
 <td><strong>Versión</strong></td>
-<td>0.3.0</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td><strong>Estado</strong></td>
@@ -3265,10 +3265,34 @@
 <li>Certificación ASVS completa, pentest formal obligatorio, bug bounty.</li>
 <li>SSO / OIDC / MFA, IAM multi-tenant, WAF, SIEM — salvo que el MVP del consumidor los declare In.</li>
 <li>Cloud hardening como DoD del método (H11: local-first).</li>
+<li>Overlays y marcos <strong>fuera del método</strong> de §3 (N/A salvo ADR o handbook de producto).</li>
 </ul>
 <p>Lo diferido en ADR/specs del consumidor <strong>no</strong> es “bug” por sí solo; sí lo es un bypass de lo <strong>sí</strong> especificado (p. ej. endpoint de producto sin auth cuando el ACC lo exige).</p>
 <hr />
 <h2 id="3-referencias-externas-marco-no-checklist-interminable">3. Referencias externas (marco, no checklist interminable)<a class="headerlink" href="#3-referencias-externas-marco-no-checklist-interminable" title="Permanent link">&para;</a></h2>
+<p>Tres usos. El core nombra el gancho; <strong>no</strong> estatiza sector, jurisdicción ni herramienta.</p>
+<table>
+<thead>
+<tr>
+<th>Uso</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Baseline</strong></td>
+<td>Siempre; cualquier adopción</td>
+</tr>
+<tr>
+<td><strong>Overlay</strong></td>
+<td><strong>N/A</strong> salvo ADR del consumidor (mismo patrón que QG-Docs, H10 §3.4)</td>
+</tr>
+<tr>
+<td><strong>Fuera del método</strong></td>
+<td>GRC o handbook de producto; el core no lo audita ni lo convierte en bug</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -3279,11 +3303,23 @@
 <tbody>
 <tr>
 <td><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></td>
-<td>Mapa de riesgos; baseline §4</td>
+<td><strong>Baseline</strong> — mapa de riesgos; controles §4</td>
 </tr>
 <tr>
 <td>OWASP ASVS (nivel 1, selectivo)</td>
 <td>Inspiración; <strong>no</strong> se exige cobertura ASVS completa</td>
+</tr>
+<tr>
+<td>NIST SSDF (SP 800-218) / <a href="https://csrc.nist.gov/pubs/sp/800/218/a/final">SP 800-218A</a></td>
+<td><strong>Overlay</strong> — N/A salvo ADR (p. ej. umbral SCA, evidencia de pipeline)</td>
+</tr>
+<tr>
+<td>SBOM / AIBOM (<a href="https://cyclonedx.org/">CycloneDX</a> 1.6 / <a href="https://spdx.dev/">SPDX</a> 3.0)</td>
+<td><strong>Overlay</strong> — N/A salvo ADR (artefacto de Gate 3 si el consumidor lo declara)</td>
+</tr>
+<tr>
+<td>ISO/IEC 42001, ISO/IEC 23894, Reglamento Europeo de IA, Cyber Resilience Act</td>
+<td><strong>Fuera del método</strong> — el consumidor puede exigirlos en handbook de producto; SDAF aporta evidencias (ATF, gates, ADRs), no el AIMS ni la certificación</td>
 </tr>
 <tr>
 <td>ADR de auth del consumidor</td>
@@ -3295,7 +3331,7 @@
 </tr>
 </tbody>
 </table>
-<p>Los agentes <strong>enlazan</strong> estas referencias; no pegan el Top 10 entero en cada PR.</p>
+<p>Los agentes <strong>enlazan</strong> estas referencias; no pegan el Top 10 ni un marco overlay entero en cada PR. Lo diferido en overlay <strong>no</strong> es bug; sí lo es violar un ADR que el consumidor <strong>sí</strong> aprobó.</p>
 <hr />
 <h2 id="4-baseline-obligatorio">4. Baseline obligatorio<a class="headerlink" href="#4-baseline-obligatorio" title="Permanent link">&para;</a></h2>
 <h3 id="41-secretos-y-datos-sensibles">4.1 Secretos y datos sensibles<a class="headerlink" href="#41-secretos-y-datos-sensibles" title="Permanent link">&para;</a></h3>
@@ -3342,7 +3378,7 @@
 </tr>
 <tr>
 <td>Vulnerable Components</td>
-<td>Tras actualizar dependencias, QG-Build / tests verdes; anotar CVEs críticas si aparecen</td>
+<td>Tras actualizar dependencias, QG-Build / tests verdes. CVE crítica <strong>identificada en el review</strong> → QG-Sec (§5.2) salvo ADR de excepción fechado. Scanner con umbral = overlay §3</td>
 </tr>
 <tr>
 <td>Identification / Auth Failures</td>
@@ -3350,7 +3386,7 @@
 </tr>
 <tr>
 <td>Software / Data Integrity</td>
-<td>No ejecutar scripts no versionados con secretos; PRs revisados (H10)</td>
+<td>No ejecutar scripts no versionados con secretos; PRs con QG-Review (H10)</td>
 </tr>
 <tr>
 <td>Security Logging Failures</td>
@@ -3367,31 +3403,27 @@
 <hr />
 <h2 id="5-gates-y-review">5. Gates y review<a class="headerlink" href="#5-gates-y-review" title="Permanent link">&para;</a></h2>
 <h3 id="51-checklist-anadir-a-h10">5.1 Checklist (añadir a H10)<a class="headerlink" href="#51-checklist-anadir-a-h10" title="Permanent link">&para;</a></h3>
-<p>Al tocar auth, sesión, endpoints, secretos o input externo:</p>
+<p>Al tocar auth, sesión, endpoints, secretos, dependencias o input externo:</p>
 <ul>
 <li>[ ] Sin secretos nuevos en el diff.</li>
 <li>[ ] Autorización coherente API (y UI si aplica).</li>
 <li>[ ] Sin injection obvia (SQL / comandos).</li>
+<li>[ ] Sin fetch a URL controlada por usuario sin spec/ADR (SSRF).</li>
+<li>[ ] Dependencias nuevas o actualizadas: sin CVE crítica identificada en el review, o ADR de excepción fechado.</li>
 <li>[ ] Alineado al ADR de auth / specs ACC si el PBI las toca.</li>
+<li>[ ] Overlays de §3: N/A o cumplidos según ADR (justificar en worklog).</li>
 <li>[ ] Runbook / <code>SECURITY.md</code> del consumidor no contradichos.</li>
 </ul>
 <h3 id="52-qg-sec">5.2 QG-Sec<a class="headerlink" href="#52-qg-sec" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Gate</th>
-<th>Condición</th>
-<th>Bloquea</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>QG-Sec</td>
-<td>Diff no introduce secreto en claro ni bypass de auth de lo especificado</td>
-<td>Merge</td>
-</tr>
-</tbody>
-</table>
+<p>QG-Sec <strong>falla</strong> (bloquea merge) si el diff introduce, sin spec/ADR que lo autorice, alguno de:</p>
+<ol>
+<li>Secreto en claro.</li>
+<li>Bypass de auth de lo especificado.</li>
+<li>Injection obvia (SQL o comandos concatenando input).</li>
+<li>Fetch a URL controlada por usuario (SSRF).</li>
+<li>Dependencia nueva o actualizada con CVE crítica <strong>identificada en el review</strong>, sin ADR de excepción fechado.</li>
+</ol>
+<p>No exige una herramienta de SCA. Un scanner con umbral es overlay (§3): N/A si no hay ADR; si el ADR existe, su umbral es bloqueante (como QG-Docs).</p>
 <p>Hallazgos QG-Sec son <strong>bloqueantes</strong> (H10 §5).</p>
 <h3 id="53-reporte">5.3 Reporte<a class="headerlink" href="#53-reporte" title="Permanent link">&para;</a></h3>
 <p>Vulnerabilidades descubiertas: <code>SECURITY.md</code> del consumidor (plantilla <a href="../../templates/security/"><code>templates/security.md</code></a>). Sin PoC en issue público.</p>
@@ -3416,11 +3448,11 @@
 </tr>
 <tr>
 <td>Testing+Review</td>
-<td>Checklist §5 + ACC auth; dictamen merge</td>
+<td>Checklist §5 + ACC auth; dictamen merge (no el merge)</td>
 </tr>
 <tr>
 <td>Humano</td>
-<td>Aprobar enmiendas de este capítulo; severidad en demos externas</td>
+<td>Aprobar enmiendas de este capítulo; QG-Review (H10); severidad en demos externas</td>
 </tr>
 </tbody>
 </table>
@@ -3462,6 +3494,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>§3 catálogo baseline / overlay / fuera del método; QG-Sec alineado al mapa §4.3 (sin estatizar adopción)</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-09-19</td>

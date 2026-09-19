@@ -1086,6 +1086,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#032-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3.2 (parche)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-03x" class="md-nav__link">
     <span class="md-ellipsis">
       Fuera de 0.3.x
@@ -3051,6 +3060,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#032-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3.2 (parche)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-03x" class="md-nav__link">
     <span class="md-ellipsis">
       Fuera de 0.3.x
@@ -3229,6 +3247,15 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <h2 id="031-parche">0.3.1 (parche)<a class="headerlink" href="#031-parche" title="Permanent link">&para;</a></h2>
 <p>Enmienda de <a href="../../handbook/06-ai-agent-framework/#7-restricciones-globales">H06 §7</a>: commit local y cualquier escritura al remoto (push, tags, releases, merge, PR, APIs, CI que escriba el repo) solo con petición humana explícita. La excepción en <code>AGENTS.md</code> o ADR debe enumerar qué permite.</p>
 <p>No rompe citas. No exige cambiar <code>sdaf.version</code> si ya está en <code>0.3.0</code>.</p>
+<h2 id="032-parche">0.3.2 (parche)<a class="headerlink" href="#032-parche" title="Permanent link">&para;</a></h2>
+<p>Ganchos de gobernanza <strong>sin estatizar adopción</strong>. Al pinnear un tag que incluya 0.3.2:</p>
+<ol>
+<li>QG-Sec según <a href="../../handbook/12-security-standards/#52-qg-sec">H12 §5.2</a> (no solo secreto y bypass de auth).</li>
+<li>Merge a demo/integración: humano nominado (<a href="../../handbook/10-code-review-and-quality-gates/">H10</a> QG-Review).</li>
+<li>Worklogs <strong>nuevos</strong> de código de producto: origen de cambios (<a href="../../handbook/08-agent-traceability/#43-origen-de-cambios">H08 §4.3</a>); sin backfill.</li>
+<li>Overlays (SSDF, SBOM, AIMS, …): <strong>N/A</strong> hasta que el consumidor apruebe un ADR. No son bug por sí solos.</li>
+</ol>
+<p>No rompe citas. <code>sdaf.version</code> puede seguir <code>0.3.0</code>.</p>
 <h2 id="fuera-de-03x">Fuera de 0.3.x<a class="headerlink" href="#fuera-de-03x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>

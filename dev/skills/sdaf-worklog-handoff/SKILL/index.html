@@ -2992,7 +2992,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.2.1</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -3004,7 +3004,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-13</td>
+<td>2026-09-19</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -3023,16 +3023,18 @@
 <li>Completar campos mínimos (H08): fecha, agente, modelo, contexto, specs, archivos leídos/modificados, resultado, pruebas, estado, siguiente agente.</li>
 <li>Recibo de iteración (recomendado en worklogs nuevos): <code>prompt_id@version</code> base, prompts adicionales (<code>ninguno</code> o ids), <code>skill-id@version</code>, reglas IDE, ad hoc (<code>ninguno</code> o párrafo en el worklog).</li>
 <li>Si hubo elección normativa, apartado <strong>Línea de decisión</strong> citando spec/ADR/capítulo § (índice; no volcar el prompt). Si no hubo, <code>N/A</code>.</li>
+<li>Si la iteración toca código de producto: <strong>Origen de cambios</strong> por archivo (<code>humano</code> / <code>ia</code> / <code>mixto</code> / <code>dependencia</code>) o tabla resumen (H08 §4.3). Si no toca código: <code>N/A</code>. No backfill de worklogs anteriores.</li>
 <li>El saliente fija <strong>siguiente agente</strong> (o humano).</li>
 <li>El entrante <strong>lee worklog + specs</strong>; no asume chat no registrado.</li>
 <li>Estado: <code>en_curso</code> | <code>hecho</code> | <code>bloqueado</code> | <code>abortado</code>.</li>
-<li>No reescribir worklogs históricos para añadir el recibo.</li>
+<li>No reescribir worklogs históricos para añadir el recibo ni el origen.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Worklog existe y es auditable sin el chat.</li>
 <li>[ ] Prompt(s) y skill(s) citados (<code>id@version</code>).</li>
 <li>[ ] Recibo / línea de decisión en worklogs nuevos (H08 §4.1–4.2).</li>
+<li>[ ] Origen de cambios si hay código de producto (H08 §4.3).</li>
 <li>[ ] “Siguiente agente” explícito.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
@@ -3051,6 +3053,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>Origen de cambios (H08 §4.3) en worklogs nuevos de código de producto</td>
+</tr>
 <tr>
 <td>0.2.1</td>
 <td>2026-09-13</td>

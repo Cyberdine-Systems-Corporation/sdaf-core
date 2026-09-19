@@ -3060,7 +3060,7 @@
 <tbody>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -3068,7 +3068,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-18</td>
+<td>2026-09-19</td>
 </tr>
 <tr>
 <td>Modo</td>
@@ -3102,13 +3102,15 @@
 <ul>
 <li>[ ] Tests trazan a AC (H09 si pin 0.3)</li>
 <li>[ ] Checklist H10 + coding standards del consumidor si hay ADR</li>
-<li>[ ] QG-Sec si el diff toca auth/secretos (<code>security-review</code>)</li>
+<li>[ ] QG-Sec según H12 §5.2 si hay superficie de seguridad (<code>security-review</code>)</li>
+<li>[ ] Origen de cambios en worklog si hay código de producto (H08 §4.3)</li>
+<li>[ ] Dictamen; merge = humano (QG-Review)</li>
 <li>[ ] Worklog con estado</li>
 </ul>
 <h2 id="kpis">KPIs<a class="headerlink" href="#kpis" title="Permanent link">&para;</a></h2>
 <p>Acceptance del PBI verdes; 0 merges con Gate 0 roto.</p>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
-<p>QG aplicables en verde o hallazgos severizados; handoff humano/merge.</p>
+<p>QG aplicables en verde o hallazgos severizados; dictamen de merge; QG-Review lo cierra el humano.</p>
 <h2 id="prompt-base">Prompt base<a class="headerlink" href="#prompt-base" title="Permanent link">&para;</a></h2>
 <p><code>prompts/agents/testing-review-agent.md</code></p>
 <h2 id="contexto-autorizado">Contexto autorizado<a class="headerlink" href="#contexto-autorizado" title="Permanent link">&para;</a></h2>
@@ -3144,7 +3146,7 @@
 <tr>
 <td>Flujo</td>
 <td><code>skills/security-review</code></td>
-<td>QG-Sec si hay superficie de auth/secretos</td>
+<td>QG-Sec (H12 §5.2)</td>
 <td>si aplica</td>
 </tr>
 <tr>

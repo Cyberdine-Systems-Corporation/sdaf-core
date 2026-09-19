@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Revisa diffs de auth, sesión, endpoints o secretos contra el baseline H12 (OWASP-aware, sin secretos). Usar en Testing+Review o al tocar superficie de seguridad.">
+        <meta name="description" content="Revisa diffs contra el baseline H12 (QG-Sec §5.2). Usar en Testing+Review o al tocar superficie de seguridad.">
       
       
       
@@ -2492,6 +2492,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relacionado" class="md-nav__link">
     <span class="md-ellipsis">
       Relacionado
@@ -2928,6 +2937,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relacionado" class="md-nav__link">
     <span class="md-ellipsis">
       Relacionado
@@ -2974,7 +2992,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -2982,7 +3000,7 @@
 </tr>
 <tr>
 <td>Prioridad</td>
-<td>media</td>
+<td>alta</td>
 </tr>
 <tr>
 <td>Fecha</td>
@@ -2996,18 +3014,20 @@
 </table>
 <h2 id="disparadores">Disparadores<a class="headerlink" href="#disparadores" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Diff que toca auth, roles, sesión, login, endpoints de API, manejo de secretos o input externo.</li>
+<li>Diff que toca auth, roles, sesión, login, endpoints de API, manejo de secretos, dependencias o input externo.</li>
 <li>Gate 2 / review de PR con superficie de seguridad.</li>
 <li>Pedido explícito de “security review”.</li>
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Leer <a href="../../../handbook/12-security-standards/">H12</a> §4–§5 (no pegar OWASP entero).</li>
+<li>Leer <a href="../../../handbook/12-security-standards/">H12</a> §4–§5 (no pegar OWASP ni marcos overlay).</li>
 <li>Comprobar secretos en el diff (passwords, connection strings, tokens).</li>
 <li>Comprobar authz: rutas de producto vs públicas; coherencia con el <strong>ADR de auth del consumidor</strong> y ACC.</li>
-<li>Buscar injection obvia (SQL crudo, comandos con input).</li>
+<li>Buscar injection obvia (SQL crudo, comandos con input) y fetch a URL controlada por usuario (SSRF) sin spec/ADR.</li>
+<li>Dependencias nuevas o actualizadas: si el review identifica CVE crítica, QG-Sec falla salvo ADR de excepción fechado. No exigir scanner salvo overlay §3 con ADR.</li>
+<li>Overlays de H12 §3: <code>N/A</code> o cumplidos según ADR del consumidor (justificar en worklog). No inventar umbrales.</li>
 <li>Si hay hallazgo explotable nuevo: orientar a <code>SECURITY.md</code> del consumidor (<a href="../../../templates/security/">plantilla</a>); no publicar PoC en issue abierto.</li>
-<li>Registrar en worklog <code>security-review@0.3.0</code> + dictamen (bloqueante / mayor / menor según H10).</li>
+<li>Registrar en worklog <code>security-review@0.3.2</code> + dictamen (bloqueante / mayor / menor según H10).</li>
 </ol>
 <blockquote>
 <p>[!CAUTION]
@@ -3016,15 +3036,38 @@ QG-Sec fallido es bloqueante. No merge.</p>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Checklist H12 §5.1 recorrido en el alcance del diff.</li>
-<li>[ ] QG-Sec evaluado (pass/fail).</li>
+<li>[ ] QG-Sec evaluado (pass/fail) según H12 §5.2.</li>
 <li>[ ] Worklog actualizado.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
 <li>No exigir MFA/SSO ni ASVS completo salvo que el MVP del consumidor lo declare In.</li>
 <li>No marcar como bug el Out documentado en el ADR de auth del consumidor.</li>
+<li>No exigir overlays de H12 §3 (SSDF, SBOM, AIMS, …) sin ADR.</li>
 <li>No inventar controles de producción fuera de norma.</li>
 </ul>
+<h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>Prioridad alta; QG-Sec §5.2 (injection, SSRF, CVE identificada); overlays N/A salvo ADR</td>
+</tr>
+<tr>
+<td>0.3.0</td>
+<td>2026-09-19</td>
+<td>Approved (aprobación humana del director técnico)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -3038,7 +3081,7 @@ QG-Sec fallido es bloqueante. No merge.</p>
 <tr>
 <td>📖</td>
 <td><a href="../../../handbook/12-security-standards/">H12</a></td>
-<td>Baseline y QG-Sec</td>
+<td>Baseline, catálogo §3 y QG-Sec</td>
 </tr>
 <tr>
 <td>📖</td>

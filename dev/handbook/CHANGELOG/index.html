@@ -901,6 +901,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#032-2026-09-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3.2 — 2026-09-19
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#031-2026-09-19" class="md-nav__link">
     <span class="md-ellipsis">
       0.3.1 — 2026-09-19
@@ -2934,6 +2943,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#032-2026-09-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3.2 — 2026-09-19
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#031-2026-09-19" class="md-nav__link">
     <span class="md-ellipsis">
       0.3.1 — 2026-09-19
@@ -3044,6 +3062,16 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="032-2026-09-19">0.3.2 — 2026-09-19<a class="headerlink" href="#032-2026-09-19" title="Permanent link">&para;</a></h2>
+<p>Parche (<strong>no</strong> breaking de citas <code>H00</code>–<code>H08</code>). Ganchos de gobernanza <strong>sin estatizar adopción</strong>:</p>
+<ul>
+<li>H12 §3: catálogo de referencias con uso <strong>baseline</strong> / <strong>overlay</strong> (N/A salvo ADR) / <strong>fuera del método</strong> (GRC o handbook de producto). SSDF/800-218A, SBOM/AIBOM y 42001/AI Act/CRA no entran en el baseline.</li>
+<li>H12 §5.2 / H10: QG-Sec alineado al mapa §4.3 (secreto, bypass de auth, injection, SSRF, CVE crítica identificada en el review). Scanner con umbral = overlay.</li>
+<li>H10: QG-Review exige aprobación humana nominada del merge; el dictamen del agente no basta.</li>
+<li>H08 §4.3: origen de cambios (<code>humano</code> / <code>ia</code> / <code>mixto</code> / <code>dependencia</code>) en worklogs <strong>nuevos</strong> de código de producto; sin backfill.</li>
+<li>Catálogo: <code>security-review</code> prioridad alta.</li>
+</ul>
+<p><code>sdaf.version</code> puede seguir <code>0.3.0</code>. Pin de árbol: el tag posterior a este parche.</p>
 <h2 id="031-2026-09-19">0.3.1 — 2026-09-19<a class="headerlink" href="#031-2026-09-19" title="Permanent link">&para;</a></h2>
 <p>Parche (<strong>no</strong> breaking de citas <code>H00</code>–<code>H08</code>). Enmienda de H06: los agentes no crean commit local ni alteran el remoto del proyecto sin petición humana explícita. El criterio es el <strong>efecto</strong> (el remoto cambia), no el comando: push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo. Terminar archivos o un DoD no autoriza git.</p>
 <p>El consumidor puede exceptuarlo por cláusula en su <code>AGENTS.md</code> o por ADR; la cláusula debe <strong>enumerar</strong> qué permite. Lo no enumerado sigue prohibido. Force-push, reescribir historia y auto-merge siguen exigiendo orden humana.</p>

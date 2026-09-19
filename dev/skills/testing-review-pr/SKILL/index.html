@@ -2471,6 +2471,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relacionado" class="md-nav__link">
     <span class="md-ellipsis">
       Relacionado
@@ -2928,6 +2937,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#historial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historial
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#relacionado" class="md-nav__link">
     <span class="md-ellipsis">
       Relacionado
@@ -2974,7 +2992,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -2990,7 +3008,7 @@
 </tr>
 <tr>
 <td>Norma</td>
-<td><a href="../../../handbook/10-code-review-and-quality-gates/">handbook/10</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §Gate 2, <a href="../../../handbook/09-testing-framework/">handbook/09</a></td>
+<td><a href="../../../handbook/10-code-review-and-quality-gates/">handbook/10</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §Gate 2, <a href="../../../handbook/09-testing-framework/">handbook/09</a>, <a href="../../../handbook/08-agent-traceability/">handbook/08</a> §4.3</td>
 </tr>
 </tbody>
 </table>
@@ -3001,30 +3019,53 @@
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Confirmar Gate 0 del PBI (o regularización documentada). Skill <code>sdaf-gate0</code> si hace falta.</li>
-<li>Checklist H10: gobierno, dominio/arquitectura, calidad, coding standards del consumidor si hay ADR, tests vs acceptance, H12 si toca auth/secretos.</li>
+<li>Checklist H10: gobierno (incl. origen H08 §4.3 si hay código de producto), dominio/arquitectura, calidad, coding standards del consumidor si hay ADR, tests vs acceptance, H12 §5.1 si toca superficie de seguridad.</li>
 <li>Ejecutar el comando de test del <strong>consumidor</strong> (runbook / pack); anotar conteos. No inventar un runner.</li>
 <li>Contrastar acceptance del PBI con tests presentes (H09).</li>
-<li>Dictamen: <strong>merge sí / no / condicionado</strong> con hallazgos priorizados (H10 §5).</li>
-<li>Worklog de review (<code>testing-review-pr@0.3.0</code> + prompt Testing+Review citados).</li>
-<li>No auto-merge; el humano decide.</li>
+<li>Dictamen: <strong>merge sí / no / condicionado</strong> con hallazgos priorizados (H10 §5). El dictamen <strong>no</strong> satisface QG-Review.</li>
+<li>Worklog de review (<code>testing-review-pr@0.3.2</code> + prompt Testing+Review citados).</li>
+<li>QG-Review exige aprobación humana <strong>nominada</strong> del merge (H10 §2). No auto-merge.</li>
 </ol>
 <blockquote>
 <p>[!CAUTION]
-⛔ No recomendar merge si Gate 0 está roto o el acceptance del flujo tocado falla.</p>
+⛔ No recomendar merge si Gate 0 está roto, el acceptance del flujo tocado falla, QG-Sec falla o falta origen de cambios en código de producto.</p>
 </blockquote>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Checklist H10 recorrido.</li>
 <li>[ ] Resultado de tests registrado (comando del consumidor).</li>
-<li>[ ] Dictamen de merge explícito.</li>
-<li>[ ] Worklog cerrado con siguiente agente = humano (salvo follow-up).</li>
+<li>[ ] Dictamen de merge explícito; siguiente agente = humano.</li>
+<li>[ ] Worklog cerrado (origen H08 §4.3 si aplica).</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
 <li>No aprobar handbook/specs/ADR.</li>
 <li>No ampliar alcance Out del MVP del consumidor en el review “de paso”.</li>
 <li>No exigir el checklist de coding standards si el consumidor no tiene ADR/pack que lo fije.</li>
+<li>Completar este playbook no autoriza merge.</li>
 </ul>
+<h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha</th>
+<th>Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>QG-Review = humano nominado; origen ATF; QG-Sec H12 §5.2</td>
+</tr>
+<tr>
+<td>0.3.0</td>
+<td>2026-09-19</td>
+<td>Approved (aprobación humana del director técnico)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

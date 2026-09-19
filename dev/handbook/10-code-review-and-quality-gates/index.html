@@ -3126,7 +3126,7 @@
 <tbody>
 <tr>
 <td><strong>Versión</strong></td>
-<td>0.3.0</td>
+<td>0.3.2</td>
 </tr>
 <tr>
 <td><strong>Estado</strong></td>
@@ -3142,7 +3142,7 @@
 </tr>
 <tr>
 <td><strong>Norma superior</strong></td>
-<td><a href="../05-development-workflow/">05-development-workflow.md</a>, <a href="../02-engineering-principles/">02-engineering-principles.md</a>, <a href="../09-testing-framework/">09-testing-framework.md</a>, <a href="../12-security-standards/">12-security-standards.md</a></td>
+<td><a href="../05-development-workflow/">05-development-workflow.md</a>, <a href="../02-engineering-principles/">02-engineering-principles.md</a>, <a href="../09-testing-framework/">09-testing-framework.md</a>, <a href="../12-security-standards/">12-security-standards.md</a>, <a href="../08-agent-traceability/">08-agent-traceability.md</a></td>
 </tr>
 <tr>
 <td><strong>Deriva hacia</strong></td>
@@ -3167,11 +3167,11 @@
 <tbody>
 <tr>
 <td>Humano</td>
-<td>Arquitectura sensible, alcance del MVP del consumidor, Approved</td>
+<td>Arquitectura sensible, alcance del MVP del consumidor, Approved, <strong>merge</strong> a la rama de demo/integración</td>
 </tr>
 <tr>
 <td>Testing+Review</td>
-<td>Checklist de este capítulo, tests, regresiones obvias</td>
+<td>Checklist de este capítulo, tests, regresiones obvias, <strong>dictamen</strong> (no el merge)</td>
 </tr>
 <tr>
 <td>Architecture</td>
@@ -3180,6 +3180,7 @@
 </tbody>
 </table>
 <p>Ningún agente aprueba enmiendas constitucionales.</p>
+<p>Completar el checklist §3 por un agente <strong>no</strong> satisface QG-Review. Auto-merge sigue prohibido (<a href="../06-ai-agent-framework/#7-restricciones-globales">H06 §7</a>).</p>
 <hr />
 <h2 id="3-checklist-de-code-review">3. Checklist de code review<a class="headerlink" href="#3-checklist-de-code-review" title="Permanent link">&para;</a></h2>
 <h3 id="31-gobierno">3.1 Gobierno<a class="headerlink" href="#31-gobierno" title="Permanent link">&para;</a></h3>
@@ -3187,6 +3188,8 @@
 <li>[ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog).</li>
 <li>[ ] Sin alcance Out del MVP del consumidor.</li>
 <li>[ ] Worklog actualizado y prompt versionado citado.</li>
+<li>[ ] Si el diff toca código de producto: origen de cambios en el worklog (<a href="../08-agent-traceability/#43-origen-de-cambios">H08 §4.3</a>).</li>
+<li>[ ] Aprobación humana nominada del merge (QG-Review).</li>
 </ul>
 <h3 id="32-dominio-y-arquitectura">3.2 Dominio y arquitectura<a class="headerlink" href="#32-dominio-y-arquitectura" title="Permanent link">&para;</a></h3>
 <ul>
@@ -3210,11 +3213,12 @@
 <li>[ ] Runbook local sigue siendo válido si cambia la composición (H11).</li>
 </ul>
 <h3 id="36-seguridad-h12">3.6 Seguridad (H12)<a class="headerlink" href="#36-seguridad-h12" title="Permanent link">&para;</a></h3>
-<p>Cuando el diff toque auth, sesión, endpoints, secretos o input externo — checklist en <a href="../12-security-standards/">12-security-standards.md</a> §5.1:</p>
+<p>Cuando el diff toque auth, sesión, endpoints, secretos, dependencias o input externo — checklist en <a href="../12-security-standards/">12-security-standards.md</a> §5.1:</p>
 <ul>
 <li>[ ] Sin secretos nuevos en el diff.</li>
 <li>[ ] Autorización coherente en API (y UI si aplica).</li>
-<li>[ ] Sin injection obvia; alineado al ADR de auth / ACC si aplica.</li>
+<li>[ ] Sin injection obvia; sin SSRF; CVE crítica identificada en dependencias nuevas/actualizadas o ADR de excepción.</li>
+<li>[ ] Alineado al ADR de auth / ACC si aplica.</li>
 </ul>
 <hr />
 <h2 id="4-quality-gates-tecnicos">4. Quality gates técnicos<a class="headerlink" href="#4-quality-gates-tecnicos" title="Permanent link">&para;</a></h2>
@@ -3264,12 +3268,12 @@
 </tr>
 <tr>
 <td>QG-Sec</td>
-<td>Diff no introduce secreto en claro ni bypass de auth especificado (<a href="../12-security-standards/">H12</a>)</td>
+<td>Condiciones de <a href="../12-security-standards/#52-qg-sec">H12 §5.2</a> (secreto, bypass de auth, injection, SSRF, CVE crítica identificada)</td>
 <td>Merge</td>
 </tr>
 <tr>
 <td>QG-Review</td>
-<td>Checklist §3 completado</td>
+<td>Checklist §3 completado <strong>y</strong> aprobación humana nominada del merge</td>
 <td>Merge</td>
 </tr>
 </tbody>
@@ -3300,7 +3304,8 @@
 </tr>
 </tbody>
 </table>
-<p>Hallazgos QG-Sec / H12 (secreto en claro, bypass de auth especificado) son <strong>bloqueantes</strong>.</p>
+<p>Hallazgos QG-Sec / H12 §5.2 son <strong>bloqueantes</strong>.</p>
+<p>QG-Review fallido (checklist incompleto o merge sin humano nominado) es <strong>bloqueante</strong>.</p>
 <p>Hallazgos del ADR de coding standards del consumidor, si ese ADR los declara bloqueantes, se tratan como bloqueantes en el diff.</p>
 <hr />
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
@@ -3325,6 +3330,10 @@
 <td>QG-Sec y checklist §3.6</td>
 </tr>
 <tr>
+<td><a href="../08-agent-traceability/">08-agent-traceability.md</a></td>
+<td>Origen de cambios en Gate 2</td>
+</tr>
+<tr>
 <td><a href="../../skills/testing-review-pr/SKILL/">skills/testing-review-pr</a></td>
 <td>Playbook de Gate 2</td>
 </tr>
@@ -3340,6 +3349,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.2</td>
+<td>2026-09-19</td>
+<td>QG-Review exige humano nominado; QG-Sec enlaza H12 §5.2; origen ATF en checklist</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-09-19</td>
