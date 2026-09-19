@@ -11,7 +11,7 @@
 
 ---
 
-**En esta página:** [Propósito](#1-propósito) · [Alcance](#2-alcance-y-no-alcance) · [Referencias](#3-referencias-externas) · [Baseline](#4-baseline-obligatorio) · [Gates](#5-gates-y-review) · [Roles](#6-roles)
+**En esta página:** [Propósito](#1-propósito) · [Alcance](#2-alcance-y-no-alcance) · [Referencias](#3-referencias-externas-marco-no-checklist-interminable) · [Baseline](#4-baseline-obligatorio) · [Gates](#5-gates-y-review) · [Roles](#6-roles)
 
 ## 1. Propósito
 
