@@ -2933,7 +2933,7 @@
 
 
 <h1 id="ejemplos-de-sdafconfigyaml">Ejemplos de <code>sdaf.config.yaml</code><a class="headerlink" href="#ejemplos-de-sdafconfigyaml" title="Permanent link">&para;</a></h1>
-<p>Cada archivo es un escenario <strong>completo y válido</strong> en v0.2. Copia el que más se acerque y cambia <code>project.name</code>.</p>
+<p>Cada archivo es un escenario <strong>completo y válido</strong> en v0.3. Copia el que más se acerque y cambia <code>project.name</code>.</p>
 <table>
 <thead>
 <tr>
@@ -2999,11 +2999,11 @@
 <hr />
 <h2 id="uso-de-cada-bloque-detalle">Uso de cada bloque (detalle)<a class="headerlink" href="#uso-de-cada-bloque-detalle" title="Permanent link">&para;</a></h2>
 <h3 id="sdafversion"><code>sdaf.version</code><a class="headerlink" href="#sdafversion" title="Permanent link">&para;</a></h3>
-<p>Pinnea el método. Si el consumidor dice <code>0.1.0</code> y el core avanza a <code>0.2.0</code>, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso.</p>
+<p>Pinnea el método. Si el consumidor dice <code>0.2.0</code> y el core avanza a <code>0.3.0</code>, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Con pin <code>v0.3.2</code>, <code>sdaf.version</code> es <code>"0.3.0"</code>.</p>
 <h3 id="projectname"><code>project.name</code><a class="headerlink" href="#projectname" title="Permanent link">&para;</a></h3>
 <p>Nombre corto del producto. Se usa al generar <code>AGENTS.md</code> (<code>{{PROJECT_NAME}}</code>). No es el nombre del pack ni el de la org de GitHub, salvo que coincidan.</p>
 <h3 id="projectlanguage"><code>project.language</code><a class="headerlink" href="#projectlanguage" title="Permanent link">&para;</a></h3>
-<p>En v0.2 <strong>solo</strong> <code>es</code>. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.</p>
+<p>En v0.3 <strong>solo</strong> <code>es</code>. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.</p>
 <h3 id="stackpack"><code>stack.pack</code><a class="headerlink" href="#stackpack" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>null</code>: Gate 0 y router funcionan; no hay skills <code>csharp-*</code> / <code>blazor-*</code> / equivalente.</li>
@@ -3088,7 +3088,7 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
 </tr>
 <tr>
 <td><code>language: en</code></td>
-<td>No soportado en v0.2</td>
+<td>No soportado en v0.3</td>
 </tr>
 <tr>
 <td>Omitir <code>sdaf.version</code></td>
