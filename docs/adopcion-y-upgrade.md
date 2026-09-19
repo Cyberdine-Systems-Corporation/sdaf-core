@@ -117,6 +117,12 @@ Al pinnear 0.3.0 (tras el tag `v0.3.0`):
 
 Métricas de sprint detalladas siguen en el handbook de **producto**, no en el core.
 
+## 0.3.1 (parche)
+
+Enmienda de [H06 §7](../handbook/06-ai-agent-framework.md#7-restricciones-globales): commit local y cualquier escritura al remoto (push, tags, releases, merge, PR, APIs, CI que escriba el repo) solo con petición humana explícita. La excepción en `AGENTS.md` o ADR debe enumerar qué permite.
+
+No rompe citas. No exige cambiar `sdaf.version` si ya está en `0.3.0`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:

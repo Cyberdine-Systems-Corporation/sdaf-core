@@ -1,5 +1,13 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.3.1 — 2026-09-19
+
+Parche (**no** breaking de citas `H00`–`H08`). Enmienda de H06: los agentes no crean commit local ni alteran el remoto del proyecto sin petición humana explícita. El criterio es el **efecto** (el remoto cambia), no el comando: push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo. Terminar archivos o un DoD no autoriza git.
+
+El consumidor puede exceptuarlo por cláusula en su `AGENTS.md` o por ADR; la cláusula debe **enumerar** qué permite. Lo no enumerado sigue prohibido. Force-push, reescribir historia y auto-merge siguen exigiendo orden humana.
+
+`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche (no exige retag de `v0.3.0` si aún no existe).
+
 ## 0.3.0 — 2026-09-19
 
 Línea nueva de constitución (**no** breaking de citas `H00`–`H08`). Caps. 09–12, apéndice B, skills y prompts Parte III: **Approved** (aprobación humana del director técnico).

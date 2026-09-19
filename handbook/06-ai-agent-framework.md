@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.0 |
+| **Versión** | 0.3.1 |
 | **Estado** | Approved |
-| **Fecha** | 2026-09-18 |
+| **Fecha** | 2026-09-19 |
 | **Parte** | II — Ingeniería IA |
 | **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
 | **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
@@ -114,6 +114,8 @@ Catálogo core:
 - Respetar handbook y specs Approved.
 - No inventar alcance Out del MVP del consumidor.
 - No marcar Approved.
+- No alterar **refs ni contenidos del remoto del proyecto** ni crear **commit** local sin petición humana **explícita** en el encargo vigente. El criterio es el **efecto** (el remoto cambia), no el comando: commit, push (cualquier remote), tags, releases, merge (incluido auto-merge), abrir o actualizar pull request, APIs de contenidos (p. ej. Contents/Git Data), disparar CI que escriba el repo. Terminar archivos, tests o un DoD **no** autoriza git ni escritura remota.
+- El consumidor puede **exceptuar** la viñeta anterior por cláusula en su `AGENTS.md` o por ADR. La cláusula **debe** enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill [`testing-review-pr`](../skills/testing-review-pr/SKILL.md)).
 - No force-push ni destruir history sin orden humana.
 - No introducir secretos.
 - Economía de tokens (cap. 07).
@@ -126,13 +128,14 @@ Catálogo core:
 |---------|---------|
 | [skills/README.md](../skills/README.md) | Catálogo de playbooks |
 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
-| [AGENTS.md.template](../AGENTS.md.template) | Router a materializar |
+| [AGENTS.md.template](../AGENTS.md.template) | Router a materializar; excepción acotada de git/remoto |
 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.1 | 2026-09-19 | Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-19 | Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06) |
 | 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate |
 | 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama con color (sin cambio de norma) |
