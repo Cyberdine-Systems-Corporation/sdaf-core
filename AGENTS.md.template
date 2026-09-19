@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.2 |
+| Versión | 0.3.3 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DD |
 | Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `handbook/10-code-review-and-quality-gates.md`, `skills/README.md` |
@@ -93,9 +93,10 @@ Skills de stack o dominio las aporta el pack o el producto, no este core.
 - Skills: [skills/README.md](skills/README.md)
 - Worklogs: `worklogs/` del **consumidor** (ATF)
 - Idioma: castellano (`.cursor/rules/idioma-castellano.mdc`)
+- Git/remoto: solo si **este turno** lo nombra (`.cursor/rules/git-remoto-encargo.mdc`; H06 §7)
 - Coding standards: ADR del **consumidor** (o pack de stack); el core no fija lenguaje de programación.
 - Adopción / upgrade: [docs/adopcion-y-upgrade.md](docs/adopcion-y-upgrade.md) del core
 
 ## Restricciones globales
 
-Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa alcance Out del MVP del consumidor; introduce secretos; altera el remoto del proyecto ni crea commit local sin petición humana explícita (H06 §7; la excepción en `AGENTS.md`/ADR debe enumerar qué permite); ejecuta force-push, reescribe historia o auto-merge sin orden humana. QG-Review exige humano nominado (H10 §2): el dictamen de un agente no es el merge.
+Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa alcance Out del MVP del consumidor; introduce secretos; altera el remoto del proyecto ni crea commit local sin petición humana explícita **en este turno** (H06 §7: el historial de la conversación no autoriza; la excepción en `AGENTS.md`/ADR debe enumerar qué permite); ejecuta force-push, reescribe historia o auto-merge sin orden humana. QG-Review exige humano nominado (H10 §2): el dictamen de un agente no es el merge.

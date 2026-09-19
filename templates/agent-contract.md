@@ -36,4 +36,5 @@ Ruta versionada en `prompts/agents/`.
 |------|-----------|-------------------|-------------|
 | Rol | prompts/agents/… | … | sí |
 | Flujo | skills/… | … | según gate |
-| IDE | .cursor/rules/… | … | si runtime Cursor |
+| IDE | .cursor/rules/idioma-castellano.mdc | Castellano en artefactos | si runtime Cursor |
+| IDE | .cursor/rules/git-remoto-encargo.mdc | Git/remoto solo si este turno lo nombra (H06 §7) | si runtime Cursor |

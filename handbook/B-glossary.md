@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.2 |
+| **Versión** | 0.3.3 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | Apéndices |
@@ -47,6 +47,7 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 | **Agente de ingeniería** | Agente que produce artefactos del repo |
 | **Runtime local autocontenido** | App + dependencias levantables en local sin exigir cloud (H11) |
 | **Vertical slice** | Unidad de feature coherente de extremo a extremo (H05); no implica un patrón de stack |
+| **Encargo vigente** | El mensaje de usuario **de este turno**; no el historial de la conversación (H06 §7) |
 | **Pack de stack** | Overlay técnico opcional (`sdaf-stack-*`); no contradice este handbook |
 
 ---
@@ -57,12 +58,14 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 |---------|---------|
 | [README.md](README.md) | Índice y estados |
 | [01-sdaf-framework.md](01-sdaf-framework.md) | Definición del marco |
+| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Encargo vigente y git/remoto (§7) |
 | [12-security-standards.md](12-security-standards.md) | QG-Sec y OWASP |
 
 ## 3. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.3 | 2026-09-19 | Encargo vigente (H06 §7) |
 | 0.3.2 | 2026-09-19 | QG-Sec §5.2, QG-Review HITL, overlay, origen de cambios |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: términos de método (extract A; sin dominio de producto) |

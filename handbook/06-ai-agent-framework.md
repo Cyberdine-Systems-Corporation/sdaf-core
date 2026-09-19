@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| **Versión** | 0.3.2 |
+| **Versión** | 0.3.3 |
 | **Estado** | Approved |
 | **Fecha** | 2026-09-19 |
 | **Parte** | II — Ingeniería IA |
@@ -94,7 +94,7 @@ Las **skills** viven en `skills/` (índice vivo: [`skills/README.md`](../skills/
 |------|----------|
 | Contrato + prompt | *Quién* / rol |
 | Skill (`SKILL.md`) | *Cómo* (flujo) |
-| Rules IDE | Restricciones locales finas |
+| Rules IDE | Restricciones locales finas (core: `idioma-castellano`, `git-remoto-encargo`; esta última copia §7, no la exceptúa) |
 
 Citar `skill-id@version` en el worklog. Gate 0 manda sobre cualquier skill de implementación.
 
@@ -115,7 +115,8 @@ Catálogo core:
 - No inventar alcance Out del MVP del consumidor.
 - No marcar Approved.
 - No alterar **refs ni contenidos del remoto del proyecto** ni crear **commit** local sin petición humana **explícita** en el encargo vigente. El criterio es el **efecto** (el remoto cambia), no el comando: commit, push (cualquier remote), tags, releases, merge (incluido auto-merge), abrir o actualizar pull request, APIs de contenidos (p. ej. Contents/Git Data), disparar CI que escriba el repo. Terminar archivos, tests o un DoD **no** autoriza git ni escritura remota.
-- El consumidor puede **exceptuar** la viñeta anterior por cláusula en su `AGENTS.md` o por ADR. La cláusula **debe** enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill [`testing-review-pr`](../skills/testing-review-pr/SKILL.md)).
+- **Encargo vigente** = el mensaje de usuario **de este turno**. Un turno anterior de la misma conversación, un PR abierto, «así se publica» o el hábito de la sesión **no** autorizan git ni el remoto. Si este mensaje no nombra commit, push, PR, tag, release o merge, esas acciones están **prohibidas**. Autoriza solo lo nombrado (p. ej. «commit» no implica push; «PR» implica el push de rama imprescindible para abrir ese PR).
+- El consumidor puede **exceptuar** las dos viñetas anteriores por cláusula en su `AGENTS.md` o por ADR. La cláusula **debe** enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill [`testing-review-pr`](../skills/testing-review-pr/SKILL.md)).
 - No force-push ni destruir history sin orden humana.
 - No introducir secretos.
 - Economía de tokens (cap. 07).
@@ -129,12 +130,14 @@ Catálogo core:
 | [skills/README.md](../skills/README.md) | Catálogo de playbooks |
 | [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
 | [AGENTS.md.template](../AGENTS.md.template) | Router a materializar; excepción acotada de git/remoto |
+| [`.cursor/rules/git-remoto-encargo.mdc`](../.cursor/rules/git-remoto-encargo.mdc) | Copia operativa Cursor de esta §7 (encargo = este turno) |
 | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review |
 
 ## 8. Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.3 | 2026-09-19 | Encargo vigente = este turno; el historial de la conversación no autoriza git ni el remoto |
 | 0.3.2 | 2026-09-19 | Catálogo: `security-review` pasa a prioridad alta (QG-Sec H12 §5.2) |
 | 0.3.1 | 2026-09-19 | Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-19 | Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06) |

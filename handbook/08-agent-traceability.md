@@ -56,7 +56,7 @@ Campos adicionales recomendados en worklogs **nuevos** (plantilla `templates/wor
 | Prompt base | `prompt_id@version` del rol |
 | Prompts adicionales | `ninguno` o ids versionados |
 | Skills | `skill-id@version` |
-| Reglas IDE | p. ej. `idioma-castellano` |
+| Reglas IDE | p. ej. `idioma-castellano`, `git-remoto-encargo` |
 | Ad hoc | `ninguno` o párrafo en el mismo worklog (H07 §6) |
 
 ### 4.2 Línea de decisión (opcional en 0.2.1)

@@ -36,6 +36,7 @@ Cuándo leer e invocar esta skill.
 - No aprobar handbook/specs/ADR.
 - No saltar Gate 0 si aplica implementación.
 - Enlazar normas; no pegar el handbook.
+- No commit ni escritura al remoto sin petición **en este turno** (H06 §7).
 
 ## Referencias
 

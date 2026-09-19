@@ -47,6 +47,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 | | `sdaf.config.example.yaml` | Copia de la config recomendada (escenario 01) |
 | | `examples/` | Escenarios YAML + explicación de cada clave |
 | | `.cursor/rules/idioma-castellano.mdc` | Regla IDE de idioma |
+| | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) |
 
 ## Cómo adoptar (consumidor)
 
