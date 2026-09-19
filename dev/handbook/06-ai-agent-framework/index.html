@@ -3090,7 +3090,7 @@
 <tbody>
 <tr>
 <td><strong>Versión</strong></td>
-<td>0.3.0</td>
+<td>0.3.1</td>
 </tr>
 <tr>
 <td><strong>Estado</strong></td>
@@ -3098,7 +3098,7 @@
 </tr>
 <tr>
 <td><strong>Fecha</strong></td>
-<td>2026-09-18</td>
+<td>2026-09-19</td>
 </tr>
 <tr>
 <td><strong>Parte</strong></td>
@@ -3255,6 +3255,8 @@
 <li>Respetar handbook y specs Approved.</li>
 <li>No inventar alcance Out del MVP del consumidor.</li>
 <li>No marcar Approved.</li>
+<li>No alterar <strong>refs ni contenidos del remoto del proyecto</strong> ni crear <strong>commit</strong> local sin petición humana <strong>explícita</strong> en el encargo vigente. El criterio es el <strong>efecto</strong> (el remoto cambia), no el comando: commit, push (cualquier remote), tags, releases, merge (incluido auto-merge), abrir o actualizar pull request, APIs de contenidos (p. ej. Contents/Git Data), disparar CI que escriba el repo. Terminar archivos, tests o un DoD <strong>no</strong> autoriza git ni escritura remota.</li>
+<li>El consumidor puede <strong>exceptuar</strong> la viñeta anterior por cláusula en su <code>AGENTS.md</code> o por ADR. La cláusula <strong>debe</strong> enumerar qué permite (p. ej. solo commit local, o commit + push + PR). Lo no enumerado sigue prohibido. Ninguna excepción cubre force-push, reescribir historia ni auto-merge: siguen exigiendo orden humana (esta sección y skill <a href="../../skills/testing-review-pr/SKILL/"><code>testing-review-pr</code></a>).</li>
 <li>No force-push ni destruir history sin orden humana.</li>
 <li>No introducir secretos.</li>
 <li>Economía de tokens (cap. 07).</li>
@@ -3279,7 +3281,7 @@
 </tr>
 <tr>
 <td><a href="../../AGENTS.md.template">AGENTS.md.template</a></td>
-<td>Router a materializar</td>
+<td>Router a materializar; excepción acotada de git/remoto</td>
 </tr>
 <tr>
 <td><a href="../10-code-review-and-quality-gates/">10-code-review-and-quality-gates.md</a></td>
@@ -3297,6 +3299,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.1</td>
+<td>2026-09-19</td>
+<td>Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico)</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-09-19</td>
