@@ -1,0 +1,5 @@
+# CODEOWNERS
+
+# Identidad nominada para QG-Review en este repo (H10 §3.1, H13 §7).
+# Un agente no es owner.
+* @mortiz-iadev

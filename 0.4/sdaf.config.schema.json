@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdaf.local/sdaf.config.schema.json",
+  "title": "sdaf.config.yaml",
+  "description": "Configuración SDAF del repo consumidor (v0.3). Espejo validable del catálogo sdaf.config.schema.yaml.",
+  "type": "object",
+  "required": ["sdaf", "project", "stack", "agents"],
+  "additionalProperties": false,
+  "properties": {
+    "sdaf": {
+      "type": "object",
+      "required": ["version"],
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Semver del sdaf-core adoptado"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": ["name", "language"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "const": "es" }
+      }
+    },
+    "stack": {
+      "type": "object",
+      "required": ["pack"],
+      "additionalProperties": false,
+      "properties": {
+        "pack": {
+          "description": "sdaf-stack-<id>@semver o null",
+          "anyOf": [
+            { "type": "null" },
+            {
+              "type": "string",
+              "pattern": "^sdaf-stack-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+$"
+            }
+          ]
+        },
+        "src_path": { "type": "string", "default": "src" },
+        "tests_path": { "type": "string", "default": "tests" }
+      }
+    },
+    "agents": {
+      "type": "object",
+      "required": ["active", "stubs"],
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "stubs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "fusions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}
