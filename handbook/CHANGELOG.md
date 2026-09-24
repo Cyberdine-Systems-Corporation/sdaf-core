@@ -11,7 +11,7 @@ Línea nueva de constitución (**no** breaking de citas `H00`–`H12`). Aceptada
 - Tooling: validador de config (I1–I3 error, I4 aviso / `--strict-i4`), action `validate-sdaf`, metadatos de versión, historial que solo crece, fechas con hora (H13 §9), ADRs del core (`check-adrs.py`: numeración, estado, fechas e índice), schema de worklog, presencia de worklog.
 - Worklog del cambio: [`worklogs/INIT-auditoria-v0.3.3/Iteration-001.md`](../worklogs/INIT-auditoria-v0.3.3/Iteration-001.md). El core guarda en `worklogs/` los worklogs de sus cambios materiales ([H08 §5](08-agent-traceability.md)).
 
-`sdaf.version: "0.4.0"` nombra esta línea. Pin de árbol: `v0.4.0`, tag que se crea tras el merge; hasta que exista, el pin publicado es `v0.3.3` con `sdaf.version: "0.3.0"`.
+`sdaf.version: "0.4.0"` nombra esta línea. Pin de árbol: `v0.4.0`. Quien siga en `v0.3.3` mantiene `sdaf.version: "0.3.0"`.
 
 ## 0.3.3 — 2026-09-19
 
