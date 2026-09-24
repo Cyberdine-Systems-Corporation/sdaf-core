@@ -16,7 +16,7 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
-| `sdaf.version` | string semver | sí | p. ej. `"0.3.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
+| `sdaf.version` | string semver | sí | p. ej. `"0.4.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
 
 ### `project` (obligatorio)
 
@@ -71,7 +71,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 1. Un id **no** puede estar a la vez en `active` y `stubs`.
 2. Toda clave de `fusions` debe aparecer en `active`.
 3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).
-4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía.
+4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/<id>-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.
 
 ---
 
