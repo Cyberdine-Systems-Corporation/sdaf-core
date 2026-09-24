@@ -1,0 +1,46 @@
+archivo: 02-engineering-principles.md
+titulo: 02 — Engineering Principles
+version: 0.3.0
+estado: Approved
+fecha: 2026-09-19
+parte: I — Método SDAF
+norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+deriva_hacia: Workflow, arquitectura del consumidor, testing, agentes
+toc: ""
+relacionado:
+  - destino: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+    por_que: Jerarquía normativa
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: Un solo pipeline; gates
+  - destino: "[04-specification-standard.md](04-specification-standard.md)"
+    por_que: Specs como verdad operativa
+  - destino: "[09-testing-framework.md](09-testing-framework.md)"
+    por_que: Test from Specs
+  - destino: "[11-devops.md](11-devops.md)"
+    por_que: Runtime local canónico
+historial:
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: "Relacionado: se retira el calificador Draft de H09/H11 (sin cambio de norma)"
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Relacionado: H09 y H11 (sin cambio de norma)"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC y Relacionado (sin cambio de norma)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-06); Parte I
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Extracción genérica (ADR-008)
+cabecera:
+  Versión: 0.3.0
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: I — Método SDAF
+  Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+  Deriva hacia: Workflow, arquitectura del consumidor, testing, agentes

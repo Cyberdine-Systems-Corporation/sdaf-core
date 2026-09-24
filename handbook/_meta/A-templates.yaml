@@ -1,0 +1,52 @@
+archivo: A-templates.md
+titulo: Apéndice A — Templates
+version: 0.3.3
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: Apéndices
+norma_superior: "Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/`"
+deriva_hacia: ""
+toc: ""
+relacionado:
+  - destino: "[04-specification-standard.md](04-specification-standard.md)"
+    por_que: Cabecera de spec
+  - destino: "[08-agent-traceability.md](08-agent-traceability.md)"
+    por_que: Campos del worklog
+  - destino: "[06-ai-agent-framework.md](06-ai-agent-framework.md)"
+    por_que: Contrato de agente
+  - destino: "[12-security-standards.md](12-security-standards.md)"
+    por_que: Plantilla SECURITY.md
+historial:
+  - version: 0.3.3
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "Worklog: frontmatter y cadena commit/PR/rama/SHA; sin cambio de norma de A"
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: "Worklog: origen de cambios (H08 §4.3); sin cambio de norma de A"
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: "Plantilla `templates/security.md` Approved (sin cambio de norma de A)"
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Plantilla `templates/security.md`"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado y enlaces a plantillas (sin cambio de norma)
+  - version: 0.2.1
+    fecha: 2026-09-13
+    cambio: "Worklog: recibo y línea de decisión; contrato: contexto autorizado"
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renombrado B→A; plantilla handbook de producto
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Índice genérico (ADR-008)
+cabecera:
+  Versión: 0.3.3
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: Apéndices
+  Norma superior: "Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/`"

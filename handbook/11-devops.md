@@ -1,17 +1,6 @@
 # 11 — DevOps
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.0 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | III — Calidad y entrega |
-| **Norma superior** | [02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [05-development-workflow.md](05-development-workflow.md) |
-| **Deriva hacia** | Runbooks en `docs/` del consumidor, `.github/`, skill `devops-ci-gate` |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Objetivos](#2-objetivos-del-método) · [Runtime local](#3-runtime-local) · [Runbook](#4-runbook-obligatorio) · [Entornos](#5-entornos) · [CI](#6-ci-cloud)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/11-devops.yaml`.
 
 ## 1. Propósito
 
@@ -83,20 +72,3 @@ Añadir pipeline requiere Gate 0 (spec o ADR Approved) igual que cualquier featu
 Playbook: [`skills/devops-ci-gate`](../skills/devops-ci-gate/SKILL.md). El agente DevOps del core es **stub** hasta activación humana.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [02-engineering-principles.md](02-engineering-principles.md) | Automation First, local |
-| [05-development-workflow.md](05-development-workflow.md) | G2.5 runbook |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG ejecutables en local |
-| [12-security-standards.md](12-security-standards.md) | Secretos fuera de git |
-| [skills/devops-ci-gate](../skills/devops-ci-gate/SKILL.md) | Playbook stub-aware |
-
-## 7. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H18; orquestación concreta fuera del core |

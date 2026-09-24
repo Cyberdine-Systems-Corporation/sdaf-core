@@ -1,9 +1,10 @@
-# Copia de examples/01-default-core.yaml (configuración recomendada v0.3).
+# Copia de examples/01-default-core.yaml (configuración recomendada v0.4).
 # Catálogo de claves: sdaf.config.schema.yaml
 # Todos los escenarios: examples/README.md
+# sdaf.version "0.4.0" = línea de constitución; pin de árbol v0.4.0 (con pin v0.3.3, usar "0.3.0").
 
 sdaf:
-  version: "0.3.0"
+  version: "0.4.0"
 
 project:
   name: MiProyecto

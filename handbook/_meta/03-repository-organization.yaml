@@ -1,0 +1,41 @@
+archivo: 03-repository-organization.md
+titulo: 03 — Repository Organization
+version: 0.2.3
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: I — Método SDAF
+norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+deriva_hacia: Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor
+toc: ""
+relacionado:
+  - destino: "[docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md)"
+    por_que: Cómo pinnear sdaf-core
+  - destino: "[04-specification-standard.md](04-specification-standard.md)"
+    por_que: "Qué vive en `specs/`"
+  - destino: "[A-templates.md](A-templates.md)"
+    por_que: Plantillas del árbol
+  - destino: "[architecture/decisions/](../architecture/decisions/README.md)"
+    por_que: ADRs del método en este core
+historial:
+  - version: 0.2.3
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "El core publica ADRs en `architecture/decisions/` y sus worklogs en `worklogs/`; el árbol del consumidor no cambia"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC y Relacionado (sin cambio de norma)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-07); pin a sdaf-core → docs de adopción
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Árbol genérico; sin asumir runtime concreto (ADR-008)
+cabecera:
+  Versión: 0.2.3
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: I — Método SDAF
+  Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+  Deriva hacia: Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor

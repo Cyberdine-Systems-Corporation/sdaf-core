@@ -1,0 +1,24 @@
+# Fixture: rompe I1–I4, duplica ids y usa pack inválido.
+sdaf:
+  version: "0.3.0"
+
+project:
+  name: FixtureInvalido
+  language: es
+
+stack:
+  pack: foo
+
+agents:
+  active:
+    - specification
+    - specification
+    - frontend
+    - domain
+  stubs:
+    - specification
+    - product
+  fusions:
+    no-esta-en-active:
+      - testing
+      - domain

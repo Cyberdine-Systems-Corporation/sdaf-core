@@ -1,0 +1,18 @@
+# Fixture I4: id de extensión con pack null.
+sdaf:
+  version: "0.3.0"
+
+project:
+  name: FixtureI4
+  language: es
+
+stack:
+  pack: null
+
+agents:
+  active:
+    - specification
+    - architecture
+    - frontend
+  stubs:
+    - product

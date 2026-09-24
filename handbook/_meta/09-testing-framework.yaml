@@ -1,0 +1,32 @@
+archivo: 09-testing-framework.md
+titulo: 09 — Testing Framework
+version: 0.3.0
+estado: Approved
+fecha: 2026-09-19
+parte: III — Calidad y entrega
+norma_superior: "[04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md)"
+deriva_hacia: "`tests/` del consumidor, Gate 2, [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+toc: ""
+relacionado:
+  - destino: "[04-specification-standard.md](04-specification-standard.md)"
+    por_que: Acceptance como verdad operativa
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: Gate 2 exige acceptance verdes
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG-Unit / QG-Accept
+  - destino: "[prompts/quality/testing-strategy.md](../prompts/quality/testing-strategy.md)"
+    por_que: Plan de tests por nivel
+historial:
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Draft: trasplante genérico del extract H16 (ADR-008)"
+cabecera:
+  Versión: 0.3.0
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: III — Calidad y entrega
+  Norma superior: "[04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md)"
+  Deriva hacia: "`tests/` del consumidor, Gate 2, [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"

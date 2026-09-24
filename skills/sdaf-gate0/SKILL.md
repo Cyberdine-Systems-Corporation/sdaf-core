@@ -51,3 +51,9 @@ description: Verifica Gate 0 (specs Approved, acceptance, ADR si aplica, backlog
 |--|---------|---------|
 | ⛔ | [H05 §3](../../handbook/05-development-workflow.md#3-gate-0-pre-implementación-stop) | Checklist G0.1–G0.5 |
 | 🧭 | [AGENTS.md.template](../../AGENTS.md.template) | Router tras el gate |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Fila inicial de historial (cabecera ya publicada) |

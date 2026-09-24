@@ -1,17 +1,6 @@
 # 09 — Testing Framework
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.0 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | III — Calidad y entrega |
-| **Norma superior** | [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md) |
-| **Deriva hacia** | `tests/` del consumidor, Gate 2, [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Principio](#2-principio-rector) · [Pirámide](#3-pirámide-por-nivel) · [Cobertura](#4-cobertura-bloqueante) · [Organización](#5-organización-en-tests) · [Datos](#6-datos-de-prueba)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/09-testing-framework.yaml`.
 
 ## 1. Propósito
 
@@ -83,19 +72,3 @@ Nombrar tests según el escenario de acceptance, no según el detalle de impleme
 - Seed de demo (runtime) ≠ fixtures de test; no acoplarlos sin decisión explícita.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [04-specification-standard.md](04-specification-standard.md) | Acceptance como verdad operativa |
-| [05-development-workflow.md](05-development-workflow.md) | Gate 2 exige acceptance verdes |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG-Unit / QG-Accept |
-| [prompts/quality/testing-strategy.md](../prompts/quality/testing-strategy.md) | Plan de tests por nivel |
-
-## 7. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H16 (ADR-008) |

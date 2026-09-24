@@ -1,0 +1,58 @@
+archivo: 06-ai-agent-framework.md
+titulo: 06 — AI Agent Framework
+version: 0.3.3
+estado: Approved
+fecha: 2026-09-19
+parte: II — Ingeniería IA
+norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md)"
+deriva_hacia: "`agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md)"
+toc: ""
+relacionado:
+  - destino: "[skills/README.md](../skills/README.md)"
+    por_que: Catálogo de playbooks
+  - destino: "[07-prompt-engineering-standard.md](07-prompt-engineering-standard.md)"
+    por_que: Economía de tokens; no mega-prompt
+  - destino: "[AGENTS.md.template](../AGENTS.md.template)"
+    por_que: Router a materializar; excepción acotada de git/remoto
+  - destino: "[`.cursor/rules/git-remoto-encargo.mdc`](../.cursor/rules/git-remoto-encargo.mdc)"
+    por_que: Copia operativa Cursor de esta §7 (encargo = este turno)
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: Checklist Testing+Review
+historial:
+  - version: 0.3.3
+    fecha: 2026-09-19
+    cambio: Encargo vigente = este turno; el historial de la conversación no autoriza git ni el remoto
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: "Catálogo: `security-review` pasa a prioridad alta (QG-Sec H12 §5.2)"
+  - version: 0.3.1
+    fecha: 2026-09-19
+    cambio: "Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico)"
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: "Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06)"
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Catálogo: testing-review-pr, security-review, devops-ci-gate"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado, diagrama con color (sin cambio de norma)
+  - version: 0.2.1
+    fecha: 2026-09-13
+    cambio: Contexto autorizado en el contrato (índice; no mega-prompt)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Agentes genéricos; implementación de stack fuera del core (ADR-008)
+cabecera:
+  Versión: 0.3.3
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: II — Ingeniería IA
+  Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md)"
+  Deriva hacia: "`agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md)"

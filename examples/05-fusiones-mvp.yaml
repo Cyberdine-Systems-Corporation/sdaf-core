@@ -6,7 +6,7 @@
 # domain-application es id de extensión: requiere contratos en el consumidor o pack.
 
 sdaf:
-  version: "0.3.0"
+  version: "0.4.0"
 
 project:
   name: MiProyecto

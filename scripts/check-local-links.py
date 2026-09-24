@@ -19,7 +19,7 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
 # GFM / github-slugger: letras, marcas, dígitos, conectores (_), guion, espacio
 SLUG_KEEP_RE = re.compile(r"[^\w\s\-]", re.UNICODE)
 
-SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
+SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", "testdata"}
 
 
 def is_markdown_doc(path: Path) -> bool:
@@ -36,6 +36,24 @@ def iter_md(root: Path):
         if any(part in SKIP_DIRS for part in p.parts):
             continue
         yield p
+
+
+def iter_link_sources(root: Path):
+    """Devuelve (fuente, carpeta base de los href, destino de un href «#ancla»).
+
+    Los sidecars de handbook/_meta escriben los href relativos al capítulo
+    (handbook/), no a _meta/; su «#ancla» apunta al capítulo que describen.
+    """
+    for md in iter_md(root):
+        yield md, md.parent, md
+    handbook = root / "handbook"
+    meta = handbook / "_meta"
+    if meta.is_dir():
+        for sidecar in sorted(meta.glob("*.yaml")):
+            yield sidecar, handbook, handbook / f"{sidecar.stem}.md"
+    index = handbook / "index.yaml"
+    if index.is_file():
+        yield index, handbook, None
 
 
 def strip_fence_blocks(text: str) -> str:
@@ -113,8 +131,8 @@ def main() -> int:
     for md in md_files:
         incoming.setdefault(md.resolve(), 0)
 
-    for md in md_files:
-        text = md.read_text(encoding="utf-8")
+    for src, base, self_target in iter_link_sources(ROOT):
+        text = src.read_text(encoding="utf-8")
         for href in hrefs_in(text):
             href = href.strip().strip("<>")
             if not href or is_external(href):
@@ -122,19 +140,21 @@ def main() -> int:
             path_part, _, frag = href.partition("#")
             frag = frag.strip()
             if not path_part:
-                target = md.resolve()
+                if self_target is None:
+                    continue
+                target = self_target.resolve()
             else:
-                target = (md.parent / path_part).resolve()
+                target = (base / path_part).resolve()
                 try:
                     target.relative_to(ROOT.resolve())
                 except ValueError:
                     continue
                 if not is_markdown_doc(target):
                     if not target.exists():
-                        missing.append(f"{md.relative_to(ROOT)} -> {href}")
+                        missing.append(f"{src.relative_to(ROOT)} -> {href}")
                     continue
                 if not target.exists():
-                    missing.append(f"{md.relative_to(ROOT)} -> {href}")
+                    missing.append(f"{src.relative_to(ROOT)} -> {href}")
                     continue
                 incoming[target] = incoming.get(target, 0) + 1
             if not frag:
@@ -144,7 +164,7 @@ def main() -> int:
                     continue
                 slug_cache[target] = heading_slugs(target.read_text(encoding="utf-8"))
             if frag.lower() not in {s.lower() for s in slug_cache[target]}:
-                bad_anchors.append(f"{md.relative_to(ROOT)} -> #{frag} en {target.relative_to(ROOT)}")
+                bad_anchors.append(f"{src.relative_to(ROOT)} -> #{frag} en {target.relative_to(ROOT)}")
 
     root_readme = (ROOT / "README.md").resolve()
     root_res = ROOT.resolve()
@@ -156,7 +176,7 @@ def main() -> int:
             rel = p.relative_to(root_res).as_posix()
         except ValueError:
             return True
-        return rel.startswith(".github/")
+        return rel.startswith(".github/") or rel.startswith("scripts/testdata/")
 
     orphans = [
         p.relative_to(ROOT).as_posix()

@@ -1,0 +1,52 @@
+archivo: 05-development-workflow.md
+titulo: 05 — Development Workflow
+version: 0.3.3
+estado: Approved
+fecha: 2026-09-19
+parte: I — Método SDAF
+norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
+deriva_hacia: "`worklogs/`, `backlog/`, agentes"
+toc: ""
+relacionado:
+  - destino: "[skills/sdaf-gate0](../skills/sdaf-gate0/SKILL.md)"
+    por_que: Playbook del Gate 0
+  - destino: "[08-agent-traceability.md](08-agent-traceability.md)"
+    por_que: Worklog obligatorio (G0.5)
+  - destino: "[03-repository-organization.md](03-repository-organization.md)"
+    por_que: Árbol que el bootstrap debe dejar listo
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG técnicos; no redefinen G0–G3
+  - destino: "[06-ai-agent-framework.md](06-ai-agent-framework.md)"
+    por_que: Cuándo un agente puede commit o escribir el remoto (G1.5)
+historial:
+  - version: 0.3.3
+    fecha: 2026-09-19
+    cambio: "G1.5: la petición git/remoto es la de este turno (H06 §7; sin redefinir G0–G3)"
+  - version: 0.3.1
+    fecha: 2026-09-19
+    cambio: "G1.5: idioma de commits; el cuándo (local y remoto) queda en H06 §7 (sin redefinir G0–G3)"
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: "Gate 2: se retira el calificador Draft de H10/H11 (sin redefinir G0–G3)"
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: Gate 2 enlaza H10/H11 (sin redefinir G0–G3)
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-09); paso 0 bootstrap; Parte I
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Gates genéricos; sin roles de stack concreto (ADR-008)
+cabecera:
+  Versión: 0.3.3
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: I — Método SDAF
+  Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
+  Deriva hacia: "`worklogs/`, `backlog/`, agentes"

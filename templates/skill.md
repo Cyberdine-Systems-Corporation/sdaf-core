@@ -6,7 +6,7 @@
 | Versión | 0.1.0 |
 | Estado | Draft / Approved |
 | Prioridad | alta / media / baja |
-| Fecha | YYYY-MM-DD |
+| Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Norma | enlaces a handbook / ADR / specs |
 
 Frontmatter YAML recomendado en `SKILL.md`:

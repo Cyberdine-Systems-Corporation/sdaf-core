@@ -1,0 +1,42 @@
+archivo: 07-prompt-engineering-standard.md
+titulo: 07 — Prompt Engineering Standard
+version: 0.3.0
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: II — Ingeniería IA
+norma_superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md)"
+deriva_hacia: "`prompts/`, `skills/`, worklogs, agentes"
+toc: ""
+relacionado:
+  - destino: "[08-agent-traceability.md](08-agent-traceability.md)"
+    por_que: "Citar `prompt_id@version` en el worklog"
+  - destino: "[prompts/README.md](../prompts/README.md)"
+    por_que: Catálogo de la biblioteca
+  - destino: "[06-ai-agent-framework.md](06-ai-agent-framework.md)"
+    por_que: Contrato y contexto autorizado
+historial:
+  - version: 0.3.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "§4 historial del prompt sigue en el cuerpo; andamiaje de capítulos en `_meta/`. §7 no adjuntar sidecars"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC y Relacionado (sin cambio de norma)
+  - version: 0.2.1
+    fecha: 2026-09-13
+    cambio: Resumen = índice; mega-resumen y sustituto del prompt prohibidos
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-14); Parte II
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Extracción genérica (ADR-008)
+cabecera:
+  Versión: 0.3.0
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: II — Ingeniería IA
+  Norma superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md)"
+  Deriva hacia: "`prompts/`, `skills/`, worklogs, agentes"

@@ -1,17 +1,6 @@
 # 08 — Agent Traceability Framework
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.2 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | II — Ingeniería IA |
-| **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md) |
-| **Deriva hacia** | `worklogs/` del consumidor, templates |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Principio](#2-principio) · [Organización](#3-organización) · [Campos](#4-campos-obligatorios) · [Origen](#43-origen-de-cambios) · [Cuándo](#5-cuándo-crear-worklog) · [Cadena](#6-cadena-de-trazabilidad) · [Retención](#7-retención)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/08-agent-traceability.yaml`.
 
 ## 1. Propósito
 
@@ -46,6 +35,8 @@ Un directorio por PBI (o iniciativa: `INIT-.../`). Plantilla: `templates/worklog
 ## 4. Campos obligatorios
 
 Fecha, agente, modelo, versión prompt, contexto, especificaciones utilizadas, archivos leídos, archivos modificados, resultado, tiempo, coste (`N/D` si no se conoce), observaciones, pruebas ejecutadas, estado (`en_curso` / `hecho` / `bloqueado` / `abortado`), siguiente agente.
+
+Plantilla nueva (`templates/worklog.md`): esos campos van en **frontmatter** YAML, más `inicio` y `fin` (fecha y hora ISO 8601 con zona horaria; `fecha` es el día de `inicio`), `commit`, `pr`, `rama`, `sha` (cada uno `null` = ausencia explícita) y `resumen_acumulado` (índice de una línea, H07 §7). En el formato nuevo, `tiempo` es una duración ISO 8601 que no supera `fin − inicio`, y `coste` indica modalidad, importe, moneda, tokens y fuente del dato; lo que no se conozca se escribe `N/D: <motivo>`, nunca `N/D` a secas. Schema: [`worklog.schema.json`](../worklog.schema.json). Los worklogs en tabla markdown vigente siguen válidos; no se reescriben.
 
 ### 4.1 Recibo de iteración (opcional en 0.2.1)
 
@@ -112,6 +103,8 @@ flowchart LR
   class Diff stub
 ```
 
+Campos del worklog **nuevo** que cierran la cadena hacia el diff: `commit`, `pr`, `rama`, `sha`. Si no hay aún, el valor es `null` (ausencia explícita). El CI de presencia (`scripts/check-worklog-presence.py`) solo comprueba que exista un fichero bajo `worklogs/` cuando el diff toca código de producto; no parsea estos campos.
+
 ---
 
 ## 7. Retención
@@ -119,23 +112,3 @@ flowchart LR
 Los worklogs se conservan durante la vida del proyecto. No reescribir historia para ocultar fallos.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [templates/worklog.md](../templates/worklog.md) | Plantilla ATF |
-| [skills/sdaf-worklog-handoff](../skills/sdaf-worklog-handoff/SKILL.md) | Cerrar y pasar el testigo |
-| [05-development-workflow.md](05-development-workflow.md) | G0.5 exige worklog abierto |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Origen de cambios en Gate 2 / QG-Review |
-
-## 8. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.2 | 2026-09-19 | Origen de cambios (`humano` / `ia` / `mixto` / `dependencia`) en worklogs nuevos de código de producto; sin backfill |
-| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alerta ATF (sin cambio de norma) |
-| 0.2.1 | 2026-09-13 | Recibo de iteración y línea de decisión (opcionales; sin backfill) |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-15); Parte II |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Extracción genérica; worklogs en el consumidor (ADR-008) |

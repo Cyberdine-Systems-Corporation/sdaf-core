@@ -1,0 +1,37 @@
+archivo: B-glossary.md
+titulo: Apéndice B — Glossary
+version: 0.3.3
+estado: Approved
+fecha: 2026-09-19
+parte: Apéndices
+norma_superior: "Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor"
+deriva_hacia: ""
+toc: ""
+relacionado:
+  - destino: "[README.md](README.md)"
+    por_que: Índice y estados
+  - destino: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+    por_que: Definición del marco
+  - destino: "[06-ai-agent-framework.md](06-ai-agent-framework.md)"
+    por_que: Encargo vigente y git/remoto (§7)
+  - destino: "[12-security-standards.md](12-security-standards.md)"
+    por_que: QG-Sec y OWASP
+historial:
+  - version: 0.3.3
+    fecha: 2026-09-19
+    cambio: Encargo vigente (H06 §7)
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: QG-Sec §5.2, QG-Review HITL, overlay, origen de cambios
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Draft: términos de método (extract A; sin dominio de producto)"
+cabecera:
+  Versión: 0.3.3
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: Apéndices
+  Norma superior: "Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor"

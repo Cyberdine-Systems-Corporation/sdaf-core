@@ -49,3 +49,9 @@ Skills de stack o dominio no forman parte de este core.
 | 🛠️ | [sdaf-bootstrap](sdaf-bootstrap/SKILL.md) | Primera materialización |
 | 🛠️ | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Pin y upgrade |
 | 📖 | [H10](../handbook/10-code-review-and-quality-gates.md) | testing-review-pr / QG |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.3.3 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |

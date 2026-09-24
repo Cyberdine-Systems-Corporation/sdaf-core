@@ -4,7 +4,7 @@
 |--------|--------|
 | Versión | 0.1.0 |
 | Estado | Draft |
-| Fecha | YYYY-MM-DD |
+| Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Norma | Constitución de **producto** (no sustituye el handbook del método sdaf-core) |
 
 ---

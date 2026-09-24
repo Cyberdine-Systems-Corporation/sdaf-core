@@ -1,17 +1,6 @@
 # 06 — AI Agent Framework
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.3 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | II — Ingeniería IA |
-| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md) |
-| **Deriva hacia** | `agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md) |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Distinción](#2-distinción-crítica) · [Modelo](#3-modelo-operativo) · [Contrato](#4-contrato-de-agente-obligatorio) · [Handoffs](#5-orquestación-y-handoffs) · [Skills](#6-skills) · [Restricciones](#7-restricciones-globales)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/06-ai-agent-framework.yaml`.
 
 ## 1. Propósito
 
@@ -122,28 +111,3 @@ Catálogo core:
 - Economía de tokens (cap. 07).
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [skills/README.md](../skills/README.md) | Catálogo de playbooks |
-| [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md) | Economía de tokens; no mega-prompt |
-| [AGENTS.md.template](../AGENTS.md.template) | Router a materializar; excepción acotada de git/remoto |
-| [`.cursor/rules/git-remoto-encargo.mdc`](../.cursor/rules/git-remoto-encargo.mdc) | Copia operativa Cursor de esta §7 (encargo = este turno) |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | Checklist Testing+Review |
-
-## 8. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.3 | 2026-09-19 | Encargo vigente = este turno; el historial de la conversación no autoriza git ni el remoto |
-| 0.3.2 | 2026-09-19 | Catálogo: `security-review` pasa a prioridad alta (QG-Sec H12 §5.2) |
-| 0.3.1 | 2026-09-19 | Enmienda: escritura al remoto y commit local solo con petición explícita; excepción del consumidor acotada (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-19 | Catálogo Parte III: se retira el calificador Draft (sin cambio de norma de H06) |
-| 0.3.0 | 2026-09-18 | Catálogo: testing-review-pr, security-review, devops-ci-gate |
-| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama con color (sin cambio de norma) |
-| 0.2.1 | 2026-09-13 | Contexto autorizado en el contrato (índice; no mega-prompt) |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-13); catálogo + bootstrap/upgrade; Parte II |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Agentes genéricos; implementación de stack fuera del core (ADR-008) |

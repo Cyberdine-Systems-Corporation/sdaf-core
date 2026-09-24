@@ -1,16 +1,6 @@
 # SDAF — Handbook del método
 
-| Campo | Valor |
-|--------|--------|
-| Versión | 0.3.3 |
-| Estado | Approved |
-| Idioma | Español |
-| Clasificación | Constitución del método (no del producto) |
-| Última actualización | 2026-09-19 |
-
----
-
-**En esta página:** [Propósito](#propósito) · [Mapa normativo](#mapa-normativo-consumidor) · [Índice](#índice) · [Estados](#estados-de-capítulo) · [Prioridad](#prioridad-ante-conflicto-en-un-repo-consumidor) · [Relacionado](#relacionado)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/README.yaml`.
 
 ## Propósito
 
@@ -92,6 +82,12 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 | 11 | [11-devops.md](11-devops.md) | DevOps | ✅ Approved |
 | 12 | [12-security-standards.md](12-security-standards.md) | Security Standards | ✅ Approved |
 
+### Parte IV — Gobernanza del método
+
+| Cap. | Archivo | Título | Estado |
+|------|---------|--------|--------|
+| 13 | [13-enmienda-excepciones-ciclo-de-vida.md](13-enmienda-excepciones-ciclo-de-vida.md) | Enmienda, excepciones y ciclo de vida | ✅ Approved |
+
 ### Apéndices
 
 | Cap. | Archivo | Título | Estado |
@@ -118,6 +114,7 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 |--------|-------------|
 | 📝 **Draft** | Borrador; usable como guía, no cerrado |
 | ✅ **Approved** | Norma vigente; cambios requieren revisión formal y CHANGELOG |
+| ⛔ **Derogado** | Dejó de aplicar; el archivo permanece con puntero al sucesor o a la fecha ([H13 §4](13-enmienda-excepciones-ciclo-de-vida.md)) |
 
 Ningún agente puede autodeclarar Approved.
 
@@ -131,14 +128,3 @@ Ningún agente puede autodeclarar Approved.
 4. Specs en `specs/`
 5. Backlog
 6. Implementación / prompts / worklogs
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [README del core](../README.md) | Tres puertas: adoptar, constitución, Gate 0 |
-| [Adopción y upgrade](../docs/adopcion-y-upgrade.md) | Pin a tag y bootstrap (HOWTO, no constitución) |
-| [mapa-navegacion.md](../docs/mapa-navegacion.md) | Ocho tareas y clics |
-| [branding.md](../docs/branding.md) | Identidad visual del core (HOWTO, no constitución) |
-| [00-preface.md](00-preface.md) | Qué es y qué no es este handbook |
-| [09-testing-framework.md](09-testing-framework.md) | Parte III (calidad y entrega) |

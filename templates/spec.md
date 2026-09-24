@@ -5,7 +5,7 @@
 | ID | SPEC-XXX-000 |
 | Versión | 0.1.0 |
 | Estado | Draft |
-| Fecha | YYYY-MM-DD |
+| Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Fuentes | |
 | ADRs relacionados | |
 | Backlog | |

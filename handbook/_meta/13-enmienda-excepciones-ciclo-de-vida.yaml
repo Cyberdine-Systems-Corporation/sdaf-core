@@ -1,0 +1,32 @@
+archivo: 13-enmienda-excepciones-ciclo-de-vida.md
+titulo: 13 — Enmienda, excepciones y ciclo de vida
+version: 0.4.0
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: IV — Gobernanza del método
+norma_superior: "[00-preface.md](00-preface.md) §3"
+deriva_hacia: CHANGELOG, ADRs del core, CONTRIBUTING, CODEOWNERS
+toc: ""
+relacionado:
+  - destino: "[00-preface.md](00-preface.md)"
+    por_que: Autoridad superior; §3 remite a este capítulo
+  - destino: "[ADR-002](../architecture/decisions/ADR-002-gobernanza-del-metodo.md)"
+    por_que: Decisión de adopción (Aceptado)
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG-Review; el agente no aprueba
+  - destino: "[CONTRIBUTING.md](../CONTRIBUTING.md)"
+    por_que: Cómo proponer sin copiar este capítulo
+historial:
+  - version: 0.4.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "Approved (aceptación humana de Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS)); decisiones de §8 cerradas salvo el rol director técnico; §9 fechas con hora y zona"
+  - version: 0.1.0
+    fecha: "2026-09-23T15:33+02:00"
+    cambio: Draft inicial (no Approved)
+cabecera:
+  Versión: 0.4.0
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: IV — Gobernanza del método
+  Norma superior: "[00-preface.md](00-preface.md) §3"
+  Deriva hacia: CHANGELOG, ADRs del core, CONTRIBUTING, CODEOWNERS

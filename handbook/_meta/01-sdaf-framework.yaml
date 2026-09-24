@@ -1,0 +1,36 @@
+archivo: 01-sdaf-framework.md
+titulo: 01 — SDAF Framework
+version: 0.2.2
+estado: Approved
+fecha: 2026-09-17
+parte: I — Método SDAF
+norma_superior: "[00-preface.md](00-preface.md)"
+deriva_hacia: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md)"
+toc: ""
+relacionado:
+  - destino: "[00-preface.md](00-preface.md)"
+    por_que: Alcance de la constitución
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: Gates operativos
+  - destino: "[docs/contrato-pack-stack.md](../docs/contrato-pack-stack.md)"
+    por_que: Pack de stack (no contradice este capítulo)
+historial:
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado, diagramas y alerta Gate 0 (sin cambio de norma)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-05); ancla normativa del pack → docs; Parte I
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: "Extracción genérica (ADR-008): norma de `specs/` y gobernanza de stack explícitas"
+cabecera:
+  Versión: 0.2.2
+  Estado: Approved
+  Fecha: 2026-09-17
+  Parte: I — Método SDAF
+  Norma superior: "[00-preface.md](00-preface.md)"
+  Deriva hacia: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md)"

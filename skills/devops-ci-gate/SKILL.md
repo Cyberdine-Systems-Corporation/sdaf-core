@@ -49,3 +49,9 @@ description: Playbook stub-aware para quality gates locales y huecos de CI. Usar
 | 📖 | [H11](../../handbook/11-devops.md) | Local-first y runbook |
 | 📖 | [H10](../../handbook/10-code-review-and-quality-gates.md) | QG a ejecutar |
 | 📝 | [devops-agent](../../agents/devops-agent.md) | Contrato stub |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |
