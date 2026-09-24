@@ -44,3 +44,9 @@ description: Redacta o actualiza specs Draft (DOM/APP/ACC), índices y backlog s
 |---------|---------|
 | [specification-agent](../../prompts/agents/specification-agent.md) | Prompt del rol |
 | [templates/spec.md](../../templates/spec.md) | Cabecera de spec |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Fila inicial de historial (cabecera ya publicada) |

@@ -57,3 +57,9 @@ Tests trazables + handoff documentado.
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 | IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
 
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.1.2 | 2026-09-13 | Fila inicial de historial (cabecera ya publicada) |
+

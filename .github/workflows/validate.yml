@@ -5,32 +5,70 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   examples-schema:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.3.0
+        with:
+          fetch-depth: 0 # diff contra la base: presencia de worklog e historial append-only
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
       - name: Instalar dependencias
         run: pip install pyyaml jsonschema
-      - name: Validar examples contra JSON Schema
-        run: python scripts/validate-examples.py
+      - name: Validar config contra JSON Schema e invariantes
+        run: python scripts/validate-config.py
+      - name: Autocomprobación del validador (fixtures)
+        run: python scripts/test-validate-config.py
+      - name: Autocomprobación de worklog
+        run: python scripts/test-worklog.py
+      - name: Comprobar metadatos de versión
+        run: python scripts/check-version-metadata.py
+      - name: Historial solo crece (sin filas borradas ni reescritas)
+        run: python scripts/check-history-append-only.py
+      - name: Comprobar ADRs del core (numeración, estado, fechas)
+        run: python scripts/check-adrs.py
+      - name: Autocomprobación de fechas y ADRs (fixtures)
+        run: python scripts/test-dates.py
+      - name: Medir andamiaje extraído del handbook
+        run: python scripts/measure-handbook-scaffolding.py
+      - name: Validar plantilla de worklog
+        run: python scripts/validate-worklog.py --plantilla templates/worklog.md
+      - name: Validar worklogs del core
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          files=(worklogs/**/*.md)
+          if [ ${#files[@]} -gt 0 ]; then python scripts/validate-worklog.py "${files[@]}"; fi
+      - name: Presencia de worklog si el diff toca código de producto
+        run: python scripts/check-worklog-presence.py
       - name: Comprobar rutas locales citadas
-        run: python scripts/check-local-links.py
+        run: python scripts/check-local-links.py --strict-anchors --strict-orphans
       - name: markdownlint (fences y enlaces vacíos)
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265 # v19.1.0
         with:
           globs: |
             **/*.md
             AGENTS.md.template
+            !scripts/testdata/**
 
   docs-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.3.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
       - name: Instalar dependencias de docs

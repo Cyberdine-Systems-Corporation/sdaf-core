@@ -5,7 +5,7 @@
 # Pack de referencia: sdaf-stack-dotnet@0.1.1
 
 sdaf:
-  version: "0.3.0"
+  version: "0.4.0"
 
 project:
   name: MiProyecto

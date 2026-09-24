@@ -1,0 +1,35 @@
+archivo: 12-security-standards.md
+titulo: 12 — Security Standards
+version: 0.3.2
+estado: Approved
+fecha: 2026-09-19
+parte: III — Calidad y entrega
+norma_superior: "[02-engineering-principles.md](02-engineering-principles.md), [05-development-workflow.md](05-development-workflow.md)"
+deriva_hacia: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md), `templates/security.md`, Testing+Review, skill `security-review`"
+toc: ""
+relacionado:
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG-Sec y checklist de review
+  - destino: "[11-devops.md](11-devops.md)"
+    por_que: Secretos y runbook
+  - destino: "[templates/security.md](../templates/security.md)"
+    por_que: Plantilla de reporte del consumidor
+  - destino: "[skills/security-review](../skills/security-review/SKILL.md)"
+    por_que: Playbook de review de seguridad
+historial:
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: §3 catálogo baseline / overlay / fuera del método; QG-Sec alineado al mapa §4.3 (sin estatizar adopción)
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Draft: trasplante genérico del extract H20; auth concreta fuera del core"
+cabecera:
+  Versión: 0.3.2
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: III — Calidad y entrega
+  Norma superior: "[02-engineering-principles.md](02-engineering-principles.md), [05-development-workflow.md](05-development-workflow.md)"
+  Deriva hacia: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md), `templates/security.md`, Testing+Review, skill `security-review`"

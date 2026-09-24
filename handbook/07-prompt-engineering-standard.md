@@ -1,17 +1,6 @@
 # 07 — Prompt Engineering Standard
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.2.2 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
-| **Parte** | II — Ingeniería IA |
-| **Norma superior** | [06-ai-agent-framework.md](06-ai-agent-framework.md), [03-repository-organization.md](03-repository-organization.md) |
-| **Deriva hacia** | `prompts/`, `skills/`, worklogs, agentes |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Principios](#2-principios) · [Árbol](#3-árbol-de-la-biblioteca) · [Estructura](#4-estructura-obligatoria) · [Versionado](#5-versionado) · [Ad hoc](#6-prompts-ad-hoc) · [Tokens](#7-economía-de-tokens) · [Skills](#8-relación-con-skills) · [IDEs](#9-relación-con-ides)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/07-prompt-engineering-standard.yaml`.
 
 ## 1. Propósito
 
@@ -45,7 +34,9 @@ El consumidor puede añadir `planning/`, `review/`, `quality/`. El prompt maestr
 
 ## 4. Estructura obligatoria
 
-Metadatos (ID, versión, estado, rol, fecha), objetivo, contexto (enlaces), entradas, restricciones, artefactos, resultado esperado, formato de salida, criterios de aceptación, historial.
+Metadatos (ID, versión, estado, rol, fecha), objetivo, contexto (enlaces), entradas, restricciones, artefactos, resultado esperado, formato de salida, criterios de aceptación, historial **en el cuerpo del prompt**.
+
+El andamiaje de los **capítulos** del handbook (cabecera, TOC, Relacionado, Historial) vive en `handbook/_meta/` e `handbook/index.yaml` ([ADR-003](../architecture/decisions/ADR-003-formato-de-artefactos.md), Aceptado). No forma parte de la estructura obligatoria de un prompt.
 
 ---
 
@@ -69,6 +60,7 @@ Solo experimentos locales o incrustados en el worklog de esa iteración. Si se r
 | Práctica | Norma |
 |----------|--------|
 | Adjuntar handbook completo | Prohibido por defecto |
+| Adjuntar `handbook/_meta/` o `index.yaml` | Prohibido por defecto; el cuerpo del capítulo basta |
 | Citar capítulo/sección | Obligatorio cuando basen la decisión |
 | Pegar specs enteras irrelevantes | Evitar |
 | Multi-agente en un mega-prompt | Prohibido; usar handoff |
@@ -90,21 +82,3 @@ Prompts = rol; skills = playbooks de flujo. Enlazar `skills/<id>/SKILL.md`; no p
 `.cursor/rules/` contiene reglas **finas** que apuntan al handbook. No duplicar Partes I–II. El trabajo debe poder reproducirse desde `prompts/` + `skills/` + repo.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [08-agent-traceability.md](08-agent-traceability.md) | Citar `prompt_id@version` en el worklog |
-| [prompts/README.md](../prompts/README.md) | Catálogo de la biblioteca |
-| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Contrato y contexto autorizado |
-
-## 10. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
-| 0.2.1 | 2026-09-13 | Resumen = índice; mega-resumen y sustituto del prompt prohibidos |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-14); Parte II |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

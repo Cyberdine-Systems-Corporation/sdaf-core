@@ -1,17 +1,6 @@
 # 10 — Code Review and Quality Gates
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.2 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | III — Calidad y entrega |
-| **Norma superior** | [05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md) |
-| **Deriva hacia** | Agente Testing+Review, PRs, CI local del consumidor |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Quién revisa](#2-quién-revisa) · [Checklist](#3-checklist-de-code-review) · [Quality gates](#4-quality-gates-técnicos) · [Severidad](#5-severidad-de-hallazgos)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/10-code-review-and-quality-gates.yaml`.
 
 ## 1. Propósito
 
@@ -33,6 +22,8 @@ Ningún agente aprueba enmiendas constitucionales.
 
 Completar el checklist §3 por un agente **no** satisface QG-Review. Auto-merge sigue prohibido ([H06 §7](06-ai-agent-framework.md#7-restricciones-globales)).
 
+«Nominada» es la identidad listada en [`CODEOWNERS`](../CODEOWNERS) de este repo (o el CODEOWNERS del consumidor). Esa persona puede aprobar su propio PR. No se exige un segundo humano. Decisión cerrada el 2026-09-24 ([H13 §7](13-enmienda-excepciones-ciclo-de-vida.md), [ADR-002](../architecture/decisions/ADR-002-gobernanza-del-metodo.md)).
+
 ---
 
 ## 3. Checklist de code review
@@ -43,7 +34,7 @@ Completar el checklist §3 por un agente **no** satisface QG-Review. Auto-merge 
 - [ ] Sin alcance Out del MVP del consumidor.
 - [ ] Worklog actualizado y prompt versionado citado.
 - [ ] Si el diff toca código de producto: origen de cambios en el worklog ([H08 §4.3](08-agent-traceability.md#43-origen-de-cambios)).
-- [ ] Aprobación humana nominada del merge (QG-Review).
+- [ ] Aprobación humana nominada del merge (QG-Review): la identidad de CODEOWNERS.
 
 ### 3.2 Dominio y arquitectura
 
@@ -126,21 +117,3 @@ QG-Review fallido (checklist incompleto o merge sin humano nominado) es **bloque
 Hallazgos del ADR de coding standards del consumidor, si ese ADR los declara bloqueantes, se tratan como bloqueantes en el diff.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [05-development-workflow.md](05-development-workflow.md) | G0–G3; este capítulo detalla QG |
-| [09-testing-framework.md](09-testing-framework.md) | QG-Unit / QG-Accept |
-| [12-security-standards.md](12-security-standards.md) | QG-Sec y checklist §3.6 |
-| [08-agent-traceability.md](08-agent-traceability.md) | Origen de cambios en Gate 2 |
-| [skills/testing-review-pr](../skills/testing-review-pr/SKILL.md) | Playbook de Gate 2 |
-
-## 6. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.2 | 2026-09-19 | QG-Review exige humano nominado; QG-Sec enlaza H12 §5.2; origen ATF en checklist |
-| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H17; coding standards fuera del core |

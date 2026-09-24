@@ -11,12 +11,12 @@
 
 | Concepto | Uso |
 |----------|-----|
-| Tag Git `vX.Y.Z` | Release del árbol sdaf-core |
-| `sdaf.version` en `sdaf.config.yaml` | Misma semver **mayor.menor** del core adoptado |
-| Capítulos / skills | Alineados a la misma línea (`0.2.x` o `0.3.x` según pin) |
+| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`. **No** existen `v0.3.0` ni `v0.3.1`. `v0.4.0` se crea tras el merge de la línea 0.4.0. |
+| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.4.0`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
+| Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x` o `0.4.x` según pin) |
 
 > [!TIP]
-> El pin recomendado del árbol es `v0.3.3`. `sdaf.version` puede seguir `0.3.0`. Quien se quede en `v0.2.1` no está obligado.
+> El pin recomendado del árbol es `v0.4.0` en cuanto exista el tag; hasta entonces, `v0.3.3`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
 
 Subir de `0.1.x` a `0.2.0` es un upgrade consciente (breaking de citas de handbook).
 
@@ -41,9 +41,10 @@ git submodule add -b main <url-sdaf-core> .sdaf
 cd .sdaf && git checkout v0.3.3
 ```
 
-2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version: "0.3.0"` es válido con pin `v0.3.3`).
+2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.4.0"` con pin `v0.4.0`, `"0.3.0"` con pin `v0.3.3`).
 3. Ejecutar la skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) (o seguir sus pasos a mano).
 4. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template).
+5. Opcional: validar `sdaf.config.yaml` con la composite action [`.github/actions/validate-sdaf`](../.github/actions/validate-sdaf/README.md) (disponible desde `v0.4.0`).
 
 ### Alternativas
 
@@ -107,7 +108,7 @@ Parche **0.2.2** (docs): navegación, diagramas y vocabulario visual; no cambia 
 
 Línea nueva de constitución. **No** rompe citas `H00`–`H08`. Quien se quede en `v0.2.1` no está obligado.
 
-Al pinnear la línea 0.3 (tag `v0.3.3`):
+Al pinnear la línea 0.3 (tag `v0.3.3`; no hay tag `v0.3.0`):
 
 1. Leer Parte III: [H09](../handbook/09-testing-framework.md)–[H12](../handbook/12-security-standards.md).
 2. Adoptar QG-Sec y runbook local si no existían.
@@ -141,6 +142,19 @@ Enmienda de [H06 §7](../handbook/06-ai-agent-framework.md#7-restricciones-globa
 Copia operativa para agentes Cursor: `.cursor/rules/git-remoto-encargo.mdc` (materializar junto a `idioma-castellano.mdc`).
 
 No rompe citas. No exige cambiar `sdaf.version` si ya está en `0.3.0`.
+
+## 0.4.0 (opt-in)
+
+Línea nueva de constitución. **No** rompe citas `H00`–`H12`. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
+
+Al pinnear `v0.4.0` (tag que se crea tras el merge de esta línea):
+
+1. Leer [H13](../handbook/13-enmienda-excepciones-ciclo-de-vida.md): enmienda, excepciones con caducidad, derogación, breaking y mantenedor único.
+2. QG-Review: «nominada» = la identidad de `CODEOWNERS` del consumidor ([H10](../handbook/10-code-review-and-quality-gates.md)).
+3. Worklogs **nuevos** con el frontmatter de [`templates/worklog.md`](../templates/worklog.md) (`commit`, `pr`, `rama`, `sha` o `null`). Los worklogs en tabla siguen válidos; sin backfill.
+4. Si algún script lee el historial del cuerpo de un capítulo, pasa a leer `handbook/_meta/<capítulo>.yaml`.
+5. Opcional: composite action [`validate-sdaf`](../.github/actions/validate-sdaf/README.md) en el CI del consumidor.
+6. Actualizar `sdaf.version` a `"0.4.0"`.
 
 ## Fuera de 0.3.x
 

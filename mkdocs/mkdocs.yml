@@ -21,8 +21,16 @@ exclude_docs: |
   !/.cursor/
   /.github/workflows/
   /examples/*.yaml
+  /handbook/_meta/
+  /handbook/index.yaml
+  /scripts/testdata/
   /docs/assets/_tools/
   /docs/assets/*.html
+
+not_in_nav: |
+  /worklog.schema.json
+  /worklogs/
+  /.github/actions/
 
 theme:
   name: material
@@ -80,6 +88,9 @@ extra:
 
 nav:
   - Inicio: README.md
+  - Contribuir: CONTRIBUTING.md
+  - Seguridad: SECURITY.md
+  - Changelog: CHANGELOG.md
   - Handbook:
       - handbook/README.md
       - 00 Preface: handbook/00-preface.md
@@ -95,9 +106,14 @@ nav:
       - 10 Code Review and Quality Gates: handbook/10-code-review-and-quality-gates.md
       - 11 DevOps: handbook/11-devops.md
       - 12 Security Standards: handbook/12-security-standards.md
+      - 13 Enmienda y ciclo de vida: handbook/13-enmienda-excepciones-ciclo-de-vida.md
       - A Templates: handbook/A-templates.md
       - B Glossary: handbook/B-glossary.md
       - Changelog: handbook/CHANGELOG.md
+      - ADRs del core: architecture/decisions/README.md
+      - ADR-001: architecture/decisions/ADR-001-nucleo-reutilizable.md
+      - ADR-002: architecture/decisions/ADR-002-gobernanza-del-metodo.md
+      - ADR-003: architecture/decisions/ADR-003-formato-de-artefactos.md
   - Adopción y operación:
       - docs/README.md
       - Adopción y upgrade: docs/adopcion-y-upgrade.md

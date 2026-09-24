@@ -1,16 +1,6 @@
 # Apéndice B — Glossary
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.3 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | Apéndices |
-| **Norma superior** | Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Términos](#2-términos)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/B-glossary.yaml`.
 
 > [!NOTE]
 > Glosario de **método**, no de dominio de producto.
@@ -51,21 +41,3 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 | **Pack de stack** | Overlay técnico opcional (`sdaf-stack-*`); no contradice este handbook |
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [README.md](README.md) | Índice y estados |
-| [01-sdaf-framework.md](01-sdaf-framework.md) | Definición del marco |
-| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Encargo vigente y git/remoto (§7) |
-| [12-security-standards.md](12-security-standards.md) | QG-Sec y OWASP |
-
-## 3. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.3 | 2026-09-19 | Encargo vigente (H06 §7) |
-| 0.3.2 | 2026-09-19 | QG-Sec §5.2, QG-Review HITL, overlay, origen de cambios |
-| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-18 | Draft: términos de método (extract A; sin dominio de producto) |

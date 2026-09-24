@@ -1,17 +1,6 @@
 # 01 — SDAF Framework
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.2.2 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-17 |
-| **Parte** | I — Método SDAF |
-| **Norma superior** | [00-preface.md](00-preface.md) |
-| **Deriva hacia** | [02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md) |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Definición](#2-definición) · [Jerarquía](#3-jerarquía-normativa) · [Pipeline](#4-pipeline-de-dominio) · [Doble entregable](#5-doble-entregable) · [Gobierno](#6-gobierno-antes-de-implementar) · [Agentes](#7-agentes-en-sdaf-resumen) · [Portabilidad](#8-portabilidad)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/01-sdaf-framework.yaml`.
 
 ## 1. Propósito
 
@@ -144,20 +133,3 @@ Detalle operativo en el capítulo 05.
 Este capítulo **debe** poder aplicarse a otro producto y otro stack con un handbook de producto y, si aplica, un pack de stack. No menciona un producto concreto ni un runtime concreto como norma.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [00-preface.md](00-preface.md) | Alcance de la constitución |
-| [05-development-workflow.md](05-development-workflow.md) | Gates operativos |
-| [docs/contrato-pack-stack.md](../docs/contrato-pack-stack.md) | Pack de stack (no contradice este capítulo) |
-
-## 9. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagramas y alerta Gate 0 (sin cambio de norma) |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-05); ancla normativa del pack → docs; Parte I |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008): norma de `specs/` y gobernanza de stack explícitas |

@@ -20,6 +20,8 @@ No contiene código ni specs de un producto concreto.
 
 🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md). Identidad visual: [`docs/branding.md`](docs/branding.md).
 
+Contribuir: [`CONTRIBUTING.md`](CONTRIBUTING.md). Avisos de seguridad de **este** repo: [`SECURITY.md`](SECURITY.md). Historial del método: [`CHANGELOG.md`](CHANGELOG.md) (apunta a [`handbook/CHANGELOG.md`](handbook/CHANGELOG.md)). ADRs del core: [`architecture/decisions/`](architecture/decisions/README.md). Action de validación para consumidores: [`.github/actions/validate-sdaf/`](.github/actions/validate-sdaf/README.md).
+
 ## Qué es
 
 SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
@@ -57,23 +59,23 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 
 Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resumen:
 
-1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.3.3` recomendado; subtree o copia también documentados).
+1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.4.0` recomendado, o `v0.3.3` mientras no exista; subtree o copia también documentados).
 2. Crear `sdaf.config.yaml` copiando un escenario de [`examples/`](examples/README.md). Claves: [`sdaf.config.schema.yaml`](sdaf.config.schema.yaml) / [`sdaf.config.schema.json`](sdaf.config.schema.json).
 3. Ejecutar skill `sdaf-bootstrap` (o materializar `AGENTS.md` y el árbol a mano).
 4. Añadir handbook de **producto** (plantilla `templates/handbook-product.md`).
 5. ⛔ Gate 0 (`skills/sdaf-gate0`) antes de código de producto.
 
-`sdaf.version` en el YAML puede seguir en `0.3.0` con pin `v0.3.3`. Quien se quede en `v0.2.1` no está obligado.
+`sdaf.version` en el YAML nombra la línea de constitución: `0.4.0` con pin `v0.4.0`, `0.3.0` con pin `v0.3.3`. No existe el tag `v0.3.0`. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
 
 ## Estado
 
 | | Artefacto | Estado |
 |--|-----------|--------|
-| ✅ | Handbook del método | **Approved** 00–12 y A–B (v0.3.3) |
+| ✅ | Handbook del método | **Approved** 00–13 y A–B (línea 0.4.0) |
 | ✅ | Agentes, prompts y skills | **Approved** (v0.3.3; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
-| | Release del árbol (tag) | **v0.3.3** |
+| | Release del árbol (tag) | **v0.3.3**; `v0.4.0` se crea tras el merge de la línea 0.4.0 |
 
 ## Origen
 
-Extraído como núcleo reutilizable (ADR-008) desde un laboratorio de gobernanza. El primer producto que lo inspiró no forma parte de este repositorio.
+Extraído como núcleo reutilizable ([ADR-001](architecture/decisions/ADR-001-nucleo-reutilizable.md), Aceptado) desde un laboratorio de gobernanza. El primer producto que lo inspiró no forma parte de este repositorio.

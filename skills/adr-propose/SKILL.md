@@ -45,3 +45,9 @@ description: Propone o enmienda ADRs en Draft con plantilla y consecuencias. Usa
 |---------|---------|
 | [architecture-agent](../../prompts/agents/architecture-agent.md) | Prompt del rol |
 | [templates/adr.md](../../templates/adr.md) | Plantilla ADR |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.2.0 | 2026-08-25 | Fila inicial de historial (cabecera ya publicada) |

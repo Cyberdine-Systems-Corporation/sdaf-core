@@ -1,0 +1,35 @@
+archivo: README.md
+titulo: SDAF — Handbook del método
+version: 0.4.0
+estado: Approved
+fecha: ""
+parte: ""
+norma_superior: ""
+deriva_hacia: ""
+toc: ""
+relacionado:
+  - destino: "[README del core](../README.md)"
+    por_que: "Tres puertas: adoptar, constitución, Gate 0"
+  - destino: "[Adopción y upgrade](../docs/adopcion-y-upgrade.md)"
+    por_que: Pin a tag y bootstrap (HOWTO, no constitución)
+  - destino: "[mapa-navegacion.md](../docs/mapa-navegacion.md)"
+    por_que: Ocho tareas y clics
+  - destino: "[branding.md](../docs/branding.md)"
+    por_que: Identidad visual del core (HOWTO, no constitución)
+  - destino: "[00-preface.md](00-preface.md)"
+    por_que: Qué es y qué no es este handbook
+  - destino: "[09-testing-framework.md](09-testing-framework.md)"
+    por_que: Parte III (calidad y entrega)
+historial:
+  - version: 0.4.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "Índice: Parte IV con H13 Approved; estado Derogado vigente"
+  - version: 0.3.3
+    fecha: 2026-09-19
+    cambio: Fila inicial de historial (cabecera ya publicada)
+cabecera:
+  Versión: 0.4.0
+  Estado: Approved
+  Idioma: Español
+  Clasificación: Constitución del método (no del producto)
+  Última actualización: "2026-09-24T18:54+02:00"

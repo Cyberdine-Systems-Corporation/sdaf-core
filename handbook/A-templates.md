@@ -1,16 +1,6 @@
 # Apéndice A — Templates
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.0 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-18 |
-| **Parte** | Apéndices |
-| **Norma superior** | Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/` |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Relacionado](#relacionado) · [Historial](#2-historial)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/A-templates.yaml`.
 
 ## 1. Propósito
 
@@ -30,25 +20,3 @@
 Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no se duplican aquí para no divergir.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [04-specification-standard.md](04-specification-standard.md) | Cabecera de spec |
-| [08-agent-traceability.md](08-agent-traceability.md) | Campos del worklog |
-| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Contrato de agente |
-| [12-security-standards.md](12-security-standards.md) | Plantilla SECURITY.md |
-
-## 2. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.2 | 2026-09-19 | Worklog: origen de cambios (H08 §4.3); sin cambio de norma de A |
-| 0.3.0 | 2026-09-19 | Plantilla `templates/security.md` Approved (sin cambio de norma de A) |
-| 0.3.0 | 2026-09-18 | Plantilla `templates/security.md` |
-| 0.2.2 | 2026-09-17 | TOC, Relacionado y enlaces a plantillas (sin cambio de norma) |
-| 0.2.1 | 2026-09-13 | Worklog: recibo y línea de decisión; contrato: contexto autorizado |
-| 0.2.0 | 2026-08-25 | Renombrado B→A; plantilla handbook de producto |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Índice genérico (ADR-008) |

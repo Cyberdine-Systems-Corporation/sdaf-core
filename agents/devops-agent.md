@@ -4,7 +4,7 @@
 |--------|--------|
 | Versión | 0.3.0 |
 | Estado | Approved |
-| Fecha | 2026-09-18 |
+| Fecha | 2026-09-19 |
 | Modo | stub |
 | Prompt base | `prompts/agents/devops-agent.md` |
 
@@ -57,4 +57,10 @@ Entrega del encargo puntual + handoff documentado.
 | Norma | `handbook/11-devops.md` | Local-first y runbook | sí (si se activa) |
 | IDE | `.cursor/rules/idioma-castellano.mdc` | Castellano en artefactos | si Cursor |
 | IDE | `.cursor/rules/git-remoto-encargo.mdc` | Git/remoto solo si este turno lo nombra (H06 §7) | si Cursor |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.3.0 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |
 

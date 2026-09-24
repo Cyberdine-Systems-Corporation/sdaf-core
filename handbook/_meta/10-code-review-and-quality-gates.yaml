@@ -1,0 +1,40 @@
+archivo: 10-code-review-and-quality-gates.md
+titulo: 10 — Code Review and Quality Gates
+version: 0.4.0
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: III — Calidad y entrega
+norma_superior: "[05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md)"
+deriva_hacia: Agente Testing+Review, PRs, CI local del consumidor
+toc: ""
+relacionado:
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: G0–G3; este capítulo detalla QG
+  - destino: "[09-testing-framework.md](09-testing-framework.md)"
+    por_que: QG-Unit / QG-Accept
+  - destino: "[12-security-standards.md](12-security-standards.md)"
+    por_que: QG-Sec y checklist §3.6
+  - destino: "[08-agent-traceability.md](08-agent-traceability.md)"
+    por_que: Origen de cambios en Gate 2
+  - destino: "[skills/testing-review-pr](../skills/testing-review-pr/SKILL.md)"
+    por_que: Playbook de Gate 2
+historial:
+  - version: 0.4.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "«Nominada» = CODEOWNERS; el mantenedor nombrado puede aprobar su propio PR (cambio de significado, aceptación humana); auto-merge sigue prohibido"
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: QG-Review exige humano nominado; QG-Sec enlaza H12 §5.2; origen ATF en checklist
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Draft: trasplante genérico del extract H17; coding standards fuera del core"
+cabecera:
+  Versión: 0.4.0
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: III — Calidad y entrega
+  Norma superior: "[05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md)"
+  Deriva hacia: Agente Testing+Review, PRs, CI local del consumidor

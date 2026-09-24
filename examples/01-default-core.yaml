@@ -4,7 +4,7 @@
 # Qué no hace: no añade Frontend ni skills de un lenguaje.
 
 sdaf:
-  version: "0.3.0"
+  version: "0.4.0"
 
 project:
   name: MiProyecto

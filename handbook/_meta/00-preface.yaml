@@ -1,0 +1,47 @@
+archivo: 00-preface.md
+titulo: 00 — Preface
+version: 0.4.0
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: Front matter
+norma_superior: Ninguna (inaugura la constitución del método)
+deriva_hacia: Todo este handbook
+toc: ""
+relacionado:
+  - destino: "[README del handbook](README.md)"
+    por_que: Índice y estados de capítulo
+  - destino: "[01-sdaf-framework.md](01-sdaf-framework.md)"
+    por_que: Definición del marco
+  - destino: "[09-testing-framework.md](09-testing-framework.md)"
+    por_que: "Parte III: tests desde specs"
+  - destino: "[docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md)"
+    por_que: HOWTO de pin y bootstrap
+historial:
+  - version: 0.4.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "Remite a H13 Approved (ciclo de vida, derogación, breaking, quién acepta); las viñetas de §3 siguen vigentes"
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: "Enlaces a Parte III: se retira el calificador Draft (sin cambio de norma)"
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Orden de lectura: Parte III y apéndice B (sin cambio de norma de 00–08)"
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado y alerta de lectura (sin cambio de norma)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumeración correlativa; orden de lectura Parte I / II / Apéndice A
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Extracción genérica desde laboratorio SDAF (ADR-008)
+cabecera:
+  Versión: 0.4.0
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: Front matter
+  Norma superior: Ninguna (inaugura la constitución del método)
+  Deriva hacia: Todo este handbook

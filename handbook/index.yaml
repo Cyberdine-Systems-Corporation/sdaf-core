@@ -1,0 +1,105 @@
+linea: "0.4.0"
+nota: Andamiaje de capítulos en handbook/_meta. El cuerpo es norma.
+capitulos:
+  - id: 00-preface
+    archivo: 00-preface.md
+    meta: _meta/00-preface.yaml
+    version: "0.4.0"
+    estado: Approved
+    titulo: 00 — Preface
+  - id: 01-sdaf-framework
+    archivo: 01-sdaf-framework.md
+    meta: _meta/01-sdaf-framework.yaml
+    version: "0.2.2"
+    estado: Approved
+    titulo: 01 — SDAF Framework
+  - id: 02-engineering-principles
+    archivo: 02-engineering-principles.md
+    meta: _meta/02-engineering-principles.yaml
+    version: "0.3.0"
+    estado: Approved
+    titulo: 02 — Engineering Principles
+  - id: 03-repository-organization
+    archivo: 03-repository-organization.md
+    meta: _meta/03-repository-organization.yaml
+    version: "0.2.3"
+    estado: Approved
+    titulo: 03 — Repository Organization
+  - id: 04-specification-standard
+    archivo: 04-specification-standard.md
+    meta: _meta/04-specification-standard.yaml
+    version: "0.2.2"
+    estado: Approved
+    titulo: 04 — Specification Standard
+  - id: 05-development-workflow
+    archivo: 05-development-workflow.md
+    meta: _meta/05-development-workflow.yaml
+    version: "0.3.3"
+    estado: Approved
+    titulo: 05 — Development Workflow
+  - id: 06-ai-agent-framework
+    archivo: 06-ai-agent-framework.md
+    meta: _meta/06-ai-agent-framework.yaml
+    version: "0.3.3"
+    estado: Approved
+    titulo: 06 — AI Agent Framework
+  - id: 07-prompt-engineering-standard
+    archivo: 07-prompt-engineering-standard.md
+    meta: _meta/07-prompt-engineering-standard.yaml
+    version: "0.3.0"
+    estado: Approved
+    titulo: 07 — Prompt Engineering Standard
+  - id: 08-agent-traceability
+    archivo: 08-agent-traceability.md
+    meta: _meta/08-agent-traceability.yaml
+    version: "0.4.0"
+    estado: Approved
+    titulo: 08 — Agent Traceability Framework
+  - id: 09-testing-framework
+    archivo: 09-testing-framework.md
+    meta: _meta/09-testing-framework.yaml
+    version: "0.3.0"
+    estado: Approved
+    titulo: 09 — Testing Framework
+  - id: 10-code-review-and-quality-gates
+    archivo: 10-code-review-and-quality-gates.md
+    meta: _meta/10-code-review-and-quality-gates.yaml
+    version: "0.4.0"
+    estado: Approved
+    titulo: 10 — Code Review and Quality Gates
+  - id: 11-devops
+    archivo: 11-devops.md
+    meta: _meta/11-devops.yaml
+    version: "0.3.0"
+    estado: Approved
+    titulo: 11 — DevOps
+  - id: 12-security-standards
+    archivo: 12-security-standards.md
+    meta: _meta/12-security-standards.yaml
+    version: "0.3.2"
+    estado: Approved
+    titulo: 12 — Security Standards
+  - id: 13-enmienda-excepciones-ciclo-de-vida
+    archivo: 13-enmienda-excepciones-ciclo-de-vida.md
+    meta: _meta/13-enmienda-excepciones-ciclo-de-vida.yaml
+    version: "0.4.0"
+    estado: Approved
+    titulo: 13 — Enmienda, excepciones y ciclo de vida
+  - id: A-templates
+    archivo: A-templates.md
+    meta: _meta/A-templates.yaml
+    version: "0.3.3"
+    estado: Approved
+    titulo: Apéndice A — Templates
+  - id: B-glossary
+    archivo: B-glossary.md
+    meta: _meta/B-glossary.yaml
+    version: "0.3.3"
+    estado: Approved
+    titulo: Apéndice B — Glossary
+  - id: README
+    archivo: README.md
+    meta: _meta/README.yaml
+    version: "0.4.0"
+    estado: Approved
+    titulo: SDAF — Handbook del método

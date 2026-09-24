@@ -1,0 +1,47 @@
+archivo: 08-agent-traceability.md
+titulo: 08 — Agent Traceability Framework
+version: 0.4.0
+estado: Approved
+fecha: "2026-09-24T18:54+02:00"
+parte: II — Ingeniería IA
+norma_superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md)"
+deriva_hacia: "`worklogs/` del consumidor, templates"
+toc: ""
+relacionado:
+  - destino: "[templates/worklog.md](../templates/worklog.md)"
+    por_que: Plantilla ATF
+  - destino: "[skills/sdaf-worklog-handoff](../skills/sdaf-worklog-handoff/SKILL.md)"
+    por_que: Cerrar y pasar el testigo
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: G0.5 exige worklog abierto
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: Origen de cambios en Gate 2 / QG-Review
+historial:
+  - version: 0.4.0
+    fecha: "2026-09-24T18:54+02:00"
+    cambio: "Frontmatter; inicio/fin con hora y zona; tiempo ISO 8601 y coste estructurado (N/D solo con motivo); campos commit/PR/rama/SHA y resumen_acumulado; tabla vigente sigue válida (sin backfill)"
+  - version: 0.3.2
+    fecha: 2026-09-19
+    cambio: Origen de cambios (humano / ia / mixto / dependencia) en worklogs nuevos de código de producto; sin backfill
+  - version: 0.2.2
+    fecha: 2026-09-17
+    cambio: TOC, Relacionado, diagrama y alerta ATF (sin cambio de norma)
+  - version: 0.2.1
+    fecha: 2026-09-13
+    cambio: Recibo de iteración y línea de decisión (opcionales; sin backfill)
+  - version: 0.2.0
+    fecha: 2026-08-25
+    cambio: Renumerado (ex-15); Parte II
+  - version: 0.1.1
+    fecha: 2026-08-24
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.1.0
+    fecha: 2026-08-24
+    cambio: Extracción genérica; worklogs en el consumidor (ADR-008)
+cabecera:
+  Versión: 0.4.0
+  Estado: Approved
+  Fecha: "2026-09-24T18:54+02:00"
+  Parte: II — Ingeniería IA
+  Norma superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md)"
+  Deriva hacia: "`worklogs/` del consumidor, templates"

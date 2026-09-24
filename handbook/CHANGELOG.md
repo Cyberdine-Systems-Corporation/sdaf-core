@@ -1,12 +1,25 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.4.0 — 2026-09-24T18:54+02:00
+
+Línea nueva de constitución (**no** breaking de citas `H00`–`H12`). Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
+
+- H13 Approved (`0.4.0`): enmienda, excepciones con caducidad, derogación, qué es breaking, regla de bump, mantenedor único y fechas con hora y zona desde esta línea (§9). Parte IV del índice.
+- ADR-001 (núcleo reutilizable), ADR-002 (gobernanza) y ADR-003 (formato) Aceptados, en [`architecture/decisions/`](../architecture/decisions/README.md). Los ADRs del core se numeran desde 001: «ADR-008» en las entradas anteriores equivale a ADR-001.
+- H00 `0.4.0`: remite a H13. H10 `0.4.0`: «nominada» = CODEOWNERS; el mantenedor nombrado puede aprobar su propio PR. H08 `0.4.0`: worklog con frontmatter, `inicio`/`fin` con hora y zona, `tiempo` y `coste` estructurados (`N/D` solo con motivo) y `commit`/`pr`/`rama`/`sha`; la tabla vigente sigue válida, sin backfill. H07 `0.3.0`: el andamiaje de capítulos vive en `handbook/_meta/`. H03 `0.2.3`: el core publica sus ADRs.
+- Formato: cabecera, TOC, Relacionado e Historial de los capítulos salen del cuerpo a `handbook/_meta/` e `handbook/index.yaml`. Quien parsee el historial en el cuerpo debe leer el sidecar.
+- Tooling: validador de config (I1–I3 error, I4 aviso / `--strict-i4`), action `validate-sdaf`, metadatos de versión, historial que solo crece, fechas con hora (H13 §9), ADRs del core (`check-adrs.py`: numeración, estado, fechas e índice), schema de worklog, presencia de worklog.
+- Worklog del cambio: [`worklogs/INIT-auditoria-v0.3.3/Iteration-001.md`](../worklogs/INIT-auditoria-v0.3.3/Iteration-001.md). El core guarda en `worklogs/` los worklogs de sus cambios materiales ([H08 §5](08-agent-traceability.md)).
+
+`sdaf.version: "0.4.0"` nombra esta línea. Pin de árbol: `v0.4.0`, tag que se crea tras el merge; hasta que exista, el pin publicado es `v0.3.3` con `sdaf.version: "0.3.0"`.
+
 ## 0.3.3 — 2026-09-19
 
 Parche (**no** breaking de citas `H00`–`H08`). H06 §7: **encargo vigente** = el mensaje de usuario de **este turno**. El historial de la conversación, un PR abierto o terminar archivos no autorizan commit ni escritura al remoto. Autoriza solo lo que este mensaje nombra.
 
 Copia operativa: regla IDE `git-remoto-encargo`, `AGENTS.md.template`, `prompts/system/master-architect.md`.
 
-`sdaf.version` puede seguir `0.3.0`. Pin de árbol: `v0.3.3`.
+`sdaf.version` nombra la **línea de constitución** (`0.3.0`), no un tag. Pin de árbol: `v0.3.3`.
 
 ## 0.3.2 — 2026-09-19
 
@@ -18,7 +31,7 @@ Parche (**no** breaking de citas `H00`–`H08`). Ganchos de gobernanza **sin est
 - H08 §4.3: origen de cambios (`humano` / `ia` / `mixto` / `dependencia`) en worklogs **nuevos** de código de producto; sin backfill.
 - Catálogo: `security-review` prioridad alta.
 
-`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche.
+`sdaf.version` nombra la **línea de constitución** (`0.3.0`), no un tag. Pin de árbol: `v0.3.2` (incluido en `v0.3.3`).
 
 ## 0.3.1 — 2026-09-19
 
@@ -26,7 +39,7 @@ Parche (**no** breaking de citas `H00`–`H08`). Enmienda de H06: los agentes no
 
 El consumidor puede exceptuarlo por cláusula en su `AGENTS.md` o por ADR; la cláusula debe **enumerar** qué permite. Lo no enumerado sigue prohibido. Force-push, reescribir historia y auto-merge siguen exigiendo orden humana.
 
-`sdaf.version` puede seguir `0.3.0`. Pin de árbol: el tag posterior a este parche (no exige retag de `v0.3.0` si aún no existe).
+`sdaf.version` nombra la **línea de constitución** (`0.3.0`), no un tag. Esta entrada **no** tiene tag `v0.3.1`. Pin de árbol: `v0.3.2` o `v0.3.3`.
 
 ## 0.3.0 — 2026-09-19
 
@@ -38,7 +51,7 @@ Línea nueva de constitución (**no** breaking de citas `H00`–`H08`). Caps. 09
 - Prompts `prompts/review/`, `prompts/quality/`, `prompts/planning/`.
 - Plantilla `templates/security.md` (el consumidor materializa `SECURITY.md`).
 
-El consumidor puede seguir pinneado a `v0.2.1` / `sdaf.version` `0.2.0` hasta que adopte esta línea. Pin de árbol 0.3.0: tras el tag `v0.3.0`.
+El consumidor puede seguir pinneado a `v0.2.1` / `sdaf.version` `0.2.0` hasta que adopte esta línea. Esta entrada **no** tiene tag `v0.3.0`. Pin de árbol de la línea 0.3: `v0.3.2` o `v0.3.3`. `sdaf.version: "0.3.0"` nombra la línea de constitución, no un tag.
 
 ## 0.2.2 — 2026-09-17
 

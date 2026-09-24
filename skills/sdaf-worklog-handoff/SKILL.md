@@ -8,10 +8,10 @@ description: Cierra o inicia iteraciones ATF y handoffs entre agentes con planti
 | Campo | Valor |
 |--------|--------|
 | ID | sdaf-worklog-handoff |
-| Versión | 0.3.2 |
+| Versión | 0.4.0 |
 | Estado | Approved |
 | Prioridad | alta |
-| Fecha | 2026-09-19 |
+| Fecha | 2026-09-24T18:54+02:00 |
 | Norma | [handbook/08](../../handbook/08-agent-traceability.md) |
 
 ## Disparadores
@@ -22,7 +22,7 @@ description: Cierra o inicia iteraciones ATF y handoffs entre agentes con planti
 ## Pasos
 
 1. Ruta: `worklogs/<contexto>/Iteration-NNN.md` en el **repo consumidor**.
-2. Completar campos mínimos (H08): fecha, agente, modelo, contexto, specs, archivos leídos/modificados, resultado, pruebas, estado, siguiente agente.
+2. Completar campos mínimos (H08): en worklogs **nuevos**, frontmatter de [`templates/worklog.md`](../../templates/worklog.md) (incl. `inicio`/`fin` con hora y zona, `tiempo` y `coste` medidos o `N/D: <motivo>`, `commit`/`pr`/`rama`/`sha` o `null`, y `resumen_acumulado`). La tabla markdown vigente sigue válida.
 3. Recibo de iteración (recomendado en worklogs nuevos): `prompt_id@version` base, prompts adicionales (`ninguno` o ids), `skill-id@version`, reglas IDE, ad hoc (`ninguno` o párrafo en el worklog).
 4. Si hubo elección normativa, apartado **Línea de decisión** citando spec/ADR/capítulo § (índice; no volcar el prompt). Si no hubo, `N/A`.
 5. Si la iteración toca código de producto: **Origen de cambios** por archivo (`humano` / `ia` / `mixto` / `dependencia`) o tabla resumen (H08 §4.3). Si no toca código: `N/A`. No backfill de worklogs anteriores.
@@ -49,6 +49,7 @@ description: Cierra o inicia iteraciones ATF y handoffs entre agentes con planti
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.4.0 | 2026-09-24T18:54+02:00 | Frontmatter y cadena commit/PR/rama/SHA; tabla vigente sin backfill |
 | 0.3.2 | 2026-09-19 | Origen de cambios (H08 §4.3) en worklogs nuevos de código de producto |
 | 0.2.1 | 2026-09-13 | Recibo ATF y línea de decisión en worklogs nuevos |
 

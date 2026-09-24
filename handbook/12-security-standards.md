@@ -1,17 +1,6 @@
 # 12 — Security Standards
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.2 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | III — Calidad y entrega |
-| **Norma superior** | [02-engineering-principles.md](02-engineering-principles.md), [05-development-workflow.md](05-development-workflow.md) |
-| **Deriva hacia** | [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md), `templates/security.md`, Testing+Review, skill `security-review` |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Alcance](#2-alcance-y-no-alcance) · [Referencias](#3-referencias-externas-marco-no-checklist-interminable) · [Baseline](#4-baseline-obligatorio) · [Gates](#5-gates-y-review) · [Roles](#6-roles)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/12-security-standards.yaml`.
 
 ## 1. Propósito
 
@@ -148,20 +137,3 @@ Skill operativa: [`skills/security-review`](../skills/security-review/SKILL.md).
 | Humano | Aprobar enmiendas de este capítulo; QG-Review (H10); severidad en demos externas |
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG-Sec y checklist de review |
-| [11-devops.md](11-devops.md) | Secretos y runbook |
-| [templates/security.md](../templates/security.md) | Plantilla de reporte del consumidor |
-| [skills/security-review](../skills/security-review/SKILL.md) | Playbook de review de seguridad |
-
-## 7. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.2 | 2026-09-19 | §3 catálogo baseline / overlay / fuera del método; QG-Sec alineado al mapa §4.3 (sin estatizar adopción) |
-| 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
-| 0.3.0 | 2026-09-18 | Draft: trasplante genérico del extract H20; auth concreta fuera del core |

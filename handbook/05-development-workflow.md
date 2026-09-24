@@ -1,17 +1,6 @@
 # 05 — Development Workflow
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.3 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-19 |
-| **Parte** | I — Método SDAF |
-| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md) |
-| **Deriva hacia** | `worklogs/`, `backlog/`, agentes |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Flujo](#2-flujo-de-extremo-a-extremo) · [Gate 0](#3-gate-0-pre-implementación-stop) · [Gate 1](#4-gate-1-durante-la-implementación) · [Gate 2](#5-gate-2-listo-para-revisión-merge) · [Gate 3](#6-gate-3-cierre-de-release-demo) · [Roles](#7-roles-en-el-flujo) · [Violaciones](#8-violaciones)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/05-development-workflow.yaml`.
 
 ## 1. Propósito
 
@@ -133,26 +122,3 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 > Debe registrarse, revertirse o regularizarse (spec retroactiva **prohibida** como hábito; solo con ADR de excepción y plan de corrección).
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [skills/sdaf-gate0](../skills/sdaf-gate0/SKILL.md) | Playbook del Gate 0 |
-| [08-agent-traceability.md](08-agent-traceability.md) | Worklog obligatorio (G0.5) |
-| [03-repository-organization.md](03-repository-organization.md) | Árbol que el bootstrap debe dejar listo |
-| [10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md) | QG técnicos; no redefinen G0–G3 |
-| [06-ai-agent-framework.md](06-ai-agent-framework.md) | Cuándo un agente puede commit o escribir el remoto (G1.5) |
-
-## 9. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.3 | 2026-09-19 | G1.5: la petición git/remoto es la de este turno (H06 §7; sin redefinir G0–G3) |
-| 0.3.1 | 2026-09-19 | G1.5: idioma de commits; el cuándo (local y remoto) queda en H06 §7 (sin redefinir G0–G3) |
-| 0.3.0 | 2026-09-19 | Gate 2: se retira el calificador Draft de H10/H11 (sin redefinir G0–G3) |
-| 0.3.0 | 2026-09-18 | Gate 2 enlaza H10/H11 (sin redefinir G0–G3) |
-| 0.2.2 | 2026-09-17 | TOC, Relacionado, diagrama y alertas de gate (sin cambio de norma) |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-09); paso 0 bootstrap; Parte I |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Gates genéricos; sin roles de stack concreto (ADR-008) |

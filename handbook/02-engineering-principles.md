@@ -1,17 +1,6 @@
 # 02 — Engineering Principles
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.0 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-18 |
-| **Parte** | I — Método SDAF |
-| **Norma superior** | [01-sdaf-framework.md](01-sdaf-framework.md) |
-| **Deriva hacia** | Workflow, arquitectura del consumidor, testing, agentes |
-
----
-
-**En esta página:** [Propósito](#1-propósito) · [Principios](#2-principios) · [Anti-patrones](#3-anti-patrones-prohibidos)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/02-engineering-principles.yaml`.
 
 ## 1. Propósito
 
@@ -101,24 +90,3 @@ Identificadores de código pueden seguir convenciones técnicas en inglés si el
 | Merge/demo sin acceptance del flujo crítico | Deuda opaca |
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [01-sdaf-framework.md](01-sdaf-framework.md) | Jerarquía normativa |
-| [05-development-workflow.md](05-development-workflow.md) | Un solo pipeline; gates |
-| [04-specification-standard.md](04-specification-standard.md) | Specs como verdad operativa |
-| [09-testing-framework.md](09-testing-framework.md) | Test from Specs |
-| [11-devops.md](11-devops.md) | Runtime local canónico |
-
-## 4. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.0 | 2026-09-19 | Relacionado: se retira el calificador Draft de H09/H11 (sin cambio de norma) |
-| 0.3.0 | 2026-09-18 | Relacionado: H09 y H11 (sin cambio de norma) |
-| 0.2.2 | 2026-09-17 | TOC y Relacionado (sin cambio de norma) |
-| 0.2.0 | 2026-08-25 | Renumerado (ex-06); Parte I |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Extracción genérica (ADR-008) |

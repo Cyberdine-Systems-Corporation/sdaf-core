@@ -6,7 +6,7 @@
 | Versión | 0.1.0 |
 | Estado | Draft / Approved |
 | Agente / rol | |
-| Fecha | YYYY-MM-DD |
+| Fecha | YYYY-MM-DDThh:mm±hh:mm |
 
 ## Objetivo
 

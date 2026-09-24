@@ -1,0 +1,34 @@
+archivo: 11-devops.md
+titulo: 11 — DevOps
+version: 0.3.0
+estado: Approved
+fecha: 2026-09-19
+parte: III — Calidad y entrega
+norma_superior: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [05-development-workflow.md](05-development-workflow.md)"
+deriva_hacia: "Runbooks en `docs/` del consumidor, `.github/`, skill `devops-ci-gate`"
+toc: ""
+relacionado:
+  - destino: "[02-engineering-principles.md](02-engineering-principles.md)"
+    por_que: Automation First, local
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: G2.5 runbook
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG ejecutables en local
+  - destino: "[12-security-standards.md](12-security-standards.md)"
+    por_que: Secretos fuera de git
+  - destino: "[skills/devops-ci-gate](../skills/devops-ci-gate/SKILL.md)"
+    por_que: Playbook stub-aware
+historial:
+  - version: 0.3.0
+    fecha: 2026-09-19
+    cambio: Approved (aprobación humana del director técnico)
+  - version: 0.3.0
+    fecha: 2026-09-18
+    cambio: "Draft: trasplante genérico del extract H18; orquestación concreta fuera del core"
+cabecera:
+  Versión: 0.3.0
+  Estado: Approved
+  Fecha: 2026-09-19
+  Parte: III — Calidad y entrega
+  Norma superior: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [05-development-workflow.md](05-development-workflow.md)"
+  Deriva hacia: "Runbooks en `docs/` del consumidor, `.github/`, skill `devops-ci-gate`"

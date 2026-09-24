@@ -4,7 +4,7 @@
 # El árbol SDAF (specs/, worklogs/, handbook) sigue en la raíz; solo cambia el código.
 
 sdaf:
-  version: "0.3.0"
+  version: "0.4.0"
 
 project:
   name: MiProyecto

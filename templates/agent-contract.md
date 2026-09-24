@@ -4,7 +4,7 @@
 |--------|--------|
 | Versión | 0.1.0 |
 | Estado | Draft / Approved |
-| Fecha | YYYY-MM-DD |
+| Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Modo | active / stub |
 | Prompt base | prompts/agents/... |
 
@@ -38,3 +38,9 @@ Ruta versionada en `prompts/agents/`.
 | Flujo | skills/… | … | según gate |
 | IDE | .cursor/rules/idioma-castellano.mdc | Castellano en artefactos | si runtime Cursor |
 | IDE | .cursor/rules/git-remoto-encargo.mdc | Git/remoto solo si este turno lo nombra (H06 §7) | si runtime Cursor |
+
+## Historial
+
+| Versión | Fecha | Cambio |
+|---------|--------|--------|
+| 0.1.0 | 2026-08-25 | Fila inicial de historial (cabecera ya publicada) |

@@ -1,17 +1,6 @@
 # 00 — Preface
 
-| Campo | Valor |
-|--------|--------|
-| **Versión** | 0.3.0 |
-| **Estado** | Approved |
-| **Fecha** | 2026-09-18 |
-| **Parte** | Front matter |
-| **Norma superior** | Ninguna (inaugura la constitución del método) |
-| **Deriva hacia** | Todo este handbook |
-
----
-
-**En esta página:** [Por qué existe](#1-por-qué-existe-este-handbook) · [Qué es y qué no es](#2-qué-es-y-qué-no-es) · [Autoridad](#3-autoridad) · [Doble entregable](#4-doble-entregable) · [Cómo leer](#5-cómo-leer-este-handbook) · [Idioma](#6-idioma-y-estilo) · [Audiencia](#7-audiencia)
+> Andamiaje (cabecera, TOC, Relacionado, Historial): `_meta/00-preface.yaml`.
 
 ## 1. Por qué existe este handbook
 
@@ -56,6 +45,8 @@ El **producto** concreto (charter, MVP, dominio) lo define el repo consumidor, n
 3. Ningún agente IA puede autodeclarar un capítulo como Approved.
 4. Ninguna implementación puede contradecir un capítulo Approved. Si el código lo exige, primero se enmienda la norma o se registra un ADR de excepción temporal con fecha de caducidad.
 
+El ciclo de vida ampliado (derogación, breaking, quién acepta, excepción con caducidad) está en [13-enmienda-excepciones-ciclo-de-vida.md](13-enmienda-excepciones-ciclo-de-vida.md) (Approved) y [ADR-002](../architecture/decisions/ADR-002-gobernanza-del-metodo.md) (Aceptado). Las cuatro viñetas de esta sección siguen vigentes; H13 las desarrolla. «Director técnico» no está definido; ver H13 §2.
+
 ---
 
 ## 4. Doble entregable
@@ -99,23 +90,3 @@ Regla práctica: si vas a implementar y no puedes citar spec + ADR (si aplica) +
 Arquitecto / director técnico, Product Owner, desarrolladores, agentes IA del repositorio, revisores. Todos sujetos a la misma constitución. La IA no tiene privilegios para saltarse gates.
 
 ---
-
-## Relacionado
-
-| Destino | Por qué |
-|---------|---------|
-| [README del handbook](README.md) | Índice y estados de capítulo |
-| [01-sdaf-framework.md](01-sdaf-framework.md) | Definición del marco |
-| [09-testing-framework.md](09-testing-framework.md) | Parte III: tests desde specs |
-| [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | HOWTO de pin y bootstrap |
-
-## 8. Historial
-
-| Versión | Fecha | Cambio |
-|---------|--------|--------|
-| 0.3.0 | 2026-09-19 | Enlaces a Parte III: se retira el calificador Draft (sin cambio de norma) |
-| 0.3.0 | 2026-09-18 | Orden de lectura: Parte III y apéndice B (sin cambio de norma de 00–08) |
-| 0.2.2 | 2026-09-17 | TOC, Relacionado y alerta de lectura (sin cambio de norma) |
-| 0.2.0 | 2026-08-25 | Renumeración correlativa; orden de lectura Parte I / II / Apéndice A |
-| 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
-| 0.1.0 | 2026-08-24 | Extracción genérica desde laboratorio SDAF (ADR-008) |
