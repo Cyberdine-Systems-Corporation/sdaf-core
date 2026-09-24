@@ -3,18 +3,18 @@
 Usar desde un repo consumidor pinneado a un tag de sdaf-core que incluya esta action.
 
 ```yaml
-- uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.3.0
+- uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
   with:
     fetch-depth: 0 # necesario para el chequeo de worklog en PRs
-- uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+- uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
   with:
     python-version: "3.12"
-- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@<tag-o-SHA-posterior-a-v0.3.3>
+- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.4.0
   with:
     config-paths: sdaf.config.yaml
 ```
 
-Hasta que exista un tag posterior a esta action, referencia el SHA o la rama del core que la contenga. Un consumidor pinneado a `v0.2.1` o `v0.3.3` no la recibe.
+Disponible desde `v0.4.0`. Un consumidor pinneado a `v0.2.1` o `v0.3.3` no la recibe hasta que mueva el pin.
 
 ## Inputs
 
