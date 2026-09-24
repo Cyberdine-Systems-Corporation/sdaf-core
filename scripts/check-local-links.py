@@ -35,6 +35,10 @@ def iter_md(root: Path):
     for p in root.rglob("*.md"):
         if any(part in SKIP_DIRS for part in p.parts):
             continue
+        # mkdocs/ es tooling: mkdocs.yml lo excluye (docs_dir es la raíz). Su espejo
+        # mkdocs/src/ son symlinks y sus enlaces se resolverían desde mkdocs/src/.
+        if p.relative_to(root).parts[0] == "mkdocs":
+            continue
         yield p
 
 
