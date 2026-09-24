@@ -4215,7 +4215,7 @@
 <tbody>
 <tr>
 <td>Tag Git <code>vX.Y.Z</code></td>
-<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>. <code>v0.4.0</code> se crea tras el merge de la línea 0.4.0.</td>
+<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>, <code>v0.4.0</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>.</td>
 </tr>
 <tr>
 <td><code>sdaf.version</code> en <code>sdaf.config.yaml</code></td>
@@ -4229,7 +4229,7 @@
 </table>
 <blockquote>
 <p>[!TIP]
-El pin recomendado del árbol es <code>v0.4.0</code> en cuanto exista el tag; hasta entonces, <code>v0.3.3</code>. <code>sdaf.version</code> nombra la línea (<code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
+El pin recomendado del árbol es <code>v0.4.0</code>. <code>sdaf.version</code> nombra la línea (<code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
 </blockquote>
 <p>Subir de <code>0.1.x</code> a <code>0.2.0</code> es un upgrade consciente (breaking de citas de handbook).</p>
 <h2 id="adopción-canónica">Adopción (canónica)<a class="headerlink" href="#adopción-canónica" title="Permanent link">&para;</a></h2>
@@ -4246,7 +4246,7 @@ El pin recomendado del árbol es <code>v0.4.0</code> en cuanto exista el tag; ha
 <li>Añadir sdaf-core como <strong>submodule</strong> pinneado a un tag, p. ej. en <code>.sdaf/</code>:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git submodule add -b main &lt;url-sdaf-core&gt; .sdaf
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.3.3
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.4.0
 </code></pre></div>
 <ol>
 <li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.4.0"</code> con pin <code>v0.4.0</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
@@ -4351,7 +4351,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <p>No rompe citas. No exige cambiar <code>sdaf.version</code> si ya está en <code>0.3.0</code>.</p>
 <h2 id="040-opt-in">0.4.0 (opt-in)<a class="headerlink" href="#040-opt-in" title="Permanent link">&para;</a></h2>
 <p>Línea nueva de constitución. <strong>No</strong> rompe citas <code>H00</code>–<code>H12</code>. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
-<p>Al pinnear <code>v0.4.0</code> (tag que se crea tras el merge de esta línea):</p>
+<p>Al pinnear <code>v0.4.0</code>:</p>
 <ol>
 <li>Leer <a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/">H13</a>: enmienda, excepciones con caducidad, derogación, breaking y mantenedor único.</li>
 <li>QG-Review: «nominada» = la identidad de <code>CODEOWNERS</code> del consumidor (<a href="../../handbook/10-code-review-and-quality-gates/">H10</a>).</li>
