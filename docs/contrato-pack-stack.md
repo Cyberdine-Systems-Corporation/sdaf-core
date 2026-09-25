@@ -7,7 +7,7 @@ Norma operativa para autores de `sdaf-stack-<id>@<semver>`. Anclaje constitucion
 
 ## Identidad
 
-- Formato: `sdaf-stack-<id>@<semver>` (p. ej. `sdaf-stack-dotnet@0.1.1`).
+- Formato: `sdaf-stack-<id>@<semver>` (p. ej. `sdaf-stack-dotnet@0.3.0`).
 - El consumidor lo declara en `stack.pack` de `sdaf.config.yaml`.
 - `null` = solo método; sin playbooks de lenguaje/UI del pack.
 
@@ -38,7 +38,7 @@ Gate 0 y el router leen `stack.pack`. Si el pack no cumple este contrato, el con
 
 ## Pack de referencia
 
-Pack de referencia: [`sdaf-stack-dotnet@0.1.1`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.1.1) (primera publicación: [`v0.1.0`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.1.0)).
+Pack de referencia: [`sdaf-stack-dotnet@0.3.0`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.3.0) (primera publicación: [`v0.1.0`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.1.0)).
 
 ## Relacionado
 
