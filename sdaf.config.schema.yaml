@@ -31,7 +31,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
-| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.1`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
+| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.3.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
 | `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
 | `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
 
