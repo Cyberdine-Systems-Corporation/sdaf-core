@@ -83,7 +83,7 @@ gentle-ai review mode disable
 
 ## Cláusula para el AGENTS.md del consumidor
 
-gentle-ai inyecta sus propias instrucciones (ODD, delegación, memoria). Declara la precedencia en el `AGENTS.md` del consumidor para que el agente no tenga que adivinarla:
+gentle-ai inyecta sus propias instrucciones (ODD, delegación, memoria). Declara la precedencia en el `AGENTS.md` del consumidor para que el agente no tenga que adivinarla. Desde `0.4.2`, [`AGENTS.md.template`](../AGENTS.md.template) trae esta cláusula como sección opcional «Tooling externo» y [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) la conserva solo si `tooling.gentle_ai` ≠ `null`. Forma mínima:
 
 ```markdown
 ## Tooling de entorno (gentle-ai)

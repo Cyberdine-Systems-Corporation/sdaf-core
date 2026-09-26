@@ -1,5 +1,15 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.4.2 — 2026-09-26T17:27+02:00
+
+Parche (**no** breaking de citas `H00`–`H13` ni de configs). Sin cambio de capítulos. Cierra el seguimiento de [ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md).
+
+- `AGENTS.md.template` `0.4.2`: sección opcional «Tooling externo» con la cláusula de precedencia (Gate 0, H06 §7 y worklogs sobre `sdd-*`, ODD y la memoria del tooling). Se borra al materializar si `tooling.gentle_ai` no se declara.
+- `sdaf-bootstrap` `0.4.2`: `tooling` opcional en la config y la sección anterior solo si se declara.
+- Worklog: [`worklogs/ADR-004-tooling-externo/Iteration-006.md`](../worklogs/ADR-004-tooling-externo/Iteration-006.md).
+
+Quien no adopte tooling externo no tiene que hacer nada. Quien lo adopte regenera `AGENTS.md` ([`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md) paso 4). `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.2`, que se crea tras el merge.
+
 ## 0.4.1 — 2026-09-26T11:41+02:00
 
 Parche (**no** breaking de citas `H00`–`H13` ni de configs: toda `sdaf.config.yaml` válida en `0.4.0` sigue siéndolo). Sin cambio de capítulos. ADR-004 aceptado por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS).
