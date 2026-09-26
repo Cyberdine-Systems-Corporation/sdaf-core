@@ -72,6 +72,21 @@
           }
         }
       }
+    },
+    "tooling": {
+      "type": "object",
+      "description": "Tooling externo de agentes adoptado por el consumidor (opcional; ADR-004). Ausente = ninguno.",
+      "additionalProperties": false,
+      "properties": {
+        "gentle_ai": {
+          "description": "Release (semver) o SHA de commit de 40 hex de gentle-ai adoptado, o null si no se adopta",
+          "anyOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+            { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+          ]
+        }
+      }
     }
   }
 }

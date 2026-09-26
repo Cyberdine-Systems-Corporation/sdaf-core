@@ -156,6 +156,15 @@ Al pinnear `v0.4.0`:
 5. Opcional: composite action [`validate-sdaf`](../.github/actions/validate-sdaf/README.md) en el CI del consumidor.
 6. Actualizar `sdaf.version` a `"0.4.0"`.
 
+## 0.4.1 (parche)
+
+[ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md): el tooling externo de agentes es **opcional**. Al pinnear un tag que incluya 0.4.1:
+
+1. Nada obligatorio: toda `sdaf.config.yaml` válida en `0.4.0` sigue validando.
+2. Si el repo adopta gentle-ai, declararlo en `tooling.gentle_ai` (release o SHA de commit) y seguir [`integracion-gentle-ai.md`](integracion-gentle-ai.md).
+
+No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:

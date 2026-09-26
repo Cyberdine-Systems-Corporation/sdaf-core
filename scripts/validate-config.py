@@ -2,12 +2,13 @@
 """Valida sdaf.config.yaml (o rutas dadas) contra el JSON Schema y las invariantes.
 
 Sin argumentos: examples/*.yaml y sdaf.config.example.yaml.
-I1–I3 son error. I4 es aviso salvo --strict-i4.
+I1–I3 son error. I4 es aviso salvo --strict-i4. T1 es siempre aviso.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -35,6 +36,10 @@ EXTENSION_IDS = {
     "infrastructure",
     "ai",
 }
+# Última release de gentle-ai que incluye el componente sdd (retirado en main
+# por el merge 520ed86e8). Un SHA no se evalúa: sin red no se sabe si es anterior.
+GENTLE_AI_LAST_SDD = (3, 7, 0)
+SEMVER_RE = re.compile(r"^([0-9]+)\.([0-9]+)\.([0-9]+)$")
 
 
 def _list(value) -> list:
@@ -118,6 +123,15 @@ def semantic_issues(
             errors.append(detail)
         else:
             warnings.append(detail)
+
+    tooling = data.get("tooling") if isinstance(data.get("tooling"), dict) else {}
+    gentle_ai = tooling.get("gentle_ai")
+    match = SEMVER_RE.match(gentle_ai) if isinstance(gentle_ai, str) else None
+    if match and tuple(int(g) for g in match.groups()) <= GENTLE_AI_LAST_SDD:
+        warnings.append(
+            f"T1: gentle-ai {gentle_ai} incluye el componente sdd; "
+            "no instalarlo (ADR-004)"
+        )
 
     return errors, warnings
 

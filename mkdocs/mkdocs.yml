@@ -114,10 +114,12 @@ nav:
       - ADR-001: architecture/decisions/ADR-001-nucleo-reutilizable.md
       - ADR-002: architecture/decisions/ADR-002-gobernanza-del-metodo.md
       - ADR-003: architecture/decisions/ADR-003-formato-de-artefactos.md
+      - ADR-004: architecture/decisions/ADR-004-tooling-externo-de-agentes.md
   - Adopción y operación:
       - docs/README.md
       - Adopción y upgrade: docs/adopcion-y-upgrade.md
       - Contrato de pack: docs/contrato-pack-stack.md
+      - Integración gentle-ai: docs/integracion-gentle-ai.md
       - Mapa de navegación: docs/mapa-navegacion.md
       - Branding: docs/branding.md
       - Checklist de página: docs/checklist-pagina-docs.md

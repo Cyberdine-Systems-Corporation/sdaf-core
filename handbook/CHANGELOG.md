@@ -1,5 +1,17 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.4.1 — 2026-09-26T11:41+02:00
+
+Parche (**no** breaking de citas `H00`–`H13` ni de configs: toda `sdaf.config.yaml` válida en `0.4.0` sigue siéndolo). Sin cambio de capítulos. ADR-004 aceptado por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS).
+
+- [ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md) Aceptado: el tooling externo de agentes (gentle-ai como caso de referencia) es una capa de entorno del consumidor, opcional y subordinada al método. Specs y worklogs siguen siendo la única evidencia; Gate 0 y H06 §7 prevalecen sobre sus flujos.
+- Config: bloque opcional `tooling` con `tooling.gentle_ai` (`null`, release semver o SHA de commit de 40 hex; una rama no vale). Ausente o `null` = no adoptado.
+- Validador: aviso **T1** (nunca error) si `tooling.gentle_ai` es una release ≤ `3.7.0`, que incluye el componente `sdd`.
+- HOWTO nuevo: [`docs/integracion-gentle-ai.md`](../docs/integracion-gentle-ai.md) (matriz de encaje, SDD frente a Gate 0, cláusula de precedencia para `AGENTS.md`).
+- Worklogs del cambio: [`worklogs/ADR-004-tooling-externo/`](../worklogs/ADR-004-tooling-externo/Iteration-005.md) (iteraciones 001–005).
+
+`sdaf.version` sigue en `"0.4.0"`: nombra la línea, no el parche. Pin de árbol: `v0.4.1`, que se crea tras el merge.
+
 ## 0.4.0 — 2026-09-24T18:54+02:00
 
 Línea nueva de constitución (**no** breaking de citas `H00`–`H12`). Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
