@@ -11,12 +11,12 @@
 
 | Concepto | Uso |
 |----------|-----|
-| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`. **No** existen `v0.3.0` ni `v0.3.1`. |
-| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.4.1` o `v0.4.0`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
+| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`. **No** existen `v0.3.0` ni `v0.3.1`. |
+| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
 | Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x` o `0.4.x` según pin) |
 
 > [!TIP]
-> El pin recomendado del árbol es `v0.4.1`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
+> El pin recomendado del árbol es `v0.4.2`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
 
 Subir de `0.1.x` a `0.2.0` es un upgrade consciente (breaking de citas de handbook).
 
@@ -38,10 +38,10 @@ flowchart TD
 
 ```text
 git submodule add -b main <url-sdaf-core> .sdaf
-cd .sdaf && git checkout v0.4.1
+cd .sdaf && git checkout v0.4.2
 ```
 
-2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.4.0"` con pin `v0.4.1` o `v0.4.0`, `"0.3.0"` con pin `v0.3.3`).
+2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
 3. Ejecutar la skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) (o seguir sus pasos a mano).
 4. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template).
 5. Opcional: validar `sdaf.config.yaml` con la composite action [`.github/actions/validate-sdaf`](../.github/actions/validate-sdaf/README.md) (disponible desde `v0.4.0`).
@@ -167,7 +167,7 @@ No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
 
 ## 0.4.2 (parche)
 
-Cierra el seguimiento de ADR-004. Al pinnear un tag que incluya 0.4.2:
+Cierra el seguimiento de ADR-004. Al pinnear `v0.4.2`:
 
 1. Sin `tooling.gentle_ai` en la config: nada que hacer.
 2. Con `tooling.gentle_ai`: regenerar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template) ([`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md) paso 4) para incorporar la sección «Tooling externo», o copiarla a mano.
