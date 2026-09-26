@@ -1237,6 +1237,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#042-2026-09-26t17270200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.2 — 2026-09-26T17:27+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#041-2026-09-26t11410200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4050,6 +4061,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#042-2026-09-26t17270200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.2 — 2026-09-26T17:27+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#041-2026-09-26t11410200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4224,6 +4246,14 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="042-2026-09-26t17270200">0.4.2 — 2026-09-26T17:27+02:00<a class="headerlink" href="#042-2026-09-26t17270200" title="Permanent link">&para;</a></h2>
+<p>Parche (<strong>no</strong> breaking de citas <code>H00</code>–<code>H13</code> ni de configs). Sin cambio de capítulos. Cierra el seguimiento de <a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>.</p>
+<ul>
+<li><code>AGENTS.md.template</code> <code>0.4.2</code>: sección opcional «Tooling externo» con la cláusula de precedencia (Gate 0, H06 §7 y worklogs sobre <code>sdd-*</code>, ODD y la memoria del tooling). Se borra al materializar si <code>tooling.gentle_ai</code> no se declara.</li>
+<li><code>sdaf-bootstrap</code> <code>0.4.2</code>: <code>tooling</code> opcional en la config y la sección anterior solo si se declara.</li>
+<li>Worklog: <a href="../../worklogs/ADR-004-tooling-externo/Iteration-006/"><code>worklogs/ADR-004-tooling-externo/Iteration-006.md</code></a>.</li>
+</ul>
+<p>Quien no adopte tooling externo no tiene que hacer nada. Quien lo adopte regenera <code>AGENTS.md</code> (<a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a> paso 4). <code>sdaf.version</code> sigue en <code>"0.4.0"</code>. Pin de árbol: <code>v0.4.2</code>, que se crea tras el merge.</p>
 <h2 id="041-2026-09-26t11410200">0.4.1 — 2026-09-26T11:41+02:00<a class="headerlink" href="#041-2026-09-26t11410200" title="Permanent link">&para;</a></h2>
 <p>Parche (<strong>no</strong> breaking de citas <code>H00</code>–<code>H13</code> ni de configs: toda <code>sdaf.config.yaml</code> válida en <code>0.4.0</code> sigue siéndolo). Sin cambio de capítulos. ADR-004 aceptado por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS).</p>
 <ul>

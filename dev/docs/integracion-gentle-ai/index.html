@@ -4279,7 +4279,7 @@
 </code></pre></div>
 <p><code>--scope global</code> deja la configuración en el directorio de cada agente. <code>--scope workspace</code> escribe ficheros de agente en la raíz del repo y puede tocar el <code>AGENTS.md</code> que materializó <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>. Si lo usas, revisa el <code>--dry-run</code> y el diff antes de aceptar.</p>
 <h2 id="cláusula-para-el-agentsmd-del-consumidor">Cláusula para el AGENTS.md del consumidor<a class="headerlink" href="#cláusula-para-el-agentsmd-del-consumidor" title="Permanent link">&para;</a></h2>
-<p>gentle-ai inyecta sus propias instrucciones (ODD, delegación, memoria). Declara la precedencia en el <code>AGENTS.md</code> del consumidor para que el agente no tenga que adivinarla:</p>
+<p>gentle-ai inyecta sus propias instrucciones (ODD, delegación, memoria). Declara la precedencia en el <code>AGENTS.md</code> del consumidor para que el agente no tenga que adivinarla. Desde <code>0.4.2</code>, <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a> trae esta cláusula como sección opcional «Tooling externo» y <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> la conserva solo si <code>tooling.gentle_ai</code> ≠ <code>null</code>. Forma mínima:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gu">## Tooling de entorno (gentle-ai)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Precedencia (ADR-004 de sdaf-core): este AGENTS.md, el handbook y las specs Approved mandan sobre las instrucciones de gentle-ai.
