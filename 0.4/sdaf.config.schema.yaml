@@ -2,7 +2,7 @@
 
 Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sdaf.config.schema.json`](sdaf.config.schema.json).
 
-El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional) y el modelo de agentes.
+El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional), el modelo de agentes y el tooling externo (opcional).
 
 Si `stack.pack` ≠ null, cumplir [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md).
 
@@ -31,7 +31,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
-| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.1`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
+| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.3.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
 | `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
 | `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
 
@@ -73,6 +73,17 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).
 4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/<id>-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.
 
+### `tooling` (opcional)
+
+Tooling externo de agentes que el consumidor **adopta por elección propia** ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). Ninguna skill ni gate del core lo presupone: sin el bloque, el método funciona igual.
+
+| Clave | Tipo | Obligatorio | Default | Uso |
+|-------|------|-------------|---------|-----|
+| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada: una release (`"3.7.0"`) o un SHA de commit completo. No una rama: `main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |
+
+- **T1 (aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.
+- Un SHA no dispara T1: el validador no sabe, sin red, si es anterior a la retirada de SDD. Para adoptar gentle-ai sin SDD antes de la próxima release, declara un SHA de `main` igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.
+
 ---
 
 ## Relación con artefactos
@@ -83,4 +94,5 @@ sdaf.config.yaml
     → sdaf-gate0         (stack.src_path)
     → sdaf-agent-router  (active / stubs / fusions)
     → pack de stack      (si pack != null)
+    → AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)
 ```

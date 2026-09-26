@@ -661,6 +661,8 @@
       
         
       
+        
+      
     
     
     
@@ -1303,6 +1305,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1321,6 +1351,8 @@
       
         
           
+        
+      
         
       
         
@@ -1430,6 +1462,34 @@
     
   
     Contrato de pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/integracion-gentle-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integración gentle-ai
   
 
     
@@ -3920,7 +3980,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="l l-Scalar l-Scalar-Plain">Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sdaf.config.schema.json`](sdaf.config.schema.json).</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="l l-Scalar l-Scalar-Plain">El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional) y el modelo de agentes.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="l l-Scalar l-Scalar-Plain">El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional), el modelo de agentes y el tooling externo (opcional).</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="l l-Scalar l-Scalar-Plain">Si `stack.pack` ≠ null, cumplir [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md).</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
@@ -3949,7 +4009,7 @@
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p p-Indicator">|</span><span class="err"> `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.1.1`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p p-Indicator">|</span><span class="err"> `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.3.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p p-Indicator">|</span><span class="err"> `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p p-Indicator">|</span><span class="err"> `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
@@ -3991,16 +4051,28 @@
 <a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="l l-Scalar l-Scalar-Plain">3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).</span>
 <a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="l l-Scalar l-Scalar-Plain">4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/&lt;id&gt;-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.</span>
 <a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="nn">---</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="c1">### `tooling` (opcional)</span>
 <a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
-<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="c1">## Relación con artefactos</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="l l-Scalar l-Scalar-Plain">Tooling externo de agentes que el consumidor **adopta por elección propia** ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). Ninguna skill ni gate del core lo presupone</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sin el bloque, el método funciona igual.</span>
 <a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
-<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">text</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="l l-Scalar l-Scalar-Plain">sdaf.config.yaml</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-gate0         (stack.src_path)</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-agent-router  (active / stubs / fusions)</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ pack de stack      (si pack != null)</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="nt">| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">una release (`"3.7.0"`) o un SHA de commit completo. No una rama</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">*</span><span class="nv">*T1</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Un SHA no dispara T1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">el validador no sabe, sin red, si es anterior a la retirada de SDD. Para adoptar gentle-ai sin SDD antes de la próxima release, declara un SHA de `main` igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="nn">---</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="c1">## Relación con artefactos</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">text</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="l l-Scalar l-Scalar-Plain">sdaf.config.yaml</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-gate0         (stack.src_path)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-agent-router  (active / stubs / fusions)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ pack de stack      (si pack != null)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>## JSON Schema
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -4079,9 +4151,24 @@
 <a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>          }
 <a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>        }
 <a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>      }
-<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    }
-<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>  }
-<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>}
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    },
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    "tooling": {
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>      "type": "object",
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>      "description": "Tooling externo de agentes adoptado por el consumidor (opcional; ADR-004). Ausente = ninguno.",
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>      "additionalProperties": false,
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>      "properties": {
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>        "gentle_ai": {
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>          "description": "Release (semver) o SHA de commit de 40 hex de gentle-ai adoptado, o null si no se adopta",
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>          "anyOf": [
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>            { "type": "null" },
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>            { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>            { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>          ]
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>        }
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>      }
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    }
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>  }
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>}
 </code></pre></div>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>

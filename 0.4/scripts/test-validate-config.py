@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprueba fixtures del validador de config (I1–I4, pack, duplicados)."""
+"""Comprueba fixtures del validador de config (I1–I4, pack, duplicados, tooling y T1)."""
 from __future__ import annotations
 
 import subprocess
@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "validate-config.py"
 INVALID = ROOT / "scripts" / "testdata" / "invalid-invariants.yaml"
 I4 = ROOT / "scripts" / "testdata" / "i4-extension-without-pack.yaml"
+TOOLING = ROOT / "scripts" / "testdata" / "tooling-invalid.yaml"
+TOOLING_SDD = ROOT / "scripts" / "testdata" / "tooling-sdd-warning.yaml"
 
 
 def run(args: list[str]) -> subprocess.CompletedProcess[str]:
@@ -75,6 +77,24 @@ def main() -> int:
         print(i4_strict.stdout)
         return 1
     print("OK I4 --strict-i4")
+
+    tooling = run([str(TOOLING)])
+    if tooling.returncode == 0 or "gentle_ai" not in tooling.stdout:
+        print("FAIL tooling.gentle_ai con una rama debería salir 1 y nombrar la clave")
+        print(tooling.stdout)
+        return 1
+    print("OK tooling.gentle_ai exige release o SHA")
+
+    t1 = run([str(TOOLING_SDD)])
+    if t1.returncode != 0 or "WARN" not in t1.stdout or "T1" not in t1.stdout:
+        print("FAIL T1 debería avisar sin cambiar el exit code con gentle-ai 3.7.0")
+        print(t1.stdout)
+        return 1
+    if "T1" in defaults.stdout:
+        print("FAIL T1 no debería saltar en los examples (08 declara un SHA)")
+        print(defaults.stdout)
+        return 1
+    print("OK T1 aviso con release que incluye sdd")
     return 0
 
 
