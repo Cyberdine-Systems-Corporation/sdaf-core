@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.3 |
+| Versión | 0.4.2 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `handbook/10-code-review-and-quality-gates.md`, `skills/README.md` |
@@ -86,6 +86,18 @@ Citar `skill-id@version` en worklogs (H06 §6, H07).
 
 Skills de stack o dominio las aporta el pack o el producto, no este core.
 
+## Tooling externo (opcional)
+
+> [!NOTE]
+> Solo si `sdaf.config.yaml` declara `tooling.gentle_ai`. Si no lo declara, borrar esta sección al materializar. Guía del core: [docs/integracion-gentle-ai.md](docs/integracion-gentle-ai.md) (ADR-004).
+
+Precedencia: este `AGENTS.md`, el handbook y las specs Approved mandan sobre las instrucciones que inyecta el tooling.
+
+- Gate 0 antes de código de producto. No usar skills `sdd-*` (releases de gentle-ai ≤ 3.7.0): las specs viven en `specs/` y las aprueba un humano.
+- H06 §7 prevalece sobre el cierre de tareas de ODD: sin commit, rama remota ni PR salvo que el encargo vigente los nombre. Si el equipo quiere el ciclo ODD completo, enumerar aquí la excepción (p. ej. «solo commit local en la rama de feature; no incluye push, PR, merge, tag ni release»).
+- `odd/tasks/` es borrador. La evidencia es el worklog en `worklogs/`.
+- La memoria del tooling (Engram) es caché de contexto. Ante contradicción, mandan specs y worklog.
+
 ## Gobernanza
 
 - Prompt de sistema: [prompts/system/master-architect.md](prompts/system/master-architect.md)
@@ -105,4 +117,5 @@ Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa al
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.4.2 | 2026-09-26T17:27+02:00 | Sección opcional «Tooling externo» con la cláusula de precedencia (ADR-004) |
 | 0.3.3 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |
