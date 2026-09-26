@@ -11,7 +11,7 @@ Cada archivo es un escenario **completo y válido** en v0.3. Copia el que más s
 | [05-fusiones-mvp.yaml](05-fusiones-mvp.yaml) | `testing-review` y `domain-application` como fusiones explícitas |
 | [06-agentes-desacoplados.yaml](06-agentes-desacoplados.yaml) | Testing y Review separados; Domain y Application activos |
 | [07-pack-frontend.yaml](07-pack-frontend.yaml) | Pack + agente `frontend` (extensión; el core no lo envía) |
-| [08-completo.yaml](08-completo.yaml) | Todas las claves rellenadas a la vez (referencia de techo) |
+| [08-completo.yaml](08-completo.yaml) | Todas las claves rellenadas a la vez, incluido `tooling` (referencia de techo) |
 
 Copia canónica en la raíz del core (mismo contenido que 01): [`../sdaf.config.example.yaml`](../sdaf.config.example.yaml).
 
@@ -100,6 +100,17 @@ Los miembros van a `stubs` para poder desfusionar después sin inventar contrato
 
 No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o contratos locales equivalentes). Si los pones en `active` sin pack ni archivos `agents/<id>.md`, el router no tiene contrato.
 
+### `tooling.gentle_ai`
+
+Opcional. Declara si el consumidor adopta [gentle-ai](../docs/integracion-gentle-ai.md) y qué versión ([ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md)).
+
+- Bloque ausente o `null`: no adoptado. Es el default y el de los ejemplos 01–07.
+- Una release (`"3.7.0"`) o un SHA de commit completo: adoptado. El `AGENTS.md` lleva la cláusula de precedencia de la guía.
+- Releases ≤ `3.7.0`: incluyen el componente `sdd`, incompatible con Gate 0. El validador avisa (**T1**) y el componente no se instala.
+- 08 declara el SHA `520ed86e8c598b01f439e28c34d391cd6f1744e3`, el commit de `main` que retira SDD: es reproducible y no dispara T1.
+
+No cambia Gate 0 ni el router. Solo aparece en 08.
+
 ---
 
 ## Errores frecuentes
@@ -115,6 +126,7 @@ No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o 
 | `frontend` activo y `pack: null` | Id de extensión sin playbook |
 | `language: en` | No soportado en v0.3 |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
+| `tooling.gentle_ai: main` | Una rama no fija versión; declarar una release o un SHA de commit |
 
 ## Relacionado
 
