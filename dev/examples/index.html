@@ -655,6 +655,8 @@
       
         
       
+        
+      
     
     
     
@@ -1297,6 +1299,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/ADR-004-tooling-externo-de-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1315,6 +1345,8 @@
       
         
           
+        
+      
         
       
         
@@ -1424,6 +1456,34 @@
     
   
     Contrato de pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/integracion-gentle-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integración gentle-ai
   
 
     
@@ -3893,6 +3953,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#toolinggentle_ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tooling.gentle_ai
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3985,7 +4056,7 @@
 </tr>
 <tr>
 <td><a href="08-completo.yaml">08-completo.yaml</a></td>
-<td>Todas las claves rellenadas a la vez (referencia de techo)</td>
+<td>Todas las claves rellenadas a la vez, incluido <code>tooling</code> (referencia de techo)</td>
 </tr>
 </tbody>
 </table>
@@ -4069,6 +4140,15 @@
 <p>Los miembros van a <code>stubs</code> para poder desfusionar después sin inventar contratos.</p>
 <h3 id="extensiones-frontend-infrastructure-ai">Extensiones (<code>frontend</code>, <code>infrastructure</code>, <code>ai</code>)<a class="headerlink" href="#extensiones-frontend-infrastructure-ai" title="Permanent link">&para;</a></h3>
 <p>No están en <code>sdaf-core</code>. Solo en ejemplos 07 y 08, con <code>stack.pack</code> no nulo (o contratos locales equivalentes). Si los pones en <code>active</code> sin pack ni archivos <code>agents/&lt;id&gt;.md</code>, el router no tiene contrato.</p>
+<h3 id="toolinggentle_ai"><code>tooling.gentle_ai</code><a class="headerlink" href="#toolinggentle_ai" title="Permanent link">&para;</a></h3>
+<p>Opcional. Declara si el consumidor adopta <a href="../docs/integracion-gentle-ai/">gentle-ai</a> y qué versión (<a href="../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>).</p>
+<ul>
+<li>Bloque ausente o <code>null</code>: no adoptado. Es el default y el de los ejemplos 01–07.</li>
+<li>Una release (<code>"3.7.0"</code>) o un SHA de commit completo: adoptado. El <code>AGENTS.md</code> lleva la cláusula de precedencia de la guía.</li>
+<li>Releases ≤ <code>3.7.0</code>: incluyen el componente <code>sdd</code>, incompatible con Gate 0. El validador avisa (<strong>T1</strong>) y el componente no se instala.</li>
+<li>08 declara el SHA <code>520ed86e8c598b01f439e28c34d391cd6f1744e3</code>, el commit de <code>main</code> que retira SDD: es reproducible y no dispara T1.</li>
+</ul>
+<p>No cambia Gate 0 ni el router. Solo aparece en 08.</p>
 <hr />
 <h2 id="errores-frecuentes">Errores frecuentes<a class="headerlink" href="#errores-frecuentes" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -4106,6 +4186,10 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
 <tr>
 <td>Omitir <code>sdaf.version</code></td>
 <td>No se sabe qué constitución del método aplica</td>
+</tr>
+<tr>
+<td><code>tooling.gentle_ai: main</code></td>
+<td>Una rama no fija versión; declarar una release o un SHA de commit</td>
 </tr>
 </tbody>
 </table>

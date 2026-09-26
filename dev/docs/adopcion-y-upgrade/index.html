@@ -661,6 +661,8 @@
       
         
       
+        
+      
     
     
     
@@ -1303,6 +1305,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1323,6 +1353,8 @@
       
         
           
+        
+      
         
       
         
@@ -1603,6 +1635,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#041-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-03x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1648,6 +1691,34 @@
     
   
     Contrato de pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integracion-gentle-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integración gentle-ai
   
 
     
@@ -4151,6 +4222,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#041-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-03x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4360,6 +4442,13 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Opcional: composite action <a href="../../.github/actions/validate-sdaf/"><code>validate-sdaf</code></a> en el CI del consumidor.</li>
 <li>Actualizar <code>sdaf.version</code> a <code>"0.4.0"</code>.</li>
 </ol>
+<h2 id="041-parche">0.4.1 (parche)<a class="headerlink" href="#041-parche" title="Permanent link">&para;</a></h2>
+<p><a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>: el tooling externo de agentes es <strong>opcional</strong>. Al pinnear un tag que incluya 0.4.1:</p>
+<ol>
+<li>Nada obligatorio: toda <code>sdaf.config.yaml</code> válida en <code>0.4.0</code> sigue validando.</li>
+<li>Si el repo adopta gentle-ai, declararlo en <code>tooling.gentle_ai</code> (release o SHA de commit) y seguir <a href="../integracion-gentle-ai/"><code>integracion-gentle-ai.md</code></a>.</li>
+</ol>
+<p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.4.0"</code>.</p>
 <h2 id="fuera-de-03x">Fuera de 0.3.x<a class="headerlink" href="#fuera-de-03x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>

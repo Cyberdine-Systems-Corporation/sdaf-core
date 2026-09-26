@@ -663,6 +663,8 @@
       
         
       
+        
+      
     
     
     
@@ -1235,6 +1237,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#041-2026-09-26t11410200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 — 2026-09-26T11:41+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#040-2026-09-24t18540200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1493,6 +1506,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-004
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1511,6 +1552,8 @@
       
         
           
+        
+      
         
       
         
@@ -1620,6 +1663,34 @@
     
   
     Contrato de pack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/integracion-gentle-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integración gentle-ai
   
 
     
@@ -3979,6 +4050,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#041-2026-09-26t11410200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 — 2026-09-26T11:41+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#040-2026-09-24t18540200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4142,6 +4224,16 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="041-2026-09-26t11410200">0.4.1 — 2026-09-26T11:41+02:00<a class="headerlink" href="#041-2026-09-26t11410200" title="Permanent link">&para;</a></h2>
+<p>Parche (<strong>no</strong> breaking de citas <code>H00</code>–<code>H13</code> ni de configs: toda <code>sdaf.config.yaml</code> válida en <code>0.4.0</code> sigue siéndolo). Sin cambio de capítulos. ADR-004 aceptado por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS).</p>
+<ul>
+<li><a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a> Aceptado: el tooling externo de agentes (gentle-ai como caso de referencia) es una capa de entorno del consumidor, opcional y subordinada al método. Specs y worklogs siguen siendo la única evidencia; Gate 0 y H06 §7 prevalecen sobre sus flujos.</li>
+<li>Config: bloque opcional <code>tooling</code> con <code>tooling.gentle_ai</code> (<code>null</code>, release semver o SHA de commit de 40 hex; una rama no vale). Ausente o <code>null</code> = no adoptado.</li>
+<li>Validador: aviso <strong>T1</strong> (nunca error) si <code>tooling.gentle_ai</code> es una release ≤ <code>3.7.0</code>, que incluye el componente <code>sdd</code>.</li>
+<li>HOWTO nuevo: <a href="../../docs/integracion-gentle-ai/"><code>docs/integracion-gentle-ai.md</code></a> (matriz de encaje, SDD frente a Gate 0, cláusula de precedencia para <code>AGENTS.md</code>).</li>
+<li>Worklogs del cambio: <a href="../../worklogs/ADR-004-tooling-externo/Iteration-005/"><code>worklogs/ADR-004-tooling-externo/</code></a> (iteraciones 001–005).</li>
+</ul>
+<p><code>sdaf.version</code> sigue en <code>"0.4.0"</code>: nombra la línea, no el parche. Pin de árbol: <code>v0.4.1</code>, que se crea tras el merge.</p>
 <h2 id="040-2026-09-24t18540200">0.4.0 — 2026-09-24T18:54+02:00<a class="headerlink" href="#040-2026-09-24t18540200" title="Permanent link">&para;</a></h2>
 <p>Línea nueva de constitución (<strong>no</strong> breaking de citas <code>H00</code>–<code>H12</code>). Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
 <ul>
