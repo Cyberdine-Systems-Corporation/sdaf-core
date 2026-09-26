@@ -165,6 +165,15 @@ Al pinnear `v0.4.0`:
 
 No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
 
+## 0.4.2 (parche)
+
+Cierra el seguimiento de ADR-004. Al pinnear un tag que incluya 0.4.2:
+
+1. Sin `tooling.gentle_ai` en la config: nada que hacer.
+2. Con `tooling.gentle_ai`: regenerar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template) ([`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md) paso 4) para incorporar la sección «Tooling externo», o copiarla a mano.
+
+No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:
