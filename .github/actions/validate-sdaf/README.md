@@ -9,7 +9,7 @@ Usar desde un repo consumidor pinneado a un tag de sdaf-core que incluya esta ac
 - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
   with:
     python-version: "3.12"
-- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.4.1
+- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.4.2
   with:
     config-paths: sdaf.config.yaml
 ```

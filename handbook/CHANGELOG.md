@@ -8,7 +8,7 @@ Parche (**no** breaking de citas `H00`–`H13` ni de configs). Sin cambio de cap
 - `sdaf-bootstrap` `0.4.2`: `tooling` opcional en la config y la sección anterior solo si se declara.
 - Worklog: [`worklogs/ADR-004-tooling-externo/Iteration-006.md`](../worklogs/ADR-004-tooling-externo/Iteration-006.md).
 
-Quien no adopte tooling externo no tiene que hacer nada. Quien lo adopte regenera `AGENTS.md` ([`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md) paso 4). `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.2`, que se crea tras el merge.
+Quien no adopte tooling externo no tiene que hacer nada. Quien lo adopte regenera `AGENTS.md` ([`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md) paso 4). `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.2`. Quien siga en `v0.4.1` o `v0.4.0` no está obligado a moverlo.
 
 ## 0.4.1 — 2026-09-26T11:41+02:00
 
