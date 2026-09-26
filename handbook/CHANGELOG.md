@@ -10,7 +10,7 @@ Parche (**no** breaking de citas `H00`–`H13` ni de configs: toda `sdaf.config.
 - HOWTO nuevo: [`docs/integracion-gentle-ai.md`](../docs/integracion-gentle-ai.md) (matriz de encaje, SDD frente a Gate 0, cláusula de precedencia para `AGENTS.md`).
 - Worklogs del cambio: [`worklogs/ADR-004-tooling-externo/`](../worklogs/ADR-004-tooling-externo/Iteration-005.md) (iteraciones 001–005).
 
-`sdaf.version` sigue en `"0.4.0"`: nombra la línea, no el parche. Pin de árbol: `v0.4.1`, que se crea tras el merge.
+`sdaf.version` sigue en `"0.4.0"`: nombra la línea, no el parche. Pin de árbol: `v0.4.1`. Quien siga en `v0.4.0` no está obligado a moverlo.
 
 ## 0.4.0 — 2026-09-24T18:54+02:00
 
