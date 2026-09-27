@@ -9,7 +9,7 @@
 
 ## Qué es y qué no es
 
-gentle-ai configura los agentes que ya usas (Claude Code, Cursor, Codex, OpenCode…). Añade memoria persistente (Engram), una biblioteca de skills con índice, servidores MCP, una lista de rutas bloqueadas, personas y dos protocolos propios: ODD (trabajo diario) y RDD (review por commit).
+gentle-ai configura los agentes que ya usas (Claude Code, Cursor, Codex, OpenCode…). Añade memoria persistente (Engram), una biblioteca de skills con índice, servidores MCP, una lista de rutas bloqueadas, personas y dos protocolos propios: ODD (trabajo diario) y RDD (review de un candidato congelado: los cambios actuales o un rango de commits).
 
 En un repo SDAF es una **capa de entorno del consumidor**, subordinada al método:
 
@@ -54,7 +54,7 @@ tooling:
 | `engram` | Memoria entre sesiones. Es caché, no evidencia: el agente entrante lee worklog y specs ([H08](../handbook/08-agent-traceability.md)). | Con condiciones: ver [Memoria vs worklog](#memoria-vs-worklog) |
 | `persona` | La regla `idioma-castellano` y H06 §7 mandan sobre cualquier persona. | Con condiciones: `neutral` o no gestionada |
 | `judgment-day` | Dos revisores adversarios sobre el mismo cambio. Puede alimentar `testing-review-pr`; no dictamina el merge ([H10](../handbook/10-code-review-and-quality-gates.md)). | ✅ Opcional |
-| RDD (`gentle-ai review …`) | No autoriza commit ni push, igual que SDAF. Revisa commits, así que solo tiene sentido con excepción de commit. No es QG-Review humano. | Con condiciones: si no hay excepción, `review mode disable` |
+| RDD (`gentle-ai review …`) | No autoriza commit ni push, igual que SDAF. Por defecto revisa los cambios actuales del worktree; solo con `--base-ref … --committed-only` revisa un rango de commits. Funciona sin excepción de commit. Puede alimentar `testing-review-pr`, pero no es QG-Review humano. | ✅ Opcional (activo por defecto; `review mode disable` si no se quiere) |
 | `work-unit-commits`, `chained-pr`, `branch-pr` | Crean commits, ramas y PRs. | Con condiciones: solo bajo excepción H06 §7 enumerada |
 | ODD (siempre instalado) | Cierra cada tarea con un commit y escribe `odd/tasks/<feature>.md`. Choca con [H06 §7](../handbook/06-ai-agent-framework.md#7-restricciones-globales) y duplica el worklog. | ⛔ H06 §7 prevalece; `odd/tasks/` es borrador, no evidencia |
 | `sdd` (`sdd-propose`, `sdd-spec`, `sdd-apply`…) | Ciclo de specs paralelo a `specs/`. `sdd-apply` implementa sin Gate 0 ni specs Approved por humano ([H05 §3](../handbook/05-development-workflow.md#3-gate-0-pre-implementación-stop)). Retirado en `main` tras v3.7.0. | ⛔ En v3.7.0 y anteriores, no instalar (ver [SDD y Gate 0](#sdd-y-gate-0)) |
@@ -73,11 +73,13 @@ gentle-ai install --agent claude-code --preset custom --component engram,skills,
 
 Si el plan es el esperado, repite el comando sin `--dry-run`. Cambia `--agent` por los agentes del equipo.
 
-Sin excepción de commit en el `AGENTS.md`, desactiva RDD:
+RDD viene activo por defecto y es compatible con H06 §7: revisa los cambios sin commitear y su dictamen no autoriza commit, push ni PR. Si el equipo no lo quiere, desactívalo:
 
 ```bash
 gentle-ai review mode disable
 ```
+
+Con la excepción de commit de ODD, el orquestador revisa además cada commit de trabajo (`--base-ref … --committed-only`).
 
 `--scope global` deja la configuración en el directorio de cada agente. `--scope workspace` escribe ficheros de agente en la raíz del repo y puede tocar el `AGENTS.md` que materializó [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md). Si lo usas, revisa el `--dry-run` y el diff antes de aceptar.
 
@@ -177,7 +179,7 @@ Si faltan las `sdaf-*`, cita las rutas `.sdaf/skills/<id>/SKILL.md` desde el `AG
 |--------------|---------|-------------|
 | Instalación sana | `gentle-ai doctor` | Sin errores; solo lectura |
 | Skills visibles | `gentle-ai skill-registry list` | Aparecen las skills que usa el router |
-| RDD | `gentle-ai review mode status` | `disabled` si no hay excepción de commit |
+| RDD | `gentle-ai review mode status` | El modo que eligió el equipo (`source: default` = nadie lo ha fijado; efectivo `on`) |
 | Sin `sdd-*` | Revisar el directorio de skills del agente | Ninguna skill `sdd-*` instalada |
 
 ## Relacionado
