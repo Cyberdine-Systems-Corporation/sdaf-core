@@ -41,7 +41,7 @@ tooling:
   ```
 
 - Si declaras una release ≤ `3.7.0`, el validador avisa (**T1**): incluye `sdd` y no debes instalarlo.
-- Si la declaras, añade al `AGENTS.md` la [cláusula de precedencia](#cláusula-para-el-agentsmd-del-consumidor).
+- Si la declaras, añade al `AGENTS.md` la [cláusula de precedencia](#cláusula-para-el-agentsmd-del-consumidor) y [`.atl/` al `.gitignore`](#atl-fuera-de-git).
 - Si no la declaras, el resto de esta guía no aplica.
 
 ## Matriz de encaje
@@ -173,12 +173,29 @@ gentle-ai skill-registry list
 
 Si faltan las `sdaf-*`, cita las rutas `.sdaf/skills/<id>/SKILL.md` desde el `AGENTS.md` del consumidor o copia las que uses a una raíz que el índice escanee. Una copia se desalinea al subir el pin: repítela en cada [upgrade](adopcion-y-upgrade.md#upgrade).
 
+### `.atl/` fuera de git
+
+El índice se escribe en `.atl/skill-registry.md`, junto con una caché, en la raíz del repo. Es estado local de cada máquina: no se versiona.
+
+- `gentle-ai skill-registry refresh` manual añade `.atl/` a `.gitignore` si falta.
+- El hook de arranque que instala gentle-ai (p. ej. en Claude Code) llama a `refresh` con `--no-gitignore`: crea `.atl/` sin tocar `.gitignore`.
+
+Añade la entrada al `.gitignore` del consumidor en el mismo cambio en que adoptas gentle-ai:
+
+```text
+# Local AI runtime state
+.atl/
+```
+
+Sin ella, `.atl/` aparece como fichero sin versionar y puede acabar en un commit. `.gitignore` no afecta a `check-local-links.py --strict-orphans`, que recorre el disco: en local marca `.atl/skill-registry.md` como huérfano aunque esté ignorado. El CI no lo ve, porque parte de un checkout limpio.
+
 ## Verificación
 
 | Comprobación | Comando | Qué esperar |
 |--------------|---------|-------------|
 | Instalación sana | `gentle-ai doctor` | Sin errores; solo lectura |
 | Skills visibles | `gentle-ai skill-registry list` | Aparecen las skills que usa el router |
+| `.atl/` ignorado | `git check-ignore .atl/skill-registry.md` | Imprime la ruta (está en `.gitignore`) |
 | RDD | `gentle-ai review mode status` | El modo que eligió el equipo (`source: default` = nadie lo ha fijado; efectivo `on`) |
 | Sin `sdd-*` | Revisar el directorio de skills del agente | Ninguna skill `sdd-*` instalada |
 
