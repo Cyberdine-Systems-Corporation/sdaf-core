@@ -4153,7 +4153,7 @@
 </blockquote>
 <p><strong>En esta página:</strong> <a href="#qué-es-y-qué-no-es">Qué es</a> · <a href="#adopción-opcional">Adopción opcional</a> · <a href="#matriz-de-encaje">Matriz</a> · <a href="#instalación-recomendada">Instalación</a> · <a href="#cláusula-para-el-agentsmd-del-consumidor">Cláusula AGENTS.md</a> · <a href="#sdd-y-gate-0">SDD y Gate 0</a> · <a href="#memoria-vs-worklog">Memoria vs worklog</a> · <a href="#skills-del-core-en-el-registry">Skills del core</a> · <a href="#verificación">Verificación</a></p>
 <h2 id="qué-es-y-qué-no-es">Qué es y qué no es<a class="headerlink" href="#qué-es-y-qué-no-es" title="Permanent link">&para;</a></h2>
-<p>gentle-ai configura los agentes que ya usas (Claude Code, Cursor, Codex, OpenCode…). Añade memoria persistente (Engram), una biblioteca de skills con índice, servidores MCP, una lista de rutas bloqueadas, personas y dos protocolos propios: ODD (trabajo diario) y RDD (review por commit).</p>
+<p>gentle-ai configura los agentes que ya usas (Claude Code, Cursor, Codex, OpenCode…). Añade memoria persistente (Engram), una biblioteca de skills con índice, servidores MCP, una lista de rutas bloqueadas, personas y dos protocolos propios: ODD (trabajo diario) y RDD (review de un candidato congelado: los cambios actuales o un rango de commits).</p>
 <p>En un repo SDAF es una <strong>capa de entorno del consumidor</strong>, subordinada al método:</p>
 <ul>
 <li><strong>No</strong> es un pack de stack: no aporta contratos, prompts ni ids de extensión y no va en <code>stack.pack</code>.</li>
@@ -4240,8 +4240,8 @@
 </tr>
 <tr>
 <td>RDD (<code>gentle-ai review …</code>)</td>
-<td>No autoriza commit ni push, igual que SDAF. Revisa commits, así que solo tiene sentido con excepción de commit. No es QG-Review humano.</td>
-<td>Con condiciones: si no hay excepción, <code>review mode disable</code></td>
+<td>No autoriza commit ni push, igual que SDAF. Por defecto revisa los cambios actuales del worktree; solo con <code>--base-ref … --committed-only</code> revisa un rango de commits. Funciona sin excepción de commit. Puede alimentar <code>testing-review-pr</code>, pero no es QG-Review humano.</td>
+<td>✅ Opcional (activo por defecto; <code>review mode disable</code> si no se quiere)</td>
 </tr>
 <tr>
 <td><code>work-unit-commits</code>, <code>chained-pr</code>, <code>branch-pr</code></td>
@@ -4274,9 +4274,10 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gentle-ai<span class="w"> </span>install<span class="w"> </span>--agent<span class="w"> </span>claude-code<span class="w"> </span>--preset<span class="w"> </span>custom<span class="w"> </span>--component<span class="w"> </span>engram,skills,context7,permissions<span class="w"> </span>--skills<span class="w"> </span>skill-creator,skill-registry,cognitive-doc-design<span class="w"> </span>--persona<span class="w"> </span>neutral<span class="w"> </span>--scope<span class="w"> </span>global<span class="w"> </span>--dry-run
 </code></pre></div>
 <p>Si el plan es el esperado, repite el comando sin <code>--dry-run</code>. Cambia <code>--agent</code> por los agentes del equipo.</p>
-<p>Sin excepción de commit en el <code>AGENTS.md</code>, desactiva RDD:</p>
+<p>RDD viene activo por defecto y es compatible con H06 §7: revisa los cambios sin commitear y su dictamen no autoriza commit, push ni PR. Si el equipo no lo quiere, desactívalo:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gentle-ai<span class="w"> </span>review<span class="w"> </span>mode<span class="w"> </span>disable
 </code></pre></div>
+<p>Con la excepción de commit de ODD, el orquestador revisa además cada commit de trabajo (<code>--base-ref … --committed-only</code>).</p>
 <p><code>--scope global</code> deja la configuración en el directorio de cada agente. <code>--scope workspace</code> escribe ficheros de agente en la raíz del repo y puede tocar el <code>AGENTS.md</code> que materializó <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>. Si lo usas, revisa el <code>--dry-run</code> y el diff antes de aceptar.</p>
 <h2 id="cláusula-para-el-agentsmd-del-consumidor">Cláusula para el AGENTS.md del consumidor<a class="headerlink" href="#cláusula-para-el-agentsmd-del-consumidor" title="Permanent link">&para;</a></h2>
 <p>gentle-ai inyecta sus propias instrucciones (ODD, delegación, memoria). Declara la precedencia en el <code>AGENTS.md</code> del consumidor para que el agente no tenga que adivinarla. Desde <code>0.4.2</code>, <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a> trae esta cláusula como sección opcional «Tooling externo» y <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> la conserva solo si <code>tooling.gentle_ai</code> ≠ <code>null</code>. Forma mínima:</p>
@@ -4415,7 +4416,7 @@
 <tr>
 <td>RDD</td>
 <td><code>gentle-ai review mode status</code></td>
-<td><code>disabled</code> si no hay excepción de commit</td>
+<td>El modo que eligió el equipo (<code>source: default</code> = nadie lo ha fijado; efectivo <code>on</code>)</td>
 </tr>
 <tr>
 <td>Sin <code>sdd-*</code></td>
