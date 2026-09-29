@@ -1632,6 +1632,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Skills del core en el registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atl-fuera-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .atl/ fuera de git
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4096,6 +4113,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Skills del core en el registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atl-fuera-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .atl/ fuera de git
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4195,7 +4229,7 @@
 </code></pre></div>
 <ul>
 <li>Si declaras una release ≤ <code>3.7.0</code>, el validador avisa (<strong>T1</strong>): incluye <code>sdd</code> y no debes instalarlo.</li>
-<li>Si la declaras, añade al <code>AGENTS.md</code> la <a href="#cláusula-para-el-agentsmd-del-consumidor">cláusula de precedencia</a>.</li>
+<li>Si la declaras, añade al <code>AGENTS.md</code> la <a href="#cláusula-para-el-agentsmd-del-consumidor">cláusula de precedencia</a> y <a href="#atl-fuera-de-git"><code>.atl/</code> al <code>.gitignore</code></a>.</li>
 <li>Si no la declaras, el resto de esta guía no aplica.</li>
 </ul>
 <h2 id="matriz-de-encaje">Matriz de encaje<a class="headerlink" href="#matriz-de-encaje" title="Permanent link">&para;</a></h2>
@@ -4393,6 +4427,17 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gentle-ai<span class="w"> </span>skill-registry<span class="w"> </span>list
 </code></pre></div>
 <p>Si faltan las <code>sdaf-*</code>, cita las rutas <code>.sdaf/skills/&lt;id&gt;/SKILL.md</code> desde el <code>AGENTS.md</code> del consumidor o copia las que uses a una raíz que el índice escanee. Una copia se desalinea al subir el pin: repítela en cada <a href="../adopcion-y-upgrade/#upgrade">upgrade</a>.</p>
+<h3 id="atl-fuera-de-git"><code>.atl/</code> fuera de git<a class="headerlink" href="#atl-fuera-de-git" title="Permanent link">&para;</a></h3>
+<p>El índice se escribe en <code>.atl/skill-registry.md</code>, junto con una caché, en la raíz del repo. Es estado local de cada máquina: no se versiona.</p>
+<ul>
+<li><code>gentle-ai skill-registry refresh</code> manual añade <code>.atl/</code> a <code>.gitignore</code> si falta.</li>
+<li>El hook de arranque que instala gentle-ai (p. ej. en Claude Code) llama a <code>refresh</code> con <code>--no-gitignore</code>: crea <code>.atl/</code> sin tocar <code>.gitignore</code>.</li>
+</ul>
+<p>Añade la entrada al <code>.gitignore</code> del consumidor en el mismo cambio en que adoptas gentle-ai:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a># Local AI runtime state
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>.atl/
+</code></pre></div>
+<p>Sin ella, <code>.atl/</code> aparece como fichero sin versionar y puede acabar en un commit. <code>.gitignore</code> no afecta a <code>check-local-links.py --strict-orphans</code>, que recorre el disco: en local marca <code>.atl/skill-registry.md</code> como huérfano aunque esté ignorado. El CI no lo ve, porque parte de un checkout limpio.</p>
 <h2 id="verificación">Verificación<a class="headerlink" href="#verificación" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4412,6 +4457,11 @@
 <td>Skills visibles</td>
 <td><code>gentle-ai skill-registry list</code></td>
 <td>Aparecen las skills que usa el router</td>
+</tr>
+<tr>
+<td><code>.atl/</code> ignorado</td>
+<td><code>git check-ignore .atl/skill-registry.md</code></td>
+<td>Imprime la ruta (está en <code>.gitignore</code>)</td>
 </tr>
 <tr>
 <td>RDD</td>
