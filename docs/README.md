@@ -11,6 +11,7 @@
 | 🧭 | [mapa-navegacion.md](mapa-navegacion.md) | Ocho tareas, clics y vocabulario visual |
 | 🖼️ | [branding.md](branding.md) | Mark, lockups, paleta, simbología y motion |
 | 📝 | [checklist-pagina-docs.md](checklist-pagina-docs.md) | DoD de una página markdown |
+| 🛠️ | [iniciativas/](iniciativas/README.md) | Planes de trabajo sobre el core (INIT-arquitectura) |
 
 <p>
   <img src="assets/sdaf-core-lockup-horizontal.svg" alt="SDAF" width="280" />

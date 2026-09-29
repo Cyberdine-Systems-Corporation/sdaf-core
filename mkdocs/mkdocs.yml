@@ -115,6 +115,10 @@ nav:
       - ADR-002: architecture/decisions/ADR-002-gobernanza-del-metodo.md
       - ADR-003: architecture/decisions/ADR-003-formato-de-artefactos.md
       - ADR-004: architecture/decisions/ADR-004-tooling-externo-de-agentes.md
+      - ADR-005: architecture/decisions/ADR-005-linea-base-arquitectonica.md
+      - ADR-006: architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md
+      - ADR-007: architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md
+      - ADR-008: architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md
   - Adopción y operación:
       - docs/README.md
       - Adopción y upgrade: docs/adopcion-y-upgrade.md
@@ -123,6 +127,9 @@ nav:
       - Mapa de navegación: docs/mapa-navegacion.md
       - Branding: docs/branding.md
       - Checklist de página: docs/checklist-pagina-docs.md
+      - Iniciativas:
+          - docs/iniciativas/README.md
+          - INIT-arquitectura: docs/iniciativas/INIT-arquitectura.md
   - Agentes:
       - agents/README.md
       - Product: agents/product-agent.md
