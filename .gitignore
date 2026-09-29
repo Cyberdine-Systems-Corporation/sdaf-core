@@ -12,3 +12,6 @@ __pycache__/
 
 # Brand tooling (ffmpeg frames, etc.)
 docs/assets/_tools/
+
+# gentle-ai (índice local de skills con rutas absolutas)
+.atl/
