@@ -15,3 +15,6 @@ docs/assets/_tools/
 
 # gentle-ai (índice local de skills con rutas absolutas)
 .atl/
+
+# Visual Studio (estado local del IDE: caché, workspace y ajustes por usuario)
+.vs/
