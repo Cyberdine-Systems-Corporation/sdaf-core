@@ -174,6 +174,12 @@ Cierra el seguimiento de ADR-004. Al pinnear `v0.4.2`:
 
 No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
 
+## 0.4.3 (parche)
+
+Coherencia de versiones en la documentación publicada (H-10 de [INIT-arquitectura](iniciativas/INIT-arquitectura.md)). Al pinnear `v0.4.3` no hay nada que hacer: sin cambio de norma.
+
+No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
+
 ## Fuera de 0.3.x
 
 Sin implementar en esta línea:

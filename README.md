@@ -38,7 +38,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 - No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (`sdaf-stack-*`) puede añadir playbooks técnicos (ver [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md)). Pack de referencia: [`sdaf-stack-dotnet`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet).
 - No rellena `specs/`: exige que existan y estén Approved antes de implementar.
 
-## Contenido (v0.4.2)
+## Contenido (v0.4.3)
 
 | | Ruta | Rol |
 |--|------|-----|
@@ -72,9 +72,9 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 | | Artefacto | Estado |
 |--|-----------|--------|
 | ✅ | Handbook del método | **Approved** 00–13 y A–B (línea 0.4.0) |
-| ✅ | Agentes, prompts y skills | **Approved** (v0.4.2; contratos 0.2 siguen vigentes) |
+| ✅ | Agentes, prompts y skills | **Approved** (v0.4.3; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
-| | Release del árbol (tag) | **v0.4.2** |
+| | Release del árbol (tag) | **v0.4.2**; `v0.4.3` se crea tras el merge del parche 0.4.3 |
 
 ## Origen
 
