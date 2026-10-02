@@ -15,7 +15,7 @@ No contiene código ni specs de un producto concreto.
 | | Si quieres… | Empieza aquí |
 |--|-------------|--------------|
 | 🛠️ | **Adoptar** el método en un repo | [Adopción y upgrade](docs/adopcion-y-upgrade.md) — pin a tag, `sdaf.config.yaml`, bootstrap |
-| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–12 y apéndices A–B (0.3.3) |
+| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–13 y apéndices A–B (línea 0.4.0) |
 | ⛔ | **Operar un PBI** | [Gate 0](skills/sdaf-gate0/SKILL.md) antes de código; [worklog / ATF](handbook/08-agent-traceability.md) para dejar evidencia |
 
 🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md). Identidad visual: [`docs/branding.md`](docs/branding.md).
