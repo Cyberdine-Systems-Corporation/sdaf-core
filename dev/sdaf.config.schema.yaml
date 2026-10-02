@@ -1,4 +1,4 @@
-# Esquema de `sdaf.config.yaml` (consumidor) — v0.3
+# Esquema de `sdaf.config.yaml` (consumidor) — línea vigente
 
 Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sdaf.config.schema.json`](sdaf.config.schema.json).
 
@@ -23,7 +23,7 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
 | `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |
-| `project.language` | string | sí | `es` en v0.3 | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). v0.3 solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
+| `project.language` | string | sí | `es` en la línea vigente | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). La línea vigente solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 
@@ -43,7 +43,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 | `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |
 | `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |
 
-#### Ids reconocidos por el core v0.3
+#### Ids reconocidos por el core (línea vigente)
 
 | Id | Rol | En el core |
 |----|-----|------------|
