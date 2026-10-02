@@ -34,13 +34,13 @@ capitulos:
   - id: 05-development-workflow
     archivo: 05-development-workflow.md
     meta: _meta/05-development-workflow.yaml
-    version: "0.3.3"
+    version: "0.3.4"
     estado: Approved
     titulo: 05 — Development Workflow
   - id: 06-ai-agent-framework
     archivo: 06-ai-agent-framework.md
     meta: _meta/06-ai-agent-framework.yaml
-    version: "0.3.3"
+    version: "0.3.4"
     estado: Approved
     titulo: 06 — AI Agent Framework
   - id: 07-prompt-engineering-standard

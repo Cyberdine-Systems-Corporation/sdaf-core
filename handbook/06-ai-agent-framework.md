@@ -25,7 +25,7 @@ Los agentes ejecutan el pipeline SDAF. No son un nivel normativo. No aprueban ca
 
 **Decisión del core:** pocos **activos** + **stubs** (contrato + prompt listos). La lista concreta la fija `sdaf.config.yaml`.
 
-Por defecto en v0.2:
+Por defecto:
 
 ### 3.1 Activos
 

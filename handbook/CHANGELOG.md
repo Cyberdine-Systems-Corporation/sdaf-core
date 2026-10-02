@@ -1,5 +1,17 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.4.3 — 2026-10-02T17:29+02:00
+
+Parche de redacción (**no** breaking de citas `H00`–`H13` ni de configs). Cierra la incoherencia de versiones (H-10) de la iniciativa [INIT-arquitectura](../docs/iniciativas/INIT-arquitectura.md), sin cambio de norma.
+
+- `H05` `0.3.4`: G2.3 deja de condicionar el checklist de H10 a un pin `0.3`.
+- `H06` `0.3.4`: §3 retira «v0.2» de «Por defecto».
+- `README.md`: capítulos Approved `00–13` y línea `0.4.0` en la tabla «Tres puertas».
+- Esquema de config, ejemplos y catálogos (`skills/README.md` `0.3.4`, `prompts/README.md`): las etiquetas «v0.3» nombran la línea vigente; el pin del ejemplo pasa a `v0.4.x`.
+- Worklog: [`worklogs/INIT-arquitectura/Iteration-004.md`](../worklogs/INIT-arquitectura/Iteration-004.md).
+
+Nadie tiene que hacer nada. `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.3`, que se crea tras el merge. Quien siga en `v0.4.2` o anterior no está obligado a moverlo.
+
 ## 0.4.2 — 2026-09-26T17:27+02:00
 
 Parche (**no** breaking de citas `H00`–`H13` ni de configs). Sin cambio de capítulos. Cierra el seguimiento de [ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md).

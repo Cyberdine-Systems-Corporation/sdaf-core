@@ -1,4 +1,4 @@
-# Techo v0.3: todas las claves del esquema, explícitas.
+# Techo: todas las claves del esquema, explícitas.
 # Uso: plantilla de auditoría o para no depender de defaults. No es el default recomendado
 # (muchos activos + pack + fusiones + rutas custom = más superficie de handoff).
 # Combina: version, name, language, pack, src_path, tests_path, active, stubs, fusions, tooling.

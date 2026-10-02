@@ -3,7 +3,7 @@
 Norma: [`handbook/07-prompt-engineering-standard.md`](../handbook/07-prompt-engineering-standard.md).  
 Router: [`AGENTS.md.template`](../AGENTS.md.template).
 
-## Catálogo v0.3
+## Catálogo vigente
 
 | Área | Contenido | Estado |
 |------|-----------|--------|

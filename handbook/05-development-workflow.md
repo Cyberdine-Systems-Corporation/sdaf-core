@@ -89,7 +89,7 @@ Antes de escribir código de producto, **deben** cumplirse:
 |---|-----------|
 | G2.1 | Acceptance tests del PBI en verde (o justificación ADR temporal) — detalle QG-Accept en [H10](10-code-review-and-quality-gates.md) |
 | G2.2 | Ninguna contradicción consciente con specs Approved |
-| G2.3 | Review con checklist ([H10](10-code-review-and-quality-gates.md) si el consumidor pinnea 0.3) |
+| G2.3 | Review con checklist ([H10](10-code-review-and-quality-gates.md)) |
 | G2.4 | Worklog cerrado / listo |
 | G2.5 | Runtime local sigue arrancando según runbook del consumidor (si aplica) — [H11](11-devops.md) |
 

@@ -1,8 +1,8 @@
 archivo: 06-ai-agent-framework.md
 titulo: 06 — AI Agent Framework
-version: 0.3.3
+version: 0.3.4
 estado: Approved
-fecha: 2026-09-19
+fecha: "2026-10-02T17:27+02:00"
 parte: II — Ingeniería IA
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md)"
 deriva_hacia: "`agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md)"
@@ -19,6 +19,9 @@ relacionado:
   - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
     por_que: Checklist Testing+Review
 historial:
+  - version: 0.3.4
+    fecha: "2026-10-02T17:27+02:00"
+    cambio: "§3: se retira «v0.2» de «Por defecto» (sin cambio de norma)"
   - version: 0.3.3
     fecha: 2026-09-19
     cambio: Encargo vigente = este turno; el historial de la conversación no autoriza git ni el remoto
@@ -50,9 +53,9 @@ historial:
     fecha: 2026-08-24
     cambio: Agentes genéricos; implementación de stack fuera del core (ADR-008)
 cabecera:
-  Versión: 0.3.3
+  Versión: 0.3.4
   Estado: Approved
-  Fecha: 2026-09-19
+  Fecha: "2026-10-02T17:27+02:00"
   Parte: II — Ingeniería IA
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [05-development-workflow.md](05-development-workflow.md)"
   Deriva hacia: "`agents/`, `prompts/agents/`, `skills/`, [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [08-agent-traceability.md](08-agent-traceability.md)"
