@@ -10,7 +10,7 @@ Parche de redacción (**no** breaking de citas `H00`–`H13` ni de configs). Cie
 - Esquema de config, ejemplos y catálogos (`skills/README.md` `0.3.4`, `prompts/README.md`): las etiquetas «v0.3» nombran la línea vigente; el pin del ejemplo pasa a `v0.4.x`.
 - Worklog: [`worklogs/INIT-arquitectura/Iteration-004.md`](../worklogs/INIT-arquitectura/Iteration-004.md).
 
-Nadie tiene que hacer nada. `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.3`, que se crea tras el merge. Quien siga en `v0.4.2` o anterior no está obligado a moverlo.
+Nadie tiene que hacer nada. `sdaf.version` sigue en `"0.4.0"`. Pin de árbol: `v0.4.3`. Quien siga en `v0.4.2` o anterior no está obligado a moverlo.
 
 ## 0.4.2 — 2026-09-26T17:27+02:00
 

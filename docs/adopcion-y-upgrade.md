@@ -11,12 +11,12 @@
 
 | Concepto | Uso |
 |----------|-----|
-| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`. **No** existen `v0.3.0` ni `v0.3.1`. |
+| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`, `v0.4.3`. **No** existen `v0.3.0` ni `v0.3.1`. |
 | `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
 | Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x` o `0.4.x` según pin) |
 
 > [!TIP]
-> El pin recomendado del árbol es `v0.4.2`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
+> El pin recomendado del árbol es `v0.4.3`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
 
 Subir de `0.1.x` a `0.2.0` es un upgrade consciente (breaking de citas de handbook).
 
@@ -38,7 +38,7 @@ flowchart TD
 
 ```text
 git submodule add -b main <url-sdaf-core> .sdaf
-cd .sdaf && git checkout v0.4.2
+cd .sdaf && git checkout v0.4.3
 ```
 
 2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
