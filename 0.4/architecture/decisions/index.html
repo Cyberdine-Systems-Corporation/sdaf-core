@@ -665,6 +665,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1348,6 +1356,118 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ADR-005-linea-base-arquitectonica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ADR-006-ciclo-de-vida-de-adrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ADR-007-modelo-de-capas-y-precedencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ADR-008-adopcion-sobre-codigo-existente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1366,6 +1486,8 @@
       
         
           
+        
+      
         
       
         
@@ -1597,6 +1719,111 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/iniciativas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iniciativas
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Iniciativas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/iniciativas/INIT-arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INIT-arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3882,7 +4109,7 @@
 
 <h1 id="adrs-del-método-sdaf-core">ADRs del método (sdaf-core)<a class="headerlink" href="#adrs-del-método-sdaf-core" title="Permanent link">&para;</a></h1>
 <p>Esta carpeta guarda las decisiones de <strong>gobernanza del núcleo</strong>, no las de un producto.</p>
-<p>El árbol normativo del <strong>consumidor</strong> sigue exigiendo <code>architecture/decisions/</code> para sus ADRs de stack y límites (<a href="../../handbook/03-repository-organization/">H03 §2</a>). Este core numera sus ADRs desde 001. Los historiales hasta <code>v0.3.3</code> citan «ADR-008», un número heredado del laboratorio de origen: equivale a <a href="ADR-001-nucleo-reutilizable/">ADR-001</a>. Esas filas no se reescriben.</p>
+<p>El árbol normativo del <strong>consumidor</strong> sigue exigiendo <code>architecture/decisions/</code> para sus ADRs de stack y límites (<a href="../../handbook/03-repository-organization/">H03 §2</a>). Este core numera sus ADRs desde 001. Los historiales hasta <code>v0.3.3</code> citan «ADR-008», un número heredado del laboratorio de origen: equivale a <a href="ADR-001-nucleo-reutilizable/">ADR-001</a>. Esas filas no se reescriben. El <a href="ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a> propuesto en 2026-09-28 es otra decisión; la cita histórica sigue apuntando a ADR-001.</p>
 <table>
 <thead>
 <tr>
@@ -3912,9 +4139,29 @@
 <td>Aceptado</td>
 <td>Tooling externo de agentes</td>
 </tr>
+<tr>
+<td><a href="ADR-005-linea-base-arquitectonica/">ADR-005</a></td>
+<td>Propuesto</td>
+<td>Línea base arquitectónica del consumidor</td>
+</tr>
+<tr>
+<td><a href="ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a></td>
+<td>Propuesto</td>
+<td>Ciclo de vida y sustitución de ADRs</td>
+</tr>
+<tr>
+<td><a href="ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a></td>
+<td>Propuesto</td>
+<td>Modelo de capas del método y precedencia</td>
+</tr>
+<tr>
+<td><a href="ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a></td>
+<td>Propuesto</td>
+<td>Adopción del método sobre código existente</td>
+</tr>
 </tbody>
 </table>
-<p>Ningún agente marca un ADR como Aceptado (<a href="../../handbook/00-preface/">H00 §3.3</a>). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién.</p>
+<p>Ningún agente marca un ADR como Aceptado (<a href="../../handbook/00-preface/">H00 §3.3</a>). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 a 008 están Propuestos y pendientes de decisión humana.</p>
 
 
 

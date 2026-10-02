@@ -661,6 +661,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1331,6 +1339,118 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-005-linea-base-arquitectonica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-005
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-006
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-007
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1349,6 +1469,8 @@
       
         
           
+        
+      
         
       
         
@@ -1580,6 +1702,111 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../docs/iniciativas/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iniciativas
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Iniciativas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/iniciativas/INIT-arquitectura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INIT-arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -4129,7 +4356,7 @@
 <p><strong>En esta página:</strong> <a href="#01-default-core-recomendado">01 Default core</a> · <a href="#02-mínimo">02 Mínimo</a> · <a href="#03-rutas-custom">03 Rutas custom</a> · <a href="#04-pack-de-stack">04 Pack de stack</a> · <a href="#05-fusiones-mvp">05 Fusiones MVP</a> · <a href="#06-agentes-desacoplados">06 Agentes desacoplados</a> · <a href="#07-pack-frontend">07 Pack frontend</a> · <a href="#08-completo">08 Completo</a> · <a href="#relacionado">Relacionado</a></p>
 <h2 id="01-default-core-recomendado">01 — Default core (recomendado)<a class="headerlink" href="#01-default-core-recomendado" title="Permanent link">&para;</a></h2>
 <p>Solo método, 3 activos, stubs del core, sin pack ni fusiones extra.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Recomendado en v0.3: núcleo sin pack ni fusiones extra.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Recomendado: núcleo sin pack ni fusiones extra.</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Uso: primer proyecto SDAF, o laboratorio de método. Tres activos evitan thrash.</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Materializar AGENTS.md con project.name; Gate 0 usa src/ y tests/ por defecto.</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Qué no hace: no añade Frontend ni skills de un lenguaje.</span>
@@ -4371,7 +4598,7 @@
 </code></pre></div>
 <h2 id="08-completo">08 — Completo<a class="headerlink" href="#08-completo" title="Permanent link">&para;</a></h2>
 <p>Todas las claves rellenadas a la vez (referencia de techo).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Techo v0.3: todas las claves del esquema, explícitas.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Techo: todas las claves del esquema, explícitas.</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Uso: plantilla de auditoría o para no depender de defaults. No es el default recomendado</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># (muchos activos + pack + fusiones + rutas custom = más superficie de handoff).</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Combina: version, name, language, pack, src_path, tests_path, active, stubs, fusions, tooling.</span>
