@@ -16,5 +16,8 @@ docs/assets/_tools/
 # gentle-ai (índice local de skills con rutas absolutas)
 .atl/
 
+# Seguimiento ODD local (tareas del orquestador; un .md huérfano rompe --strict-orphans)
+odd/
+
 # Visual Studio (estado local del IDE: caché, workspace y ajustes por usuario)
 .vs/
