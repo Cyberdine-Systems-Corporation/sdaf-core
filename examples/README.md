@@ -1,6 +1,6 @@
 # Ejemplos de `sdaf.config.yaml`
 
-Cada archivo es un escenario **completo y válido** en v0.3. Copia el que más se acerque y cambia `project.name`.
+Cada archivo es un escenario **completo y válido** en la línea vigente. Copia el que más se acerque y cambia `project.name`.
 
 | Archivo | Qué ilustra |
 |---------|-------------|
@@ -46,7 +46,7 @@ flowchart TD
 
 ### `sdaf.version`
 
-Nombra la **línea de constitución**, no un tag. Si el consumidor dice `0.2.0` y el core avanza a la línea `0.3.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Los ejemplos de este árbol usan `"0.4.0"` (pin `v0.4.0`). Con pin `v0.3.3`, `sdaf.version` es `"0.3.0"`. No existe el tag `v0.3.0`.
+Nombra la **línea de constitución**, no un tag. Si el consumidor dice `0.2.0` y el core avanza a la línea `0.3.0`, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Los ejemplos de este árbol usan `"0.4.0"` (pin `v0.4.x`). Con pin `v0.3.3`, `sdaf.version` es `"0.3.0"`. No existe el tag `v0.3.0`.
 
 ### `project.name`
 
@@ -54,7 +54,7 @@ Nombre corto del producto. Se usa al generar `AGENTS.md` (`{{PROJECT_NAME}}`). N
 
 ### `project.language`
 
-En v0.3 **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.
+En la línea vigente **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.
 
 ### `stack.pack`
 
@@ -124,7 +124,7 @@ No cambia Gate 0 ni el router. Solo aparece en 08.
 | `fusions.foo` sin `foo` en `active` | Fusión fantasma |
 | `domain` y `domain-application` ambos `active` | Doble dueño del mismo diff |
 | `frontend` activo y `pack: null` | Id de extensión sin playbook |
-| `language: en` | No soportado en v0.3 |
+| `language: en` | No soportado en la línea vigente |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
 | `tooling.gentle_ai: main` | Una rama no fija versión; declarar una release o un SHA de commit |
 
