@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.2 |
+| Versión | 0.1.3 |
 | Estado | Draft |
-| Fecha | 2026-09-29T07:50+02:00 |
+| Fecha | 2026-10-02T18:02+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs propuestos | ADR-005, ADR-006, ADR-007, ADR-008 (estado Propuesto) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -68,19 +68,19 @@
 
 ## 3. Decisiones humanas previas
 
-Bloquean los PBIs indicados. Recomendación en negrita; el humano decide.
+Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a D-9 están cerradas desde 2026-10-02 (la opción elegida es la recomendada); los ADR-005 a 008 siguen Propuestos hasta que un humano los acepte (ARQ-2.1).
 
 | ID | Pregunta | Opciones | Recomendación | Bloquea |
 |----|----------|----------|---------------|---------|
-| D-1 | ¿Gate 0 exige la línea base? | A) Sí, en línea nueva opt-in `0.5.0`. B) Solo aviso en `0.4.x`. C) Recomendada sin gate. | **A**: sin gate, G0.3 y QG-Arch siguen sin ser auditables; la línea opt-in no obliga a nadie en `0.4.x` | Bloque 3 |
-| D-2 | ¿Dónde vive la línea base? | A) `architecture/description.md`. B) Carpeta `architecture/description/`. C) Sección del handbook de producto. | **A**, con B permitido si crece (índice en el fichero) | ARQ-3.1, 3.2, 3.4 |
-| D-3 | Precedencia entre ADRs y specs | A) ADR > spec (actual). B) Spec > ADR. C) Mismo nivel por materia; conflicto = STOP y enmienda. | **C** (ADR-007 §2) | ARQ-3.7 |
-| D-4 | Número del ADR de adopción | A) Reutilizar 008 con nota. B) Reservar 008 y cambiar `check-adrs.py`. | **A**: la cita histórica está acotada «hasta `v0.3.3`» y el README lo aclara | ARQ-2.1 |
+| D-1 | ¿Gate 0 exige la línea base? | A) Sí, en línea nueva opt-in `0.5.0`. B) Solo aviso en `0.4.x`. C) Recomendada sin gate. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan). Sin gate, G0.3 y QG-Arch siguen sin ser auditables; la línea opt-in no obliga a nadie en `0.4.x` | Bloque 3 |
+| D-2 | ¿Dónde vive la línea base? | A) `architecture/description.md`. B) Carpeta `architecture/description/`. C) Sección del handbook de producto. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan), con B permitido si crece (índice en el fichero) | ARQ-3.1, 3.2, 3.4 |
+| D-3 | Precedencia entre ADRs y specs | A) ADR > spec (actual). B) Spec > ADR. C) Mismo nivel por materia; conflicto = STOP y enmienda. | **Cerrada: C** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan; ADR-007 §2) | ARQ-3.7 |
+| D-4 | Número del ADR de adopción | A) Reutilizar 008 con nota. B) Reservar 008 y cambiar `check-adrs.py`. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan). La cita histórica está acotada «hasta `v0.3.3`» y el README lo aclara | ARQ-2.1 |
 | D-5 | ¿Dónde se versionan los planes de iniciativa del core? | A) Fuera del repo (precedente de la auditoría v0.3.3). B) `docs/iniciativas/`. C) Carpeta nueva `initiatives/` con su checker. | **Cerrada: B** (2026-09-29T07:28+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita, no autodeclarada) | ARQ-0.2 |
-| D-6 | Varios packs en la config | A) `stack.packs` con `stack.pack` como alias obsoleto. B) Sustituir `stack.pack` (breaking). | **A** | ARQ-4.2 |
-| D-7 | ¿Quién declara la compatibilidad pack ↔ core? | A) El pack en su manifiesto. B) El consumidor en la config. | **A**: el autor del pack es quien la conoce | ARQ-4.1 |
-| D-8 | Idioma `es` fijo | A) Mantener y registrarlo como decisión explícita. B) Abrir i18n. | **A**: es una decisión deliberada; solo falta registrarla | ARQ-3.12 |
-| D-9 | Capítulo nuevo o enmienda | A) H14 «Descripción de arquitectura». B) Ampliar H03 y H04. | **A**: añadir capítulo no renumera ni rompe citas (H13 §5) | ARQ-3.1 |
+| D-6 | Varios packs en la config | A) `stack.packs` con `stack.pack` como alias obsoleto. B) Sustituir `stack.pack` (breaking). | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan) | ARQ-4.2 |
+| D-7 | ¿Quién declara la compatibilidad pack ↔ core? | A) El pack en su manifiesto. B) El consumidor en la config. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan). El autor del pack es quien la conoce | ARQ-4.1 |
+| D-8 | Idioma `es` fijo | A) Mantener y registrarlo como decisión explícita. B) Abrir i18n. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan). Es una decisión deliberada; solo falta registrarla | ARQ-3.12 |
+| D-9 | Capítulo nuevo o enmienda | A) H14 «Descripción de arquitectura». B) Ampliar H03 y H04. | **Cerrada: A** (2026-10-02T18:02+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat, aceptando la recomendación del plan). Añadir capítulo no renumera ni rompe citas (H13 §5) | ARQ-3.1 |
 
 ---
 
@@ -104,7 +104,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 0 — Decisiones y preparación
 
-**ARQ-0.1 — Cerrar decisiones D-1 a D-9**
+**ARQ-0.1 — Cerrar decisiones D-1 a D-9** (hecho en Iteration-005)
 - Hallazgos: todos.
 - Artefactos: este plan (sección 3), fila de decisión en el worklog.
 - Aceptación: cada D-n con opción elegida, fecha con hora y zona, y quién decide.
@@ -117,24 +117,24 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 1 — `v0.4.3`: coherencia de versiones
 
-**ARQ-1.1 — README y handbook README**
+**ARQ-1.1 — README y handbook README** (hecho: v0.4.3)
 - Hallazgos: H-10.
 - Artefactos: `README.md` (tabla «Tres puertas»: 00–13 y línea 0.4.0).
 - Clase: redacción.
 - Aceptación: ninguna cifra de capítulos o línea contradice la tabla «Estado».
 
-**ARQ-1.2 — Condición obsoleta en G2.3 y «v0.2» en H06 §3**
+**ARQ-1.2 — Condición obsoleta en G2.3 y «v0.2» en H06 §3** (hecho: v0.4.3)
 - Artefactos: `handbook/05-development-workflow.md`, `handbook/06-ai-agent-framework.md`, sus `_meta/*.yaml`.
 - Clase: redacción (bump patch de capítulo, fila de historial «sin cambio de norma»).
 - Aceptación: `check-version-metadata.py` y `check-history-append-only.py` en verde.
 
-**ARQ-1.3 — Etiquetas «v0.3» en config, ejemplos y catálogos**
+**ARQ-1.3 — Etiquetas «v0.3» en config, ejemplos y catálogos** (hecho: v0.4.3)
 - Artefactos: `sdaf.config.schema.yaml`, `sdaf.config.schema.json` (description), `sdaf.config.example.yaml` (pin recomendado), `examples/README.md`, `examples/01-default-core.yaml`, `examples/08-completo.yaml`, `skills/README.md`, `prompts/README.md`.
 - Clase: redacción.
 - Aceptación: las etiquetas nombran la línea vigente o son neutras («línea vigente»); `validate-examples.py` en verde.
 
-**ARQ-1.4 — Release `v0.4.3`**
-- Artefactos: `handbook/CHANGELOG.md`, `README.md`, `docs/adopcion-y-upgrade.md` (sección 0.4.3).
+**ARQ-1.4 — Release `v0.4.3`** (hecho: tag sobre `6ea4d63`, PR #33 y #34, worklog Iteration-004)
+- Artefactos: `handbook/CHANGELOG.md`, `CHANGELOG.md`, `README.md` (contenido, tabla «Estado» y fila de tag), `docs/adopcion-y-upgrade.md` (sección 0.4.3), `.github/actions/validate-sdaf/README.md` (en el PR de publicación).
 - Aceptación: CHANGELOG «no rompe citas»; `sdaf.version` sigue en `"0.4.0"`; tag por orden humana.
 - Depende de: ARQ-1.1 a 1.3.
 
@@ -391,7 +391,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 ## 10. Definition of Done de la iniciativa
 
-- [ ] D-1 a D-9 cerradas y registradas (D-5 cerrada).
+- [x] D-1 a D-9 cerradas y registradas (Iteration-005).
 - [ ] ADR-005 a 008 Aceptados o Rechazados por humano.
 - [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente.
 - [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6).
@@ -402,9 +402,9 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 ## 11. Siguiente paso
 
-1. Revisión humana de este plan y de ADR-005 a 008.
-2. Cierre de D-1 a D-4 y D-6 a D-9 (ARQ-0.1).
-3. Bloque 1 (`v0.4.3`) en paralelo, porque no depende de ninguna decisión.
+1. Revisión humana de ADR-005 a 008 y su aceptación o rechazo (ARQ-2.1), empezando por ADR-005, ADR-006 y ADR-007 §2, que desbloquean `v0.5.0`.
+2. Elegir la estrategia de entrega de `v0.5.0` (cadena sobre rama de feature recomendada) antes del primer commit del bloque 3.
+3. Bloque 3 (`v0.5.0`) tras ARQ-2.1. El bloque 1 (`v0.4.3`) ya está publicado.
 
 ---
 
@@ -421,6 +421,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.3 | 2026-10-02T18:02+02:00 | D-1 a D-9 cerradas con la opción recomendada (ARQ-0.1); ARQ-1.1 a 1.4 hechos (`v0.4.3`); ARQ-1.4 completa sus artefactos; siguiente paso actualizado |
 | 0.1.2 | 2026-09-29T07:50+02:00 | Diagrama de dependencias alineado con el texto (bloque 1 sin dependencias; 3.5, 3.8–3.12, 4.3, 4.4, 4.6 y 6.1–6.2 completos); ARQ-4.5 y 4.7 declaran su dependencia; `v0.5.1` es parche |
 | 0.1.1 | 2026-09-29T07:28+02:00 | D-5 cerrada (B): el plan pasa a `docs/iniciativas/`; TOC y Relacionado |
 | 0.1.0 | 2026-09-28T18:08+02:00 | Borrador inicial fuera del repo |
