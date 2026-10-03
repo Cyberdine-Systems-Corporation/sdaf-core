@@ -2,9 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Estado | Propuesto |
+| Estado | Aceptado |
 | Fecha | 2026-09-28T18:08+02:00 |
 | Decisores | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
+| Aceptación | 2026-10-03T11:01+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). El agente transcribe la aceptación dada en el encargo; no la autodeclara ([H00 §3.3](../../handbook/00-preface.md)). |
 | Relacionado | [H01](../../handbook/01-sdaf-framework.md), [H03](../../handbook/03-repository-organization.md), [H04](../../handbook/04-specification-standard.md), [H05](../../handbook/05-development-workflow.md), [H10](../../handbook/10-code-review-and-quality-gates.md), [contrato del Architecture Agent](../../agents/architecture-agent.md), [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md), [ADR-007](ADR-007-modelo-de-capas-y-precedencia.md), [worklog](../../worklogs/INIT-arquitectura/Iteration-001.md) |
 
 ## Contexto
@@ -24,7 +25,7 @@ El contrato del Architecture Agent también fija como norma que «el dominio no 
 
 ## Decisión
 
-1. **Artefacto.** Todo consumidor que adopte la línea de constitución que incluya este ADR mantiene una **línea base arquitectónica**: una descripción de la arquitectura vigente, versionada, en `architecture/description.md` (ruta pendiente de la decisión D-2 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md)).
+1. **Artefacto.** Todo consumidor que adopte la línea de constitución que incluya este ADR mantiene una **línea base arquitectónica**: una descripción de la arquitectura vigente, versionada, en `architecture/description.md` (ruta fijada por la decisión D-2 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md), cerrada el 2026-10-02).
 2. **Contenido mínimo, neutral de estilo.** La línea base declara, con nombres estables:
    1. contexto del sistema y actores o sistemas externos;
    2. **unidades** arquitectónicas (nombre, responsabilidad y tipo libre: módulo, capa, servicio, bounded context…);
