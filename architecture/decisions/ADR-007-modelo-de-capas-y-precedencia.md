@@ -2,9 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Estado | Propuesto |
+| Estado | Aceptado |
 | Fecha | 2026-09-28T18:08+02:00 |
 | Decisores | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
+| Aceptación | 2026-10-07T15:41+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Se acepta la decisión completa; la implementación se reparte por línea de constitución (§9): §2 en `0.5.0`, §3 a §8 en `0.6.0`. El agente transcribe la aceptación dada en el encargo; no la autodeclara ([H00 §3.3](../../handbook/00-preface.md)). |
 | Relacionado | [H01](../../handbook/01-sdaf-framework.md), [H05](../../handbook/05-development-workflow.md), [contrato de pack](../../docs/contrato-pack-stack.md), [adopción y upgrade](../../docs/adopcion-y-upgrade.md), [esquema de config](../../sdaf.config.schema.yaml), [ADR-004](ADR-004-tooling-externo-de-agentes.md), [ADR-005](ADR-005-linea-base-arquitectonica.md), [worklog](../../worklogs/INIT-arquitectura/Iteration-001.md) |
 
 ## Contexto
@@ -27,7 +28,7 @@ En la práctica un repo consumidor combina tres capas: el core, un pack de stack
    - **Overlay del consumidor**: handbook de producto, línea base y ADRs ([ADR-005](ADR-005-linea-base-arquitectonica.md)), specs, `AGENTS.md` y artefactos locales (contratos, prompts, skills).
 
    El tooling externo sigue fuera del modelo, como capa de entorno subordinada ([ADR-004](ADR-004-tooling-externo-de-agentes.md)).
-2. **Precedencia única** (sustituye a H01 §3.2; pendiente de la decisión D-3 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md)):
+2. **Precedencia única** (sustituye a H01 §3.2; fijada por la decisión D-3 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md), cerrada el 2026-10-02):
    1. Handbook del core, capítulos Approved.
    2. Handbook de producto Approved.
    3. Línea base Approved y ADRs vigentes del consumidor **junto con** specs Approved. No se ordenan entre sí: la spec manda sobre *qué* debe cumplirse y el ADR sobre *cómo* se construye. Un conflicto entre ambos es **STOP** y se resuelve enmendando uno de los dos; nunca en silencio durante la implementación.
@@ -35,7 +36,7 @@ En la práctica un repo consumidor combina tres capas: el core, un pack de stack
    5. Backlog.
    6. Prompts, skills locales, worklogs e implementación.
 3. **Manifiesto de pack.** Cada pack publica `sdaf-pack.yaml` con: `id`, `version`, `core` (rango semver de líneas de constitución compatibles, p. ej. `">=0.5.0 <0.7.0"`), `provides` (ids de extensión, skills y prompts) y `requires` (otros packs, opcional). Schema validable en el core.
-4. **Varios packs.** La config admite `stack.packs` (lista de `id@version`). `stack.pack` se mantiene como alias de un solo elemento, marcado como obsoleto (decisión D-6 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md)).
+4. **Varios packs.** La config admite `stack.packs` (lista de `id@version`). `stack.pack` se mantiene como alias de un solo elemento, marcado como obsoleto (decisión D-6 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md), cerrada el 2026-10-02).
 5. **Resolución por id.**
    - Los ids de agente del núcleo no se sustituyen desde un pack ni desde el overlay. El overlay puede añadir prompts adicionales y contexto autorizado, no reemplazar el prompt base.
    - Un mismo id aportado por dos packs, o por un pack y el overlay, es error de validación, salvo sustitución explícita del overlay sobre un id de **extensión** declarada en la config.

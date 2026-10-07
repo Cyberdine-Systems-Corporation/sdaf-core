@@ -2,9 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Estado | Propuesto |
+| Estado | Aceptado |
 | Fecha | 2026-09-28T18:08+02:00 |
 | Decisores | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
+| Aceptación | 2026-10-07T15:28+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). El agente transcribe la aceptación dada en el encargo; no la autodeclara ([H00 §3.3](../../handbook/00-preface.md)). |
 | Relacionado | [H13](../../handbook/13-enmienda-excepciones-ciclo-de-vida.md), [H00 §3](../../handbook/00-preface.md), [plantilla ADR](../../templates/adr.md), [ADR-002](ADR-002-gobernanza-del-metodo.md), [ADR-005](ADR-005-linea-base-arquitectonica.md), [worklog](../../worklogs/INIT-arquitectura/Iteration-001.md) |
 
 ## Contexto
