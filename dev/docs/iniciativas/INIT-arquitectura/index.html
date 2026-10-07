@@ -4624,7 +4624,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.1.3</td>
+<td>0.1.6</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4632,7 +4632,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-02T18:02+02:00</td>
+<td>2026-10-07T15:41+02:00</td>
 </tr>
 <tr>
 <td>Base</td>
@@ -4643,12 +4643,12 @@
 <td>Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS)</td>
 </tr>
 <tr>
-<td>ADRs propuestos</td>
-<td>ADR-005, ADR-006, ADR-007, ADR-008 (estado Propuesto)</td>
+<td>ADRs</td>
+<td>ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07); ADR-008 (estado Propuesto)</td>
 </tr>
 <tr>
 <td>Worklogs</td>
-<td><a href="../../../worklogs/INIT-arquitectura/Iteration-001/">Iteration-001</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-002/">Iteration-002</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-003/">Iteration-003</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-004/">Iteration-004</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-005/">Iteration-005</a></td>
+<td><a href="../../../worklogs/INIT-arquitectura/Iteration-001/">Iteration-001</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-002/">Iteration-002</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-003/">Iteration-003</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-004/">Iteration-004</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-005/">Iteration-005</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-006/">Iteration-006</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-007/">Iteration-007</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-008/">Iteration-008</a></td>
 </tr>
 </tbody>
 </table>
@@ -4910,7 +4910,7 @@ Este plan es un borrador de trabajo. Ningún PBI se ejecuta, ningún ADR se acep
 - Aceptación: CHANGELOG «no rompe citas»; <code>sdaf.version</code> sigue en <code>"0.4.0"</code>; tag por orden humana.
 - Depende de: ARQ-1.1 a 1.3.</p>
 <h3 id="bloque-2-decisiones-de-arquitectura">Bloque 2 — Decisiones de arquitectura<a class="headerlink" href="#bloque-2-decisiones-de-arquitectura" title="Permanent link">&para;</a></h3>
-<p><strong>ARQ-2.1 — Revisar y aceptar ADR-005 a 008</strong>
+<p><strong>ARQ-2.1 — Revisar y aceptar ADR-005 a 008</strong> (en curso: ADR-005, 006 y 007 Aceptados; falta ADR-008)
 - Artefactos: <code>architecture/decisions/ADR-005</code> a <code>ADR-008</code>, índice <code>README.md</code>.
 - Aceptación: cada ADR pasa a Aceptado o Rechazado por humano, con fila Aceptación; <code>check-adrs.py</code> en verde. ADR-007 puede aceptarse en dos tiempos (§2 para <code>0.5.0</code>, resto para <code>0.6.0</code>) o dividirse en dos ADRs.
 - Depende de: ARQ-0.1.</p>
@@ -5221,9 +5221,9 @@ Este plan es un borrador de trabajo. Ningún PBI se ejecuta, ningún ADR se acep
 <hr />
 <h2 id="11-siguiente-paso">11. Siguiente paso<a class="headerlink" href="#11-siguiente-paso" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Revisión humana de ADR-005 a 008 y su aceptación o rechazo (ARQ-2.1), empezando por ADR-005, ADR-006 y ADR-007 §2, que desbloquean <code>v0.5.0</code>.</li>
+<li><code>v0.5.0</code> desbloqueada: ADR-005, 006 y 007 Aceptados. Falta decidir ADR-008 (aceptar o rechazar), que solo bloquea <code>v0.5.1</code>.</li>
 <li>Elegir la estrategia de entrega de <code>v0.5.0</code> (cadena sobre rama de feature recomendada) antes del primer commit del bloque 3.</li>
-<li>Bloque 3 (<code>v0.5.0</code>) tras ARQ-2.1. El bloque 1 (<code>v0.4.3</code>) ya está publicado.</li>
+<li>Bloque 3 (<code>v0.5.0</code>): ya puede empezar. El bloque 1 (<code>v0.4.3</code>) ya está publicado.</li>
 </ol>
 <hr />
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
@@ -5268,6 +5268,21 @@ Este plan es un borrador de trabajo. Ningún PBI se ejecuta, ningún ADR se acep
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.1.6</td>
+<td>2026-10-07T15:41+02:00</td>
+<td>ADR-007 aceptado por el humano (decisión completa; implementación por línea, §2 en <code>0.5.0</code>); <code>v0.5.0</code> desbloqueada; solo ADR-008 sigue Propuesto</td>
+</tr>
+<tr>
+<td>0.1.5</td>
+<td>2026-10-07T15:28+02:00</td>
+<td>ADR-006 aceptado por el humano (ARQ-2.1 en curso); ADR-007 y 008 siguen Propuestos; ARQ-3.3 queda desbloqueado</td>
+</tr>
+<tr>
+<td>0.1.4</td>
+<td>2026-10-03T11:01+02:00</td>
+<td>ADR-005 aceptado por el humano (ARQ-2.1 en curso); ADR-006, 007 y 008 siguen Propuestos</td>
+</tr>
 <tr>
 <td>0.1.3</td>
 <td>2026-10-02T18:02+02:00</td>

@@ -4251,7 +4251,7 @@
 <tbody>
 <tr>
 <td>Estado</td>
-<td>Propuesto</td>
+<td>Aceptado</td>
 </tr>
 <tr>
 <td>Fecha</td>
@@ -4260,6 +4260,10 @@
 <tr>
 <td>Decisores</td>
 <td>Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS)</td>
+</tr>
+<tr>
+<td>Aceptación</td>
+<td>2026-10-07T15:41+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Se acepta la decisión completa; la implementación se reparte por línea de constitución (§9): §2 en <code>0.5.0</code>, §3 a §8 en <code>0.6.0</code>. El agente transcribe la aceptación dada en el encargo; no la autodeclara (<a href="../../../handbook/00-preface/">H00 §3.3</a>).</td>
 </tr>
 <tr>
 <td>Relacionado</td>
@@ -4286,7 +4290,7 @@
 <li><strong>Overlay del consumidor</strong>: handbook de producto, línea base y ADRs (<a href="../ADR-005-linea-base-arquitectonica/">ADR-005</a>), specs, <code>AGENTS.md</code> y artefactos locales (contratos, prompts, skills).</li>
 </ol>
 <p>El tooling externo sigue fuera del modelo, como capa de entorno subordinada (<a href="../ADR-004-tooling-externo-de-agentes/">ADR-004</a>).
-2. <strong>Precedencia única</strong> (sustituye a H01 §3.2; pendiente de la decisión D-3 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>):
+2. <strong>Precedencia única</strong> (sustituye a H01 §3.2; fijada por la decisión D-3 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>, cerrada el 2026-10-02):
    1. Handbook del core, capítulos Approved.
    2. Handbook de producto Approved.
    3. Línea base Approved y ADRs vigentes del consumidor <strong>junto con</strong> specs Approved. No se ordenan entre sí: la spec manda sobre <em>qué</em> debe cumplirse y el ADR sobre <em>cómo</em> se construye. Un conflicto entre ambos es <strong>STOP</strong> y se resuelve enmendando uno de los dos; nunca en silencio durante la implementación.
@@ -4294,7 +4298,7 @@
    5. Backlog.
    6. Prompts, skills locales, worklogs e implementación.
 3. <strong>Manifiesto de pack.</strong> Cada pack publica <code>sdaf-pack.yaml</code> con: <code>id</code>, <code>version</code>, <code>core</code> (rango semver de líneas de constitución compatibles, p. ej. <code>"&gt;=0.5.0 &lt;0.7.0"</code>), <code>provides</code> (ids de extensión, skills y prompts) y <code>requires</code> (otros packs, opcional). Schema validable en el core.
-4. <strong>Varios packs.</strong> La config admite <code>stack.packs</code> (lista de <code>id@version</code>). <code>stack.pack</code> se mantiene como alias de un solo elemento, marcado como obsoleto (decisión D-6 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>).
+4. <strong>Varios packs.</strong> La config admite <code>stack.packs</code> (lista de <code>id@version</code>). <code>stack.pack</code> se mantiene como alias de un solo elemento, marcado como obsoleto (decisión D-6 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>, cerrada el 2026-10-02).
 5. <strong>Resolución por id.</strong>
    - Los ids de agente del núcleo no se sustituyen desde un pack ni desde el overlay. El overlay puede añadir prompts adicionales y contexto autorizado, no reemplazar el prompt base.
    - Un mismo id aportado por dos packs, o por un pack y el overlay, es error de validación, salvo sustitución explícita del overlay sobre un id de <strong>extensión</strong> declarada en la config.
