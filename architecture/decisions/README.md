@@ -11,8 +11,8 @@ El árbol normativo del **consumidor** sigue exigiendo `architecture/decisions/`
 | [ADR-003](ADR-003-formato-de-artefactos.md) | Aceptado | Formato de andamiaje y worklog |
 | [ADR-004](ADR-004-tooling-externo-de-agentes.md) | Aceptado | Tooling externo de agentes |
 | [ADR-005](ADR-005-linea-base-arquitectonica.md) | Aceptado | Línea base arquitectónica del consumidor |
-| [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md) | Propuesto | Ciclo de vida y sustitución de ADRs |
+| [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md) | Aceptado | Ciclo de vida y sustitución de ADRs |
 | [ADR-007](ADR-007-modelo-de-capas-y-precedencia.md) | Propuesto | Modelo de capas del método y precedencia |
 | [ADR-008](ADR-008-adopcion-sobre-codigo-existente.md) | Propuesto | Adopción del método sobre código existente |
 
-Ningún agente marca un ADR como Aceptado ([H00 §3.3](../../handbook/00-preface.md)). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03. ADR-006 a 008 están Propuestos y pendientes de decisión humana.
+Ningún agente marca un ADR como Aceptado ([H00 §3.3](../../handbook/00-preface.md)). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03 y ADR-006 el 2026-10-07. ADR-007 y 008 están Propuestos y pendientes de decisión humana.

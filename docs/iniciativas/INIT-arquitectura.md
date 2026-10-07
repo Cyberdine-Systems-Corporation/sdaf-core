@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.4 |
+| Versión | 0.1.5 |
 | Estado | Draft |
 | Fecha | 2026-10-03T11:01+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
-| ADRs | ADR-005 (Aceptado 2026-10-03); ADR-006, ADR-007, ADR-008 (estado Propuesto) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md) |
+| ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 (Aceptado 2026-10-07); ADR-007, ADR-008 (estado Propuesto) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -140,7 +140,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 2 — Decisiones de arquitectura
 
-**ARQ-2.1 — Revisar y aceptar ADR-005 a 008** (en curso: ADR-005 Aceptado 2026-10-03)
+**ARQ-2.1 — Revisar y aceptar ADR-005 a 008** (en curso: ADR-005 y ADR-006 Aceptados)
 - Artefactos: `architecture/decisions/ADR-005` a `ADR-008`, índice `README.md`.
 - Aceptación: cada ADR pasa a Aceptado o Rechazado por humano, con fila Aceptación; `check-adrs.py` en verde. ADR-007 puede aceptarse en dos tiempos (§2 para `0.5.0`, resto para `0.6.0`) o dividirse en dos ADRs.
 - Depende de: ARQ-0.1.
@@ -421,6 +421,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.5 | 2026-10-07T15:28+02:00 | ADR-006 aceptado por el humano (ARQ-2.1 en curso); ADR-007 y 008 siguen Propuestos; ARQ-3.3 queda desbloqueado |
 | 0.1.4 | 2026-10-03T11:01+02:00 | ADR-005 aceptado por el humano (ARQ-2.1 en curso); ADR-006, 007 y 008 siguen Propuestos |
 | 0.1.3 | 2026-10-02T18:02+02:00 | D-1 a D-9 cerradas con la opción recomendada (ARQ-0.1); ARQ-1.1 a 1.4 hechos (`v0.4.3`); ARQ-1.4 completa sus artefactos; siguiente paso actualizado |
 | 0.1.2 | 2026-09-29T07:50+02:00 | Diagrama de dependencias alineado con el texto (bloque 1 sin dependencias; 3.5, 3.8–3.12, 4.3, 4.4, 4.6 y 6.1–6.2 completos); ARQ-4.5 y 4.7 declaran su dependencia; `v0.5.1` es parche |
