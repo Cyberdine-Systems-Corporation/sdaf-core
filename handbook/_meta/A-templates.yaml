@@ -1,8 +1,8 @@
 archivo: A-templates.md
 titulo: Apéndice A — Templates
-version: 0.3.3
+version: 0.3.4
 estado: Approved
-fecha: "2026-09-24T18:54+02:00"
+fecha: "2026-10-08T08:19+02:00"
 parte: Apéndices
 norma_superior: "Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/`"
 deriva_hacia: ""
@@ -16,7 +16,12 @@ relacionado:
     por_que: Contrato de agente
   - destino: "[12-security-standards.md](12-security-standards.md)"
     por_que: Plantilla SECURITY.md
+  - destino: "[14-architecture-description.md](14-architecture-description.md)"
+    por_que: Plantilla de línea base de arquitectura
 historial:
+  - version: 0.3.4
+    fecha: "2026-10-08T08:19+02:00"
+    cambio: "Se lista la plantilla de línea base de arquitectura (sin cambio de norma)"
   - version: 0.3.3
     fecha: "2026-09-24T18:54+02:00"
     cambio: "Worklog: frontmatter y cadena commit/PR/rama/SHA; sin cambio de norma de A"
@@ -45,8 +50,8 @@ historial:
     fecha: 2026-08-24
     cambio: Índice genérico (ADR-008)
 cabecera:
-  Versión: 0.3.3
+  Versión: 0.3.4
   Estado: Approved
-  Fecha: "2026-09-24T18:54+02:00"
+  Fecha: "2026-10-08T08:19+02:00"
   Parte: Apéndices
   Norma superior: "Caps. 04, 05, 06, 07, 08, 12; copias operativas en `templates/`"
