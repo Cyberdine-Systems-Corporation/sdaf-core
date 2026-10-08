@@ -88,8 +88,8 @@ capitulos:
   - id: 14-architecture-description
     archivo: 14-architecture-description.md
     meta: _meta/14-architecture-description.yaml
-    version: "0.1.0"
-    estado: Draft
+    version: "0.1.1"
+    estado: Approved
     titulo: 14 — Descripción de arquitectura
   - id: A-templates
     archivo: A-templates.md

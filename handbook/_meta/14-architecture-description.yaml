@@ -1,8 +1,8 @@
 archivo: 14-architecture-description.md
 titulo: 14 — Descripción de arquitectura
-version: 0.1.0
-estado: Draft
-fecha: "2026-10-08T08:19+02:00"
+version: 0.1.1
+estado: Approved
+fecha: "2026-10-08T08:32+02:00"
 parte: I — Método SDAF
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md)"
 deriva_hacia: "`templates/architecture-description.md`, `architecture/description.md` del consumidor, Architecture Agent"
@@ -21,13 +21,16 @@ relacionado:
   - destino: "[templates/architecture-description.md](../templates/architecture-description.md)"
     por_que: Plantilla de la línea base
 historial:
+  - version: 0.1.1
+    fecha: "2026-10-08T08:32+02:00"
+    cambio: "Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS; el agente transcribe la aprobación dada en el encargo, H00 §3.3)"
   - version: 0.1.0
     fecha: "2026-10-08T08:19+02:00"
     cambio: Draft inicial (no Approved)
 cabecera:
-  Versión: 0.1.0
-  Estado: Draft
-  Fecha: "2026-10-08T08:19+02:00"
+  Versión: 0.1.1
+  Estado: Approved
+  Fecha: "2026-10-08T08:32+02:00"
   Parte: I — Método SDAF
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md)"
   Deriva hacia: "`templates/architecture-description.md`, `architecture/description.md` del consumidor, Architecture Agent"
