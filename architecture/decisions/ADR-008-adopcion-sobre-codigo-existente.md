@@ -2,13 +2,14 @@
 
 | Campo | Valor |
 |--------|--------|
-| Estado | Propuesto |
+| Estado | Aceptado |
 | Fecha | 2026-09-28T18:08+02:00 |
 | Decisores | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
+| Aceptación | 2026-10-08T08:42+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). El agente transcribe la aceptación dada en el encargo; no la autodeclara ([H00 §3.3](../../handbook/00-preface.md)). |
 | Relacionado | [H05](../../handbook/05-development-workflow.md), [H13](../../handbook/13-enmienda-excepciones-ciclo-de-vida.md), [H04](../../handbook/04-specification-standard.md), [ADR-001](ADR-001-nucleo-reutilizable.md), [ADR-005](ADR-005-linea-base-arquitectonica.md), [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md), [worklog](../../worklogs/INIT-arquitectura/Iteration-001.md) |
 
 > [!NOTE]
-> Numeración: los historiales publicados hasta `v0.3.3` citan «ADR-008» como origen de la extracción del core; esa cita equivale a [ADR-001](ADR-001-nucleo-reutilizable.md) y no se refiere a este ADR. Reutilizar el número o reservarlo es la decisión D-4 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md). `check-adrs.py` exige hoy numeración sin huecos, así que reservarlo implica cambiar el checker.
+> Numeración: los historiales publicados hasta `v0.3.3` citan «ADR-008» como origen de la extracción del core; esa cita equivale a [ADR-001](ADR-001-nucleo-reutilizable.md) y no se refiere a este ADR. La decisión D-4 del [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md), cerrada el 2026-10-02, reutiliza el número 008 con esta nota; no se reserva, porque `check-adrs.py` exige numeración sin huecos.
 
 ## Contexto
 
