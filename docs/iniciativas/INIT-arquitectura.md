@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.10 |
+| Versión | 0.1.11 |
 | Estado | Draft |
-| Fecha | 2026-10-08T08:32+02:00 |
+| Fecha | 2026-10-08T08:42+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
-| ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07); ADR-008 (estado Propuesto) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md) |
+| ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -68,7 +68,7 @@
 
 ## 3. Decisiones humanas previas
 
-Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a D-9 están cerradas desde 2026-10-02 (la opción elegida es la recomendada); los ADR-005 a 008 siguen Propuestos hasta que un humano los acepte (ARQ-2.1).
+Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a D-9 están cerradas desde 2026-10-02 (la opción elegida es la recomendada); los ADR-005 a 008 están Aceptados por el humano (ARQ-2.1, hecho).
 
 | ID | Pregunta | Opciones | Recomendación | Bloquea |
 |----|----------|----------|---------------|---------|
@@ -142,7 +142,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 2 — Decisiones de arquitectura
 
-**ARQ-2.1 — Revisar y aceptar ADR-005 a 008** (en curso: ADR-005, 006 y 007 Aceptados; falta ADR-008)
+**ARQ-2.1 — Revisar y aceptar ADR-005 a 008** (hecho: ADR-005 a 008 Aceptados)
 - Artefactos: `architecture/decisions/ADR-005` a `ADR-008`, índice `README.md`.
 - Aceptación: cada ADR pasa a Aceptado o Rechazado por humano, con fila Aceptación; `check-adrs.py` en verde. ADR-007 puede aceptarse en dos tiempos (§2 para `0.5.0`, resto para `0.6.0`) o dividirse en dos ADRs.
 - Depende de: ARQ-0.1.
@@ -394,7 +394,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 ## 10. Definition of Done de la iniciativa
 
 - [x] D-1 a D-9 cerradas y registradas (Iteration-005).
-- [ ] ADR-005 a 008 Aceptados o Rechazados por humano.
+- [x] ADR-005 a 008 Aceptados o Rechazados por humano.
 - [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente.
 - [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6).
 - [ ] Piloto sin bloqueos en cada línea.
@@ -404,7 +404,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 ## 11. Siguiente paso
 
-1. `v0.5.0` desbloqueada: ADR-005, 006 y 007 Aceptados. Falta decidir ADR-008 (aceptar o rechazar), que solo bloquea `v0.5.1`.
+1. ADR-005 a 008 Aceptados: `v0.5.0` y `v0.5.1` sin bloqueos de decisión (`v0.5.1` espera a `v0.5.0`).
 2. Estrategia de entrega de `v0.5.0` decidida (§4): cadena sobre rama de feature con tracker `feat/linea-0.5.0`.
 3. Bloque 3 (`v0.5.0`): ya puede empezar. El bloque 1 (`v0.4.3`) ya está publicado.
 
@@ -423,6 +423,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.11 | 2026-10-08T08:42+02:00 | ADR-008 aceptado por el humano; ARQ-2.1 hecho (ADR-005 a 008 Aceptados); el campo «Origen» de ARQ-3.5 se mantiene |
 | 0.1.10 | 2026-10-08T08:32+02:00 | H14 aprobado por el humano (Draft a Approved, `0.1.1`); ARQ-3.1 y 3.2 completas en el slice S2, pendientes de fusión; worklog Iteration-012 |
 | 0.1.9 | 2026-10-08T08:23+02:00 | ARQ-3.1 y 3.2 (slice S2): capítulo H14 en Draft y plantilla de línea base redactados, pendientes de revisión y de la aprobación humana de H14; worklog Iteration-011 |
 | 0.1.8 | 2026-10-07T18:42+02:00 | ARQ-3.3 (slice S1, ciclo de vida de ADRs) implementada y pendiente de revisión; worklog Iteration-009 |
