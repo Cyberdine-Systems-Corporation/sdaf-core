@@ -64,6 +64,7 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 | 03 | [03-repository-organization.md](03-repository-organization.md) | Repository Organization | ✅ Approved |
 | 04 | [04-specification-standard.md](04-specification-standard.md) | Specification Standard | ✅ Approved |
 | 05 | [05-development-workflow.md](05-development-workflow.md) | Development Workflow | ✅ Approved |
+| 14 | [14-architecture-description.md](14-architecture-description.md) | Descripción de arquitectura | ✅ Approved |
 
 ### Parte II — Ingeniería IA
 

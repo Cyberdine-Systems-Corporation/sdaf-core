@@ -85,10 +85,16 @@ capitulos:
     version: "0.4.0"
     estado: Approved
     titulo: 13 — Enmienda, excepciones y ciclo de vida
+  - id: 14-architecture-description
+    archivo: 14-architecture-description.md
+    meta: _meta/14-architecture-description.yaml
+    version: "0.1.1"
+    estado: Approved
+    titulo: 14 — Descripción de arquitectura
   - id: A-templates
     archivo: A-templates.md
     meta: _meta/A-templates.yaml
-    version: "0.3.3"
+    version: "0.3.4"
     estado: Approved
     titulo: Apéndice A — Templates
   - id: B-glossary

@@ -16,6 +16,7 @@
 | Skill | [`templates/skill.md`](../templates/skill.md) |
 | Handbook de producto | [`templates/handbook-product.md`](../templates/handbook-product.md) |
 | Seguridad (reporte) | [`templates/security.md`](../templates/security.md) |
+| Línea base de arquitectura | [`templates/architecture-description.md`](../templates/architecture-description.md) |
 
 Las secciones mínimas de spec, ADR y worklog coinciden con las plantillas; no se duplican aquí para no divergir.
 

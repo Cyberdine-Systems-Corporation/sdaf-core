@@ -107,6 +107,7 @@ nav:
       - 11 DevOps: handbook/11-devops.md
       - 12 Security Standards: handbook/12-security-standards.md
       - 13 Enmienda y ciclo de vida: handbook/13-enmienda-excepciones-ciclo-de-vida.md
+      - 14 Descripción de arquitectura: handbook/14-architecture-description.md
       - A Templates: handbook/A-templates.md
       - B Glossary: handbook/B-glossary.md
       - Changelog: handbook/CHANGELOG.md
@@ -191,6 +192,7 @@ nav:
       - templates/skill.md
       - templates/handbook-product.md
       - templates/security.md
+      - templates/architecture-description.md
   - Configuración:
       - Esquema sdaf.config.yaml: configuracion/schema.md
       - Escenarios de referencia: configuracion/escenarios.md

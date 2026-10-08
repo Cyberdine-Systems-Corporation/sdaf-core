@@ -1,0 +1,36 @@
+archivo: 14-architecture-description.md
+titulo: 14 — Descripción de arquitectura
+version: 0.1.1
+estado: Approved
+fecha: "2026-10-08T08:32+02:00"
+parte: I — Método SDAF
+norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md)"
+deriva_hacia: "`templates/architecture-description.md`, `architecture/description.md` del consumidor, Architecture Agent"
+toc: ""
+relacionado:
+  - destino: "[ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md)"
+    por_que: Decisión de origen de la línea base
+  - destino: "[ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md)"
+    por_que: Vigencia de ADRs para el índice de decisiones
+  - destino: "[05-development-workflow.md](05-development-workflow.md)"
+    por_que: Gate 0 (G0.3 y G0.6)
+  - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
+    por_que: QG-Arch verifica las reglas de dependencia
+  - destino: "[04-specification-standard.md](04-specification-standard.md)"
+    por_que: Specs de integración y atributos de calidad
+  - destino: "[templates/architecture-description.md](../templates/architecture-description.md)"
+    por_que: Plantilla de la línea base
+historial:
+  - version: 0.1.1
+    fecha: "2026-10-08T08:32+02:00"
+    cambio: "Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS; el agente transcribe la aprobación dada en el encargo, H00 §3.3)"
+  - version: 0.1.0
+    fecha: "2026-10-08T08:19+02:00"
+    cambio: Draft inicial (no Approved)
+cabecera:
+  Versión: 0.1.1
+  Estado: Approved
+  Fecha: "2026-10-08T08:32+02:00"
+  Parte: I — Método SDAF
+  Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md)"
+  Deriva hacia: "`templates/architecture-description.md`, `architecture/description.md` del consumidor, Architecture Agent"
