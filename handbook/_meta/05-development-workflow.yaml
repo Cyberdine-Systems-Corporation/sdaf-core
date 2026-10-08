@@ -1,8 +1,8 @@
 archivo: 05-development-workflow.md
 titulo: 05 — Development Workflow
-version: 0.3.4
+version: 0.4.0
 estado: Approved
-fecha: "2026-10-02T17:27+02:00"
+fecha: "2026-10-08T23:07+02:00"
 parte: I — Método SDAF
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
 deriva_hacia: "`worklogs/`, `backlog/`, agentes"
@@ -19,6 +19,9 @@ relacionado:
   - destino: "[06-ai-agent-framework.md](06-ai-agent-framework.md)"
     por_que: Cuándo un agente puede commit o escribir el remoto (G1.5)
 historial:
+  - version: 0.4.0
+    fecha: "2026-10-08T23:07+02:00"
+    cambio: "G0.4: PBI con plantilla (specs Approved, acceptance, unidades); sin G0.6 todavía"
   - version: 0.3.4
     fecha: "2026-10-02T17:27+02:00"
     cambio: "G2.3: se retira la condición de pin «0.3», obsoleta (sin cambio de norma)"
@@ -47,9 +50,9 @@ historial:
     fecha: 2026-08-24
     cambio: Gates genéricos; sin roles de stack concreto (ADR-008)
 cabecera:
-  Versión: 0.3.4
+  Versión: 0.4.0
   Estado: Approved
-  Fecha: "2026-10-02T17:27+02:00"
+  Fecha: "2026-10-08T23:07+02:00"
   Parte: I — Método SDAF
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
   Deriva hacia: "`worklogs/`, `backlog/`, agentes"

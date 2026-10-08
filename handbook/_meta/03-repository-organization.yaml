@@ -1,8 +1,8 @@
 archivo: 03-repository-organization.md
 titulo: 03 — Repository Organization
-version: 0.2.3
+version: 0.3.0
 estado: Approved
-fecha: "2026-09-24T18:54+02:00"
+fecha: "2026-10-08T23:07+02:00"
 parte: I — Método SDAF
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
 deriva_hacia: Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor
@@ -16,7 +16,12 @@ relacionado:
     por_que: Plantillas del árbol
   - destino: "[architecture/decisions/](../architecture/decisions/README.md)"
     por_que: ADRs del método en este core
+  - destino: "[14-architecture-description.md](14-architecture-description.md)"
+    por_que: Línea base que vive en `architecture/description.md`
 historial:
+  - version: 0.3.0
+    fecha: "2026-10-08T23:07+02:00"
+    cambio: "§2 y §3: architecture/description.md y specs/integration/ (ADR-005, H14)"
   - version: 0.2.3
     fecha: "2026-09-24T18:54+02:00"
     cambio: "El core publica ADRs en `architecture/decisions/` y sus worklogs en `worklogs/`; el árbol del consumidor no cambia"
@@ -33,9 +38,9 @@ historial:
     fecha: 2026-08-24
     cambio: Árbol genérico; sin asumir runtime concreto (ADR-008)
 cabecera:
-  Versión: 0.2.3
+  Versión: 0.3.0
   Estado: Approved
-  Fecha: "2026-09-24T18:54+02:00"
+  Fecha: "2026-10-08T23:07+02:00"
   Parte: I — Método SDAF
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md)"
   Deriva hacia: Specs, ADRs, agentes, prompts, skills, worklogs, código del consumidor
