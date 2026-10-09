@@ -1,8 +1,8 @@
 archivo: 01-sdaf-framework.md
 titulo: 01 — SDAF Framework
-version: 0.2.2
+version: 0.3.0
 estado: Approved
-fecha: 2026-09-17
+fecha: "2026-10-09T12:43+02:00"
 parte: I — Método SDAF
 norma_superior: "[00-preface.md](00-preface.md)"
 deriva_hacia: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md)"
@@ -14,7 +14,16 @@ relacionado:
     por_que: Gates operativos
   - destino: "[docs/contrato-pack-stack.md](../docs/contrato-pack-stack.md)"
     por_que: Pack de stack (no contradice este capítulo)
+  - destino: "[ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md)"
+    por_que: Precedencia única (§3.2)
+  - destino: "[ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md)"
+    por_que: Vigencia de ADRs en la precedencia
+  - destino: "[14-architecture-description.md](14-architecture-description.md)"
+    por_que: Línea base en la precedencia y en el pipeline
 historial:
+  - version: 0.3.0
+    fecha: "2026-10-09T12:43+02:00"
+    cambio: "§3 y §3.2: precedencia única, spec y ADR al mismo nivel con STOP ante conflicto, línea base y packs (ADR-007 §2); §4: Calculation Rules opcional y eslabón de arquitectura"
   - version: 0.2.2
     fecha: 2026-09-17
     cambio: TOC, Relacionado, diagramas y alerta Gate 0 (sin cambio de norma)
@@ -28,9 +37,9 @@ historial:
     fecha: 2026-08-24
     cambio: "Extracción genérica (ADR-008): norma de `specs/` y gobernanza de stack explícitas"
 cabecera:
-  Versión: 0.2.2
+  Versión: 0.3.0
   Estado: Approved
-  Fecha: 2026-09-17
+  Fecha: "2026-10-09T12:43+02:00"
   Parte: I — Método SDAF
   Norma superior: "[00-preface.md](00-preface.md)"
   Deriva hacia: "[02-engineering-principles.md](02-engineering-principles.md), [03-repository-organization.md](03-repository-organization.md), [04-specification-standard.md](04-specification-standard.md), [05-development-workflow.md](05-development-workflow.md)"
