@@ -10,7 +10,7 @@ capitulos:
   - id: 01-sdaf-framework
     archivo: 01-sdaf-framework.md
     meta: _meta/01-sdaf-framework.yaml
-    version: "0.2.2"
+    version: "0.3.0"
     estado: Approved
     titulo: 01 — SDAF Framework
   - id: 02-engineering-principles
