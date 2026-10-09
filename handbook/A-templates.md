@@ -9,6 +9,7 @@
 | Plantilla | Ruta |
 |-----------|------|
 | Spec | [`templates/spec.md`](../templates/spec.md) |
+| PBI | [`templates/pbi.md`](../templates/pbi.md) |
 | ADR | [`templates/adr.md`](../templates/adr.md) |
 | Worklog (ATF) | [`templates/worklog.md`](../templates/worklog.md) |
 | Contrato de agente | [`templates/agent-contract.md`](../templates/agent-contract.md) |

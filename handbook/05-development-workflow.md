@@ -38,7 +38,7 @@ Pasos en texto:
 1. Knowledge disponible (si dominio)
 2. Specs Draft → revisión → Approved
 3. ADR si hay decisión arquitectónica / de stack / de alcance técnico
-4. PBI en backlog enlazado a specs + acceptance
+4. PBI en backlog (plantilla `templates/pbi.md`) enlazado a specs Approved + acceptance + unidades
 5. Worklog de iteración abierto
 6. Tests de aceptación (esqueleto o completos) derivados de specs
 7. Implementación (vertical slice)
@@ -60,7 +60,7 @@ Antes de escribir código de producto, **deben** cumplirse:
 | G0.1 | Spec(s) **Approved** aplicables | Rutas en `specs/` |
 | G0.2 | Acceptance criteria definidos | `specs/acceptance/` o sección en spec |
 | G0.3 | ADR si el cambio toca límites, stack o motores | `architecture/decisions/` o N/A justificado en worklog |
-| G0.4 | PBI/backlog enlazado | `backlog/` |
+| G0.4 | PBI en `backlog/` creado con [`templates/pbi.md`](../templates/pbi.md), con las specs **Approved** que enlaza, su acceptance y las unidades que afecta (nombres de la línea base, [H14](14-architecture-description.md)) | `backlog/` |
 | G0.5 | Worklog de iteración iniciado | `worklogs/...` |
 
 > [!CAUTION]

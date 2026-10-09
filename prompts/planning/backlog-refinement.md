@@ -3,10 +3,10 @@
 | Campo | Valor |
 |--------|--------|
 | ID | PROMPT-PLN-002 |
-| Versión | 0.3.0 |
+| Versión | 0.4.0 |
 | Estado | Approved |
 | Agente / rol | planning / product / specification |
-| Fecha | 2026-09-19 |
+| Fecha | 2026-10-08T23:07+02:00 |
 
 ## Objetivo
 
@@ -20,7 +20,7 @@ Refinar PBIs y sus enlaces a specs (camino Draft → Approved).
 
 ## Entradas
 
-Estado de PBIs; specs enlazadas; huecos de Gate 0.
+Estado de PBIs; specs enlazadas; unidades de la línea base ([H14](../../handbook/14-architecture-description.md)) a las que afecta cada PBI; huecos de Gate 0.
 
 ## Restricciones
 
@@ -32,15 +32,16 @@ Backlog actualizado con trazas a specs.
 
 ## Formato de salida
 
-Tabla de PBIs + decisiones.
+Un PBI por fichero en `backlog/`, con la plantilla [`templates/pbi.md`](../../templates/pbi.md), más una tabla resumen de PBIs y las decisiones.
 
 ## Criterios de aceptación
 
-Cada PBI listo para codear tiene camino a Gate 0 o el gap está explícito.
+Cada PBI listo para codear tiene camino a Gate 0 (G0.4: specs Approved, acceptance y unidades de la línea base) o el gap está explícito.
 
 ## Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.4.0 | 2026-10-08T23:07+02:00 | Entradas y criterios con las unidades de la línea base; salida con `templates/pbi.md` (G0.4) |
 | 0.3.0 | 2026-09-19 | Approved (aprobación humana del director técnico) |
 | 0.3.0 | 2026-09-18 | Draft: remap extract H04/H19 → handbook de producto + H05 |

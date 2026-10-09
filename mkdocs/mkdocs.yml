@@ -185,6 +185,7 @@ nav:
       - devops-ci-gate: skills/devops-ci-gate/SKILL.md
   - Plantillas:
       - templates/spec.md
+      - templates/pbi.md
       - templates/adr.md
       - templates/worklog.md
       - templates/agent-contract.md

@@ -37,7 +37,7 @@ Una sección puede escribirse `N/A: <motivo>`. Una línea base de una página es
 - El **ADR** registra una decisión y su porqué. La línea base describe el **estado vigente** que resulta de esas decisiones y no duplica el razonamiento: enlaza al ADR.
 - La **spec** ([H04](04-specification-standard.md)) define qué debe cumplirse. La línea base enlaza las specs de integración y de calidad; no las reemplaza.
 - El **estilo arquitectónico** es un ADR del consumidor. La línea base lo refleja en sus unidades y reglas de dependencia, pero el core no lo fija.
-- **Trazabilidad:** las specs y los PBIs declaran las unidades afectadas con los nombres de la línea base ([ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md) §7, [H08 §7](08-agent-traceability.md)).
+- **Trazabilidad:** las specs y los PBIs declaran las unidades afectadas con los nombres de la línea base ([ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md) §7, [H08 §6](08-agent-traceability.md)).
 
 ## 5. Estados y aprobación
 
