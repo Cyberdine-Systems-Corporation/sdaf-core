@@ -28,6 +28,7 @@ No es un ensayo sin criterios, ni un ticket de backlog (el backlog **apunta** a 
 | Dominio | `specs/domain/` | Glossary, modelo, reglas hard/soft, invariantes |
 | Aplicación | `specs/application/` | Casos de uso, comandos/consultas, contratos a nivel app |
 | Aceptación | `specs/acceptance/` | Escenarios Given/When/Then mapeables a tests |
+| Integración | `specs/integration/` | Contratos entre unidades o con terceros |
 
 Una capacidad puede tener varios archivos enlazados; **una fuente canónica** y referencias.
 
@@ -46,6 +47,8 @@ Una capacidad puede tener varios archivos enlazados; **una fuente canónica** y 
 | ADRs relacionados | Si aplica |
 | PBIs / backlog | IDs vinculados |
 | Derivados | Tests, slices, worklogs esperados |
+| Unidades | Unidades de la línea base ([H14](14-architecture-description.md)) a las que afecta la spec, con los nombres exactos de la línea base |
+| Origen | Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)). Los valores permitidos los fija el procedimiento de adopción |
 
 Solo specs **Approved** autorizan implementación de producto (salvo spike explícito con ADR de excepción y fecha de caducidad).
 
@@ -74,6 +77,39 @@ Dado [contexto]
 Cuando [acción]
 Entonces [resultado observable]
 ```
+
+### 5.5 Atributos de calidad
+
+Cada atributo de calidad priorizado en la línea base (sección 5, [H14 §3](14-architecture-description.md)) tiene al menos un **escenario medible**. Un atributo sin medida no es testeable y no cuenta como especificado.
+
+Un escenario se describe con cinco campos:
+
+| Campo | Qué declara |
+|-------|-------------|
+| Fuente | Quién o qué origina el estímulo (persona, sistema externo, proceso interno) |
+| Estímulo | El evento que el sistema recibe |
+| Entorno | La condición de operación en la que ocurre (normal, carga alta, degradado) |
+| Respuesta | Lo que el sistema hace ante el estímulo |
+| Medida | El valor verificable de la respuesta (umbral, porcentaje, tiempo) |
+
+Ejemplo neutral:
+
+| Atributo | Fuente | Estímulo | Entorno | Respuesta | Medida |
+|----------|--------|----------|---------|-----------|--------|
+| Atributo A | Usuario autenticado | Solicita una operación habitual | Operación normal | El sistema devuelve el resultado | El 95 % de las solicitudes se resuelve en menos de N unidades de tiempo |
+
+La spec es la fuente canónica del escenario: la línea base prioriza los atributos, puede resumir el escenario y siempre enlaza la spec; si ambos difieren, se corrige la línea base. Si la línea base no prioriza ningún atributo, esta sección se escribe `N/A: <motivo>`.
+
+### 5.6 Integración
+
+Una spec de integración (`specs/integration/`) define un contrato entre unidades o con terceros. Contenido mínimo:
+
+- **Partes que se integran:** las unidades implicadas, con los nombres de la línea base, o el tercero.
+- **Contrato:** los datos o el comportamiento que se intercambian, en qué sentido y con qué precondiciones y postcondiciones, sin código.
+- **Errores y fallos esperados:** qué ocurre cuando una parte no responde, responde mal o incumple el contrato.
+- **Versionado del contrato:** cómo evoluciona y qué cambios son incompatibles (sección 7).
+
+La sección 4 de la línea base (Integraciones y contratos, [H14 §3](14-architecture-description.md)) enumera las integraciones y enlaza estas specs; el contrato vive en la spec, no en la línea base.
 
 ---
 
@@ -115,6 +151,7 @@ flowchart TD
 | ¿Qué debe hacer el negocio/sistema? | Spec |
 | ¿Qué opción técnica (incl. stack) elegimos y por qué? | ADR |
 | ¿Está permitido por la constitución? | Handbook |
+| ¿Qué arquitectura vigente describe el sistema? | Línea base ([H14](14-architecture-description.md)) |
 
 Una spec no sustituye un ADR de stack o de límites.
 

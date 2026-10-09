@@ -40,6 +40,8 @@ jobs:
         run: python scripts/check-adrs.py
       - name: Autocomprobación de fechas y ADRs (fixtures)
         run: python scripts/test-dates.py
+      - name: Autocomprobación del ciclo de vida de ADRs (fixtures)
+        run: python scripts/test-adrs.py
       - name: Medir andamiaje extraído del handbook
         run: python scripts/measure-handbook-scaffolding.py
       - name: Validar plantilla de worklog

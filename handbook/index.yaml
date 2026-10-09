@@ -10,7 +10,7 @@ capitulos:
   - id: 01-sdaf-framework
     archivo: 01-sdaf-framework.md
     meta: _meta/01-sdaf-framework.yaml
-    version: "0.2.2"
+    version: "0.3.0"
     estado: Approved
     titulo: 01 — SDAF Framework
   - id: 02-engineering-principles
@@ -22,19 +22,19 @@ capitulos:
   - id: 03-repository-organization
     archivo: 03-repository-organization.md
     meta: _meta/03-repository-organization.yaml
-    version: "0.2.3"
+    version: "0.3.0"
     estado: Approved
     titulo: 03 — Repository Organization
   - id: 04-specification-standard
     archivo: 04-specification-standard.md
     meta: _meta/04-specification-standard.yaml
-    version: "0.2.2"
+    version: "0.3.0"
     estado: Approved
     titulo: 04 — Specification Standard
   - id: 05-development-workflow
     archivo: 05-development-workflow.md
     meta: _meta/05-development-workflow.yaml
-    version: "0.3.4"
+    version: "0.4.0"
     estado: Approved
     titulo: 05 — Development Workflow
   - id: 06-ai-agent-framework
@@ -85,10 +85,16 @@ capitulos:
     version: "0.4.0"
     estado: Approved
     titulo: 13 — Enmienda, excepciones y ciclo de vida
+  - id: 14-architecture-description
+    archivo: 14-architecture-description.md
+    meta: _meta/14-architecture-description.yaml
+    version: "0.1.2"
+    estado: Approved
+    titulo: 14 — Descripción de arquitectura
   - id: A-templates
     archivo: A-templates.md
     meta: _meta/A-templates.yaml
-    version: "0.3.3"
+    version: "0.3.5"
     estado: Approved
     titulo: Apéndice A — Templates
   - id: B-glossary

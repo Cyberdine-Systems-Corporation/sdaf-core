@@ -64,6 +64,7 @@ Los **prompts**, **skills** y **worklogs** son infraestructura de ingeniería, n
 | 03 | [03-repository-organization.md](03-repository-organization.md) | Repository Organization | ✅ Approved |
 | 04 | [04-specification-standard.md](04-specification-standard.md) | Specification Standard | ✅ Approved |
 | 05 | [05-development-workflow.md](05-development-workflow.md) | Development Workflow | ✅ Approved |
+| 14 | [14-architecture-description.md](14-architecture-description.md) | Descripción de arquitectura | ✅ Approved |
 
 ### Parte II — Ingeniería IA
 
@@ -124,7 +125,9 @@ Ningún agente puede autodeclarar Approved.
 
 1. Capítulos **Approved** de este handbook (método)
 2. Handbook de producto Approved del consumidor
-3. ADRs vigentes en `architecture/decisions/`
-4. Specs en `specs/`
+3. Línea base Approved y ADRs vigentes del consumidor, **junto con** las specs Approved en `specs/` (la spec manda sobre *qué*, el ADR sobre *cómo*; sin orden entre sí)
+4. Packs de stack
 5. Backlog
-6. Implementación / prompts / worklogs
+6. Prompts, skills locales, worklogs e implementación
+
+Un conflicto entre una spec Approved y un ADR vigente es **STOP**: se resuelve enmendando uno de los dos, nunca en silencio durante la implementación. Un pack que choca con un ADR del consumidor pierde. Detalle en [H01 §3.2](01-sdaf-framework.md).

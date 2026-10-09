@@ -1,8 +1,8 @@
 archivo: 04-specification-standard.md
 titulo: 04 — Specification Standard
-version: 0.2.2
+version: 0.3.0
 estado: Approved
-fecha: 2026-09-17
+fecha: "2026-10-08T23:07+02:00"
 parte: I — Método SDAF
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [03-repository-organization.md](03-repository-organization.md)"
 deriva_hacia: "`specs/` del consumidor, [05-development-workflow.md](05-development-workflow.md), tests, backlog"
@@ -14,7 +14,12 @@ relacionado:
     por_que: Gate 0 exige specs Approved
   - destino: "[templates/spec.md](../templates/spec.md)"
     por_que: Plantilla de cabecera
+  - destino: "[14-architecture-description.md](14-architecture-description.md)"
+    por_que: Línea base cuyas unidades, integraciones y atributos citan las specs
 historial:
+  - version: 0.3.0
+    fecha: "2026-10-08T23:07+02:00"
+    cambio: "§3 tipo Integración; §4 campos Unidades y Origen; §5.5 atributos de calidad; §5.6 integración; §8 enlaza la línea base (ADR-005)"
   - version: 0.2.2
     fecha: 2026-09-17
     cambio: TOC, Relacionado y diagrama (sin cambio de norma)
@@ -28,9 +33,9 @@ historial:
     fecha: 2026-08-24
     cambio: "Extracción genérica; `specs/` = verdad operativa del consumidor (ADR-008)"
 cabecera:
-  Versión: 0.2.2
+  Versión: 0.3.0
   Estado: Approved
-  Fecha: 2026-09-17
+  Fecha: "2026-10-08T23:07+02:00"
   Parte: I — Método SDAF
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [03-repository-organization.md](03-repository-organization.md)"
   Deriva hacia: "`specs/` del consumidor, [05-development-workflow.md](05-development-workflow.md), tests, backlog"
