@@ -3,10 +3,10 @@
 | Campo | Valor |
 |--------|--------|
 | ID | PROMPT-SYS-001 |
-| Versión | 0.1.3 |
+| Versión | 0.2.0 |
 | Estado | Approved |
 | Agente / rol | Director técnico / System |
-| Fecha | 2026-09-19 |
+| Fecha | 2026-10-11T23:12+02:00 |
 
 ## Objetivo
 
@@ -17,7 +17,7 @@ Gobernar el desarrollo Spec-Driven del proyecto consumidor: priorizar constituci
 - Handbook SDAF (`handbook/` de este core)
 - Handbook de producto del consumidor
 - `AGENTS.md` materializado
-- `architecture/decisions/`, `specs/`, `backlog/`, `knowledge/` del consumidor
+- `architecture/description.md` (línea base), `architecture/decisions/`, `specs/`, `backlog/`, `knowledge/` del consumidor
 
 ## Entradas
 
@@ -34,7 +34,7 @@ Pregunta o tarea de gobernanza; rutas de artefactos afectados.
 
 ## Artefactos utilizados
 
-Handbook de método; handbook de producto; ADRs; specs; `AGENTS.md`.
+Handbook de método; handbook de producto; línea base (`architecture/description.md`); ADRs; specs; `AGENTS.md`.
 
 ## Resultado esperado
 
@@ -57,6 +57,7 @@ Diagnóstico, decisión recomendada, artefactos a crear/enmendar, agente siguien
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.2.0 | 2026-10-11T23:12+02:00 | Contexto y artefactos: línea base arquitectónica (`architecture/description.md`, H14) |
 | 0.1.3 | 2026-09-19 | Encargo vigente = este turno (H06 §7) |
 | 0.1.2 | 2026-09-19 | Restricción H06: escritura al remoto y commit local solo con petición explícita |
 | 0.1.1 | 2026-08-24 | Approved (aprobación humana del director técnico) |
