@@ -34,7 +34,7 @@ capitulos:
   - id: 05-development-workflow
     archivo: 05-development-workflow.md
     meta: _meta/05-development-workflow.yaml
-    version: "0.4.0"
+    version: "0.5.0"
     estado: Approved
     titulo: 05 — Development Workflow
   - id: 06-ai-agent-framework
@@ -64,7 +64,7 @@ capitulos:
   - id: 10-code-review-and-quality-gates
     archivo: 10-code-review-and-quality-gates.md
     meta: _meta/10-code-review-and-quality-gates.yaml
-    version: "0.4.0"
+    version: "0.5.0"
     estado: Approved
     titulo: 10 — Code Review and Quality Gates
   - id: 11-devops
