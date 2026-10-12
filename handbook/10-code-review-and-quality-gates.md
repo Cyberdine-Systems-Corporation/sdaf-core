@@ -16,7 +16,7 @@ Los Gates G0–G3 del [capítulo 05](05-development-workflow.md) siguen vigentes
 |---------|---------|
 | Humano | Arquitectura sensible, alcance del MVP del consumidor, Approved, **merge** a la rama de demo/integración |
 | Testing+Review | Checklist de este capítulo, tests, regresiones obvias, **dictamen** (no el merge) |
-| Architecture | Solo si el diff toca boundaries / ADRs |
+| Architecture | Solo si el diff toca unidades, reglas de dependencia o ADRs |
 
 Ningún agente aprueba enmiendas constitucionales.
 
@@ -30,7 +30,7 @@ Completar el checklist §3 por un agente **no** satisface QG-Review. Auto-merge 
 
 ### 3.1 Gobierno
 
-- [ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog).
+- [ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog / línea base Approved, [H14](14-architecture-description.md)).
 - [ ] Sin alcance Out del MVP del consumidor.
 - [ ] Worklog actualizado y prompt versionado citado.
 - [ ] Si el diff toca código de producto: origen de cambios en el worklog ([H08 §4.3](08-agent-traceability.md#43-origen-de-cambios)).
@@ -38,8 +38,9 @@ Completar el checklist §3 por un agente **no** satisface QG-Review. Auto-merge 
 
 ### 3.2 Dominio y arquitectura
 
-- [ ] Reglas de negocio no viven solo en UI/API si el ADR de arquitectura del consumidor las sitúa en dominio.
-- [ ] Dependencias y límites del ADR de arquitectura respetados.
+- [ ] Las dependencias entre unidades son conformes a las reglas de dependencia de la línea base ([H14 §3](14-architecture-description.md)).
+- [ ] Las unidades tocadas existen en la línea base; añadir, retirar o renombrar una exige ADR Aceptado y versión nueva de la línea base ([H14 §6](14-architecture-description.md)).
+- [ ] Si una regla de dependencia de la línea base o un ADR vigente declara dónde viven las reglas de negocio, no viven solo en UI/API. Sin esa declaración, este ítem no aplica.
 - [ ] Sin contradicción consciente con specs Approved.
 
 ### 3.3 Calidad
@@ -91,10 +92,12 @@ flowchart TD
 | QG-Build | El producto compila / empaqueta según el runbook del consumidor | Merge / demo |
 | QG-Unit | Tests unitarios de dominio (+ aplicación relevantes) verdes | Merge / demo |
 | QG-Accept | Acceptance del PBI / flujo tocado verdes | Merge a línea de demo |
-| QG-Arch | Sin violaciones nuevas de dependencia (manual o test de arquitectura) | Merge si hay infracción nueva |
+| QG-Arch | Sin violaciones nuevas de las reglas de dependencia de la línea base (manual o test de arquitectura) | Merge si hay infracción nueva |
 | QG-Docs | Diff cumple el ADR/pack de coding standards **si existe** | Merge |
 | QG-Sec | Condiciones de [H12 §5.2](12-security-standards.md#52-qg-sec) (secreto, bypass de auth, injection, SSRF, CVE crítica identificada) | Merge |
 | QG-Review | Checklist §3 completado **y** aprobación humana nominada del merge | Merge |
+
+Si la línea base no declara reglas de dependencia, QG-Arch es `N/A` **solo con el motivo escrito en el worklog**; sin motivo no es N/A.
 
 CI cloud elaborado es **opcional**. Los gates **deben** poder ejecutarse **en local** (H02 §2.10, H11).
 

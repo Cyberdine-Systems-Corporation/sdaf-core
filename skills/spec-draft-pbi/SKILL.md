@@ -8,10 +8,10 @@ description: Redacta o actualiza specs Draft (DOM/APP/ACC), índices y backlog s
 | Campo | Valor |
 |--------|--------|
 | ID | spec-draft-pbi |
-| Versión | 0.2.0 |
+| Versión | 0.3.0 |
 | Estado | Approved |
 | Prioridad | media |
-| Fecha | 2026-08-25 |
+| Fecha | 2026-10-08T23:07+02:00 |
 | Norma | [handbook/04](../../handbook/04-specification-standard.md) |
 
 ## Disparadores
@@ -23,8 +23,8 @@ description: Redacta o actualiza specs Draft (DOM/APP/ACC), índices y backlog s
 1. Leer knowledge citado y specs relacionadas Approved (no contradecir sin enmienda explícita).
 2. Usar [templates/spec.md](../../templates/spec.md) / H04: contexto, alcance, acceptance, Out.
 3. Estado **Draft**; versionar según H04.
-4. Actualizar índices en `specs/**` y enlace en `backlog/` (no fingir Approved).
-5. Worklog Specification + `spec-draft-pbi@0.2.0`.
+4. Actualizar índices en `specs/**` y crear o actualizar el PBI en `backlog/` con [templates/pbi.md](../../templates/pbi.md): enlaza las specs (no fingir Approved) y su acceptance, y rellena **Unidades** con los nombres de la línea base ([H14](../../handbook/14-architecture-description.md)).
+5. Worklog Specification + `spec-draft-pbi@0.3.0`.
 6. Siguiente agente: **humano** (aprobación) o Architecture si falta ADR.
 
 ## Definition of Done
@@ -44,9 +44,11 @@ description: Redacta o actualiza specs Draft (DOM/APP/ACC), índices y backlog s
 |---------|---------|
 | [specification-agent](../../prompts/agents/specification-agent.md) | Prompt del rol |
 | [templates/spec.md](../../templates/spec.md) | Cabecera de spec |
+| [templates/pbi.md](../../templates/pbi.md) | Plantilla de PBI (G0.4) |
 
 ## Historial
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.0 | 2026-10-08T23:07+02:00 | G0.4 comprobable: el PBI usa `templates/pbi.md` y declara las unidades de la línea base |
 | 0.2.0 | 2026-08-25 | Fila inicial de historial (cabecera ya publicada) |

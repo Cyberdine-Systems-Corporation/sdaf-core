@@ -12,7 +12,7 @@ Un solo camino. No hay atajo de agente.
 
 ## 2. Flujo de extremo a extremo
 
-**Paso 0 — Bootstrap del repo** (skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md)): árbol y `sdaf.config.yaml` listos según [cap. 03](03-repository-organization.md) y [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md). En un repo vacío, Gate 0 → **STOP** esperado hasta specs Approved.
+**Paso 0 — Bootstrap del repo** (skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md)): árbol y `sdaf.config.yaml` listos según [cap. 03](03-repository-organization.md) y [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md). En un repo vacío, Gate 0 → **STOP** esperado hasta specs Approved y línea base Approved.
 
 ```mermaid
 flowchart TD
@@ -37,8 +37,8 @@ Pasos en texto:
 ```text
 1. Knowledge disponible (si dominio)
 2. Specs Draft → revisión → Approved
-3. ADR si hay decisión arquitectónica / de stack / de alcance técnico
-4. PBI en backlog enlazado a specs + acceptance
+3. ADR si hay decisión arquitectónica / de stack / de alcance técnico (contra la línea base Approved, H14)
+4. PBI en backlog (plantilla `templates/pbi.md`) enlazado a specs Approved + acceptance + unidades
 5. Worklog de iteración abierto
 6. Tests de aceptación (esqueleto o completos) derivados de specs
 7. Implementación (vertical slice)
@@ -59,12 +59,20 @@ Antes de escribir código de producto, **deben** cumplirse:
 |---|-----------|-----------|
 | G0.1 | Spec(s) **Approved** aplicables | Rutas en `specs/` |
 | G0.2 | Acceptance criteria definidos | `specs/acceptance/` o sección en spec |
-| G0.3 | ADR si el cambio toca límites, stack o motores | `architecture/decisions/` o N/A justificado en worklog |
-| G0.4 | PBI/backlog enlazado | `backlog/` |
+| G0.3 | ADR **Aceptado** si el cambio toca límites, stack o motores | `architecture/decisions/` o N/A justificado en worklog |
+| G0.4 | PBI en `backlog/` creado con [`templates/pbi.md`](../templates/pbi.md), con las specs **Approved** que enlaza, su acceptance y las unidades que afecta (nombres de la línea base, [H14](14-architecture-description.md)) | `backlog/` |
 | G0.5 | Worklog de iteración iniciado | `worklogs/...` |
+| G0.6 | Línea base arquitectónica **Approved** presente | `architecture/description.md` ([H14](14-architecture-description.md)) |
+
+G0.3: un cambio «toca límites» si produce alguno de los cambios de [H14 §6](14-architecture-description.md): añadir, retirar o renombrar una unidad; cambiar una regla de dependencia, una integración o la prioridad de un atributo de calidad. Esos cambios exigen además una versión nueva de la línea base.
+
+G0.4 y G0.6 van juntos: las unidades que declara el PBI (G0.4) son las de la línea base Approved que exige G0.6, y G0.3 se evalúa contra las reglas y unidades de esa misma versión.
+
+> [!NOTE]
+> G0.6 y la línea base ([H14](14-architecture-description.md)) pertenecen a la línea de constitución `0.5.0`, que es opt-in. Quien se quede en `0.4.x` no está obligado a mantener una línea base. Decisión de origen: [ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md).
 
 > [!CAUTION]
-> Gate 0. Si falta G0.1–G0.5, **STOP**. No hay atajo de agente.
+> Gate 0. Si falta G0.1–G0.6, **STOP**. No hay atajo de agente.
 
 > [!NOTE]
 > **Excepción:** spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.
@@ -107,7 +115,7 @@ Los criterios concretos de DoD de producto (duración de demo, artefactos de pre
 |-----|-----------------|
 | Humano (Director técnico / PO) | Aprueba specs/handbook; excepciones; valida demo |
 | Specification | Knowledge → specs |
-| Architecture | ADRs, boundaries |
+| Architecture | ADRs y línea base |
 | Agentes de implementación | Los declara `sdaf.config` / pack de stack |
 | Testing+Review | Tests, gates, review |
 

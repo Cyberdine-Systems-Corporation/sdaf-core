@@ -30,8 +30,10 @@ El core **exige** la carpeta `specs/` y su estándar (cap. 04). **No** incluye e
 flowchart TD
   K[Knowledge inmutable] --> HB[Handbook SDAF + handbook de producto]
   HB --> S[Specs]
-  S --> ADR[Architecture + ADRs]
-  ADR --> B[Backlog]
+  HB --> ADR[Línea base + ADRs]
+  S --> P[Packs]
+  ADR --> P
+  P --> B[Backlog]
   B --> IMP[Implementation]
   B --> TST[Spec-derived Tests]
   IMP --> G[Review / Quality Gates]
@@ -42,8 +44,10 @@ flowchart TD
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
   class K,HB,ADR norm
   class S,G,REL ok
-  class B,IMP,TST stub
+  class P,B,IMP,TST stub
 ```
+
+El diagrama muestra la **derivación de artefactos**, no un orden de prioridad entre spec y ADR: ambos derivan del handbook, quedan al mismo nivel y los packs están subordinados a los dos. La prioridad ante conflicto es la de §3.2. Por la misma razón, el orden de pasos de [H05 §2](05-development-workflow.md) (spec antes que ADR) es **temporal** (qué se produce primero), no de prioridad.
 
 ### 3.1 Qué no es un nivel normativo
 
@@ -56,12 +60,20 @@ flowchart TD
 
 ### 3.2 Prioridad ante conflicto
 
+Precedencia única ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §2):
+
 1. Capítulos **Approved** de este handbook  
 2. Handbook de producto Approved del consumidor  
-3. ADRs vigentes  
-4. Specs en `specs/`  
+3. Línea base Approved ([H14](14-architecture-description.md)) y ADRs vigentes del consumidor, **junto con** las specs Approved en `specs/`. No se ordenan entre sí: la spec manda sobre *qué* debe cumplirse y el ADR sobre *cómo* se construye  
+4. Packs de stack  
 5. Backlog  
-6. Implementación / prompts / worklogs  
+6. Prompts, skills locales, worklogs e implementación  
+
+Reglas de resolución:
+
+- Un conflicto entre una spec Approved y un ADR vigente es **STOP**: se resuelve enmendando uno de los dos, nunca en silencio durante la implementación.
+- Un pack no contradice las capas superiores. Si choca con un ADR del consumidor, gana el ADR y la skill del pack se marca `N/A: <motivo>` en el worklog.
+- «ADRs vigentes» son los Aceptados y no sustituidos ([ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md)).
 
 ---
 
@@ -72,17 +84,22 @@ flowchart LR
   K[Knowledge] --> G[Glossary]
   G --> M[Domain Model]
   M --> R[Business Rules]
-  R --> C[Calculation Rules]
-  C --> U[Use Cases]
+  R --> U[Use Cases]
+  R -.->|si el dominio las tiene| C[Calculation Rules]
+  C -.-> U
   U --> A[Acceptance Tests]
+  U --> AR[Línea base + ADRs]
   A --> I[Implementation]
+  AR --> I
   classDef norm fill:#d0e3f8,stroke:#1e4d8b,color:#1a1a1a;
   classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
-  class K,G,M,R,C,U norm
+  class K,G,M,R,C,U,AR norm
   class A ok
   class I stub
 ```
+
+«Calculation Rules» es un **paso opcional**: reglas derivadas, solo si el dominio las tiene (la línea punteada se omite sin romper el pipeline). El eslabón de **arquitectura** (línea base y ADRs, [H14](14-architecture-description.md)) no deriva del dominio: se decide y se registra en ADRs, recibe de los casos de uso los requisitos que debe acomodar y, junto con los tests de aceptación, acota la implementación.
 
 No se implementa el documento de experto “tal cual”. Se transforma.
 

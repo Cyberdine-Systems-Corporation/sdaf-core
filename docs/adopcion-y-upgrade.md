@@ -12,8 +12,8 @@
 | Concepto | Uso |
 |----------|-----|
 | Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`, `v0.4.3`. **No** existen `v0.3.0` ni `v0.3.1`. |
-| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
-| Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x` o `0.4.x` según pin) |
+| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.5.0`, `"0.5.0"`; con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
+| Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x`, `0.4.x` o `0.5.x` según pin) |
 
 > [!TIP]
 > El pin recomendado del árbol es `v0.4.3`. `sdaf.version` nombra la línea (`"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
@@ -41,7 +41,7 @@ git submodule add -b main <url-sdaf-core> .sdaf
 cd .sdaf && git checkout v0.4.3
 ```
 
-2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
+2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.5.0"` con pin `v0.5.0`, `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
 3. Ejecutar la skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) (o seguir sus pasos a mano).
 4. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template).
 5. Opcional: validar `sdaf.config.yaml` con la composite action [`.github/actions/validate-sdaf`](../.github/actions/validate-sdaf/README.md) (disponible desde `v0.4.0`).
@@ -61,7 +61,7 @@ Usar [`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md). Checklist:
 1. Actualizar pin del submodule/tag al nuevo `vX.Y.Z`.
 2. Leer [`handbook/CHANGELOG.md`](../handbook/CHANGELOG.md).
 3. Actualizar `sdaf.version`.
-4. Regenerar `AGENTS.md` si cambió la plantilla.
+4. Incorporar a `AGENTS.md` los cambios de la plantilla si cambió, conservando lo propio del consumidor (regenerarlo entero solo si no está personalizado).
 5. Revisar citas `skill-id@version` en worklogs **nuevos**.
 6. Si venías de 0.1.x: remapear citas de capítulos según la tabla siguiente.
 7. No auto-migrar specs ni handbook de producto del consumidor.
@@ -180,14 +180,39 @@ Coherencia de versiones en la documentación publicada (H-10 de [INIT-arquitectu
 
 No rompe citas. `sdaf.version` sigue en `"0.4.0"`.
 
-## Fuera de 0.3.x
+## 0.5.0 (opt-in)
+
+Línea nueva de constitución. **No** rompe citas `H00`–`H13`, pero **sí** cambia el significado de Gate 0 ([H13 §5](../handbook/13-enmienda-excepciones-ciclo-de-vida.md)): por eso es opt-in. Quien se quede en `0.4.x` no está obligado.
+
+Al pinnear `v0.5.0`:
+
+1. Leer [H14](../handbook/14-architecture-description.md) y [`templates/architecture-description.md`](../templates/architecture-description.md).
+2. Construir `architecture/description.md` desde los ADRs vigentes ([H14 §9](../handbook/14-architecture-description.md#9-migración-desde-un-consumidor-existente)): listar las unidades y reglas que esos ADRs ya establecen, enlazarlos y escribir `N/A: <motivo>` en lo demás. No se reescriben ADRs.
+3. Pedir la aprobación humana de la línea base (Draft → Approved). Sin ella, G0.6 hace STOP.
+4. Gate 0 ([H05](../handbook/05-development-workflow.md)): G0.6 exige la línea base Approved; G0.3 exige un ADR Aceptado si el cambio toca límites ([H14 §6](../handbook/14-architecture-description.md#6-cuándo-cambia)); G0.4 exige un PBI de [`templates/pbi.md`](../templates/pbi.md) (specs Approved, acceptance y unidades).
+5. QG-Arch ([H10](../handbook/10-code-review-and-quality-gates.md)) verifica las reglas de dependencia de la línea base; solo es `N/A` con el motivo en el worklog.
+6. Estados de ADR según [ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md): los ADRs antiguos con tres estados siguen válidos; las excepciones llevan `Tipo = Excepción` y `Caducidad`; la sustitución es recíproca (Sustituye / Sustituido por).
+7. Crear `specs/integration/` y usar los campos Unidades y Origen en las specs ([H04](../handbook/04-specification-standard.md)).
+8. Aplicar la precedencia única de [H01 §3.2](../handbook/01-sdaf-framework.md): spec y ADR al mismo nivel; un conflicto entre ambos es STOP y enmienda.
+9. Incorporar a `AGENTS.md` los cambios de [`AGENTS.md.template`](../AGENTS.md.template) `0.5.0` (norma H14 y precedencia única en la sección de gobierno), conservando lo propio; regenerarlo entero solo si no está personalizado.
+10. El idioma `es` lo registra [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md).
+11. Actualizar `sdaf.version` a `"0.5.0"`.
+
+[`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) con `0.5.0` crea la línea base en Draft y su STOP cita G0.1 y G0.6.
+
+Los ADRs del consumidor no se reescriben. [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).
+
+No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
+
+## Fuera de 0.5.x
 
 Sin implementar en esta línea:
 
 - Métricas de sprint / capacidad humana detallada (producto)
 - Glosario de dominio (pertenece al producto)
-- `project.language` distinto de `es`
-- CLI de materialización (las skills playbook bastan)
+- Script de materialización en el core (previsto en la línea 0.6.0)
+
+`project.language` distinto de `es` ya no está pendiente: lo registra [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md) y otro idioma exige un ADR sustituto.
 
 No se reintroducen huecos numéricos “por si acaso” en el handbook del core.
 

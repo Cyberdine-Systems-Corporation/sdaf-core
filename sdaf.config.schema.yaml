@@ -16,14 +16,14 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
-| `sdaf.version` | string semver | sí | p. ej. `"0.4.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
+| `sdaf.version` | string semver | sí | p. ej. `"0.5.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
 
 ### `project` (obligatorio)
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
 | `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |
-| `project.language` | string | sí | `es` en la línea vigente | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). La línea vigente solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
+| `project.language` | string | sí | `es` en la línea vigente | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). La línea vigente solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. La restricción está registrada en [ADR-009](architecture/decisions/ADR-009-idioma-de-artefactos.md). |
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 

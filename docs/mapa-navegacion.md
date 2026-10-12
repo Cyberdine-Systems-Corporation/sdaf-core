@@ -55,4 +55,5 @@ Ninguna tarea de adopción o constitución exige más de **tres** clics desde el
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Pin, bootstrap, upgrade |
 | 🖼️ | [branding.md](branding.md) | Mark, lockups, paleta y motion |
 | 📝 | [checklist-pagina-docs.md](checklist-pagina-docs.md) | DoD de una página markdown |
+| 📖 | [H14](../handbook/14-architecture-description.md) | Línea base arquitectónica del consumidor (G0.6) |
 | 📝 | [Plantilla de PR](../.github/pull_request_template.md) | Checklist en el DoD del PR |

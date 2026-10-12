@@ -28,8 +28,10 @@ Carpetas obligatorias del método; las de código y contrato HTTP son del consum
 │   ├── product/
 │   ├── domain/
 │   ├── application/
-│   └── acceptance/
+│   ├── acceptance/
+│   └── integration/
 ├── architecture/
+│   ├── description.md        # línea base arquitectónica (H14)
 │   └── decisions/            # ADRs (incluidas decisiones de stack)
 ├── backlog/
 ├── agents/
@@ -58,7 +60,8 @@ Este **core** también publica ADRs de gobernanza del método en [`architecture/
 |---------|----------|-------------|
 | `knowledge/` | Evidencia de expertos; inmutable | Specs “mejoradas”, código |
 | `handbook/` (método + producto) | Norma constitucional | Detalle táctico de un PBI |
-| `specs/` | **Verdad operativa para implementar** | Ensayos de diseño sin aceptación |
+| `specs/` | **Verdad operativa para implementar** (producto, dominio, aplicación, aceptación e `integration` para contratos entre unidades o con terceros) | Ensayos de diseño sin aceptación |
+| `architecture/description.md` | Línea base arquitectónica vigente: unidades, reglas de dependencia, integraciones y atributos de calidad ([H14](14-architecture-description.md)) | El razonamiento de cada decisión (va en el ADR), el diseño de un PBI concreto |
 | `architecture/decisions/` | ADRs (incl. stack/límites) | Tutoriales largos |
 | `backlog/` | PBIs / historias trazables a specs | Implementación |
 | `agents/` | Contratos de agente | Prompts completos |

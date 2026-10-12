@@ -15,7 +15,7 @@ No contiene código ni specs de un producto concreto.
 | | Si quieres… | Empieza aquí |
 |--|-------------|--------------|
 | 🛠️ | **Adoptar** el método en un repo | [Adopción y upgrade](docs/adopcion-y-upgrade.md) — pin a tag, `sdaf.config.yaml`, bootstrap |
-| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–13 y apéndices A–B (línea 0.4.0) |
+| 📖 | **Entender la constitución** | [Handbook del método](handbook/README.md) — capítulos Approved 00–14 y apéndices A–B (línea 0.5.0) |
 | ⛔ | **Operar un PBI** | [Gate 0](skills/sdaf-gate0/SKILL.md) antes de código; [worklog / ATF](handbook/08-agent-traceability.md) para dejar evidencia |
 
 🧭 Mapa de las ocho tareas: [`docs/mapa-navegacion.md`](docs/mapa-navegacion.md). Índice HOWTO: [`docs/README.md`](docs/README.md). Identidad visual: [`docs/branding.md`](docs/branding.md).
@@ -38,13 +38,13 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 - No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (`sdaf-stack-*`) puede añadir playbooks técnicos (ver [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md)). Pack de referencia: [`sdaf-stack-dotnet`](https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet).
 - No rellena `specs/`: exige que existan y estén Approved antes de implementar.
 
-## Contenido (v0.4.3)
+## Contenido (v0.5.0)
 
 | | Ruta | Rol |
 |--|------|-----|
-| 📖 | `handbook/` | Constitución del método (00, Parte I 01–05, Parte II 06–08, Parte III 09–12, apéndices A–B) |
+| 📖 | `handbook/` | Constitución del método (00, Parte I 01–05 y 14, Parte II 06–08, Parte III 09–12, Parte IV 13, apéndices A–B) |
 | 🛠️ | `docs/` | HOWTO adopción/upgrade, contrato de pack, [integración gentle-ai](docs/integracion-gentle-ai.md) (opcional), mapa, [branding](docs/branding.md) |
-| 📝 | `templates/` | Spec, ADR, worklog, agente, prompt, skill, handbook de producto |
+| 📝 | `templates/` | Spec, ADR, worklog, agente, prompt, skill, handbook de producto, línea base de arquitectura, PBI |
 | | `agents/` + `prompts/` | Contratos y prompts genéricos |
 | 🛠️ | `skills/` | Playbooks `sdaf-*`, `spec-draft-pbi`, `adr-propose`, `testing-review-pr`, `security-review`, `devops-ci-gate` |
 | | `AGENTS.md.template` | Router a materializar en el consumidor |
@@ -65,16 +65,16 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 4. Añadir handbook de **producto** (plantilla `templates/handbook-product.md`).
 5. ⛔ Gate 0 (`skills/sdaf-gate0`) antes de código de producto.
 
-`sdaf.version` en el YAML nombra la línea de constitución: `0.4.0` con pin `v0.4.3`, `v0.4.2`, `v0.4.1` o `v0.4.0`, `0.3.0` con pin `v0.3.3`. No existe el tag `v0.3.0`. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
+`sdaf.version` en el YAML nombra la línea de constitución: `0.5.0` con pin `v0.5.0`, `0.4.0` con pin `v0.4.3`, `v0.4.2`, `v0.4.1` o `v0.4.0`, `0.3.0` con pin `v0.3.3`. No existe el tag `v0.3.0`. Quien se quede en `v0.3.3` o `v0.2.1` no está obligado.
 
 ## Estado
 
 | | Artefacto | Estado |
 |--|-----------|--------|
-| ✅ | Handbook del método | **Approved** 00–13 y A–B (línea 0.4.0) |
-| ✅ | Agentes, prompts y skills | **Approved** (v0.4.3; contratos 0.2 siguen vigentes) |
+| ✅ | Handbook del método | **Approved** 00–14 y A–B (línea 0.5.0) |
+| ✅ | Agentes, prompts y skills | **Approved** (v0.5.0; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
-| | Release del árbol (tag) | **v0.4.3** |
+| | Release del árbol (tag) | **v0.4.3**; `v0.5.0` se crea tras el merge de la línea 0.5.0 |
 
 ## Origen
 

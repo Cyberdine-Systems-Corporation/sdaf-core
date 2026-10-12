@@ -129,7 +129,7 @@ El camino recomendado es **ODD tras Gate 0**:
 flowchart LR
   Spec[spec-draft-pbi: Draft] --> Humano[Humano: Approved]
   Humano --> G0{sdaf-gate0}
-  G0 -->|falta G0.1–G0.5| Stop[STOP]
+  G0 -->|falta G0.1–G0.6| Stop[STOP]
   G0 -->|pasa| ODD[ODD: odd/tasks borrador]
   ODD --> Impl[Implementación]
   Impl --> Rev[testing-review-pr + worklog]

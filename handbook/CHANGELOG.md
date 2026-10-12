@@ -1,5 +1,19 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.5.0 — 2026-10-12T18:47+02:00
+
+Línea nueva de constitución, **opt-in**, con cambio **incompatible** en Gate 0 (G0.6 nuevo; G0.3 y G0.4 redefinidos; [H13 §5](13-enmienda-excepciones-ciclo-de-vida.md)). **No** rompe citas `H00`–`H13`: H14 se añade sin renumerar. Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en `0.4.x` o anterior no está obligado.
+
+- Capítulos: [H14](14-architecture-description.md) nuevo (`0.1.2`, Approved): línea base arquitectónica del consumidor en `architecture/description.md`. H01 `0.3.0`: precedencia única (spec y ADR al mismo nivel; conflicto = STOP y enmienda) y pipeline. H03 `0.3.0`: árbol con `architecture/description.md` y `specs/integration/`. H04 `0.3.0`: tipo Integración, campos Unidades y Origen y atributos de calidad. H05 `0.5.0`: G0.6 nuevo, G0.3 contra la línea base, G0.4 con unidades y STOP en G0.1–G0.6. H10 `0.5.0`: QG-Arch contra las reglas de dependencia de la línea base. `A-templates` `0.3.5`: lista la plantilla de PBI.
+- Agentes y prompts: `architecture-agent` `0.2.0` (contrato y prompt), `master-architect` `0.2.0`, `architecture-review` `0.4.0` y `backlog-refinement` `0.4.0`.
+- Skills: `sdaf-gate0` `0.3.0`, `testing-review-pr` `0.4.0`, `adr-propose` `0.3.0`, `spec-draft-pbi` `0.3.0`, `sdaf-bootstrap` `0.5.0` y `sdaf-upgrade` `0.3.1`.
+- Plantillas: [`architecture-description.md`](../templates/architecture-description.md) y [`pbi.md`](../templates/pbi.md) nuevas; `handbook-product.md` `0.1.1` enlaza la línea base; `AGENTS.md.template` `0.5.0` remite a la precedencia única de H01 §3.2.
+- ADRs: [ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md) a [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md) Aceptados. El ciclo de vida de ADR-006 (estados, sustitución recíproca, excepciones con caducidad) lo comprueba `check-adrs.py`.
+- Mapa de navegación y fixtures de ADR de los tests de `check-adrs.py` al día con la línea.
+- Worklogs: [`worklogs/INIT-arquitectura/Iteration-005.md`](../worklogs/INIT-arquitectura/Iteration-005.md) … [`Iteration-020.md`](../worklogs/INIT-arquitectura/Iteration-020.md).
+
+`sdaf.version: "0.5.0"` nombra esta línea. Pin de árbol: `v0.5.0`, que se crea tras el merge. Quien siga en `0.4.x` mantiene `sdaf.version: "0.4.0"`; con pin `v0.3.3`, `"0.3.0"`.
+
 ## 0.4.3 — 2026-10-02T17:29+02:00
 
 Parche de redacción (**no** breaking de citas `H00`–`H13` ni de configs). Cierra la incoherencia de versiones (H-10) de la iniciativa [INIT-arquitectura](../docs/iniciativas/INIT-arquitectura.md), sin cambio de norma.

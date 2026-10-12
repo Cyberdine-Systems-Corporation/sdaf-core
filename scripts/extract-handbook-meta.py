@@ -182,7 +182,7 @@ def write_index(files: list[Path]) -> None:
             }
         )
     payload = {
-        "linea": "0.4.0",
+        "linea": "0.5.0",
         "nota": "Andamiaje de capítulos en handbook/_meta. El cuerpo es norma.",
         "capitulos": items,
     }
