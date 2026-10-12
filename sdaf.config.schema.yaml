@@ -16,7 +16,7 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
-| `sdaf.version` | string semver | sí | p. ej. `"0.4.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
+| `sdaf.version` | string semver | sí | p. ej. `"0.5.0"` | Versión del **sdaf-core** adoptada. Subirla es un upgrade consciente del método (changelog del core). |
 
 ### `project` (obligatorio)
 
