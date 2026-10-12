@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.18 |
+| Versión | 0.1.19 |
 | Estado | Draft |
-| Fecha | 2026-10-12T19:17+02:00 |
+| Fecha | 2026-10-12T20:05+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md), [Iteration-021](../../worklogs/INIT-arquitectura/Iteration-021.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -96,6 +96,8 @@ Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a 
 
 Quien se quede en una línea anterior no está obligado (precedente de `0.3.0` y `0.4.0`).
 
+Estado a 2026-10-12: `v0.4.3` y `v0.5.0` publicadas; `v0.5.1` y `v0.6.0` pendientes.
+
 **Entrega de `v0.5.0`** (decidida 2026-10-07T18:41+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat). Estrategia `auto-chain` con cadena `feature-branch-chain` (skill `chained-pr`): rama tracker `feat/linea-0.5.0` con PR en borrador, sin fusionar hasta completar la cadena; cada slice es un PR hijo (≤400 líneas cambiadas y ≤60 min de revisión) que apunta a la rama del anterior, y el primero al tracker. Orden: S1 ciclo de vida de ADRs (ARQ-3.3); S2 H14 y plantilla de línea base (3.1, 3.2); S3 specs, árbol y PBI (3.5, 3.4, 3.10); S4a precedencia y pipeline (3.7, 3.8); S4b gates y Architecture Agent (3.6, 3.9); S5 bootstrap e idioma (3.11, 3.12); S6 release (3.13). S1 se entrega con `size:exception` aceptada: 574 líneas, más de la mitad tests, fixtures, worklog y plan. Los slices normativos no pueden aterrizar solos en `main` (H14 y G0.6 se citan entre sí), por eso la cadena no se apila sobre `main`. Cada commit local pide confirmación del humano.
 
 ---
@@ -149,7 +151,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 3 — `v0.5.0`: arquitectura como artefacto
 
-**ARQ-3.1 — Capítulo H14 «Descripción de arquitectura»**
+**ARQ-3.1 — Capítulo H14 «Descripción de arquitectura»** (hecho: v0.5.0, #39; H14 Approved 0.1.1)
 - Hallazgos: H-1, H-3.
 - Artefactos: `handbook/14-architecture-description.md`, `handbook/_meta/14-architecture-description.yaml`, `handbook/index.yaml`, `handbook/README.md`, `mkdocs/mkdocs.yml`.
 - Contenido: propósito, contenido mínimo (ADR-005 §2), relación con ADRs y specs, estados, cuándo cambia, G0.6, prueba de abstracción.
@@ -157,73 +159,73 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 - Aceptación: Draft → Approved por humano; `extract-handbook-meta.py`, `check-local-links.py --strict-anchors --strict-orphans` y `measure-handbook-scaffolding.py` en verde.
 - Depende de: ARQ-2.1 (ADR-005), D-2, D-9.
 
-**ARQ-3.2 — Plantilla de línea base**
+**ARQ-3.2 — Plantilla de línea base** (hecho: v0.5.0, #39)
 - Hallazgos: H-1.
 - Artefactos: `templates/architecture-description.md`, `handbook/A-templates.md`.
 - Aceptación: siete secciones de ADR-005 §2, cada una con ejemplo neutral y la opción `N/A: <motivo>`; ninguna nombra estilo, notación ni stack.
 - Depende de: ARQ-3.1.
 
-**ARQ-3.3 — Ciclo de vida de ADRs**
+**ARQ-3.3 — Ciclo de vida de ADRs** (hecho: v0.5.0, #38)
 - Hallazgos: H-2.
 - Artefactos: `templates/adr.md`, `scripts/check-adrs.py`, fixtures en `scripts/testdata/`, test nuevo `scripts/test-adrs.py`, `.github/workflows/validate.yml`, `architecture/decisions/README.md` (columna de sustitución).
 - Aceptación: estados de ADR-006 §1; reciprocidad de «Sustituye / Sustituido por»; «Caducidad» obligatoria en ADRs de excepción; fixtures de caso válido e inválido; ADR-001 a 008 siguen en verde.
 - Depende de: ARQ-2.1 (ADR-006).
 
-**ARQ-3.4 — Árbol del consumidor**
+**ARQ-3.4 — Árbol del consumidor** (hecho: v0.5.0, #41)
 - Hallazgos: H-1, H-7.
 - Artefactos: `handbook/03-repository-organization.md` (§2 árbol y §3 tabla): `architecture/description.md` y, si se crea el tipo, `specs/integration/`.
 - Clase: significado (bump minor de capítulo).
 - Depende de: D-2, ARQ-3.5.
 
-**ARQ-3.5 — Estándar de specs: calidad, integración y unidades**
+**ARQ-3.5 — Estándar de specs: calidad, integración y unidades** (hecho: v0.5.0, #41)
 - Hallazgos: H-3, H-7.
 - Artefactos: `handbook/04-specification-standard.md`, `templates/spec.md`.
 - Cambios: §5.5 atributos de calidad con escenario medible (fuente, estímulo, entorno, respuesta, medida); tipo de spec de integración (contratos entre unidades o con terceros); campo de cabecera «Unidades»; campo «Origen» preparado para ADR-008.
 - Clase: significado (bump minor).
 - Aceptación: cada campo nuevo tiene ejemplo en la plantilla; H04 §8 enlaza la línea base.
 
-**ARQ-3.6 — Gate 0 y QG-Arch contra la línea base**
+**ARQ-3.6 — Gate 0 y QG-Arch contra la línea base** (hecho: v0.5.0, #43)
 - Hallazgos: H-1, H-7.
 - Artefactos: `handbook/05-development-workflow.md` (G0.3 redefinido, G0.6 nuevo), `handbook/10-code-review-and-quality-gates.md` (§3.2 y QG-Arch), `skills/sdaf-gate0/SKILL.md`, `skills/testing-review-pr/SKILL.md`, `prompts/review/architecture-review.md`.
 - Clase: significado incompatible (motivo de la línea `0.5.0`).
 - Aceptación: «toca límites» se define con la lista de ADR-005 §4; QG-Arch `N/A` solo con motivo; las skills citan la nueva versión.
 - Depende de: ARQ-3.1, D-1.
 
-**ARQ-3.7 — Jerarquía y precedencia únicas**
+**ARQ-3.7 — Jerarquía y precedencia únicas** (hecho: v0.5.0, #42)
 - Hallazgos: H-4.
 - Artefactos: `handbook/01-sdaf-framework.md` (§3 diagrama y §3.2), `handbook/README.md`, `AGENTS.md.template`.
 - Aceptación: diagrama, flujo de H05 y lista de prioridad dicen lo mismo; aparecen línea base y packs; el conflicto spec ↔ ADR se resuelve según D-3.
 - Depende de: D-3, ARQ-2.1 (ADR-007 §2).
 
-**ARQ-3.8 — Pipeline de dominio neutral**
+**ARQ-3.8 — Pipeline de dominio neutral** (hecho: v0.5.0, #42)
 - Hallazgos: H-9.
 - Artefactos: `handbook/01-sdaf-framework.md` §4.
 - Cambio: «Calculation Rules» pasa a paso opcional («reglas derivadas, si el dominio las tiene») o desaparece; se añade el eslabón de arquitectura entre casos de uso e implementación.
 - Clase: significado (bump minor).
 
-**ARQ-3.9 — Architecture Agent y skill de ADR**
+**ARQ-3.9 — Architecture Agent y skill de ADR** (hecho: v0.5.0, #43)
 - Hallazgos: H-1, H-2, H-9.
 - Artefactos: `agents/architecture-agent.md`, `prompts/agents/architecture-agent.md`, `prompts/system/master-architect.md`, `skills/adr-propose/SKILL.md`.
 - Cambios: salidas = ADRs + línea base; checklist mantiene el índice de decisiones vigentes; se retira «dominio sin infra/UI» como norma y se sustituye por «reglas de dependencia de la línea base»; `adr-propose` aplica los estados de ADR-006.
 - Aceptación: versiones y filas de historial nuevas; `check-version-metadata.py` en verde.
 
-**ARQ-3.10 — Plantilla de PBI**
+**ARQ-3.10 — Plantilla de PBI** (hecho: v0.5.0, #41)
 - Hallazgos: H-7.
 - Artefactos: `templates/pbi.md`, `handbook/05-development-workflow.md` (G0.4), `skills/spec-draft-pbi/SKILL.md`, `prompts/planning/backlog-refinement.md`.
 - Campos: ID, título, specs (IDs), acceptance, unidades, ADRs, estado, worklogs.
 - Aceptación: G0.4 comprobable sin interpretación.
 
-**ARQ-3.11 — Bootstrap y handbook de producto**
+**ARQ-3.11 — Bootstrap y handbook de producto** (hecho: v0.5.0, #44)
 - Hallazgos: H-1.
 - Artefactos: `skills/sdaf-bootstrap/SKILL.md` (crea línea base Draft), `templates/handbook-product.md` (enlace a la línea base), `docs/mapa-navegacion.md`.
 - Aceptación: tras bootstrap en un repo vacío, Gate 0 hace STOP por specs y por línea base, y lo dice.
 
-**ARQ-3.12 — Registrar el idioma fijo**
+**ARQ-3.12 — Registrar el idioma fijo** (hecho: v0.5.0, #44; ADR-009 Aceptado)
 - Hallazgos: H-9.
 - Artefactos: según D-8 (nota en `sdaf.config.schema.yaml` y ADR del core si se decide registrarlo).
 - Aceptación: la restricción `es` tiene una decisión citable.
 
-**ARQ-3.13 — Release `v0.5.0`**
+**ARQ-3.13 — Release `v0.5.0`** (hecho: tag `v0.5.0` sobre `66ee77b`, #37, #45 y #47; piloto en Iteration-020)
 - Artefactos: `handbook/CHANGELOG.md`, `README.md`, `docs/adopcion-y-upgrade.md` (sección 0.5.0 con migración: construir la línea base desde los ADRs vigentes), `skills/sdaf-upgrade/SKILL.md`, `sdaf.config.example.yaml`, `examples/`.
 - Aceptación: todos los checks de `validate.yml` en verde; `mkdocs build --strict` en verde; piloto (sección 8) sin bloqueos; tag por orden humana.
 - Depende de: ARQ-3.1 a 3.12.
@@ -319,6 +321,8 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 | H-9 | 3.8, 3.9, 3.12 |
 | H-10 | 1.1, 1.2, 1.3, 1.4 |
 
+Cerrados a 2026-10-12 (al menos un PBI hecho): H-1, H-2, H-3, H-4, H-7, H-9 y H-10. Abiertos: H-8 (`v0.5.1`) y H-5 y H-6 (`v0.6.0`).
+
 ---
 
 ## 7. Dependencias
@@ -396,18 +400,20 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 - [x] D-1 a D-9 cerradas y registradas (Iteration-005).
 - [x] ADR-005 a 008 Aceptados o Rechazados por humano.
-- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente.
-- [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6).
-- [ ] Piloto sin bloqueos en cada línea.
+- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente (publicadas `v0.4.3` y `v0.5.0`; faltan `v0.5.1` y `v0.6.0`).
+- [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6): 7 de 10 cerrados; faltan H-5, H-6 y H-8.
+- [ ] Piloto sin bloqueos en cada línea (hecho para `0.5.0`, sin bloqueos; pendiente en `0.5.1` y `0.6.0`).
 - [ ] Worklog por iteración con cambios materiales de handbook o ADR ([H08 §5](../../handbook/08-agent-traceability.md#5-cuándo-crear-worklog)).
 
 ---
 
 ## 11. Siguiente paso
 
-1. ADR-005 a 008 Aceptados: `v0.5.0` y `v0.5.1` sin bloqueos de decisión (`v0.5.1` espera a `v0.5.0`).
-2. Estrategia de entrega de `v0.5.0` decidida (§4): cadena sobre rama de feature con tracker `feat/linea-0.5.0`.
-3. Bloque 3 (`v0.5.0`): ya puede empezar. El bloque 1 (`v0.4.3`) ya está publicado.
+1. `v0.5.0` publicada (tag sobre `66ee77b`). La cadena de entrega queda cerrada y sus ramas, borradas.
+2. `v0.5.1` (bloque 5, adopción sobre código existente): siguiente parche. ADR-008 está Aceptado; falta ARQ-5.1 a 5.3 (excepción de adopción, specs de caracterización y skill `sdaf-adopt-existing`) y definir el valor `caracterización` de «Origen».
+3. `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo.
+4. Bloque 6: Gate 0 semiautomático, coherencia arquitectónica y modo consumidor de `check-adrs.py` (hallazgo del piloto, ARQ-6.3).
+5. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin en `v0.5.0` y la línea base aprobada por un humano.
 
 ---
 
@@ -424,6 +430,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.19 | 2026-10-12T20:05+02:00 | `v0.5.0` publicada (tag sobre `66ee77b`; #37, #45, #46 y #47): ARQ-3.1 a 3.13 hechos, DoD y hallazgos actualizados (7 de 10 cerrados), siguiente paso reordenado; worklog Iteration-021 |
 | 0.1.18 | 2026-10-12T19:17+02:00 | Piloto de la línea `0.5.0` sobre un consumidor real, sin bloqueos: tres hallazgos genéricos (`AGENTS.md` personalizado, aviso sobre `check-adrs.py`, modo consumidor para ARQ-6.3); `sdaf-upgrade` 0.3.1 y guía de migración corregidas; worklog Iteration-020 |
 | 0.1.17 | 2026-10-12T18:51+02:00 | ARQ-3.13 (slice S6): preparación de la release `v0.5.0` (CHANGELOG, README, guía de migración, `sdaf-upgrade` 0.3.0, ejemplos con `sdaf.version` "0.5.0", `linea` del índice); pendiente de revisión, del piloto y del tag por orden humana; worklog Iteration-019 |
 | 0.1.16 | 2026-10-12T18:37+02:00 | ADR-009 aceptado por el humano: el idioma `es` fijo queda registrado como decisión citable (D-8); sin cambio de norma |
