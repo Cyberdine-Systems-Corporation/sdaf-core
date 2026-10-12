@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1292,6 +1296,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../A-templates/" class="md-nav__link">
         
   
@@ -1608,6 +1640,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3820,6 +3880,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3880,6 +3944,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4076,6 +4168,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4407,8 +4527,10 @@
 <pre class="mermaid"><code>flowchart TD
   K[Knowledge inmutable] --&gt; HB[Handbook SDAF + handbook de producto]
   HB --&gt; S[Specs]
-  S --&gt; ADR[Architecture + ADRs]
-  ADR --&gt; B[Backlog]
+  HB --&gt; ADR[Línea base + ADRs]
+  S --&gt; P[Packs]
+  ADR --&gt; P
+  P --&gt; B[Backlog]
   B --&gt; IMP[Implementation]
   B --&gt; TST[Spec-derived Tests]
   IMP --&gt; G[Review / Quality Gates]
@@ -4419,7 +4541,8 @@
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
   class K,HB,ADR norm
   class S,G,REL ok
-  class B,IMP,TST stub</code></pre>
+  class P,B,IMP,TST stub</code></pre>
+<p>El diagrama muestra la <strong>derivación de artefactos</strong>, no un orden de prioridad entre spec y ADR: ambos derivan del handbook, quedan al mismo nivel y los packs están subordinados a los dos. La prioridad ante conflicto es la de §3.2. Por la misma razón, el orden de pasos de <a href="../05-development-workflow/">H05 §2</a> (spec antes que ADR) es <strong>temporal</strong> (qué se produce primero), no de prioridad.</p>
 <h3 id="31-qué-no-es-un-nivel-normativo">3.1 Qué no es un nivel normativo<a class="headerlink" href="#31-qué-no-es-un-nivel-normativo" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4448,30 +4571,41 @@
 </tbody>
 </table>
 <h3 id="32-prioridad-ante-conflicto">3.2 Prioridad ante conflicto<a class="headerlink" href="#32-prioridad-ante-conflicto" title="Permanent link">&para;</a></h3>
+<p>Precedencia única (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a> §2):</p>
 <ol>
 <li>Capítulos <strong>Approved</strong> de este handbook  </li>
 <li>Handbook de producto Approved del consumidor  </li>
-<li>ADRs vigentes  </li>
-<li>Specs en <code>specs/</code>  </li>
+<li>Línea base Approved (<a href="../14-architecture-description/">H14</a>) y ADRs vigentes del consumidor, <strong>junto con</strong> las specs Approved en <code>specs/</code>. No se ordenan entre sí: la spec manda sobre <em>qué</em> debe cumplirse y el ADR sobre <em>cómo</em> se construye  </li>
+<li>Packs de stack  </li>
 <li>Backlog  </li>
-<li>Implementación / prompts / worklogs  </li>
+<li>Prompts, skills locales, worklogs e implementación  </li>
 </ol>
+<p>Reglas de resolución:</p>
+<ul>
+<li>Un conflicto entre una spec Approved y un ADR vigente es <strong>STOP</strong>: se resuelve enmendando uno de los dos, nunca en silencio durante la implementación.</li>
+<li>Un pack no contradice las capas superiores. Si choca con un ADR del consumidor, gana el ADR y la skill del pack se marca <code>N/A: &lt;motivo&gt;</code> en el worklog.</li>
+<li>«ADRs vigentes» son los Aceptados y no sustituidos (<a href="../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a>).</li>
+</ul>
 <hr />
 <h2 id="4-pipeline-de-dominio">4. Pipeline de dominio<a class="headerlink" href="#4-pipeline-de-dominio" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
   K[Knowledge] --&gt; G[Glossary]
   G --&gt; M[Domain Model]
   M --&gt; R[Business Rules]
-  R --&gt; C[Calculation Rules]
-  C --&gt; U[Use Cases]
+  R --&gt; U[Use Cases]
+  R -.-&gt;|si el dominio las tiene| C[Calculation Rules]
+  C -.-&gt; U
   U --&gt; A[Acceptance Tests]
+  U --&gt; AR[Línea base + ADRs]
   A --&gt; I[Implementation]
+  AR --&gt; I
   classDef norm fill:#d0e3f8,stroke:#1e4d8b,color:#1a1a1a;
   classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
-  class K,G,M,R,C,U norm
+  class K,G,M,R,C,U,AR norm
   class A ok
   class I stub</code></pre>
+<p>«Calculation Rules» es un <strong>paso opcional</strong>: reglas derivadas, solo si el dominio las tiene (la línea punteada se omite sin romper el pipeline). El eslabón de <strong>arquitectura</strong> (línea base y ADRs, <a href="../14-architecture-description/">H14</a>) no deriva del dominio: se decide y se registra en ADRs, recibe de los casos de uso los requisitos que debe acomodar y, junto con los tests de aceptación, acota la implementación.</p>
 <p>No se implementa el documento de experto “tal cual”. Se transforma.</p>
 <hr />
 <h2 id="5-doble-entregable">5. Doble entregable<a class="headerlink" href="#5-doble-entregable" title="Permanent link">&para;</a></h2>

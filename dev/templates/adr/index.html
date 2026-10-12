@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="../spec/">
+        <link rel="prev" href="../pbi/">
       
       
         <link rel="next" href="../worklog/">
@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3654,6 +3714,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3717,6 +3781,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4017,6 +4109,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4251,7 +4371,7 @@
 <tbody>
 <tr>
 <td>Estado</td>
-<td>Propuesto / Aceptado / Deprecado</td>
+<td>Propuesto / Aceptado / Rechazado / Sustituido / Deprecado</td>
 </tr>
 <tr>
 <td>Fecha</td>
@@ -4262,11 +4382,35 @@
 <td></td>
 </tr>
 <tr>
+<td>Aceptación</td>
+<td>YYYY-MM-DDThh:mm±hh:mm, por <persona> (solo al aceptar; la rellena un humano)</td>
+</tr>
+<tr>
+<td>Sustituye</td>
+<td>ADR-NNN</td>
+</tr>
+<tr>
+<td>Sustituido por</td>
+<td>ADR-NNN</td>
+</tr>
+<tr>
+<td>Drivers</td>
+<td>N/A</td>
+</tr>
+<tr>
 <td>Relacionado</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>Borra las filas que no apliquen (ciclo de vida: ADR-006).
+<code>Aceptación</code> solo con Estado Aceptado, Sustituido o Deprecado.
+<code>Rechazo | YYYY-MM-DDThh:mm±hh:mm, motivo</code> solo con Estado Rechazado.
+<code>Sustituye</code> solo si este ADR reemplaza a otros; <code>Sustituido por</code> solo con Estado Sustituido.
+<code>Tipo | Excepción</code> y <code>Caducidad | &lt;fecha con hora y zona&gt;</code> solo en ADRs de excepción
+(H13 §3); describe su alcance y el plan de retorno a la regla.</p>
+</blockquote>
 <h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
 <h2 id="decisión">Decisión<a class="headerlink" href="#decisión" title="Permanent link">&para;</a></h2>
 <h2 id="alternativas-consideradas">Alternativas consideradas<a class="headerlink" href="#alternativas-consideradas" title="Permanent link">&para;</a></h2>

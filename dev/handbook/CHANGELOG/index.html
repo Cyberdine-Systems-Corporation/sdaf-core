@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1129,6 +1133,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../A-templates/" class="md-nav__link">
         
   
@@ -1243,6 +1275,17 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#050-2026-10-12t18470200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 — 2026-10-12T18:47+02:00
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#043-2026-10-02t17290200" class="md-nav__link">
@@ -1663,6 +1706,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3875,6 +3946,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3935,6 +4010,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4144,6 +4247,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4297,6 +4428,17 @@
       Tabla de contenidos
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#050-2026-10-12t18470200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 — 2026-10-12T18:47+02:00
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#043-2026-10-02t17290200" class="md-nav__link">
@@ -4495,6 +4637,18 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="050-2026-10-12t18470200">0.5.0 — 2026-10-12T18:47+02:00<a class="headerlink" href="#050-2026-10-12t18470200" title="Permanent link">&para;</a></h2>
+<p>Línea nueva de constitución, <strong>opt-in</strong>, con cambio <strong>incompatible</strong> en Gate 0 (G0.6 nuevo; G0.3 y G0.4 redefinidos; <a href="../13-enmienda-excepciones-ciclo-de-vida/">H13 §5</a>). <strong>No</strong> rompe citas <code>H00</code>–<code>H13</code>: H14 se añade sin renumerar. Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en <code>0.4.x</code> o anterior no está obligado.</p>
+<ul>
+<li>Capítulos: <a href="../14-architecture-description/">H14</a> nuevo (<code>0.1.2</code>, Approved): línea base arquitectónica del consumidor en <code>architecture/description.md</code>. H01 <code>0.3.0</code>: precedencia única (spec y ADR al mismo nivel; conflicto = STOP y enmienda) y pipeline. H03 <code>0.3.0</code>: árbol con <code>architecture/description.md</code> y <code>specs/integration/</code>. H04 <code>0.3.0</code>: tipo Integración, campos Unidades y Origen y atributos de calidad. H05 <code>0.5.0</code>: G0.6 nuevo, G0.3 contra la línea base, G0.4 con unidades y STOP en G0.1–G0.6. H10 <code>0.5.0</code>: QG-Arch contra las reglas de dependencia de la línea base. <code>A-templates</code> <code>0.3.5</code>: lista la plantilla de PBI.</li>
+<li>Agentes y prompts: <code>architecture-agent</code> <code>0.2.0</code> (contrato y prompt), <code>master-architect</code> <code>0.2.0</code>, <code>architecture-review</code> <code>0.4.0</code> y <code>backlog-refinement</code> <code>0.4.0</code>.</li>
+<li>Skills: <code>sdaf-gate0</code> <code>0.3.0</code>, <code>testing-review-pr</code> <code>0.4.0</code>, <code>adr-propose</code> <code>0.3.0</code>, <code>spec-draft-pbi</code> <code>0.3.0</code>, <code>sdaf-bootstrap</code> <code>0.5.0</code> y <code>sdaf-upgrade</code> <code>0.3.1</code>.</li>
+<li>Plantillas: <a href="../../templates/architecture-description/"><code>architecture-description.md</code></a> y <a href="../../templates/pbi/"><code>pbi.md</code></a> nuevas; <code>handbook-product.md</code> <code>0.1.1</code> enlaza la línea base; <code>AGENTS.md.template</code> <code>0.5.0</code> remite a la precedencia única de H01 §3.2.</li>
+<li>ADRs: <a href="../../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a> a <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a> Aceptados. El ciclo de vida de ADR-006 (estados, sustitución recíproca, excepciones con caducidad) lo comprueba <code>check-adrs.py</code>.</li>
+<li>Mapa de navegación y fixtures de ADR de los tests de <code>check-adrs.py</code> al día con la línea.</li>
+<li>Worklogs: <a href="../../worklogs/INIT-arquitectura/Iteration-005/"><code>worklogs/INIT-arquitectura/Iteration-005.md</code></a> … <a href="../../worklogs/INIT-arquitectura/Iteration-020/"><code>Iteration-020.md</code></a>.</li>
+</ul>
+<p><code>sdaf.version: "0.5.0"</code> nombra esta línea. Pin de árbol: <code>v0.5.0</code>, que se crea tras el merge. Quien siga en <code>0.4.x</code> mantiene <code>sdaf.version: "0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>.</p>
 <h2 id="043-2026-10-02t17290200">0.4.3 — 2026-10-02T17:29+02:00<a class="headerlink" href="#043-2026-10-02t17290200" title="Permanent link">&para;</a></h2>
 <p>Parche de redacción (<strong>no</strong> breaking de citas <code>H00</code>–<code>H13</code> ni de configs). Cierra la incoherencia de versiones (H-10) de la iniciativa <a href="../../docs/iniciativas/INIT-arquitectura/">INIT-arquitectura</a>, sin cambio de norma.</p>
 <ul>

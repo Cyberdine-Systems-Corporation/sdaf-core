@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -1790,10 +1850,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fuera-de-03x" class="md-nav__link">
+  <a href="#050-opt-in" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fuera de 0.3.x
+        0.5.0 (opt-in)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuera-de-05x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuera de 0.5.x
       
     </span>
   </a>
@@ -3906,6 +3977,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3966,6 +4041,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4162,6 +4265,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4507,10 +4638,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fuera-de-03x" class="md-nav__link">
+  <a href="#050-opt-in" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fuera de 0.3.x
+        0.5.0 (opt-in)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuera-de-05x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuera de 0.5.x
       
     </span>
   </a>
@@ -4575,11 +4717,11 @@
 </tr>
 <tr>
 <td><code>sdaf.version</code> en <code>sdaf.config.yaml</code></td>
-<td>Línea de <strong>constitución</strong> (semver <strong>mayor.menor</strong>). Con pin <code>v0.4.x</code>, <code>"0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>. No es un tag.</td>
+<td>Línea de <strong>constitución</strong> (semver <strong>mayor.menor</strong>). Con pin <code>v0.5.0</code>, <code>"0.5.0"</code>; con pin <code>v0.4.x</code>, <code>"0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>. No es un tag.</td>
 </tr>
 <tr>
 <td>Capítulos / skills</td>
-<td>Alineados a la misma línea (<code>0.2.x</code>, <code>0.3.x</code> o <code>0.4.x</code> según pin)</td>
+<td>Alineados a la misma línea (<code>0.2.x</code>, <code>0.3.x</code>, <code>0.4.x</code> o <code>0.5.x</code> según pin)</td>
 </tr>
 </tbody>
 </table>
@@ -4605,7 +4747,7 @@ El pin recomendado del árbol es <code>v0.4.3</code>. <code>sdaf.version</code> 
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.4.3
 </code></pre></div>
 <ol>
-<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.4.0"</code> con pin <code>v0.4.x</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
+<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.5.0"</code> con pin <code>v0.5.0</code>, <code>"0.4.0"</code> con pin <code>v0.4.x</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
 <li>Ejecutar la skill <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> (o seguir sus pasos a mano).</li>
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a>.</li>
 <li>Opcional: validar <code>sdaf.config.yaml</code> con la composite action <a href="../../.github/actions/validate-sdaf/"><code>.github/actions/validate-sdaf</code></a> (disponible desde <code>v0.4.0</code>).</li>
@@ -4643,7 +4785,7 @@ El pin recomendado del árbol es <code>v0.4.3</code>. <code>sdaf.version</code> 
 <li>Actualizar pin del submodule/tag al nuevo <code>vX.Y.Z</code>.</li>
 <li>Leer <a href="../../handbook/CHANGELOG/"><code>handbook/CHANGELOG.md</code></a>.</li>
 <li>Actualizar <code>sdaf.version</code>.</li>
-<li>Regenerar <code>AGENTS.md</code> si cambió la plantilla.</li>
+<li>Incorporar a <code>AGENTS.md</code> los cambios de la plantilla si cambió, conservando lo propio del consumidor (regenerarlo entero solo si no está personalizado).</li>
 <li>Revisar citas <code>skill-id@version</code> en worklogs <strong>nuevos</strong>.</li>
 <li>Si venías de 0.1.x: remapear citas de capítulos según la tabla siguiente.</li>
 <li>No auto-migrar specs ni handbook de producto del consumidor.</li>
@@ -4733,14 +4875,33 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <h2 id="043-parche">0.4.3 (parche)<a class="headerlink" href="#043-parche" title="Permanent link">&para;</a></h2>
 <p>Coherencia de versiones en la documentación publicada (H-10 de <a href="../iniciativas/INIT-arquitectura/">INIT-arquitectura</a>). Al pinnear <code>v0.4.3</code> no hay nada que hacer: sin cambio de norma.</p>
 <p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.4.0"</code>.</p>
-<h2 id="fuera-de-03x">Fuera de 0.3.x<a class="headerlink" href="#fuera-de-03x" title="Permanent link">&para;</a></h2>
+<h2 id="050-opt-in">0.5.0 (opt-in)<a class="headerlink" href="#050-opt-in" title="Permanent link">&para;</a></h2>
+<p>Línea nueva de constitución. <strong>No</strong> rompe citas <code>H00</code>–<code>H13</code>, pero <strong>sí</strong> cambia el significado de Gate 0 (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/">H13 §5</a>): por eso es opt-in. Quien se quede en <code>0.4.x</code> no está obligado.</p>
+<p>Al pinnear <code>v0.5.0</code>:</p>
+<ol>
+<li>Leer <a href="../../handbook/14-architecture-description/">H14</a> y <a href="../../templates/architecture-description/"><code>templates/architecture-description.md</code></a>.</li>
+<li>Construir <code>architecture/description.md</code> desde los ADRs vigentes (<a href="../../handbook/14-architecture-description/#9-migración-desde-un-consumidor-existente">H14 §9</a>): listar las unidades y reglas que esos ADRs ya establecen, enlazarlos y escribir <code>N/A: &lt;motivo&gt;</code> en lo demás. No se reescriben ADRs.</li>
+<li>Pedir la aprobación humana de la línea base (Draft → Approved). Sin ella, G0.6 hace STOP.</li>
+<li>Gate 0 (<a href="../../handbook/05-development-workflow/">H05</a>): G0.6 exige la línea base Approved; G0.3 exige un ADR Aceptado si el cambio toca límites (<a href="../../handbook/14-architecture-description/#6-cuándo-cambia">H14 §6</a>); G0.4 exige un PBI de <a href="../../templates/pbi/"><code>templates/pbi.md</code></a> (specs Approved, acceptance y unidades).</li>
+<li>QG-Arch (<a href="../../handbook/10-code-review-and-quality-gates/">H10</a>) verifica las reglas de dependencia de la línea base; solo es <code>N/A</code> con el motivo en el worklog.</li>
+<li>Estados de ADR según <a href="../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a>: los ADRs antiguos con tres estados siguen válidos; las excepciones llevan <code>Tipo = Excepción</code> y <code>Caducidad</code>; la sustitución es recíproca (Sustituye / Sustituido por).</li>
+<li>Crear <code>specs/integration/</code> y usar los campos Unidades y Origen en las specs (<a href="../../handbook/04-specification-standard/">H04</a>).</li>
+<li>Aplicar la precedencia única de <a href="../../handbook/01-sdaf-framework/">H01 §3.2</a>: spec y ADR al mismo nivel; un conflicto entre ambos es STOP y enmienda.</li>
+<li>Incorporar a <code>AGENTS.md</code> los cambios de <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a> <code>0.5.0</code> (norma H14 y precedencia única en la sección de gobierno), conservando lo propio; regenerarlo entero solo si no está personalizado.</li>
+<li>El idioma <code>es</code> lo registra <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a>.</li>
+<li>Actualizar <code>sdaf.version</code> a <code>"0.5.0"</code>.</li>
+</ol>
+<p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
+<p>Los ADRs del consumidor no se reescriben. <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).</p>
+<p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
+<h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>
 <li>Métricas de sprint / capacidad humana detallada (producto)</li>
 <li>Glosario de dominio (pertenece al producto)</li>
-<li><code>project.language</code> distinto de <code>es</code></li>
-<li>CLI de materialización (las skills playbook bastan)</li>
+<li>Script de materialización en el core (previsto en la línea 0.6.0)</li>
 </ul>
+<p><code>project.language</code> distinto de <code>es</code> ya no está pendiente: lo registra <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a> y otro idioma exige un ADR sustituto.</p>
 <p>No se reintroducen huecos numéricos “por si acaso” en el handbook del core.</p>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>

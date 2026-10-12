@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1129,6 +1133,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1455,6 +1487,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3667,6 +3727,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3727,6 +3791,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -3936,6 +4028,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4116,6 +4236,7 @@
 <th>ADR</th>
 <th>Estado</th>
 <th>Título</th>
+<th>Sustituido por</th>
 </tr>
 </thead>
 <tbody>
@@ -4123,45 +4244,60 @@
 <td><a href="ADR-001-nucleo-reutilizable/">ADR-001</a></td>
 <td>Aceptado</td>
 <td>Extracción del núcleo reutilizable</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-002-gobernanza-del-metodo/">ADR-002</a></td>
 <td>Aceptado</td>
 <td>Enmienda, excepciones y ciclo de vida</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-003-formato-de-artefactos/">ADR-003</a></td>
 <td>Aceptado</td>
 <td>Formato de andamiaje y worklog</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-004-tooling-externo-de-agentes/">ADR-004</a></td>
 <td>Aceptado</td>
 <td>Tooling externo de agentes</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-005-linea-base-arquitectonica/">ADR-005</a></td>
 <td>Aceptado</td>
 <td>Línea base arquitectónica del consumidor</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a></td>
 <td>Aceptado</td>
 <td>Ciclo de vida y sustitución de ADRs</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a></td>
 <td>Aceptado</td>
 <td>Modelo de capas del método y precedencia</td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a></td>
-<td>Propuesto</td>
+<td>Aceptado</td>
 <td>Adopción del método sobre código existente</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="ADR-009-idioma-de-artefactos/">ADR-009</a></td>
+<td>Aceptado</td>
+<td>Idioma fijo de los artefactos de ingeniería</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
-<p>Ningún agente marca un ADR como Aceptado (<a href="../../handbook/00-preface/">H00 §3.3</a>). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03, y ADR-006 y ADR-007 el 2026-10-07. ADR-008 está Propuesto y pendiente de decisión humana.</p>
+<p>Estados válidos: Propuesto, Aceptado, Rechazado, Sustituido y Deprecado. Su ciclo de vida y la sustitución están en <a href="ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a>.</p>
+<p>Ningún agente marca un ADR como Aceptado (<a href="../../handbook/00-preface/">H00 §3.3</a>). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03, ADR-006 y ADR-007 el 2026-10-07, ADR-008 el 2026-10-08, y ADR-009 el 2026-10-12.</p>
 
 
 

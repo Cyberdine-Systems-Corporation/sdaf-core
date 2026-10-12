@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3770,6 +3830,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3830,6 +3894,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4026,6 +4118,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4299,7 +4419,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.2</td>
+<td>0.4.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4311,11 +4431,11 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-19</td>
+<td>2026-10-11T23:12+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
-<td><a href="../../../handbook/10-code-review-and-quality-gates/">handbook/10</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §Gate 2, <a href="../../../handbook/09-testing-framework/">handbook/09</a>, <a href="../../../handbook/08-agent-traceability/">handbook/08</a> §4.3</td>
+<td><a href="../../../handbook/10-code-review-and-quality-gates/">handbook/10</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §Gate 2, <a href="../../../handbook/09-testing-framework/">handbook/09</a>, <a href="../../../handbook/08-agent-traceability/">handbook/08</a> §4.3, <a href="../../../handbook/14-architecture-description/">handbook/14</a> §7</td>
 </tr>
 </tbody>
 </table>
@@ -4325,17 +4445,17 @@
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Confirmar Gate 0 del PBI (o regularización documentada). Skill <code>sdaf-gate0</code> si hace falta.</li>
-<li>Checklist H10: gobierno (incl. origen H08 §4.3 si hay código de producto), dominio/arquitectura, calidad, coding standards del consumidor si hay ADR, tests vs acceptance, H12 §5.1 si toca superficie de seguridad.</li>
+<li>Confirmar Gate 0 del PBI, incluida la línea base Approved (G0.6), o regularización documentada. Skill <code>sdaf-gate0</code> si hace falta.</li>
+<li>Checklist H10: gobierno (incl. origen H08 §4.3 si hay código de producto), dominio/arquitectura (dependencias conformes a las reglas de dependencia de la línea base), calidad, coding standards del consumidor si hay ADR, tests vs acceptance, H12 §5.1 si toca superficie de seguridad.</li>
 <li>Ejecutar el comando de test del <strong>consumidor</strong> (runbook / pack); anotar conteos. No inventar un runner.</li>
 <li>Contrastar acceptance del PBI con tests presentes (H09).</li>
 <li>Dictamen: <strong>merge sí / no / condicionado</strong> con hallazgos priorizados (H10 §5). El dictamen <strong>no</strong> satisface QG-Review.</li>
-<li>Worklog de review (<code>testing-review-pr@0.3.2</code> + prompt Testing+Review citados).</li>
+<li>Worklog de review (<code>testing-review-pr@0.4.0</code> + prompt Testing+Review citados).</li>
 <li>QG-Review exige aprobación humana <strong>nominada</strong> del merge (H10 §2). No auto-merge.</li>
 </ol>
 <blockquote>
 <p>[!CAUTION]
-⛔ No recomendar merge si Gate 0 está roto, el acceptance del flujo tocado falla, QG-Sec falla o falta origen de cambios en código de producto.</p>
+⛔ No recomendar merge si Gate 0 está roto (incluida la línea base Approved), el acceptance del flujo tocado falla, QG-Sec falla o falta origen de cambios en código de producto.</p>
 </blockquote>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4349,6 +4469,7 @@
 <li>No aprobar handbook/specs/ADR.</li>
 <li>No ampliar alcance Out del MVP del consumidor en el review “de paso”.</li>
 <li>No exigir el checklist de coding standards si el consumidor no tiene ADR/pack que lo fije.</li>
+<li>QG-Arch es <code>N/A</code> solo si la línea base no declara reglas de dependencia y el motivo queda escrito en el worklog; sin motivo no es N/A.</li>
 <li>Completar este playbook no autoriza merge.</li>
 </ul>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
@@ -4361,6 +4482,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.4.0</td>
+<td>2026-10-11T23:12+02:00</td>
+<td>Gate 0 incluye la línea base Approved (G0.6); dominio/arquitectura contra las reglas de dependencia de la línea base; QG-Arch N/A solo con motivo en el worklog</td>
+</tr>
 <tr>
 <td>0.3.2</td>
 <td>2026-09-19</td>

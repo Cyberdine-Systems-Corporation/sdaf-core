@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Propone o enmienda ADRs en Draft con plantilla y consecuencias. Usar cuando el cambio toca límites, stack, motores o estándares.">
+        <meta name="description" content="Propone o enmienda ADRs en Draft con plantilla, ciclo de vida y consecuencias. Usar cuando el cambio toca límites, stack, motores o estándares.">
       
       
       
@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3770,6 +3830,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3830,6 +3894,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4026,6 +4118,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4299,7 +4419,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.2.0</td>
+<td>0.3.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4311,11 +4431,11 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-08-25</td>
+<td>2026-10-11T23:12+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
-<td><a href="../../../handbook/05-development-workflow/">handbook/05</a> G0.3, <code>architecture/decisions/</code></td>
+<td><a href="../../../handbook/05-development-workflow/">handbook/05</a> G0.3, <a href="../../../handbook/14-architecture-description/">handbook/14</a> §6, <code>architecture/decisions/</code>, ADR-006</td>
 </tr>
 </tbody>
 </table>
@@ -4325,24 +4445,29 @@
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Revisar ADRs vigentes en <code>architecture/decisions/</code> del consumidor.</li>
-<li>Usar <a href="../../../templates/adr/">templates/adr.md</a>: contexto, decisión, alternativas, consecuencias.</li>
-<li>Estado <strong>Propuesto</strong>; no “Aceptado” sin humano.</li>
+<li>Revisar los ADRs <strong>vigentes</strong> en <code>architecture/decisions/</code> del consumidor: Aceptados y sin «Sustituido por» (ADR-006 §4). Leer también <code>architecture/description.md</code>.</li>
+<li>Usar <a href="../../../templates/adr/">templates/adr.md</a>: contexto, decisión, alternativas, consecuencias. Rellenar <code>Drivers</code> (specs, atributos de calidad o capítulos que lo motivan; <code>N/A</code> si no hay). Solo en excepciones, <code>Tipo = Excepción</code> con <code>Caducidad</code>.</li>
+<li>Estado <strong>Propuesto</strong>. Los estados son Propuesto, Aceptado, Rechazado, Sustituido y Deprecado; ningún agente marca Aceptado, Rechazado ni Sustituido (ADR-006 §1): es un acto humano.</li>
+<li>Si el ADR sustituye a otro, rellenar <code>Sustituye</code> con el ADR anterior y proponer el <code>Sustituido por</code> recíproco en este; ambos extremos deben coincidir. No editar un ADR Aceptado para cambiar la decisión: se crea un ADR nuevo que lo sustituya (ADR-006 §3).</li>
 <li>Actualizar índice <code>architecture/decisions/README.md</code> si aplica.</li>
+<li>Si el ADR cambia unidades, reglas de dependencia, integraciones o la prioridad de un atributo de calidad (<a href="../../../handbook/14-architecture-description/">H14 §6</a>), proponer una <strong>versión nueva en Draft</strong> de la línea base y actualizar su sección 6 (decisiones vigentes). La aprueba un humano.</li>
 <li>Si impacta handbook, proponer enmienda Draft del capítulo (no auto-aprobar).</li>
-<li>Worklog Architecture + <code>adr-propose@0.2.0</code>.</li>
+<li>Worklog Architecture + <code>adr-propose@0.3.0</code>.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] ADR Propuesto con alternativas y consecuencias.</li>
+<li>[ ] <code>Drivers</code> rellenado; <code>Sustituye</code> / <code>Sustituido por</code> recíprocos si hay sustitución.</li>
 <li>[ ] Enlaces a PBI/specs si existen.</li>
 <li>[ ] Índice actualizado.</li>
+<li>[ ] Línea base nueva en Draft propuesta si el cambio es de H14 §6.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
 <li>No código de producto salvo spike con excepción documentada.</li>
 <li>No contradecir handbook Approved sin enmienda explícita.</li>
 <li>No imponer un stack en el método; registrarlo como ADR del consumidor.</li>
+<li>No marcar Aceptado, Rechazado ni Sustituido; no aprobar la línea base.</li>
 </ul>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
@@ -4361,6 +4486,10 @@
 <td><a href="../../../templates/adr/">templates/adr.md</a></td>
 <td>Plantilla ADR</td>
 </tr>
+<tr>
+<td><a href="../../../handbook/14-architecture-description/">H14</a></td>
+<td>Línea base y cuándo cambia</td>
+</tr>
 </tbody>
 </table>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
@@ -4373,6 +4502,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.0</td>
+<td>2026-10-11T23:12+02:00</td>
+<td>Estados y campos de ADR-006 (sustitución recíproca, Drivers, excepciones); vigentes = Aceptados sin «Sustituido por»; propone línea base nueva en Draft cuando el ADR es de H14 §6</td>
+</tr>
 <tr>
 <td>0.2.0</td>
 <td>2026-08-25</td>

@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3825,6 +3885,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3885,6 +3949,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4081,6 +4173,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4405,7 +4525,7 @@
 <tbody>
 <tr>
 <td>Versión</td>
-<td>0.1.2</td>
+<td>0.2.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4413,7 +4533,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-13</td>
+<td>2026-10-11T23:12+02:00</td>
 </tr>
 <tr>
 <td>Modo</td>
@@ -4426,17 +4546,17 @@
 </tbody>
 </table>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>Registrar decisiones en ADRs y proteger boundaries acordados. El stack concreto lo decide el consumidor (ADR); este agente no lo impone.</p>
+<p>Registrar decisiones en ADRs, proponer la línea base arquitectónica y proteger las reglas de dependencia acordadas. El stack concreto lo decide el consumidor (ADR); este agente no lo impone.</p>
 <h2 id="responsabilidades">Responsabilidades<a class="headerlink" href="#responsabilidades" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Redactar/enmendar ADRs (incluidas decisiones de stack y límites).</li>
-<li>Revisar que el dominio no dependa de infra/UI según las normas del consumidor.</li>
+<li>Revisar que el cambio respete las reglas de dependencia de la línea base (<code>architecture/description.md</code>, <a href="../../handbook/14-architecture-description/">H14</a>).</li>
 <li>Bloquear sobre-diseño sin ADR y necesidad demostrada.</li>
 </ul>
 <h2 id="entradas">Entradas<a class="headerlink" href="#entradas" title="Permanent link">&para;</a></h2>
-<p>Specs, handbook de método y de producto, <code>architecture/decisions/</code>, worklog.</p>
+<p>Specs, handbook de método y de producto, <code>architecture/description.md</code> (línea base), <code>architecture/decisions/</code>, worklog.</p>
 <h2 id="salidas">Salidas<a class="headerlink" href="#salidas" title="Permanent link">&para;</a></h2>
-<p><code>architecture/decisions/**</code>.</p>
+<p>ADRs (<code>architecture/decisions/**</code>) y línea base (<code>architecture/description.md</code>, como propuesta o Draft: la aprueba un humano, H14 §5).</p>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
 <li>No codear features de negocio.</li>
@@ -4446,13 +4566,16 @@
 <h2 id="checklist">Checklist<a class="headerlink" href="#checklist" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] ADR con contexto/decisión/alternativas/consecuencias</li>
+<li>[ ] ADR con los estados de ADR-006 (Propuesto, Aceptado, Rechazado, Sustituido, Deprecado); ningún agente marca Aceptado, Rechazado ni Sustituido</li>
+<li>[ ] Índice de decisiones vigentes (sección 6 de la línea base) al día: solo ADRs Aceptados y no sustituidos (ADR-006 §4)</li>
+<li>[ ] Versión nueva de la línea base propuesta (Draft) cuando el cambio es de H14 §6</li>
 <li>[ ] Relación con MVP/Out explícita</li>
 <li>[ ] Worklog</li>
 </ul>
 <h2 id="kpis">KPIs<a class="headerlink" href="#kpis" title="Permanent link">&para;</a></h2>
 <p>Decisiones materiales con ADR.</p>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
-<p>ADR listo para aceptación humana o N/A justificado; handoff al agente de implementación del consumidor.</p>
+<p>ADR y, si aplica, línea base en Draft listos para aceptación humana, o N/A justificado; handoff al agente de implementación del consumidor.</p>
 <h2 id="prompt-base">Prompt base<a class="headerlink" href="#prompt-base" title="Permanent link">&para;</a></h2>
 <p><code>prompts/agents/architecture-agent.md</code></p>
 <h2 id="contexto-autorizado">Contexto autorizado<a class="headerlink" href="#contexto-autorizado" title="Permanent link">&para;</a></h2>
@@ -4470,7 +4593,7 @@
 <tr>
 <td>Rol</td>
 <td><code>prompts/agents/architecture-agent.md</code></td>
-<td>ADRs y boundaries; stack lo decide el consumidor</td>
+<td>ADRs y línea base; stack lo decide el consumidor</td>
 <td>sí</td>
 </tr>
 <tr>
@@ -4509,6 +4632,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.2.0</td>
+<td>2026-10-11T23:12+02:00</td>
+<td>Propone la línea base arquitectónica además de ADRs (H14); revisa contra sus reglas de dependencia; ADRs con los estados de ADR-006</td>
+</tr>
 <tr>
 <td>0.1.2</td>
 <td>2026-09-13</td>

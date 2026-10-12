@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1264,6 +1268,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../A-templates/" class="md-nav__link">
         
   
@@ -1580,6 +1612,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3792,6 +3852,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3852,6 +3916,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4048,6 +4140,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4337,7 +4457,7 @@
 <p>Un solo camino. No hay atajo de agente.</p>
 <hr />
 <h2 id="2-flujo-de-extremo-a-extremo">2. Flujo de extremo a extremo<a class="headerlink" href="#2-flujo-de-extremo-a-extremo" title="Permanent link">&para;</a></h2>
-<p><strong>Paso 0 — Bootstrap del repo</strong> (skill <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>): árbol y <code>sdaf.config.yaml</code> listos según <a href="../03-repository-organization/">cap. 03</a> y <a href="../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>. En un repo vacío, Gate 0 → <strong>STOP</strong> esperado hasta specs Approved.</p>
+<p><strong>Paso 0 — Bootstrap del repo</strong> (skill <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>): árbol y <code>sdaf.config.yaml</code> listos según <a href="../03-repository-organization/">cap. 03</a> y <a href="../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>. En un repo vacío, Gate 0 → <strong>STOP</strong> esperado hasta specs Approved y línea base Approved.</p>
 <pre class="mermaid"><code>flowchart TD
   B[0 Bootstrap / Gate 0] --&gt; S[1-2 Specs Approved]
   S --&gt; ADR[3 ADR si aplica]
@@ -4356,8 +4476,8 @@
 <p>Pasos en texto:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1. Knowledge disponible (si dominio)
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>2. Specs Draft → revisión → Approved
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>3. ADR si hay decisión arquitectónica / de stack / de alcance técnico
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>4. PBI en backlog enlazado a specs + acceptance
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>3. ADR si hay decisión arquitectónica / de stack / de alcance técnico (contra la línea base Approved, H14)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>4. PBI en backlog (plantilla `templates/pbi.md`) enlazado a specs Approved + acceptance + unidades
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>5. Worklog de iteración abierto
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>6. Tests de aceptación (esqueleto o completos) derivados de specs
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>7. Implementación (vertical slice)
@@ -4390,12 +4510,12 @@
 </tr>
 <tr>
 <td>G0.3</td>
-<td>ADR si el cambio toca límites, stack o motores</td>
+<td>ADR <strong>Aceptado</strong> si el cambio toca límites, stack o motores</td>
 <td><code>architecture/decisions/</code> o N/A justificado en worklog</td>
 </tr>
 <tr>
 <td>G0.4</td>
-<td>PBI/backlog enlazado</td>
+<td>PBI en <code>backlog/</code> creado con <a href="../../templates/pbi/"><code>templates/pbi.md</code></a>, con las specs <strong>Approved</strong> que enlaza, su acceptance y las unidades que afecta (nombres de la línea base, <a href="../14-architecture-description/">H14</a>)</td>
 <td><code>backlog/</code></td>
 </tr>
 <tr>
@@ -4403,11 +4523,20 @@
 <td>Worklog de iteración iniciado</td>
 <td><code>worklogs/...</code></td>
 </tr>
+<tr>
+<td>G0.6</td>
+<td>Línea base arquitectónica <strong>Approved</strong> presente</td>
+<td><code>architecture/description.md</code> (<a href="../14-architecture-description/">H14</a>)</td>
+</tr>
 </tbody>
 </table>
+<p>G0.3: un cambio «toca límites» si produce alguno de los cambios de <a href="../14-architecture-description/">H14 §6</a>: añadir, retirar o renombrar una unidad; cambiar una regla de dependencia, una integración o la prioridad de un atributo de calidad. Esos cambios exigen además una versión nueva de la línea base.</p>
+<p>G0.4 y G0.6 van juntos: las unidades que declara el PBI (G0.4) son las de la línea base Approved que exige G0.6, y G0.3 se evalúa contra las reglas y unidades de esa misma versión.</p>
 <blockquote>
+<p>[!NOTE]
+G0.6 y la línea base (<a href="../14-architecture-description/">H14</a>) pertenecen a la línea de constitución <code>0.5.0</code>, que es opt-in. Quien se quede en <code>0.4.x</code> no está obligado a mantener una línea base. Decisión de origen: <a href="../../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a>.</p>
 <p>[!CAUTION]
-Gate 0. Si falta G0.1–G0.5, <strong>STOP</strong>. No hay atajo de agente.</p>
+Gate 0. Si falta G0.1–G0.6, <strong>STOP</strong>. No hay atajo de agente.</p>
 <p>[!NOTE]
 <strong>Excepción:</strong> spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.</p>
 </blockquote>
@@ -4498,7 +4627,7 @@ Gate 0. Si falta G0.1–G0.5, <strong>STOP</strong>. No hay atajo de agente.</p>
 </tr>
 <tr>
 <td>Architecture</td>
-<td>ADRs, boundaries</td>
+<td>ADRs y línea base</td>
 </tr>
 <tr>
 <td>Agentes de implementación</td>

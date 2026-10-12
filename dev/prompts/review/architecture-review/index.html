@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3812,6 +3872,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3872,6 +3936,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4068,6 +4160,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4363,7 +4483,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.4.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4375,16 +4495,17 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-19</td>
+<td>2026-10-11T23:12+02:00</td>
 </tr>
 </tbody>
 </table>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>Revisar coherencia arquitectónica de un diff o ADR frente a límites Approved.</p>
+<p>Revisar coherencia arquitectónica de un diff o ADR frente a la línea base Approved y sus reglas de dependencia.</p>
 <h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../handbook/02-engineering-principles/">H02</a>, <a href="../../../handbook/05-development-workflow/">H05</a>, <a href="../../../handbook/10-code-review-and-quality-gates/">H10</a> §3.2</li>
-<li>ADRs del consumidor; handbook de producto si el diff toca MVP</li>
+<li><code>architecture/description.md</code> (línea base Approved) y <a href="../../../handbook/14-architecture-description/">H14</a></li>
+<li>ADRs vigentes del consumidor (Aceptados y no sustituidos, ADR-006); handbook de producto si el diff toca MVP</li>
 <li><code>AGENTS.md</code> del consumidor</li>
 </ul>
 <h2 id="entradas">Entradas<a class="headerlink" href="#entradas" title="Permanent link">&para;</a></h2>
@@ -4392,11 +4513,11 @@
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <p>Severizar hallazgos; no Approved autónomo; no introducir bounded contexts o stack nuevo sin ADR.</p>
 <h2 id="resultado-esperado">Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Permanent link">&para;</a></h2>
-<p>Dictamen bloqueante / mayor / menor + acciones (QG-Arch).</p>
+<p>Dictamen bloqueante / mayor / menor + acciones, y dictamen de QG-Arch (cumple, infracción nueva o <code>N/A</code> solo con el motivo escrito en el worklog).</p>
 <h2 id="formato-de-salida">Formato de salida<a class="headerlink" href="#formato-de-salida" title="Permanent link">&para;</a></h2>
-<p>Checklist de límites + veredicto.</p>
+<p>Checklist de reglas de dependencia + veredicto.</p>
 <h2 id="criterios-de-aceptación">Criterios de aceptación<a class="headerlink" href="#criterios-de-aceptación" title="Permanent link">&para;</a></h2>
-<p>Trazable a ADRs vigentes y a H10 QG-Arch.</p>
+<p>Trazable a la línea base, a los ADRs vigentes y a H10 QG-Arch. Si la línea base no declara reglas de dependencia, QG-Arch es <code>N/A</code> solo con motivo en el worklog; sin motivo no es N/A.</p>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4407,6 +4528,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.4.0</td>
+<td>2026-10-11T23:12+02:00</td>
+<td>Revisión contra la línea base Approved y sus reglas de dependencia (H14); dictamen de QG-Arch; ADRs vigentes (ADR-006)</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-09-19</td>

@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3770,6 +3830,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3830,6 +3894,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4026,6 +4118,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4299,7 +4419,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.4.2</td>
+<td>0.5.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4311,11 +4431,11 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-26T17:27+02:00</td>
+<td>2026-10-12T18:23+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
-<td><a href="../../../handbook/03-repository-organization/">handbook/03</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §2, <a href="../../../docs/adopcion-y-upgrade/">docs/adopcion-y-upgrade.md</a></td>
+<td><a href="../../../handbook/03-repository-organization/">handbook/03</a>, <a href="../../../handbook/05-development-workflow/">handbook/05</a> §2, <a href="../../../handbook/14-architecture-description/">handbook/14</a>, <a href="../../../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a>, <a href="../../../docs/adopcion-y-upgrade/">docs/adopcion-y-upgrade.md</a></td>
 </tr>
 </tbody>
 </table>
@@ -4329,21 +4449,22 @@
 <li>Elegir escenario de <a href="../../../examples/"><code>examples/</code></a> (default <a href="../../../examples/01-default-core.yaml"><code>01-default-core.yaml</code></a>).</li>
 <li>Escribir <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>project.name</code>, <code>sdaf.version</code> = versión del core pinneada). <code>tooling</code> es opcional: declarar <code>tooling.gentle_ai</code> solo si el equipo adopta gentle-ai (<a href="../../../docs/integracion-gentle-ai/"><code>docs/integracion-gentle-ai.md</code></a>).</li>
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../../AGENTS.md.template"><code>AGENTS.md.template</code></a>: sustituir <code>{{PROJECT_NAME}}</code> y alinear active/stubs/fusions con la config. Conservar la sección «Tooling externo (opcional)» solo si <code>tooling.gentle_ai</code> ≠ <code>null</code>; si no, borrarla.</li>
-<li>Crear árbol vacío según <a href="../../../handbook/03-repository-organization/">H03</a>: <code>knowledge/raw</code>, <code>knowledge/curated</code>, <code>specs/{product,domain,application,acceptance}</code>, <code>architecture/decisions</code>, <code>backlog</code>, <code>worklogs</code>, <code>agents</code>, <code>prompts</code>, <code>skills</code>, <code>templates</code>, <code>docs</code>; stub de handbook de producto desde <a href="../../../templates/handbook-product/"><code>templates/handbook-product.md</code></a>.</li>
+<li>Crear árbol vacío según <a href="../../../handbook/03-repository-organization/">H03</a>: <code>knowledge/raw</code>, <code>knowledge/curated</code>, <code>specs/{product,domain,application,integration,acceptance}</code>, <code>architecture/decisions</code>, <code>backlog</code>, <code>worklogs</code>, <code>agents</code>, <code>prompts</code>, <code>skills</code>, <code>templates</code>, <code>docs</code>; stub de handbook de producto desde <a href="../../../templates/handbook-product/"><code>templates/handbook-product.md</code></a>. Solo si <code>sdaf.version</code> es <code>0.5.0</code> o superior (la línea es opt-in: con una versión anterior, p. ej. <code>0.4.0</code>, no se crea), crear <code>architecture/description.md</code> copiando <a href="../../../templates/architecture-description/"><code>templates/architecture-description.md</code></a> (<a href="../../../handbook/14-architecture-description/">H14</a>): Estado <code>Draft</code>, Fecha real (cabecera e historial), sin el aviso de uso, cada sección con <code>N/A: pendiente de redactar</code> y sin filas de ejemplo.</li>
 <li>Si <code>stack.pack</code> ≠ <code>null</code>, verificar <a href="../../../docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a> y materializar aportes del pack + core con symlinks relativos en el consumidor (script documentado <code>scripts/materialize-submodules.ps1</code> o manual según <a href="../../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>); opcional <code>.cursor/skills/</code> → submodule.</li>
 <li>Copiar reglas IDE si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> y <code>.cursor/rules/git-remoto-encargo.mdc</code> vía materialización). <strong>No</strong> crear código de producto en <code>src/</code> sin Gate 0. Bootstrap <strong>no</strong> incluye commit ni remoto salvo que este turno lo nombre (H06 §7).</li>
-<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado (sin specs Approved). Abrir worklog de bootstrap y citar <code>sdaf-bootstrap@0.4.2</code>.</li>
+<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado por G0.1 (sin specs Approved) y, si <code>sdaf.version</code> es <code>0.5.0</code> o superior, también por G0.6 (línea base en Draft: la aprueba un humano; <a href="../../../handbook/05-development-workflow/">H05 §3</a>). Abrir worklog de bootstrap, registrar cada motivo del STOP y citar <code>sdaf-bootstrap@0.5.0</code>.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] <code>sdaf.config.yaml</code> y <code>AGENTS.md</code> presentes y coherentes (sección de tooling externo solo si <code>tooling.gentle_ai</code> ≠ <code>null</code>).</li>
 <li>[ ] Árbol H03 creado (carpetas vacías o con <code>.gitkeep</code> según convención del consumidor).</li>
-<li>[ ] Worklog de bootstrap con STOP de Gate 0 documentado.</li>
+<li>[ ] Si <code>sdaf.version</code> es <code>0.5.0</code> o superior: <code>architecture/description.md</code> creada en estado Draft desde la plantilla, sin aprobar.</li>
+<li>[ ] Worklog de bootstrap con el STOP de Gate 0 documentado y sus motivos (G0.1 y, en <code>0.5.0</code> o superior, G0.6).</li>
 <li>[ ] Sin implementación de producto.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
-<li>No aprobar handbook/specs/ADR.</li>
+<li>No aprobar handbook/specs/ADR ni la línea base arquitectónica.</li>
 <li>No saltar Gate 0 “para empezar ya el código”.</li>
 <li>Castellano en artefactos de ingeniería.</li>
 <li>No commit ni escritura al remoto sin petición <strong>en este turno</strong> (H06 §7).</li>
@@ -4377,6 +4498,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.5.0</td>
+<td>2026-10-12T18:23+02:00</td>
+<td>Con <code>sdaf.version</code> <code>0.5.0</code> o superior crea la línea base arquitectónica en Draft (H14), añade <code>specs/integration</code> al árbol y el STOP de Gate 0 cita G0.1 y G0.6</td>
+</tr>
 <tr>
 <td>0.4.2</td>
 <td>2026-09-26T17:27+02:00</td>

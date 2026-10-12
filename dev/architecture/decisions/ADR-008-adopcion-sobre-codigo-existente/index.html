@@ -14,7 +14,7 @@
         <link rel="prev" href="../ADR-007-modelo-de-capas-y-precedencia/">
       
       
-        <link rel="next" href="../../../docs/">
+        <link rel="next" href="../ADR-009-idioma-de-artefactos/">
       
       
         
@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1129,6 +1133,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1544,6 +1576,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -3748,6 +3808,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3808,6 +3872,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4004,6 +4096,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4251,7 +4371,7 @@
 <tbody>
 <tr>
 <td>Estado</td>
-<td>Propuesto</td>
+<td>Aceptado</td>
 </tr>
 <tr>
 <td>Fecha</td>
@@ -4262,6 +4382,10 @@
 <td>Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS)</td>
 </tr>
 <tr>
+<td>Aceptación</td>
+<td>2026-10-08T08:42+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). El agente transcribe la aceptación dada en el encargo; no la autodeclara (<a href="../../../handbook/00-preface/">H00 §3.3</a>).</td>
+</tr>
+<tr>
 <td>Relacionado</td>
 <td><a href="../../../handbook/05-development-workflow/">H05</a>, <a href="../../../handbook/13-enmienda-excepciones-ciclo-de-vida/">H13</a>, <a href="../../../handbook/04-specification-standard/">H04</a>, <a href="../ADR-001-nucleo-reutilizable/">ADR-001</a>, <a href="../ADR-005-linea-base-arquitectonica/">ADR-005</a>, <a href="../ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a>, <a href="../../../worklogs/INIT-arquitectura/Iteration-001/">worklog</a></td>
 </tr>
@@ -4269,7 +4393,7 @@
 </table>
 <blockquote>
 <p>[!NOTE]
-Numeración: los historiales publicados hasta <code>v0.3.3</code> citan «ADR-008» como origen de la extracción del core; esa cita equivale a <a href="../ADR-001-nucleo-reutilizable/">ADR-001</a> y no se refiere a este ADR. Reutilizar el número o reservarlo es la decisión D-4 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>. <code>check-adrs.py</code> exige hoy numeración sin huecos, así que reservarlo implica cambiar el checker.</p>
+Numeración: los historiales publicados hasta <code>v0.3.3</code> citan «ADR-008» como origen de la extracción del core; esa cita equivale a <a href="../ADR-001-nucleo-reutilizable/">ADR-001</a> y no se refiere a este ADR. La decisión D-4 del <a href="../../../docs/iniciativas/INIT-arquitectura/">plan de la iniciativa</a>, cerrada el 2026-10-02, reutiliza el número 008 con esta nota; no se reserva, porque <code>check-adrs.py</code> exige numeración sin huecos.</p>
 </blockquote>
 <h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
 <p>Todo el flujo del core asume un repo nuevo. Gate 0 prohíbe código de producto sin spec Approved (<a href="../../../handbook/05-development-workflow/">H05 §3</a>) y H05 §8 prohíbe la spec retroactiva «como hábito». Un equipo con código en producción que quiera adoptar SDAF no tiene un camino conforme:</p>

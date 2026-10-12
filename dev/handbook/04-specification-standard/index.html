@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1008,6 +1012,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#55-atributos-de-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Atributos de calidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-integración" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1294,6 +1320,34 @@
     
   
     13 Enmienda y ciclo de vida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
   
 
     
@@ -1630,6 +1684,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3842,6 +3924,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3902,6 +3988,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4098,6 +4212,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4365,6 +4507,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#55-atributos-de-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Atributos de calidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-integración" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4471,6 +4635,11 @@
 <td><code>specs/acceptance/</code></td>
 <td>Escenarios Given/When/Then mapeables a tests</td>
 </tr>
+<tr>
+<td>Integración</td>
+<td><code>specs/integration/</code></td>
+<td>Contratos entre unidades o con terceros</td>
+</tr>
 </tbody>
 </table>
 <p>Una capacidad puede tener varios archivos enlazados; <strong>una fuente canónica</strong> y referencias.</p>
@@ -4520,6 +4689,14 @@
 <td>Derivados</td>
 <td>Tests, slices, worklogs esperados</td>
 </tr>
+<tr>
+<td>Unidades</td>
+<td>Unidades de la línea base (<a href="../14-architecture-description/">H14</a>) a las que afecta la spec, con los nombres exactos de la línea base</td>
+</tr>
+<tr>
+<td>Origen</td>
+<td>Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>). Los valores permitidos los fija el procedimiento de adopción</td>
+</tr>
 </tbody>
 </table>
 <p>Solo specs <strong>Approved</strong> autorizan implementación de producto (salvo spike explícito con ADR de excepción y fecha de caducidad).</p>
@@ -4537,6 +4714,72 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Cuando [acción]
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Entonces [resultado observable]
 </code></pre></div>
+<h3 id="55-atributos-de-calidad">5.5 Atributos de calidad<a class="headerlink" href="#55-atributos-de-calidad" title="Permanent link">&para;</a></h3>
+<p>Cada atributo de calidad priorizado en la línea base (sección 5, <a href="../14-architecture-description/">H14 §3</a>) tiene al menos un <strong>escenario medible</strong>. Un atributo sin medida no es testeable y no cuenta como especificado.</p>
+<p>Un escenario se describe con cinco campos:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Qué declara</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuente</td>
+<td>Quién o qué origina el estímulo (persona, sistema externo, proceso interno)</td>
+</tr>
+<tr>
+<td>Estímulo</td>
+<td>El evento que el sistema recibe</td>
+</tr>
+<tr>
+<td>Entorno</td>
+<td>La condición de operación en la que ocurre (normal, carga alta, degradado)</td>
+</tr>
+<tr>
+<td>Respuesta</td>
+<td>Lo que el sistema hace ante el estímulo</td>
+</tr>
+<tr>
+<td>Medida</td>
+<td>El valor verificable de la respuesta (umbral, porcentaje, tiempo)</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo neutral:</p>
+<table>
+<thead>
+<tr>
+<th>Atributo</th>
+<th>Fuente</th>
+<th>Estímulo</th>
+<th>Entorno</th>
+<th>Respuesta</th>
+<th>Medida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atributo A</td>
+<td>Usuario autenticado</td>
+<td>Solicita una operación habitual</td>
+<td>Operación normal</td>
+<td>El sistema devuelve el resultado</td>
+<td>El 95 % de las solicitudes se resuelve en menos de N unidades de tiempo</td>
+</tr>
+</tbody>
+</table>
+<p>La spec es la fuente canónica del escenario: la línea base prioriza los atributos, puede resumir el escenario y siempre enlaza la spec; si ambos difieren, se corrige la línea base. Si la línea base no prioriza ningún atributo, esta sección se escribe <code>N/A: &lt;motivo&gt;</code>.</p>
+<h3 id="56-integración">5.6 Integración<a class="headerlink" href="#56-integración" title="Permanent link">&para;</a></h3>
+<p>Una spec de integración (<code>specs/integration/</code>) define un contrato entre unidades o con terceros. Contenido mínimo:</p>
+<ul>
+<li><strong>Partes que se integran:</strong> las unidades implicadas, con los nombres de la línea base, o el tercero.</li>
+<li><strong>Contrato:</strong> los datos o el comportamiento que se intercambian, en qué sentido y con qué precondiciones y postcondiciones, sin código.</li>
+<li><strong>Errores y fallos esperados:</strong> qué ocurre cuando una parte no responde, responde mal o incumple el contrato.</li>
+<li><strong>Versionado del contrato:</strong> cómo evoluciona y qué cambios son incompatibles (sección 7).</li>
+</ul>
+<p>La sección 4 de la línea base (Integraciones y contratos, <a href="../14-architecture-description/">H14 §3</a>) enumera las integraciones y enlaza estas specs; el contrato vive en la spec, no en la línea base.</p>
 <hr />
 <h2 id="6-pipeline-de-elaboración">6. Pipeline de elaboración<a class="headerlink" href="#6-pipeline-de-elaboración" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
@@ -4584,6 +4827,10 @@
 <tr>
 <td>¿Está permitido por la constitución?</td>
 <td>Handbook</td>
+</tr>
+<tr>
+<td>¿Qué arquitectura vigente describe el sistema?</td>
+<td>Línea base (<a href="../14-architecture-description/">H14</a>)</td>
 </tr>
 </tbody>
 </table>

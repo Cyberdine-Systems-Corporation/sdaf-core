@@ -596,10 +596,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contenido-v043" class="md-nav__link">
+  <a href="#contenido-v050" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contenido (v0.4.3)
+        Contenido (v0.5.0)
       
     </span>
   </a>
@@ -739,6 +739,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -1246,6 +1250,34 @@
   
   
     <li class="md-nav__item">
+      <a href="handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="handbook/A-templates/" class="md-nav__link">
         
   
@@ -1562,6 +1594,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3774,6 +3834,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3834,6 +3898,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4043,6 +4135,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4231,10 +4351,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contenido-v043" class="md-nav__link">
+  <a href="#contenido-v050" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contenido (v0.4.3)
+        Contenido (v0.5.0)
       
     </span>
   </a>
@@ -4325,7 +4445,7 @@
 <tr>
 <td>📖</td>
 <td><strong>Entender la constitución</strong></td>
-<td><a href="handbook/">Handbook del método</a> — capítulos Approved 00–13 y apéndices A–B (línea 0.4.0)</td>
+<td><a href="handbook/">Handbook del método</a> — capítulos Approved 00–14 y apéndices A–B (línea 0.5.0)</td>
 </tr>
 <tr>
 <td>⛔</td>
@@ -4351,7 +4471,7 @@
 <li>No impone stack (.NET, Blazor, etc.). El stack se decide por ADR en el consumidor; un pack opcional (<code>sdaf-stack-*</code>) puede añadir playbooks técnicos (ver <a href="docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a>). Pack de referencia: <a href="https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet"><code>sdaf-stack-dotnet</code></a>.</li>
 <li>No rellena <code>specs/</code>: exige que existan y estén Approved antes de implementar.</li>
 </ul>
-<h2 id="contenido-v043">Contenido (v0.4.3)<a class="headerlink" href="#contenido-v043" title="Permanent link">&para;</a></h2>
+<h2 id="contenido-v050">Contenido (v0.5.0)<a class="headerlink" href="#contenido-v050" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4364,7 +4484,7 @@
 <tr>
 <td>📖</td>
 <td><code>handbook/</code></td>
-<td>Constitución del método (00, Parte I 01–05, Parte II 06–08, Parte III 09–12, apéndices A–B)</td>
+<td>Constitución del método (00, Parte I 01–05 y 14, Parte II 06–08, Parte III 09–12, Parte IV 13, apéndices A–B)</td>
 </tr>
 <tr>
 <td>🛠️</td>
@@ -4374,7 +4494,7 @@
 <tr>
 <td>📝</td>
 <td><code>templates/</code></td>
-<td>Spec, ADR, worklog, agente, prompt, skill, handbook de producto</td>
+<td>Spec, ADR, worklog, agente, prompt, skill, handbook de producto, línea base de arquitectura, PBI</td>
 </tr>
 <tr>
 <td></td>
@@ -4432,7 +4552,7 @@
 <li>Añadir handbook de <strong>producto</strong> (plantilla <code>templates/handbook-product.md</code>).</li>
 <li>⛔ Gate 0 (<code>skills/sdaf-gate0</code>) antes de código de producto.</li>
 </ol>
-<p><code>sdaf.version</code> en el YAML nombra la línea de constitución: <code>0.4.0</code> con pin <code>v0.4.3</code>, <code>v0.4.2</code>, <code>v0.4.1</code> o <code>v0.4.0</code>, <code>0.3.0</code> con pin <code>v0.3.3</code>. No existe el tag <code>v0.3.0</code>. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
+<p><code>sdaf.version</code> en el YAML nombra la línea de constitución: <code>0.5.0</code> con pin <code>v0.5.0</code>, <code>0.4.0</code> con pin <code>v0.4.3</code>, <code>v0.4.2</code>, <code>v0.4.1</code> o <code>v0.4.0</code>, <code>0.3.0</code> con pin <code>v0.3.3</code>. No existe el tag <code>v0.3.0</code>. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
 <h2 id="estado">Estado<a class="headerlink" href="#estado" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4446,12 +4566,12 @@
 <tr>
 <td>✅</td>
 <td>Handbook del método</td>
-<td><strong>Approved</strong> 00–13 y A–B (línea 0.4.0)</td>
+<td><strong>Approved</strong> 00–14 y A–B (línea 0.5.0)</td>
 </tr>
 <tr>
 <td>✅</td>
 <td>Agentes, prompts y skills</td>
-<td><strong>Approved</strong> (v0.4.3; contratos 0.2 siguen vigentes)</td>
+<td><strong>Approved</strong> (v0.5.0; contratos 0.2 siguen vigentes)</td>
 </tr>
 <tr>
 <td>📝</td>
@@ -4461,7 +4581,7 @@
 <tr>
 <td></td>
 <td>Release del árbol (tag)</td>
-<td><strong>v0.4.3</strong></td>
+<td><strong>v0.4.3</strong>; <code>v0.5.0</code> se crea tras el merge de la línea 0.5.0</td>
 </tr>
 </tbody>
 </table>

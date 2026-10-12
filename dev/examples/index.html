@@ -665,6 +665,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1118,6 +1122,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1434,6 +1466,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3646,6 +3706,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3706,6 +3770,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -3902,6 +3994,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4310,11 +4430,11 @@
 <hr />
 <h2 id="uso-de-cada-bloque-detalle">Uso de cada bloque (detalle)<a class="headerlink" href="#uso-de-cada-bloque-detalle" title="Permanent link">&para;</a></h2>
 <h3 id="sdafversion"><code>sdaf.version</code><a class="headerlink" href="#sdafversion" title="Permanent link">&para;</a></h3>
-<p>Nombra la <strong>línea de constitución</strong>, no un tag. Si el consumidor dice <code>0.2.0</code> y el core avanza a la línea <code>0.3.0</code>, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Los ejemplos de este árbol usan <code>"0.4.0"</code> (pin <code>v0.4.x</code>). Con pin <code>v0.3.3</code>, <code>sdaf.version</code> es <code>"0.3.0"</code>. No existe el tag <code>v0.3.0</code>.</p>
+<p>Nombra la <strong>línea de constitución</strong>, no un tag. Si el consumidor dice <code>0.2.0</code> y el core avanza a la línea <code>0.3.0</code>, el upgrade es un diff explícito (submodule, copia o release), no un cambio silencioso. Los ejemplos de este árbol usan <code>"0.5.0"</code> (pin <code>v0.5.0</code>). Con pin <code>v0.4.x</code>, <code>sdaf.version</code> es <code>"0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>. No existe el tag <code>v0.3.0</code>.</p>
 <h3 id="projectname"><code>project.name</code><a class="headerlink" href="#projectname" title="Permanent link">&para;</a></h3>
 <p>Nombre corto del producto. Se usa al generar <code>AGENTS.md</code> (<code>{{PROJECT_NAME}}</code>). No es el nombre del pack ni el de la org de GitHub, salvo que coincidan.</p>
 <h3 id="projectlanguage"><code>project.language</code><a class="headerlink" href="#projectlanguage" title="Permanent link">&para;</a></h3>
-<p>En la línea vigente <strong>solo</strong> <code>es</code>. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.</p>
+<p>En la línea vigente <strong>solo</strong> <code>es</code>. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack. La decisión está registrada en <a href="../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a>.</p>
 <h3 id="stackpack"><code>stack.pack</code><a class="headerlink" href="#stackpack" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>null</code>: Gate 0 y router funcionan; no hay skills <code>csharp-*</code> / <code>blazor-*</code> / equivalente.</li>
@@ -4408,7 +4528,7 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
 </tr>
 <tr>
 <td><code>language: en</code></td>
-<td>No soportado en la línea vigente</td>
+<td>No soportado en la línea vigente (<a href="../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a>)</td>
 </tr>
 <tr>
 <td>Omitir <code>sdaf.version</code></td>

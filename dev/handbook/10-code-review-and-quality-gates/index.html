@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1303,6 +1307,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../A-templates/" class="md-nav__link">
         
   
@@ -1619,6 +1651,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3831,6 +3891,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3891,6 +3955,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4087,6 +4179,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4433,7 +4553,7 @@
 </tr>
 <tr>
 <td>Architecture</td>
-<td>Solo si el diff toca boundaries / ADRs</td>
+<td>Solo si el diff toca unidades, reglas de dependencia o ADRs</td>
 </tr>
 </tbody>
 </table>
@@ -4444,7 +4564,7 @@
 <h2 id="3-checklist-de-code-review">3. Checklist de code review<a class="headerlink" href="#3-checklist-de-code-review" title="Permanent link">&para;</a></h2>
 <h3 id="31-gobierno">3.1 Gobierno<a class="headerlink" href="#31-gobierno" title="Permanent link">&para;</a></h3>
 <ul>
-<li>[ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog).</li>
+<li>[ ] Gate 0 cumplido (specs / ADR si aplica / acceptance / worklog / línea base Approved, <a href="../14-architecture-description/">H14</a>).</li>
 <li>[ ] Sin alcance Out del MVP del consumidor.</li>
 <li>[ ] Worklog actualizado y prompt versionado citado.</li>
 <li>[ ] Si el diff toca código de producto: origen de cambios en el worklog (<a href="../08-agent-traceability/#43-origen-de-cambios">H08 §4.3</a>).</li>
@@ -4452,8 +4572,9 @@
 </ul>
 <h3 id="32-dominio-y-arquitectura">3.2 Dominio y arquitectura<a class="headerlink" href="#32-dominio-y-arquitectura" title="Permanent link">&para;</a></h3>
 <ul>
-<li>[ ] Reglas de negocio no viven solo en UI/API si el ADR de arquitectura del consumidor las sitúa en dominio.</li>
-<li>[ ] Dependencias y límites del ADR de arquitectura respetados.</li>
+<li>[ ] Las dependencias entre unidades son conformes a las reglas de dependencia de la línea base (<a href="../14-architecture-description/">H14 §3</a>).</li>
+<li>[ ] Las unidades tocadas existen en la línea base; añadir, retirar o renombrar una exige ADR Aceptado y versión nueva de la línea base (<a href="../14-architecture-description/">H14 §6</a>).</li>
+<li>[ ] Si una regla de dependencia de la línea base o un ADR vigente declara dónde viven las reglas de negocio, no viven solo en UI/API. Sin esa declaración, este ítem no aplica.</li>
 <li>[ ] Sin contradicción consciente con specs Approved.</li>
 </ul>
 <h3 id="33-calidad">3.3 Calidad<a class="headerlink" href="#33-calidad" title="Permanent link">&para;</a></h3>
@@ -4517,7 +4638,7 @@
 </tr>
 <tr>
 <td>QG-Arch</td>
-<td>Sin violaciones nuevas de dependencia (manual o test de arquitectura)</td>
+<td>Sin violaciones nuevas de las reglas de dependencia de la línea base (manual o test de arquitectura)</td>
 <td>Merge si hay infracción nueva</td>
 </tr>
 <tr>
@@ -4537,6 +4658,7 @@
 </tr>
 </tbody>
 </table>
+<p>Si la línea base no declara reglas de dependencia, QG-Arch es <code>N/A</code> <strong>solo con el motivo escrito en el worklog</strong>; sin motivo no es N/A.</p>
 <p>CI cloud elaborado es <strong>opcional</strong>. Los gates <strong>deben</strong> poder ejecutarse <strong>en local</strong> (H02 §2.10, H11).</p>
 <p>Los comandos concretos los documenta el runbook / pack del consumidor.</p>
 <hr />

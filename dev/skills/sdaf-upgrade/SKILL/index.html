@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3770,6 +3830,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3830,6 +3894,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4026,6 +4118,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4299,7 +4419,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.2.0</td>
+<td>0.3.1</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4311,38 +4431,41 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-08-25</td>
+<td>2026-10-12T19:17+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
-<td><a href="../../../docs/adopcion-y-upgrade/">docs/adopcion-y-upgrade.md</a>, <a href="../../../handbook/CHANGELOG/">handbook/CHANGELOG.md</a></td>
+<td><a href="../../../docs/adopcion-y-upgrade/">docs/adopcion-y-upgrade.md</a>, <a href="../../../handbook/CHANGELOG/">handbook/CHANGELOG.md</a>, <a href="../../../handbook/14-architecture-description/">H14</a></td>
 </tr>
 </tbody>
 </table>
 <h2 id="disparadores">Disparadores<a class="headerlink" href="#disparadores" title="Permanent link">&para;</a></h2>
 <ul>
-<li>“Upgrade sdaf-core”, “subir a 0.2.0”, “actualizar submodule del método”.</li>
+<li>“Upgrade sdaf-core”, “subir a 0.5.0”, “actualizar submodule del método”.</li>
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Actualizar pin del submodule/tag al nuevo <code>vX.Y.Z</code> (o copiar el árbol si el mecanismo es template).</li>
 <li>Leer <a href="../../../handbook/CHANGELOG/"><code>handbook/CHANGELOG.md</code></a> de la versión destino.</li>
 <li>Actualizar <code>sdaf.version</code> en <code>sdaf.config.yaml</code>.</li>
-<li>Si cambió <a href="../../../AGENTS.md.template"><code>AGENTS.md.template</code></a>, regenerar <code>AGENTS.md</code> (conservar fusiones/activos del consumidor).</li>
+<li>Si cambió <a href="../../../AGENTS.md.template"><code>AGENTS.md.template</code></a>, incorporar sus cambios a <code>AGENTS.md</code> conservando fusiones y activos del consumidor (regenerarlo entero solo si no está personalizado).</li>
 <li>Revisar citas <code>skill-id@version</code> en worklogs nuevos; remapear capítulos si el CHANGELOG indica breaking (tabla 0.1→0.2 en docs).</li>
+<li>Si el destino es la línea <code>0.5.0</code>: leer su sección en la <a href="../../../docs/adopcion-y-upgrade/">guía de adopción</a>; construir o revisar <code>architecture/description.md</code> desde los ADRs vigentes (<a href="../../../handbook/14-architecture-description/#9-migración-desde-un-consumidor-existente">H14 §9</a>) y pedir su aprobación humana (no aprobarla); regenerar <code>AGENTS.md</code> desde la plantilla <code>0.5.0</code>; adoptar los estados de ADR de <a href="../../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a> y los PBIs con <a href="../../../templates/pbi/"><code>templates/pbi.md</code></a>.</li>
 <li><strong>No</strong> auto-migrar specs, knowledge ni handbook de producto del consumidor.</li>
-<li>Registrar <code>sdaf-upgrade@0.2.0</code> en worklog.</li>
+<li>Registrar <code>sdaf-upgrade@0.3.1</code> en worklog.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] Pin y <code>sdaf.version</code> alineados.</li>
 <li>[ ] CHANGELOG revisado; breaking de citas aplicados si aplica.</li>
 <li>[ ] <code>AGENTS.md</code> coherente con plantilla y config.</li>
+<li>[ ] Si <code>sdaf.version</code> pasa a <code>0.5.0</code>: línea base Approved o G0.6 declarado como STOP.</li>
 <li>[ ] Worklog de upgrade cerrado.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
 <li>No aprobar norma ni specs.</li>
+<li>No aprobar la línea base.</li>
 <li>No reescribir historia git del consumidor sin orden humana.</li>
 </ul>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
@@ -4362,6 +4485,10 @@
 <td><a href="../../../handbook/CHANGELOG/">handbook/CHANGELOG.md</a></td>
 <td>Breaking y parches</td>
 </tr>
+<tr>
+<td><a href="../../../handbook/14-architecture-description/">H14</a></td>
+<td>Línea base arquitectónica que se construye al subir a <code>0.5.0</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
@@ -4374,6 +4501,16 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.3.1</td>
+<td>2026-10-12T19:17+02:00</td>
+<td><code>AGENTS.md</code>: incorporar los cambios de la plantilla en lugar de regenerarlo entero cuando está personalizado (hallazgo del piloto de la línea 0.5.0)</td>
+</tr>
+<tr>
+<td>0.3.0</td>
+<td>2026-10-12T18:47+02:00</td>
+<td>Salto a la línea <code>0.5.0</code>: construir o revisar la línea base desde los ADRs y pedir su aprobación (sin aprobarla); estados de ADR y PBIs con plantilla; DoD y restricción de la línea base</td>
+</tr>
 <tr>
 <td>0.2.0</td>
 <td>2026-08-25</td>

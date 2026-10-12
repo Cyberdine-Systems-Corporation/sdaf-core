@@ -673,6 +673,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1129,6 +1133,34 @@
   
   
     <li class="md-nav__item">
+      <a href="14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="A-templates/" class="md-nav__link">
         
   
@@ -1445,6 +1477,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3657,6 +3717,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3717,6 +3781,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -3913,6 +4005,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4332,6 +4452,12 @@ Los <strong>prompts</strong>, <strong>skills</strong> y <strong>worklogs</strong
 <td>Development Workflow</td>
 <td>✅ Approved</td>
 </tr>
+<tr>
+<td>14</td>
+<td><a href="14-architecture-description/">14-architecture-description.md</a></td>
+<td>Descripción de arquitectura</td>
+<td>✅ Approved</td>
+</tr>
 </tbody>
 </table>
 <h3 id="parte-ii-ingeniería-ia">Parte II — Ingeniería IA<a class="headerlink" href="#parte-ii-ingeniería-ia" title="Permanent link">&para;</a></h3>
@@ -4487,11 +4613,12 @@ Los <strong>prompts</strong>, <strong>skills</strong> y <strong>worklogs</strong
 <ol>
 <li>Capítulos <strong>Approved</strong> de este handbook (método)</li>
 <li>Handbook de producto Approved del consumidor</li>
-<li>ADRs vigentes en <code>architecture/decisions/</code></li>
-<li>Specs en <code>specs/</code></li>
+<li>Línea base Approved y ADRs vigentes del consumidor, <strong>junto con</strong> las specs Approved en <code>specs/</code> (la spec manda sobre <em>qué</em>, el ADR sobre <em>cómo</em>; sin orden entre sí)</li>
+<li>Packs de stack</li>
 <li>Backlog</li>
-<li>Implementación / prompts / worklogs</li>
+<li>Prompts, skills locales, worklogs e implementación</li>
 </ol>
+<p>Un conflicto entre una spec Approved y un ADR vigente es <strong>STOP</strong>: se resuelve enmendando uno de los dos, nunca en silencio durante la implementación. Un pack que choca con un ADR del consumidor pierde. Detalle en <a href="01-sdaf-framework/">H01 §3.2</a>.</p>
 
 
 

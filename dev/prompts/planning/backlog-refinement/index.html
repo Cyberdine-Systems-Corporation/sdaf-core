@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3812,6 +3872,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3872,6 +3936,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4068,6 +4160,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4363,7 +4483,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.4.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4375,7 +4495,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-09-19</td>
+<td>2026-10-08T23:07+02:00</td>
 </tr>
 </tbody>
 </table>
@@ -4388,15 +4508,15 @@
 <li><code>backlog/</code> del consumidor</li>
 </ul>
 <h2 id="entradas">Entradas<a class="headerlink" href="#entradas" title="Permanent link">&para;</a></h2>
-<p>Estado de PBIs; specs enlazadas; huecos de Gate 0.</p>
+<p>Estado de PBIs; specs enlazadas; unidades de la línea base (<a href="../../../handbook/14-architecture-description/">H14</a>) a las que afecta cada PBI; huecos de Gate 0.</p>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <p>No abrir Out; castellano; no implementar producto en el refinement.</p>
 <h2 id="resultado-esperado">Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Permanent link">&para;</a></h2>
 <p>Backlog actualizado con trazas a specs.</p>
 <h2 id="formato-de-salida">Formato de salida<a class="headerlink" href="#formato-de-salida" title="Permanent link">&para;</a></h2>
-<p>Tabla de PBIs + decisiones.</p>
+<p>Un PBI por fichero en <code>backlog/</code>, con la plantilla <a href="../../../templates/pbi/"><code>templates/pbi.md</code></a>, más una tabla resumen de PBIs y las decisiones.</p>
 <h2 id="criterios-de-aceptación">Criterios de aceptación<a class="headerlink" href="#criterios-de-aceptación" title="Permanent link">&para;</a></h2>
-<p>Cada PBI listo para codear tiene camino a Gate 0 o el gap está explícito.</p>
+<p>Cada PBI listo para codear tiene camino a Gate 0 (G0.4: specs Approved, acceptance y unidades de la línea base) o el gap está explícito.</p>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4407,6 +4527,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.4.0</td>
+<td>2026-10-08T23:07+02:00</td>
+<td>Entradas y criterios con las unidades de la línea base; salida con <code>templates/pbi.md</code> (G0.4)</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-09-19</td>

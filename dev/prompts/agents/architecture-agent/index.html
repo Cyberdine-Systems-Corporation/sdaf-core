@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1124,6 +1128,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../handbook/14-architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Descripción de arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../handbook/A-templates/" class="md-nav__link">
         
   
@@ -1440,6 +1472,34 @@
     
   
     ADR-008
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/ADR-009-idioma-de-artefactos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-009
   
 
     
@@ -3812,6 +3872,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3872,6 +3936,34 @@
     
   
     SPEC-XXX-000 — Título
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/pbi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBI-XXX-000 — Título
   
 
     
@@ -4068,6 +4160,34 @@
     
   
     Plantilla — SECURITY.md del consumidor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/architecture-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de arquitectura (plantilla)
   
 
     
@@ -4363,7 +4483,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.1.1</td>
+<td>0.2.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4375,15 +4495,15 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-08-24</td>
+<td>2026-10-11T23:12+02:00</td>
 </tr>
 </tbody>
 </table>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>Redactar o enmendar ADRs y validar coherencia arquitectónica del cambio propuesto.</p>
+<p>Redactar o enmendar ADRs, proponer la línea base arquitectónica y validar coherencia arquitectónica del cambio propuesto.</p>
 <h2 id="contexto">Contexto<a class="headerlink" href="#contexto" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Handbook de producto (arquitectura de solución, si existe)</li>
+<li><code>architecture/description.md</code> (línea base, <a href="../../../handbook/14-architecture-description/">H14</a>)</li>
 <li><code>architecture/decisions/</code></li>
 <li><code>agents/architecture-agent.md</code></li>
 <li><code>templates/adr.md</code></li>
@@ -4391,13 +4511,13 @@
 <h2 id="entradas">Entradas<a class="headerlink" href="#entradas" title="Permanent link">&para;</a></h2>
 <p>Problema de diseño; specs relacionadas; alternativas conocidas.</p>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
-<p>No imponer un stack; registrar la decisión en ADR. Domain sin infra según normas del consumidor. No sobre-diseñar sin necesidad.</p>
+<p>No imponer un stack; registrar la decisión en ADR. Aplicar las reglas de dependencia de la línea base. No sobre-diseñar sin necesidad.</p>
 <h2 id="resultado-esperado">Resultado esperado<a class="headerlink" href="#resultado-esperado" title="Permanent link">&para;</a></h2>
-<p>ADR en <code>architecture/decisions/</code> o dictamen N/A.</p>
+<p>ADR en <code>architecture/decisions/</code>, propuesta de versión nueva de la línea base en Draft (la aprueba un humano) y actualización del índice de decisiones vigentes, o dictamen N/A.</p>
 <h2 id="formato-de-salida">Formato de salida<a class="headerlink" href="#formato-de-salida" title="Permanent link">&para;</a></h2>
 <p>ADR completo o rechazo motivado + handoff.</p>
 <h2 id="criterios-de-aceptación">Criterios de aceptación<a class="headerlink" href="#criterios-de-aceptación" title="Permanent link">&para;</a></h2>
-<p>Plantilla ADR; consecuencias y diferidos claros.</p>
+<p>Plantilla ADR con los estados de ADR-006; consecuencias y diferidos claros; índice de decisiones vigentes de la línea base al día (solo ADRs Aceptados y no sustituidos).</p>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4408,6 +4528,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.2.0</td>
+<td>2026-10-11T23:12+02:00</td>
+<td>Contexto y reglas contra la línea base arquitectónica (H14); propone versión nueva de la línea base e índice de decisiones vigentes</td>
+</tr>
 <tr>
 <td>0.1.1</td>
 <td>2026-08-24</td>
