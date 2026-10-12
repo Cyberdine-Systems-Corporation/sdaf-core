@@ -2,9 +2,10 @@
 
 | Campo | Valor |
 |--------|--------|
-| Estado | Propuesto |
+| Estado | Aceptado |
 | Fecha | 2026-10-12T18:23+02:00 |
 | Decisores | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
+| Aceptación | 2026-10-12T18:37+02:00, por Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). El agente transcribe la aceptación dada en el encargo; no la autodeclara ([H00 §3.3](../../handbook/00-preface.md)). |
 | Relacionado | [H02 §2.12](../../handbook/02-engineering-principles.md) (castellano para artefactos de ingeniería), [H03 §6](../../handbook/03-repository-organization.md) (idioma y nombres), [esquema de config](../../sdaf.config.schema.yaml), [ADR-001](ADR-001-nucleo-reutilizable.md), [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md), [plan de la iniciativa](../../docs/iniciativas/INIT-arquitectura.md) (decisión D-8) |
 
 ## Contexto
