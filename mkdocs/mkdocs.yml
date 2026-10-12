@@ -120,6 +120,7 @@ nav:
       - ADR-006: architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md
       - ADR-007: architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md
       - ADR-008: architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md
+      - ADR-009: architecture/decisions/ADR-009-idioma-de-artefactos.md
   - Adopción y operación:
       - docs/README.md
       - Adopción y upgrade: docs/adopcion-y-upgrade.md

@@ -25,7 +25,7 @@
       "additionalProperties": false,
       "properties": {
         "name": { "type": "string", "minLength": 1 },
-        "language": { "type": "string", "const": "es" }
+        "language": { "type": "string", "const": "es", "description": "Idioma fijo de los artefactos de ingeniería; solo se admite es. Decisión registrada en ADR-009 (Idioma fijo de los artefactos de ingeniería)." }
       }
     },
     "stack": {

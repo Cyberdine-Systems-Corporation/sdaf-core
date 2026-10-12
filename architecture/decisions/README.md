@@ -14,7 +14,8 @@ El árbol normativo del **consumidor** sigue exigiendo `architecture/decisions/`
 | [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md) | Aceptado | Ciclo de vida y sustitución de ADRs | — |
 | [ADR-007](ADR-007-modelo-de-capas-y-precedencia.md) | Aceptado | Modelo de capas del método y precedencia | — |
 | [ADR-008](ADR-008-adopcion-sobre-codigo-existente.md) | Aceptado | Adopción del método sobre código existente | — |
+| [ADR-009](ADR-009-idioma-de-artefactos.md) | Propuesto | Idioma fijo de los artefactos de ingeniería | — |
 
 Estados válidos: Propuesto, Aceptado, Rechazado, Sustituido y Deprecado. Su ciclo de vida y la sustitución están en [ADR-006](ADR-006-ciclo-de-vida-de-adrs.md).
 
-Ningún agente marca un ADR como Aceptado ([H00 §3.3](../../handbook/00-preface.md)). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03, ADR-006 y ADR-007 el 2026-10-07, y ADR-008 el 2026-10-08.
+Ningún agente marca un ADR como Aceptado ([H00 §3.3](../../handbook/00-preface.md)). ADR-001, 002 y 003 los aceptó un humano el 2026-09-24, y ADR-004 el 2026-09-26; cada ADR registra quién. ADR-005 lo aceptó un humano el 2026-10-03, ADR-006 y ADR-007 el 2026-10-07, y ADR-008 el 2026-10-08. ADR-009 está Propuesto y pendiente de decisión humana.

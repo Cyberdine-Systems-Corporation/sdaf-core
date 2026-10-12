@@ -54,7 +54,7 @@ Nombre corto del producto. Se usa al generar `AGENTS.md` (`{{PROJECT_NAME}}`). N
 
 ### `project.language`
 
-En la línea vigente **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack.
+En la línea vigente **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack. La decisión está registrada en [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md).
 
 ### `stack.pack`
 
@@ -124,7 +124,7 @@ No cambia Gate 0 ni el router. Solo aparece en 08.
 | `fusions.foo` sin `foo` en `active` | Fusión fantasma |
 | `domain` y `domain-application` ambos `active` | Doble dueño del mismo diff |
 | `frontend` activo y `pack: null` | Id de extensión sin playbook |
-| `language: en` | No soportado en la línea vigente |
+| `language: en` | No soportado en la línea vigente ([ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md)) |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
 | `tooling.gentle_ai: main` | Una rama no fija versión; declarar una release o un SHA de commit |
 
