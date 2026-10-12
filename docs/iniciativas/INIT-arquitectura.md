@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.17 |
+| Versión | 0.1.18 |
 | Estado | Draft |
-| Fecha | 2026-10-12T18:51+02:00 |
+| Fecha | 2026-10-12T19:17+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -299,6 +299,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 **ARQ-6.3 — ADRs del consumidor**
 - Artefactos: `check-adrs.py --root` expuesto en la action (input `check-adrs`).
+- Hallazgo del piloto de `0.5.0`: el checker valida hoy los ADRs del core y falla sobre los de un consumidor con formato anterior. Hace falta un **modo consumidor** que acepte fechas sin hora y zona anteriores a la línea, huecos de numeración y un índice con otras columnas (estado en otra posición).
 - Depende de: ARQ-3.3.
 
 ---
@@ -423,6 +424,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.18 | 2026-10-12T19:17+02:00 | Piloto de la línea `0.5.0` sobre un consumidor real, sin bloqueos: tres hallazgos genéricos (`AGENTS.md` personalizado, aviso sobre `check-adrs.py`, modo consumidor para ARQ-6.3); `sdaf-upgrade` 0.3.1 y guía de migración corregidas; worklog Iteration-020 |
 | 0.1.17 | 2026-10-12T18:51+02:00 | ARQ-3.13 (slice S6): preparación de la release `v0.5.0` (CHANGELOG, README, guía de migración, `sdaf-upgrade` 0.3.0, ejemplos con `sdaf.version` "0.5.0", `linea` del índice); pendiente de revisión, del piloto y del tag por orden humana; worklog Iteration-019 |
 | 0.1.16 | 2026-10-12T18:37+02:00 | ADR-009 aceptado por el humano: el idioma `es` fijo queda registrado como decisión citable (D-8); sin cambio de norma |
 | 0.1.15 | 2026-10-12T18:26+02:00 | ARQ-3.11 y 3.12 (slice S5): `sdaf-bootstrap` 0.5.0 crea la línea base en Draft y el STOP cita G0.1 y G0.6; enlace a la línea base en el handbook de producto y en el mapa de navegación; idioma `es` registrado en ADR-009 (Propuesto, a la espera de la aceptación humana) con nota en el esquema; pendiente de revisión; worklog Iteration-017 |
