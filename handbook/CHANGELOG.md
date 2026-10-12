@@ -12,7 +12,7 @@ Línea nueva de constitución, **opt-in**, con cambio **incompatible** en Gate 0
 - Mapa de navegación y fixtures de ADR de los tests de `check-adrs.py` al día con la línea.
 - Worklogs: [`worklogs/INIT-arquitectura/Iteration-005.md`](../worklogs/INIT-arquitectura/Iteration-005.md) … [`Iteration-020.md`](../worklogs/INIT-arquitectura/Iteration-020.md).
 
-`sdaf.version: "0.5.0"` nombra esta línea. Pin de árbol: `v0.5.0`, que se crea tras el merge. Quien siga en `0.4.x` mantiene `sdaf.version: "0.4.0"`; con pin `v0.3.3`, `"0.3.0"`.
+`sdaf.version: "0.5.0"` nombra esta línea. Pin de árbol: `v0.5.0`. Quien siga en `0.4.x` mantiene `sdaf.version: "0.4.0"`; con pin `v0.3.3`, `"0.3.0"`.
 
 ## 0.4.3 — 2026-10-02T17:29+02:00
 

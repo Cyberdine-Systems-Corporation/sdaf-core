@@ -6,7 +6,7 @@
 
 Núcleo reutilizable del **Spec-Driven AI Development Framework** (SDAF): constitución del método, agentes, prompts, skills y plantillas.
 
-![release](https://img.shields.io/badge/release-v0.4.3-2d6a4f) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
+![release](https://img.shields.io/badge/release-v0.5.0-2d6a4f) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
 
 No contiene código ni specs de un producto concreto.
 
@@ -59,7 +59,7 @@ SDAF gobierna cómo un proyecto produce software con humanos y agentes IA:
 
 Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resumen:
 
-1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.4.3` recomendado; subtree o copia también documentados).
+1. Referenciar este repo (submodule en `.sdaf/` pinneado a tag `v0.5.0` recomendado; subtree o copia también documentados).
 2. Crear `sdaf.config.yaml` copiando un escenario de [`examples/`](examples/README.md). Claves: [`sdaf.config.schema.yaml`](sdaf.config.schema.yaml) / [`sdaf.config.schema.json`](sdaf.config.schema.json).
 3. Ejecutar skill `sdaf-bootstrap` (o materializar `AGENTS.md` y el árbol a mano).
 4. Añadir handbook de **producto** (plantilla `templates/handbook-product.md`).
@@ -74,7 +74,7 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 | ✅ | Handbook del método | **Approved** 00–14 y A–B (línea 0.5.0) |
 | ✅ | Agentes, prompts y skills | **Approved** (v0.5.0; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
-| | Release del árbol (tag) | **v0.4.3**; `v0.5.0` se crea tras el merge de la línea 0.5.0 |
+| | Release del árbol (tag) | **v0.5.0** |
 
 ## Origen
 
