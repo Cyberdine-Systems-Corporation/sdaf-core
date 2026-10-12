@@ -1,0 +1,30 @@
+# Copia de examples/01-default-core.yaml (configuración recomendada v0.5).
+# Catálogo de claves: sdaf.config.schema.yaml
+# Todos los escenarios: examples/README.md
+# sdaf.version "0.5.0" = línea de constitución (opt-in, con línea base); con pin de árbol v0.4.x usar "0.4.0"; con pin v0.3.3, "0.3.0".
+
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  pack: null
+  src_path: src
+  tests_path: tests
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

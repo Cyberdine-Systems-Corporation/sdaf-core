@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SDAF Core build animation">
+  <!--
+    Build then hold on static V1.
+    Timeline (~2.8 s):
+      0.00-0.35  arc
+      0.25-0.55  hexagon
+      0.45-0.75  portal
+      0.65-1.10  plate + fold
+      1.00-1.40  chevron
+      1.40-2.80  hold
+    fill-mode: forwards; play once (reload or preview replay).
+  -->
+  <defs>
+    <style>
+      :root {
+        --sdaf-brand: #2d6a4f;
+        --sdaf-ink: #14261c;
+        --sdaf-paper: #f4f7f5;
+      }
+
+      .arc {
+        fill: none;
+        stroke: var(--sdaf-ink);
+        stroke-width: 28;
+        stroke-linecap: round;
+        stroke-dasharray: 800;
+        stroke-dashoffset: 800;
+        animation: draw-arc 0.35s ease-out forwards;
+      }
+      .hex {
+        fill: var(--sdaf-brand);
+        opacity: 0;
+        transform-origin: 256px 256px;
+        transform: scale(0.86);
+        animation: pop-hex 0.3s ease-out 0.25s forwards;
+      }
+      .portal {
+        fill: var(--sdaf-paper);
+        opacity: 0;
+        transform-origin: 256px 284px;
+        transform: scaleY(0.2);
+        animation: open-portal 0.3s ease-out 0.45s forwards;
+      }
+      .plate {
+        fill: var(--sdaf-ink);
+        opacity: 0;
+        transform-origin: 256px 280px;
+        transform: translateY(12px);
+        animation: rise-plate 0.35s ease-out 0.65s forwards;
+      }
+      .fold {
+        fill: var(--sdaf-paper);
+        opacity: 0;
+        animation: fade-in 0.2s ease-out 0.9s forwards;
+      }
+      .chevron {
+        fill: none;
+        stroke: var(--sdaf-paper);
+        stroke-width: 16;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 160;
+        stroke-dashoffset: 160;
+        animation: draw-chevron 0.4s ease-out 1s forwards;
+      }
+
+      @keyframes draw-arc {
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes pop-hex {
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes open-portal {
+        to { opacity: 1; transform: scaleY(1); }
+      }
+      @keyframes rise-plate {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fade-in {
+        to { opacity: 1; }
+      }
+      @keyframes draw-chevron {
+        to { stroke-dashoffset: 0; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .arc, .hex, .portal, .plate, .fold, .chevron {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+          stroke-dashoffset: 0 !important;
+        }
+      }
+    </style>
+  </defs>
+
+  <rect width="512" height="512" fill="#eef2ef"/>
+
+  <path class="arc" d="M 128 355 A 168 168 0 1 1 384 355"/>
+  <path class="hex" d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+  <path class="portal" d="M 200 220 V 348 H 312 V 220 A 56 56 0 0 0 200 220 Z"/>
+  <path class="plate" d="M 224 236 H 288 L 304 252 V 320 Q 304 332 292 332 H 224 Q 212 332 212 320 V 248 Q 212 236 224 236 Z"/>
+  <path class="fold" d="M 288 236 L 304 252 H 288 Z"/>
+  <path class="chevron" d="M 236 292 L 256 272 L 276 292 M 256 272 V 312"/>
+</svg>

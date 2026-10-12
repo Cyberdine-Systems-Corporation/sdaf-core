@@ -1,0 +1,25 @@
+---
+description: Git y remoto solo si el mensaje de este turno lo nombra (H06 §7)
+alwaysApply: true
+---
+
+# Git y remoto: encargo vigente = este turno
+
+Norma: [`handbook/06-ai-agent-framework.md` §7](../../handbook/06-ai-agent-framework.md#7-restricciones-globales). Esta regla no exceptúa H06.
+
+## Obligatorio
+
+- No crear **commit** local ni alterar el **remoto** (push, tags, releases, merge, PR, APIs de contenidos, CI que escriba el repo) salvo petición humana explícita **en este turno**.
+- **Encargo vigente** = el mensaje de usuario de **este turno**. Un turno anterior de la misma conversación no autoriza.
+- Autoriza solo lo nombrado: «commit» no implica push; «PR» implica el push de rama imprescindible para abrir ese PR.
+- Force-push, reescribir historia y auto-merge siguen exigiendo orden humana; ninguna excepción del consumidor los cubre.
+
+## No autorizan (ejemplos)
+
+- Terminar archivos, tests o un DoD.
+- Un PR ya abierto, «así se publica», el hábito de la sesión.
+- Encargos de contenido («actualiza X», «déjalo escrito») que no nombran commit, push, PR, tag, release o merge.
+
+## Excepción del consumidor
+
+Solo si `AGENTS.md` o un ADR **enumera** qué permite. Lo no enumerado sigue prohibido.

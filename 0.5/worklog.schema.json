@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdaf.local/worklog.schema.json",
+  "title": "Worklog SDAF (frontmatter)",
+  "description": "Campos del worklog nuevo. Los worklogs de tabla vigente siguen válidos vía scripts/validate-worklog.py.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "fecha",
+    "inicio",
+    "fin",
+    "agente",
+    "modelo",
+    "version_prompt",
+    "contexto",
+    "especificaciones_utilizadas",
+    "archivos_leidos",
+    "archivos_modificados",
+    "resultado",
+    "tiempo",
+    "coste",
+    "observaciones",
+    "pruebas_ejecutadas",
+    "estado",
+    "siguiente_agente",
+    "commit",
+    "pr",
+    "rama",
+    "sha",
+    "resumen_acumulado"
+  ],
+  "properties": {
+    "pbi": {
+      "type": "string",
+      "minLength": 1
+    },
+    "iteracion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fecha": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "inicio": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?(Z|[+-][0-9]{2}:[0-9]{2})$",
+      "description": "Inicio de la iteración, ISO 8601 con zona horaria (p. ej. 2026-09-24T08:49:43+02:00). Su día es `fecha`."
+    },
+    "fin": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(:[0-9]{2})?(Z|[+-][0-9]{2}:[0-9]{2})$",
+      "description": "Fin de la iteración, ISO 8601 con zona horaria. No anterior a `inicio`."
+    },
+    "agente": {
+      "type": "string",
+      "minLength": 1
+    },
+    "modelo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version_prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_base": {
+      "type": "string"
+    },
+    "prompts_adicionales": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "string"
+    },
+    "reglas_ide": {
+      "type": "string"
+    },
+    "ad_hoc": {
+      "type": "string"
+    },
+    "contexto": {
+      "type": "string",
+      "minLength": 1
+    },
+    "especificaciones_utilizadas": {
+      "type": "string",
+      "minLength": 1
+    },
+    "archivos_leidos": {
+      "type": "string",
+      "minLength": 1
+    },
+    "archivos_modificados": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origen_cambios": {
+      "type": "string"
+    },
+    "resultado": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tiempo": {
+      "type": "string",
+      "anyOf": [
+        {
+          "pattern": "^P(?!$)([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$"
+        },
+        {
+          "pattern": "^N/D: .+"
+        }
+      ],
+      "description": "Tiempo de trabajo como duración ISO 8601 (PT1H30M); no supera fin − inicio. `N/D: <motivo>` si no se conoce."
+    },
+    "coste": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "modalidad",
+            "importe",
+            "moneda",
+            "tokens",
+            "fuente"
+          ],
+          "properties": {
+            "modalidad": {
+              "type": "string",
+              "enum": [
+                "api",
+                "suscripcion",
+                "local",
+                "mixta"
+              ]
+            },
+            "importe": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "moneda": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[A-Z]{3}$"
+                }
+              ]
+            },
+            "tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "fuente": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "string",
+          "pattern": "^N/D: .+"
+        }
+      ],
+      "description": "Coste: modalidad, importe (null si no hay importe por uso), moneda ISO 4217, tokens y fuente del dato. `N/D: <motivo>` si no se conoce."
+    },
+    "observaciones": {
+      "type": "string"
+    },
+    "pruebas_ejecutadas": {
+      "type": "string",
+      "minLength": 1
+    },
+    "estado": {
+      "type": "string",
+      "enum": [
+        "en_curso",
+        "hecho",
+        "bloqueado",
+        "abortado"
+      ]
+    },
+    "siguiente_agente": {
+      "type": "string",
+      "minLength": 1
+    },
+    "commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pr": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ]
+    },
+    "rama": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sha": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      ],
+      "description": "SHA completo (40 hex) o null como ausencia explícita."
+    },
+    "resumen_acumulado": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Índice de una línea (id@version + git si aplica). No sustituye al prompt ni al historial del handbook."
+    }
+  }
+}

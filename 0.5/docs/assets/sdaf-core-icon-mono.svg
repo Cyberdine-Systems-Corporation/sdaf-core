@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SDAF Core monocromo">
+  <!--
+    V1 � Monocromo de un solo trazo (currentColor).
+    Misma geometr�a que sdaf-core-icon.svg � sin wordmark.
+  -->
+  <defs>
+    <style>
+      :root {
+        --sdaf-brand: #2d6a4f;
+        --sdaf-ink: #14261c;
+        --sdaf-paper: #f4f7f5;
+      }
+    </style>
+  </defs>
+
+  <g
+    fill="none"
+    stroke="currentColor"
+    stroke-width="28"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <path d="M 128 355 A 168 168 0 1 1 384 355"/>
+    <path d="M 256 96 L 392 176 L 392 336 L 256 416 L 120 336 L 120 176 Z"/>
+    <path d="M 208 228 V 340 H 304 V 228 A 48 48 0 0 0 208 228 Z"/>
+    <path d="M 232 248 H 280 L 296 264 V 308 H 232 Z"/>
+    <path d="M 244 300 L 256 288 L 268 300 M 256 288 V 316"/>
+  </g>
+</svg>

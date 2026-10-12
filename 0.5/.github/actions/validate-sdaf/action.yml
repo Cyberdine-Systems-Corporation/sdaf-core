@@ -1,0 +1,46 @@
+name: validate-sdaf
+description: Valida sdaf.config.yaml (schema + invariantes) y, opcionalmente, la presencia de worklog.
+
+inputs:
+  config-paths:
+    description: Rutas YAML del consumidor, separadas por espacio.
+    required: false
+    default: sdaf.config.yaml
+  check-worklog:
+    description: Comprobar presencia de worklog si el diff toca código de producto.
+    required: false
+    default: "true"
+  strict-i4:
+    description: Tratar I4 como error.
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - name: Instalar dependencias del validador
+      shell: bash
+      run: pip install pyyaml jsonschema
+    - name: Validar config
+      shell: bash
+      env:
+        SDAF_ACTION_ROOT: ${{ github.action_path }}
+        SDAF_CONFIG_PATHS: ${{ inputs.config-paths }}
+        SDAF_STRICT_I4: ${{ inputs.strict-i4 }}
+      run: |
+        set -euo pipefail
+        ROOT="$(cd "${SDAF_ACTION_ROOT}/../../.." && pwd)"
+        FLAGS=()
+        if [ "${SDAF_STRICT_I4}" = "true" ]; then
+          FLAGS+=(--strict-i4)
+        fi
+        FLAGS+=(--consumer-root "${GITHUB_WORKSPACE}")
+        # shellcheck disable=SC2086
+        python "${ROOT}/scripts/validate-config.py" "${FLAGS[@]}" ${SDAF_CONFIG_PATHS}
+    - name: Presencia de worklog
+      if: inputs.check-worklog == 'true'
+      shell: bash
+      run: |
+        set -euo pipefail
+        ROOT="$(cd "${{ github.action_path }}/../../.." && pwd)"
+        python "${ROOT}/scripts/check-worklog-presence.py" --cwd "${GITHUB_WORKSPACE}"
