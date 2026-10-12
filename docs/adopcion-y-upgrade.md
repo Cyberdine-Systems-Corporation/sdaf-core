@@ -61,7 +61,7 @@ Usar [`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md). Checklist:
 1. Actualizar pin del submodule/tag al nuevo `vX.Y.Z`.
 2. Leer [`handbook/CHANGELOG.md`](../handbook/CHANGELOG.md).
 3. Actualizar `sdaf.version`.
-4. Regenerar `AGENTS.md` si cambió la plantilla.
+4. Incorporar a `AGENTS.md` los cambios de la plantilla si cambió, conservando lo propio del consumidor (regenerarlo entero solo si no está personalizado).
 5. Revisar citas `skill-id@version` en worklogs **nuevos**.
 6. Si venías de 0.1.x: remapear citas de capítulos según la tabla siguiente.
 7. No auto-migrar specs ni handbook de producto del consumidor.
@@ -194,11 +194,13 @@ Al pinnear `v0.5.0`:
 6. Estados de ADR según [ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md): los ADRs antiguos con tres estados siguen válidos; las excepciones llevan `Tipo = Excepción` y `Caducidad`; la sustitución es recíproca (Sustituye / Sustituido por).
 7. Crear `specs/integration/` y usar los campos Unidades y Origen en las specs ([H04](../handbook/04-specification-standard.md)).
 8. Aplicar la precedencia única de [H01 §3.2](../handbook/01-sdaf-framework.md): spec y ADR al mismo nivel; un conflicto entre ambos es STOP y enmienda.
-9. Regenerar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template) `0.5.0`.
+9. Incorporar a `AGENTS.md` los cambios de [`AGENTS.md.template`](../AGENTS.md.template) `0.5.0` (norma H14 y precedencia única en la sección de gobierno), conservando lo propio; regenerarlo entero solo si no está personalizado.
 10. El idioma `es` lo registra [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md).
 11. Actualizar `sdaf.version` a `"0.5.0"`.
 
 [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) con `0.5.0` crea la línea base en Draft y su STOP cita G0.1 y G0.6.
+
+Los ADRs del consumidor no se reescriben. [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).
 
 No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
 
