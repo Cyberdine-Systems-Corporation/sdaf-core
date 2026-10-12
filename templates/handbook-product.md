@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.1.0 |
+| Versión | 0.1.1 |
 | Estado | Draft |
 | Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Norma | Constitución de **producto** (no sustituye el handbook del método sdaf-core) |
@@ -41,6 +41,7 @@
 | Artefacto | Ruta |
 |-----------|------|
 | Specs de producto | `specs/product/` |
+| Línea base arquitectónica | `architecture/description.md` |
 | ADRs | `architecture/decisions/` |
 | Método SDAF | pin a sdaf-core (ver `docs/adopcion-y-upgrade.md` del core o submodule) |
 
@@ -50,4 +51,5 @@
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.1 | 2026-10-12T18:23+02:00 | Enlace a la línea base arquitectónica |
 | 0.1.0 | | Borrador inicial |

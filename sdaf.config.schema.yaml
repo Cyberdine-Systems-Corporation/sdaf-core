@@ -23,7 +23,7 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 | Clave | Tipo | Obligatorio | Valores | Uso |
 |-------|------|-------------|---------|-----|
 | `project.name` | string | sí | no vacío | Sustituye `{{PROJECT_NAME}}` al materializar `AGENTS.md`. Aparece en README/worklogs del consumidor. |
-| `project.language` | string | sí | `es` en la línea vigente | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). La línea vigente solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. |
+| `project.language` | string | sí | `es` en la línea vigente | Idioma de artefactos de ingeniería (commits, PRs, handbook, specs, ADRs, prompts, worklogs). La línea vigente solo admite `es` (regla de castellano). Otros códigos quedan **fuera** hasta que el core los soporte. La restricción está registrada en [ADR-009](architecture/decisions/ADR-009-idioma-de-artefactos.md). |
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 

@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.14 |
+| Versión | 0.1.16 |
 | Estado | Draft |
-| Fecha | 2026-10-11T23:17+02:00 |
+| Fecha | 2026-10-12T18:37+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
-| ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md) |
+| ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -423,6 +423,8 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.16 | 2026-10-12T18:37+02:00 | ADR-009 aceptado por el humano: el idioma `es` fijo queda registrado como decisión citable (D-8); sin cambio de norma |
+| 0.1.15 | 2026-10-12T18:26+02:00 | ARQ-3.11 y 3.12 (slice S5): `sdaf-bootstrap` 0.5.0 crea la línea base en Draft y el STOP cita G0.1 y G0.6; enlace a la línea base en el handbook de producto y en el mapa de navegación; idioma `es` registrado en ADR-009 (Propuesto, a la espera de la aceptación humana) con nota en el esquema; pendiente de revisión; worklog Iteration-017 |
 | 0.1.14 | 2026-10-11T23:17+02:00 | ARQ-3.6 y 3.9 (slice S4b): G0.6 nuevo, G0.3 con ADR Aceptado contra la línea base, STOP en G0.1–G0.6 y QG-Arch contra la línea base (H05 y H10 0.5.0, sdaf-gate0 0.3.0, testing-review-pr 0.4.0, architecture-review 0.4.0); Architecture Agent con salidas ADRs y línea base (contrato, prompts y adr-propose 0.3.0); pendiente de revisión; worklog Iteration-016 |
 | 0.1.13 | 2026-10-09T12:45+02:00 | ARQ-3.7 y 3.8 (slice S4a): precedencia única con spec y ADR al mismo nivel, línea base y packs (H01 0.3.0, handbook/README, AGENTS.md.template 0.5.0); pipeline de dominio con Calculation Rules opcional y eslabón de arquitectura; pendiente de revisión; worklog Iteration-015 |
 | 0.1.12 | 2026-10-08T23:12+02:00 | ARQ-3.5, 3.4 y 3.10 (slice S3): tipo de spec de integración, campos Unidades y Origen, atributos de calidad (H04 0.3.0); árbol del consumidor (H03 0.3.0); plantilla de PBI y G0.4 comprobable (H05 0.4.0, skill y prompt de backlog); cita de H14 corregida (0.1.2); pendiente de revisión; worklog Iteration-014 |
