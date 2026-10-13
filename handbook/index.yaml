@@ -28,7 +28,7 @@ capitulos:
   - id: 04-specification-standard
     archivo: 04-specification-standard.md
     meta: _meta/04-specification-standard.yaml
-    version: "0.3.0"
+    version: "0.4.0"
     estado: Approved
     titulo: 04 — Specification Standard
   - id: 05-development-workflow

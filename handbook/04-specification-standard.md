@@ -48,7 +48,9 @@ Una capacidad puede tener varios archivos enlazados; **una fuente canónica** y 
 | PBIs / backlog | IDs vinculados |
 | Derivados | Tests, slices, worklogs esperados |
 | Unidades | Unidades de la línea base ([H14](14-architecture-description.md)) a las que afecta la spec, con los nombres exactos de la línea base |
-| Origen | Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)). Los valores permitidos los fija el procedimiento de adopción |
+| Origen | Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)). Lista cerrada con un único valor, `caracterización`: la spec describe el comportamiento observado de código anterior a la adopción (ADR-008 §5). Sin el campo, la spec nace de un PBI nuevo |
+
+Una spec con `Origen: caracterización` describe lo observado, no lo deseado, y lleva tests de caracterización. No es la spec retroactiva de [H05 §8](05-development-workflow.md#8-violaciones) y solo pasa a **Approved** tras una revisión humana que decide si ese comportamiento es el deseado. Este `Origen` (procedencia de la spec) no es la columna «Origen» de las integraciones de la línea base ni el «Origen de cambios» del worklog.
 
 Solo specs **Approved** autorizan implementación de producto (salvo spike explícito con ADR de excepción y fecha de caducidad).
 

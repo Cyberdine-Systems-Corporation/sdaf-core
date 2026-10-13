@@ -29,6 +29,8 @@ Declara el sistema y los actores o sistemas externos con los que se relaciona.
 
 Declara cada unidad arquitectónica con un nombre estable. El tipo es libre.
 
+En una adopción sobre código existente (ADR-008 §3), marca las unidades heredadas con el literal «heredada» en su responsabilidad. Esta línea base se aprueba como descripción, no como diseño deseado.
+
 | Unidad | Tipo | Responsabilidad |
 |--------|------|-----------------|
 | Unidad A | Tipo libre | Qué hace y qué no hace |

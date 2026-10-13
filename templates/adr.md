@@ -17,6 +17,10 @@
 > `Sustituye` solo si este ADR reemplaza a otros; `Sustituido por` solo con Estado Sustituido.
 > `Tipo | Excepción` y `Caducidad | <fecha con hora y zona>` solo en ADRs de excepción
 > (H13 §3); describe su alcance y el plan de retorno a la regla.
+> ADR de reconocimiento (decisión previa a la adopción, ADR-008 §4): empieza Contexto con
+> «Decisión heredada» y escribe `N/A: decisión previa a la adopción` en Alternativas; la fecha
+> original de la decisión va en el texto, `Fecha` es la del registro del ADR. El estado
+> Aceptado lo da un humano; el agente lo deja Propuesto.
 
 ## Contexto
 
