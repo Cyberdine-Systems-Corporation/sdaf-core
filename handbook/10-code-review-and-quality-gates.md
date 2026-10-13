@@ -99,6 +99,9 @@ flowchart TD
 
 Si la línea base no declara reglas de dependencia, QG-Arch es `N/A` **solo con el motivo escrito en el worklog**; sin motivo no es N/A.
 
+> [!NOTE]
+> Estos requisitos se definen para la línea de constitución `0.5.0`, que es opt-in. Quien se quede en `0.4.x` no está obligado a mantener una línea base ([H14 §7](14-architecture-description.md), [H05 §3](05-development-workflow.md)).
+
 CI cloud elaborado es **opcional**. Los gates **deben** poder ejecutarse **en local** (H02 §2.10, H11).
 
 Los comandos concretos los documenta el runbook / pack del consumidor.

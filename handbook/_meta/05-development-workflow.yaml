@@ -1,8 +1,8 @@
 archivo: 05-development-workflow.md
 titulo: 05 — Development Workflow
-version: 0.5.0
+version: 0.6.0
 estado: Approved
-fecha: "2026-10-11T23:12+02:00"
+fecha: "2026-10-13T15:48+02:00"
 parte: I — Método SDAF
 norma_superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
 deriva_hacia: "`worklogs/`, `backlog/`, agentes"
@@ -23,6 +23,9 @@ relacionado:
   - destino: "[ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md)"
     por_que: Decisión de origen de la línea base y de G0.6
 historial:
+  - version: 0.6.0
+    fecha: "2026-10-13T15:48+02:00"
+    cambio: "Nota de la excepción de adopción (ADR-008): perímetros gobernado y heredado; sin gates nuevos"
   - version: 0.5.0
     fecha: "2026-10-11T23:12+02:00"
     cambio: "G0.6 nuevo; G0.3 contra la línea base (ADR Aceptado si toca límites); STOP en G0.1–G0.6 (ADR-005); cambio incompatible, línea 0.5.0 opt-in"
@@ -57,9 +60,9 @@ historial:
     fecha: 2026-08-24
     cambio: Gates genéricos; sin roles de stack concreto (ADR-008)
 cabecera:
-  Versión: 0.5.0
+  Versión: 0.6.0
   Estado: Approved
-  Fecha: "2026-10-11T23:12+02:00"
+  Fecha: "2026-10-13T15:48+02:00"
   Parte: I — Método SDAF
   Norma superior: "[01-sdaf-framework.md](01-sdaf-framework.md), [04-specification-standard.md](04-specification-standard.md), [02-engineering-principles.md](02-engineering-principles.md)"
   Deriva hacia: "`worklogs/`, `backlog/`, agentes"
