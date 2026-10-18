@@ -72,7 +72,7 @@ Guía completa: [`docs/adopcion-y-upgrade.md`](docs/adopcion-y-upgrade.md). Resu
 | | Artefacto | Estado |
 |--|-----------|--------|
 | ✅ | Handbook del método | **Approved** 00–14 y A–B (línea 0.5.0) |
-| ✅ | Agentes, prompts y skills | **Approved** (v0.5.2; contratos 0.2 siguen vigentes), salvo `sdaf-adopt-existing` (Draft) |
+| ✅ | Agentes, prompts y skills | **Approved** (v0.5.2; contratos 0.2 siguen vigentes) |
 | 📝 | Plantillas de consumidor | `templates/spec.md` y `handbook-product.md` permanecen Draft (se copian al consumidor) |
 | | Release del árbol (tag) | **v0.5.1**; `v0.5.2` se crea tras el merge del parche 0.5.2 |
 

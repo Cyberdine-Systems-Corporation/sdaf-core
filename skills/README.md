@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.5 |
+| Versión | 0.3.6 |
 | Estado | Approved |
-| Fecha | 2026-10-13T15:59+02:00 |
+| Fecha | 2026-10-18T20:14+02:00 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
 
 Playbooks operativos reutilizables. Viven en **`skills/`**. **No** dependen de Cursor ni de `.cursor/skills/`.
@@ -26,7 +26,7 @@ Citar `skill-id@version` en worklogs del consumidor.
 | ⛔ | `security-review` | alta | Approved | [security-review/SKILL.md](security-review/SKILL.md) |
 | 📝 | `spec-draft-pbi` | media | Approved | [spec-draft-pbi/SKILL.md](spec-draft-pbi/SKILL.md) |
 | 📝 | `adr-propose` | media | Approved | [adr-propose/SKILL.md](adr-propose/SKILL.md) |
-| 🛠️ | `sdaf-adopt-existing` | media | Draft | [sdaf-adopt-existing/SKILL.md](sdaf-adopt-existing/SKILL.md) |
+| 🛠️ | `sdaf-adopt-existing` | media | Approved | [sdaf-adopt-existing/SKILL.md](sdaf-adopt-existing/SKILL.md) |
 | 🛠️ | `sdaf-upgrade` | media | Approved | [sdaf-upgrade/SKILL.md](sdaf-upgrade/SKILL.md) |
 | 🛠️ | `devops-ci-gate` | baja | Approved | [devops-ci-gate/SKILL.md](devops-ci-gate/SKILL.md) |
 
@@ -56,6 +56,7 @@ Skills de stack o dominio no forman parte de este core.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.6 | 2026-10-18T20:14+02:00 | `sdaf-adopt-existing` pasa a Approved por aprobación humana (sin cambio de norma) |
 | 0.3.5 | 2026-10-13T15:59+02:00 | Añade `sdaf-adopt-existing` (Draft) al catálogo (sin cambio de norma) |
 | 0.3.4 | 2026-10-02T17:28+02:00 | Etiqueta «Catálogo v0.3.x» pasa a «Catálogo vigente» (sin cambio de norma) |
 | 0.3.3 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |

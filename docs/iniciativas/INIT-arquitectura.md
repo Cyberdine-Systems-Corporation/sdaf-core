@@ -3,9 +3,9 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.21 |
+| Versión | 0.1.22 |
 | Estado | Draft |
-| Fecha | 2026-10-18T19:56+02:00 |
+| Fecha | 2026-10-18T20:14+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
@@ -285,7 +285,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 **ARQ-5.3 — Skill `sdaf-adopt-existing`** (hecho: v0.5.1, #50)
 - Artefactos: `skills/sdaf-adopt-existing/SKILL.md`, `skills/README.md`, `AGENTS.md.template`, `docs/adopcion-y-upgrade.md` (sección «Adoptar sobre un repo con código»).
 - Aceptación: recorrido completo en un repo de prueba con código previo, sin violar Gate 0 en el perímetro gobernado.
-- Evidencia: recorrido en repo sintético de tres unidades; el hallazgo principal (la skill predecía mal Gate 0) se corrigió en la skill 0.1.0 (Draft). Lo diferido (recomendación del asistente, no objetada por el humano) se reabrió por decisión del humano el 2026-10-18 («Lo hacemos ahora») y se completa en `v0.5.2`: H06 §6, `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` (completado en v0.5.2, pendiente de publicación).
+- Evidencia: recorrido en repo sintético de tres unidades; el hallazgo principal (la skill predecía mal Gate 0) se corrigió en la skill 0.1.0 (Draft; aprobada como 0.1.1 el 2026-10-18, decisión M). Lo diferido (recomendación del asistente, no objetada por el humano) se reabrió por decisión del humano el 2026-10-18 («Lo hacemos ahora») y se completa en `v0.5.2`: H06 §6, `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` (completado en v0.5.2, pendiente de publicación).
 
 ### Bloque 6 — Automatización (transversal)
 
@@ -416,7 +416,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 3. `v0.5.2` (parche: lo diferido de `v0.5.1`): contenido listo en la rama `docs/completar-adopcion-v0.5.2`. Siguen: revisión humana, PR, tag, GitHub Release y chore de publicación, por orden humana.
 4. Después, `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo.
 5. Bloque 6: Gate 0 semiautomático, coherencia arquitectónica y modo consumidor de `check-adrs.py` (hallazgo del piloto, ARQ-6.3). ARQ-6.3 y ARQ-6.1 ya pueden empezar.
-6. Decisiones humanas abiertas: M (aprobar la skill `sdaf-adopt-existing`, hoy en Draft) y K (adopción en el consumidor del piloto).
+6. Decisión humana abierta: K (adopción en el consumidor del piloto). La skill `sdaf-adopt-existing` ya está aprobada (0.1.1, decisión M cerrada el 2026-10-18).
 7. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin en `v0.5.0` y la línea base aprobada por un humano.
 
 ---
@@ -434,6 +434,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.22 | 2026-10-18T20:14+02:00 | Skill `sdaf-adopt-existing` 0.1.1 Approved por aprobación humana (decisión M cerrada, 2026-10-18); sin cambio de norma |
 | 0.1.21 | 2026-10-18T19:56+02:00 | `v0.5.1` publicada (tag sobre `69af58f`; #50, #51 y #52): ARQ-5.1 a 5.3 hechos, H-8 cerrado (8 de 10); `v0.5.2` completa lo diferido (H06 0.3.5, H08 0.5.0, sdaf-gate0 0.4.0, sdaf-bootstrap 0.5.1), pendiente de revisión; worklog Iteration-023 |
 | 0.1.20 | 2026-10-18T18:43+02:00 | ARQ-5.1 a 5.3 (`v0.5.1`): excepción de adopción (H05 0.6.0, H13 0.5.0), specs de caracterización y ADRs de reconocimiento (H04 0.4.0, plantillas), skill `sdaf-adopt-existing` 0.1.0 (Draft) y nota de línea opt-in en H10 0.5.1; recorrido de aceptación en repo sintético; pendiente de revisión; worklog Iteration-022 |
 | 0.1.19 | 2026-10-12T20:05+02:00 | `v0.5.0` publicada (tag sobre `66ee77b`; #37, #45, #46 y #47): ARQ-3.1 a 3.13 hechos, DoD y hallazgos actualizados (7 de 10 cerrados), siguiente paso reordenado; worklog Iteration-021 |
