@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.5.0 |
+| Versión | 0.5.1 |
 | Estado | Approved |
 | Fecha | YYYY-MM-DDThh:mm±hh:mm |
 | Norma | `handbook/06-ai-agent-framework.md`, `handbook/07-prompt-engineering-standard.md`, `handbook/08-agent-traceability.md`, `handbook/10-code-review-and-quality-gates.md`, `skills/README.md` |
@@ -81,7 +81,7 @@ Citar `skill-id@version` en worklogs (H06 §6, H07).
 | Prioridad | Skills (core) |
 |-----------|----------------|
 | Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr`, `security-review` |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-adopt-existing`, `sdaf-upgrade` |
 | Baja | `devops-ci-gate` |
 
 Skills de stack o dominio las aporta el pack o el producto, no este core.
@@ -118,6 +118,7 @@ Ningún agente: aprueba handbook/specs por sí solo; salta Gate 0; implementa al
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.5.1 | 2026-10-13T15:59+02:00 | Añade `sdaf-adopt-existing` a las skills de prioridad media (sin cambio de norma) |
 | 0.5.0 | 2026-10-09T12:43+02:00 | Precedencia única (ADR-007 §2): referencia a H01 §3.2 en «Gobernanza» |
 | 0.4.2 | 2026-09-26T17:27+02:00 | Sección opcional «Tooling externo» con la cláusula de precedencia (ADR-004) |
 | 0.3.3 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |

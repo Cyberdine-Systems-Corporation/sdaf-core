@@ -636,6 +636,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cómo-publicar-una-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo publicar una release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#seguridad" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3448,6 +3459,8 @@
       
         
       
+        
+      
     
     
     
@@ -3545,6 +3558,34 @@
     
   
     sdaf-bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/sdaf-adopt-existing/SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sdaf-adopt-existing
   
 
     
@@ -4342,6 +4383,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cómo-publicar-una-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo publicar una release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#seguridad" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4390,6 +4442,16 @@
 </ol>
 <h2 id="commits">Commits<a class="headerlink" href="#commits" title="Permanent link">&para;</a></h2>
 <p>Castellano. Prefijo corto opcional (<code>docs:</code>, <code>fix:</code>, <code>feat:</code>) más el porqué. Distinguir norma (significado) de redacción.</p>
+<h2 id="cómo-publicar-una-release">Cómo publicar una release<a class="headerlink" href="#cómo-publicar-una-release" title="Permanent link">&para;</a></h2>
+<p>La publica una persona con permiso sobre <code>main</code> y los tags. Un agente prepara y propone, pero no crea el tag ni la Release salvo orden expresa (<a href="../handbook/06-ai-agent-framework/">H06 §7</a>). Orden de cierre:</p>
+<ol>
+<li><strong>Preparación.</strong> PR a <code>main</code> (o cadena de PRs si el cambio es incompatible) con la entrada nueva de <a href="../handbook/CHANGELOG/"><code>handbook/CHANGELOG.md</code></a> (versiones finales, si rompe o no citas, migración), el <code>CHANGELOG.md</code> raíz, el README y la sección de la línea en <a href="../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>. Aún no cambian el badge, el pin recomendado ni los tags publicados: los textos dicen «se crea tras el merge». Si la release abre una línea de constitución nueva, antes del tag se hace un piloto sobre un consumidor real; sus hallazgos entran al core como cambios genéricos, sin citar ese consumidor.</li>
+<li><strong>Tag anotado</strong> <code>vX.Y.Z</code> sobre el commit de la fusión en <code>main</code>, con mensaje <code>sdaf-core X.Y.Z: …</code>. Al publicar el tag, <a href="../.github/workflows/docs-deploy.yml"><code>docs-deploy</code></a> despliega esa versión de la documentación.</li>
+<li><strong>GitHub Release</strong> sobre ese tag, con título <code>sdaf-core X.Y.Z</code> y como notas la entrada del CHANGELOG sin enlaces relativos. Es imprescindible: el chip de versión del encabezado de la documentación lee la última Release de GitHub, no los tags, y sin ella sigue mostrando la anterior. Comando: <code>gh release create vX.Y.Z --verify-tag --title "sdaf-core X.Y.Z" --notes-file &lt;notas&gt; --latest</code>.</li>
+<li><strong>Chore de publicación.</strong> PR <code>chore: preparar la publicación de vX.Y.Z</code> con el badge, el pin recomendado, los tags publicados y la referencia <code>validate-sdaf@vX.Y.Z</code> del README de la action; se retira «se crea tras el merge».</li>
+<li><strong>Limpieza.</strong> Borrar las ramas ya fusionadas, en local y en remoto, tras comprobar que están contenidas en <code>main</code>.</li>
+<li><strong>Plan.</strong> Si la release cierra PBIs de una iniciativa, actualizar su plan en <a href="../docs/iniciativas/"><code>docs/iniciativas/</code></a>.</li>
+</ol>
 <h2 id="seguridad">Seguridad<a class="headerlink" href="#seguridad" title="Permanent link">&para;</a></h2>
 <p>Avisos de <strong>este</strong> repo: <a href="../SECURITY/"><code>SECURITY.md</code></a>. La plantilla de reporte del consumidor es <a href="../templates/security/"><code>templates/security.md</code></a>.</p>
 

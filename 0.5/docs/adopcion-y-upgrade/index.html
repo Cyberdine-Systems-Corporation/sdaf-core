@@ -1706,6 +1706,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#adoptar-sobre-un-repo-con-código" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adoptar sobre un repo con código
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1854,6 +1865,17 @@
     <span class="md-ellipsis">
       
         0.5.0 (opt-in)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#051-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (parche)
       
     </span>
   </a>
@@ -3611,6 +3633,8 @@
       
         
       
+        
+      
     
     
     
@@ -3708,6 +3732,34 @@
     
   
     sdaf-bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/sdaf-adopt-existing/SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sdaf-adopt-existing
   
 
     
@@ -4494,6 +4546,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#adoptar-sobre-un-repo-con-código" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adoptar sobre un repo con código
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4649,6 +4712,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#051-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4713,7 +4787,7 @@
 <tbody>
 <tr>
 <td>Tag Git <code>vX.Y.Z</code></td>
-<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>, <code>v0.4.0</code>, <code>v0.4.1</code>, <code>v0.4.2</code>, <code>v0.4.3</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>.</td>
+<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>, <code>v0.4.0</code>, <code>v0.4.1</code>, <code>v0.4.2</code>, <code>v0.4.3</code>, <code>v0.5.0</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>.</td>
 </tr>
 <tr>
 <td><code>sdaf.version</code> en <code>sdaf.config.yaml</code></td>
@@ -4727,7 +4801,7 @@
 </table>
 <blockquote>
 <p>[!TIP]
-El pin recomendado del árbol es <code>v0.4.3</code>. <code>sdaf.version</code> nombra la línea (<code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
+El pin recomendado del árbol es <code>v0.5.0</code>. <code>sdaf.version</code> nombra la línea (<code>"0.5.0"</code>, <code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.4.3</code>, <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
 </blockquote>
 <p>Subir de <code>0.1.x</code> a <code>0.2.0</code> es un upgrade consciente (breaking de citas de handbook).</p>
 <h2 id="adopción-canónica">Adopción (canónica)<a class="headerlink" href="#adopción-canónica" title="Permanent link">&para;</a></h2>
@@ -4744,7 +4818,7 @@ El pin recomendado del árbol es <code>v0.4.3</code>. <code>sdaf.version</code> 
 <li>Añadir sdaf-core como <strong>submodule</strong> pinneado a un tag, p. ej. en <code>.sdaf/</code>:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git submodule add -b main &lt;url-sdaf-core&gt; .sdaf
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.4.3
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.5.0
 </code></pre></div>
 <ol>
 <li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.5.0"</code> con pin <code>v0.5.0</code>, <code>"0.4.0"</code> con pin <code>v0.4.x</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
@@ -4779,6 +4853,30 @@ El pin recomendado del árbol es <code>v0.4.3</code>. <code>sdaf.version</code> 
 </tr>
 </tbody>
 </table>
+<h3 id="adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código<a class="headerlink" href="#adoptar-sobre-un-repo-con-código" title="Permanent link">&para;</a></h3>
+<p>Aplica cuando el repo ya tiene código previo a la adopción y no puede cumplir Gate 0 con él desde el primer día (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>). En un repo vacío, usar el flujo anterior.</p>
+<p>Precondiciones:</p>
+<ul>
+<li><code>sdaf-bootstrap</code> ejecutado: existen <code>sdaf.config.yaml</code> y el árbol.</li>
+<li>El repo adopta la línea <code>0.5.0</code> (opt-in): la línea base y G0.6 son de esa línea (<a href="#050-opt-in">sección 0.5.0</a>).</li>
+<li>Hay un humano que aceptará los ADRs y aprobará la línea base. Los agentes los dejan en Propuesto o Draft.</li>
+</ul>
+<p>Ejecutar <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a>. Sus pasos (los cinco de ADR-008 §6 más el cierre en Gate 0):</p>
+<ol>
+<li>Inventariar las unidades del código existente y proponer cuáles quedan en el perímetro heredado.</li>
+<li>Rellenar la línea base descriptiva en Draft, con esas unidades marcadas «heredada».</li>
+<li>Proponer un ADR de reconocimiento por decisión previa a la adopción.</li>
+<li>Proponer el ADR de excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>), con caducidad propuesta y plan de retorno que lista las unidades heredadas.</li>
+<li>Abrir el primer PBI gobernado en Draft y, si procede, specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>).</li>
+<li>Ejecutar Gate 0: el STOP esperado es G0.1, G0.2, G0.4 y G0.6 (G0.3 solo si el PBI toca límites, <a href="../../handbook/14-architecture-description/#6-cuándo-cambia">H14 §6</a>) hasta que un humano acepte los ADRs, apruebe la línea base y apruebe las specs con su acceptance.</li>
+</ol>
+<p>Aceptar el ADR de excepción legitima solo los cambios correctivos con worklog en el perímetro heredado; no desbloquea Gate 0 en el perímetro gobernado. Una feature nueva o un cambio de comportamiento pasa la unidad al perímetro gobernado antes de implementar.</p>
+<p>La caducidad la fija el humano. Caducada sin prórroga humana, la excepción deja de aplicar y el perímetro heredado pasa a Gate 0 completo: revisar entonces el plan de retorno.</p>
+<p>Limitaciones de las comprobaciones actuales:</p>
+<ul>
+<li><a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs del core y aún no es apto para los de un consumidor con formato anterior: véase el aviso de la <a href="#050-opt-in">sección 0.5.0</a>.</li>
+<li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
+</ul>
 <h2 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h2>
 <p>Usar <a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a>. Checklist:</p>
 <ol>
@@ -4894,6 +4992,15 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
 <p>Los ADRs del consumidor no se reescriben. <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).</p>
 <p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
+<h2 id="051-parche">0.5.1 (parche)<a class="headerlink" href="#051-parche" title="Permanent link">&para;</a></h2>
+<p>Procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): skill <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (Draft, pendiente de aprobación humana), excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>) y specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>). No añade gates ni cambia los existentes.</p>
+<p>Al pinnear <code>v0.5.1</code>:</p>
+<ol>
+<li>Quien no adopte sobre código existente: nada que hacer.</li>
+<li>Quien lo haga, en la línea <code>0.5.0</code>: seguir <a href="#adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código</a>.</li>
+</ol>
+<p>Diferido a un parche posterior: el catálogo de H06 §6, <code>sdaf-gate0</code> y <code>sdaf-bootstrap</code> aún no conocen la skill ni los perímetros.</p>
+<p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
 <h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>
