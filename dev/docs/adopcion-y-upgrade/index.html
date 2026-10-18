@@ -1883,6 +1883,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#052-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4723,6 +4734,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#052-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5000,6 +5022,14 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Quien lo haga, en la línea <code>0.5.0</code>: seguir <a href="#adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código</a>.</li>
 </ol>
 <p>Diferido a un parche posterior: el catálogo de H06 §6, <code>sdaf-gate0</code> y <code>sdaf-bootstrap</code> aún no conocen la skill ni los perímetros.</p>
+<p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
+<h2 id="052-parche">0.5.2 (parche)<a class="headerlink" href="#052-parche" title="Permanent link">&para;</a></h2>
+<p>Completa lo diferido en 0.5.1: el catálogo de <a href="../../handbook/06-ai-agent-framework/">H06 §6</a> lista <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (<code>0.1.1</code>, Approved por aprobación humana), <a href="../../handbook/08-agent-traceability/#5-cuándo-crear-worklog">H08 §5</a> exige worklog en los cambios correctivos del perímetro heredado, <a href="../../skills/sdaf-gate0/SKILL/"><code>sdaf-gate0</code></a> no hace STOP en ellos con el ADR de excepción de adopción Aceptado y vigente, y <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> deriva a la skill si el repo ya tiene código previo. No añade gates ni cambia los del perímetro gobernado.</p>
+<p>Al pinnear <code>v0.5.2</code>:</p>
+<ol>
+<li>Quien no adopte sobre código existente: nada que hacer.</li>
+<li>Quien lo haga, en la línea <code>0.5.0</code>: seguir <a href="#adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código</a>; un cambio correctivo en el perímetro heredado ya no se detiene en Gate 0 si el ADR sigue vigente, y una feature pasa antes al perímetro gobernado.</li>
+</ol>
 <p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
 <h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>

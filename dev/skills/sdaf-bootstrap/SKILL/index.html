@@ -4449,7 +4449,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.5.0</td>
+<td>0.5.1</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4461,7 +4461,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-12T18:23+02:00</td>
+<td>2026-10-18T19:44+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -4482,7 +4482,8 @@
 <li>Crear árbol vacío según <a href="../../../handbook/03-repository-organization/">H03</a>: <code>knowledge/raw</code>, <code>knowledge/curated</code>, <code>specs/{product,domain,application,integration,acceptance}</code>, <code>architecture/decisions</code>, <code>backlog</code>, <code>worklogs</code>, <code>agents</code>, <code>prompts</code>, <code>skills</code>, <code>templates</code>, <code>docs</code>; stub de handbook de producto desde <a href="../../../templates/handbook-product/"><code>templates/handbook-product.md</code></a>. Solo si <code>sdaf.version</code> es <code>0.5.0</code> o superior (la línea es opt-in: con una versión anterior, p. ej. <code>0.4.0</code>, no se crea), crear <code>architecture/description.md</code> copiando <a href="../../../templates/architecture-description/"><code>templates/architecture-description.md</code></a> (<a href="../../../handbook/14-architecture-description/">H14</a>): Estado <code>Draft</code>, Fecha real (cabecera e historial), sin el aviso de uso, cada sección con <code>N/A: pendiente de redactar</code> y sin filas de ejemplo.</li>
 <li>Si <code>stack.pack</code> ≠ <code>null</code>, verificar <a href="../../../docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a> y materializar aportes del pack + core con symlinks relativos en el consumidor (script documentado <code>scripts/materialize-submodules.ps1</code> o manual según <a href="../../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>); opcional <code>.cursor/skills/</code> → submodule.</li>
 <li>Copiar reglas IDE si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> y <code>.cursor/rules/git-remoto-encargo.mdc</code> vía materialización). <strong>No</strong> crear código de producto en <code>src/</code> sin Gate 0. Bootstrap <strong>no</strong> incluye commit ni remoto salvo que este turno lo nombre (H06 §7).</li>
-<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado por G0.1 (sin specs Approved) y, si <code>sdaf.version</code> es <code>0.5.0</code> o superior, también por G0.6 (línea base en Draft: la aprueba un humano; <a href="../../../handbook/05-development-workflow/">H05 §3</a>). Abrir worklog de bootstrap, registrar cada motivo del STOP y citar <code>sdaf-bootstrap@0.5.0</code>.</li>
+<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado por G0.1 (sin specs Approved) y, si <code>sdaf.version</code> es <code>0.5.0</code> o superior, también por G0.6 (línea base en Draft: la aprueba un humano; <a href="../../../handbook/05-development-workflow/">H05 §3</a>). Abrir worklog de bootstrap, registrar cada motivo del STOP y citar <code>sdaf-bootstrap@0.5.1</code>.</li>
+<li>Si el repo ya tiene código previo a la adopción, seguir con <a href="../../sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> antes de abrir ningún PBI; el bootstrap no cambia.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4516,6 +4517,10 @@
 <td><a href="../../sdaf-gate0/SKILL/">sdaf-gate0</a></td>
 <td>STOP esperado en repo vacío</td>
 </tr>
+<tr>
+<td><a href="../../sdaf-adopt-existing/SKILL/">sdaf-adopt-existing</a></td>
+<td>Siguiente paso si el repo ya tiene código previo</td>
+</tr>
 </tbody>
 </table>
 <h2 id="historial">Historial<a class="headerlink" href="#historial" title="Permanent link">&para;</a></h2>
@@ -4528,6 +4533,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.5.1</td>
+<td>2026-10-18T19:44+02:00</td>
+<td>Si el repo ya tiene código previo, derivar a <code>sdaf-adopt-existing</code> antes de abrir ningún PBI (sin cambio de norma)</td>
+</tr>
 <tr>
 <td>0.5.0</td>
 <td>2026-10-12T18:23+02:00</td>

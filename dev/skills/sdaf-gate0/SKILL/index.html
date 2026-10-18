@@ -4453,7 +4453,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.3.0</td>
+<td>0.4.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4465,7 +4465,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-11T23:12+02:00</td>
+<td>2026-10-18T19:44+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -4487,12 +4487,13 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 <li>Comprobar <strong>G0.4</strong>: PBI en <code>backlog/</code> enlazado a specs Approved, con su acceptance y unidades que existan en la línea base.</li>
 <li>Comprobar <strong>G0.5</strong>: worklog de iteración iniciado (<code>worklogs/...</code>).</li>
 <li>Comprobar <strong>G0.6</strong>: leer <code>architecture/description.md</code>; debe existir y tener estado <strong>Approved</strong>. Si falta o es Draft → no se satisface.</li>
-<li>Si falta algún ítem → <strong>STOP</strong>. Listar gaps; no implementar producto. Ofrecer solo docs/specs/ADR/línea base en Draft.</li>
-<li>Si todo OK → registrar <code>sdaf-gate0@0.3.0</code> en worklog y continuar con el agente de implementación.</li>
+<li>Excepción de adopción (<a href="../../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): un cambio <strong>correctivo</strong> en una unidad del perímetro heredado, con el ADR de excepción de adopción <strong>Aceptado</strong> y vigente (no caducado), no hace STOP por Gate 0 y exige worklog. Una feature o un cambio de comportamiento en esa unidad pasa antes al perímetro gobernado (Gate 0 completo). Sin ADR Aceptado, o con la excepción caducada, no aplica.</li>
+<li>Si falta algún ítem y no aplica el paso 8 → <strong>STOP</strong>. Listar gaps; no implementar producto. Ofrecer solo docs/specs/ADR/línea base en Draft.</li>
+<li>Si todo OK → registrar <code>sdaf-gate0@0.4.0</code> en worklog y continuar con el agente de implementación.</li>
 </ol>
 <blockquote>
 <p>[!CAUTION]
-⛔ Si falta G0.1–G0.6: <strong>STOP</strong>. No implementar producto.</p>
+⛔ Si falta G0.1–G0.6 (salvo la excepción de adopción del paso 8): <strong>STOP</strong>. No implementar producto.</p>
 </blockquote>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4505,6 +4506,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 <li>No saltar Gate 0 “por demo”.</li>
 <li>No marcar specs/handbook ni la línea base como Approved.</li>
 <li>Spike técnico solo con ADR de excepción (H05).</li>
+<li>La excepción de adopción cubre solo cambios correctivos en el perímetro heredado (<a href="../../../handbook/05-development-workflow/#3-gate-0-pre-implementación-stop">H05 §3</a>, <a href="../../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>); en el perímetro gobernado Gate 0 no cambia.</li>
 </ul>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
@@ -4527,6 +4529,11 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 <td>Línea base (G0.6) y cuándo un cambio «toca límites»</td>
 </tr>
 <tr>
+<td>📖</td>
+<td><a href="../../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a></td>
+<td>Excepción de adopción: alcance, caducidad y perímetro heredado</td>
+</tr>
+<tr>
 <td>🧭</td>
 <td><a href="../../../AGENTS.md.template">AGENTS.md.template</a></td>
 <td>Router tras el gate</td>
@@ -4543,6 +4550,11 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.4.0</td>
+<td>2026-10-18T19:44+02:00</td>
+<td>Perímetro heredado: la excepción de adopción (ADR-008) no hace STOP en cambios correctivos; sin cambio de gates en el perímetro gobernado</td>
+</tr>
 <tr>
 <td>0.3.0</td>
 <td>2026-10-11T23:12+02:00</td>

@@ -1277,6 +1277,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#052-2026-10-18t19560200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 — 2026-10-18T19:56+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#051-2026-10-18t19210200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4471,6 +4482,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#052-2026-10-18t19560200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 — 2026-10-18T19:56+02:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#051-2026-10-18t19210200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4689,6 +4711,14 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="052-2026-10-18t19560200">0.5.2 — 2026-10-18T19:56+02:00<a class="headerlink" href="#052-2026-10-18t19560200" title="Permanent link">&para;</a></h2>
+<p>Parche de línea (<strong>no</strong> breaking de citas <code>H00</code>–<code>H14</code> ni de configs). Completa lo diferido en 0.5.1 para la adopción sobre código existente (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): el catálogo, Gate 0, la tabla de worklog y el bootstrap ya conocen la skill y los perímetros. Decisión del humano el 2026-10-18 («Lo hacemos ahora»; la hora exacta no se registró).</p>
+<ul>
+<li>Capítulos: <code>H06</code> <code>0.3.5</code> (§6: el catálogo core lista <code>sdaf-adopt-existing</code>; sin cambio de norma). <code>H08</code> <code>0.5.0</code> (§5: fila de worklog para cambios correctivos en el perímetro heredado, ADR-008).</li>
+<li>Skills: <a href="../../skills/sdaf-gate0/SKILL/"><code>sdaf-gate0</code></a> <code>0.4.0</code> (paso 8: la excepción de adopción no hace STOP en un cambio correctivo del perímetro heredado con el ADR Aceptado y vigente; una feature o un cambio de comportamiento pasa antes al perímetro gobernado, donde Gate 0 no cambia). <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> <code>0.5.1</code> (deriva a <code>sdaf-adopt-existing</code> si el repo ya tiene código previo). <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> <code>0.1.1</code> Approved por aprobación humana de Manuel Ortiz de Villajos Quirós (2026-10-18; el agente transcribe, H00 §3.3); catálogo <a href="../../skills/"><code>skills/README.md</code></a> <code>0.3.6</code>.</li>
+<li>Worklog: <a href="../../worklogs/INIT-arquitectura/Iteration-023/"><code>worklogs/INIT-arquitectura/Iteration-023.md</code></a>.</li>
+</ul>
+<p>Quien no adopte sobre código existente no tiene que hacer nada. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>. Pin de árbol: <code>v0.5.2</code>, que se crea tras el merge. Quien siga en <code>v0.5.1</code> o anterior no está obligado a moverlo.</p>
 <h2 id="051-2026-10-18t19210200">0.5.1 — 2026-10-18T19:21+02:00<a class="headerlink" href="#051-2026-10-18t19210200" title="Permanent link">&para;</a></h2>
 <p>Parche de línea (<strong>no</strong> breaking de citas <code>H00</code>–<code>H14</code> ni de configs). Añade un procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>); no añade gates ni cambia los existentes (<a href="../13-enmienda-excepciones-ciclo-de-vida/">H13 §5</a>). Fusionado por @mortiz-iadev (CODEOWNERS) en el PR #50.</p>
 <ul>

@@ -4449,11 +4449,11 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.1.0</td>
+<td>0.1.1</td>
 </tr>
 <tr>
 <td>Estado</td>
-<td>Draft</td>
+<td>Approved</td>
 </tr>
 <tr>
 <td>Prioridad</td>
@@ -4461,7 +4461,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-13T15:59+02:00</td>
+<td>2026-10-18T20:14+02:00</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -4475,7 +4475,7 @@
 <li>Precondiciones: <code>sdaf-bootstrap</code> ejecutado (existen <code>sdaf.config.yaml</code> y el árbol); el repo adopta la línea <code>0.5.0</code> (opt-in; la línea base y G0.6 son de esa línea); hay un humano que aceptará los ADRs y aprobará la línea base. Si falta alguna, parar y pedirla.</li>
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
-<p>Citar <code>sdaf-adopt-existing@0.1.0</code> una sola vez, en el campo <code>skills</code> del worklog de adopción.</p>
+<p>Citar <code>sdaf-adopt-existing@0.1.1</code> una sola vez, en el campo <code>skills</code> del worklog de adopción.</p>
 <ol>
 <li>Inventariar las unidades del código existente con nombres estables (el tipo de unidad es libre), proponer cuáles quedan en el perímetro heredado y registrar el inventario en la sección «Inventario» del worklog.</li>
 <li>Rellenar <code>architecture/description.md</code> (la crea bootstrap; si no existe, crearla desde <a href="../../../templates/architecture-description/"><code>templates/architecture-description.md</code></a>) como línea base descriptiva en Draft: documenta lo existente tal como es, marca «heredada» las unidades heredadas y recoge las dependencias observadas o <code>N/A</code>, sin inventar reglas normativas de «permitida/prohibida». Se aprueba como descripción, no como diseño deseado.</li>
@@ -4490,7 +4490,7 @@
 <li>[ ] El recorrido termina en el STOP esperado de Gate 0 (G0.1, G0.2, G0.4, G0.6; G0.3 si el PBI toca límites). Orden humano: aceptar los ADRs, luego aprobar la línea base completando su sección de decisiones vigentes.</li>
 <li>[ ] Aceptar el ADR de excepción legitima solo los cambios correctivos en el perímetro heredado: no desbloquea Gate 0 en el perímetro gobernado (lo hacen specs Approved con acceptance y la línea base Approved).</li>
 <li>[ ] Nada del perímetro heredado tocado salvo cambios correctivos con worklog.</li>
-<li>[ ] Worklog con los motivos del STOP y <code>sdaf-adopt-existing@0.1.0</code> en <code>skills</code>.</li>
+<li>[ ] Worklog con los motivos del STOP y <code>sdaf-adopt-existing@0.1.1</code> en <code>skills</code>.</li>
 </ul>
 <h2 id="restricciones">Restricciones<a class="headerlink" href="#restricciones" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4534,6 +4534,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.1.1</td>
+<td>2026-10-18T20:14+02:00</td>
+<td>Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS; el agente transcribe la aprobación dada en el encargo, H00 §3.3)</td>
+</tr>
 <tr>
 <td>0.1.0</td>
 <td>2026-10-13T15:59+02:00</td>
