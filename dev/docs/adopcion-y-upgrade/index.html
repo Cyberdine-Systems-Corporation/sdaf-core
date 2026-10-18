@@ -1872,6 +1872,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#051-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4701,6 +4712,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#051-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4970,6 +4992,15 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
 <p>Los ADRs del consumidor no se reescriben. <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).</p>
 <p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
+<h2 id="051-parche">0.5.1 (parche)<a class="headerlink" href="#051-parche" title="Permanent link">&para;</a></h2>
+<p>Procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): skill <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (Draft, pendiente de aprobación humana), excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>) y specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>). No añade gates ni cambia los existentes.</p>
+<p>Al pinnear <code>v0.5.1</code>:</p>
+<ol>
+<li>Quien no adopte sobre código existente: nada que hacer.</li>
+<li>Quien lo haga, en la línea <code>0.5.0</code>: seguir <a href="#adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código</a>.</li>
+</ol>
+<p>Diferido a un parche posterior: el catálogo de H06 §6, <code>sdaf-gate0</code> y <code>sdaf-bootstrap</code> aún no conocen la skill ni los perímetros.</p>
+<p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
 <h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>
