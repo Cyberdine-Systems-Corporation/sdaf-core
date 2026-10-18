@@ -11,7 +11,7 @@ Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Añade 
 - Diferido a un parche posterior (reabrible): H06 §6 (catálogo), `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` aún no listan la skill ni conocen los perímetros. Limitación de tooling: `check-worklog-presence.py` solo mira `stack.src_path` y `stack.tests_path` (la línea 0.6.0 trae unidades de código).
 - Worklog: [`worklogs/INIT-arquitectura/Iteration-022.md`](../worklogs/INIT-arquitectura/Iteration-022.md).
 
-Quien no adopte sobre código existente no tiene que hacer nada. `sdaf.version` sigue en `"0.5.0"`. Pin de árbol: `v0.5.1`, que se crea tras el merge. Quien siga en `v0.5.0` o anterior no está obligado a moverlo.
+Quien no adopte sobre código existente no tiene que hacer nada. `sdaf.version` sigue en `"0.5.0"`. Pin de árbol: `v0.5.1`. Quien siga en `v0.5.0` o anterior no está obligado a moverlo.
 
 ## 0.5.0 — 2026-10-12T18:47+02:00
 
