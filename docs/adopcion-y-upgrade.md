@@ -54,6 +54,34 @@ cd .sdaf && git checkout v0.5.0
 | Subtree | Historia integrada | Merges de upgrade más ruidosos |
 | Copia / template | Simple al inicio | Difícil propagar mejoras del core |
 
+### Adoptar sobre un repo con código
+
+Aplica cuando el repo ya tiene código previo a la adopción y no puede cumplir Gate 0 con él desde el primer día ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)). En un repo vacío, usar el flujo anterior.
+
+Precondiciones:
+
+- `sdaf-bootstrap` ejecutado: existen `sdaf.config.yaml` y el árbol.
+- El repo adopta la línea `0.5.0` (opt-in): la línea base y G0.6 son de esa línea ([sección 0.5.0](#050-opt-in)).
+- Hay un humano que aceptará los ADRs y aprobará la línea base. Los agentes los dejan en Propuesto o Draft.
+
+Ejecutar [`sdaf-adopt-existing`](../skills/sdaf-adopt-existing/SKILL.md). Sus pasos (los cinco de ADR-008 §6 más el cierre en Gate 0):
+
+1. Inventariar las unidades del código existente y proponer cuáles quedan en el perímetro heredado.
+2. Rellenar la línea base descriptiva en Draft, con esas unidades marcadas «heredada».
+3. Proponer un ADR de reconocimiento por decisión previa a la adopción.
+4. Proponer el ADR de excepción de adopción ([H13 §3](../handbook/13-enmienda-excepciones-ciclo-de-vida.md#3-excepciones-temporales)), con caducidad propuesta y plan de retorno que lista las unidades heredadas.
+5. Abrir el primer PBI gobernado en Draft y, si procede, specs de caracterización ([H04 §4](../handbook/04-specification-standard.md#4-cabecera-obligatoria)).
+6. Ejecutar Gate 0: el STOP esperado es G0.1, G0.2, G0.4 y G0.6 (G0.3 solo si el PBI toca límites, [H14 §6](../handbook/14-architecture-description.md#6-cuándo-cambia)) hasta que un humano acepte los ADRs, apruebe la línea base y apruebe las specs con su acceptance.
+
+Aceptar el ADR de excepción legitima solo los cambios correctivos con worklog en el perímetro heredado; no desbloquea Gate 0 en el perímetro gobernado. Una feature nueva o un cambio de comportamiento pasa la unidad al perímetro gobernado antes de implementar.
+
+La caducidad la fija el humano. Caducada sin prórroga humana, la excepción deja de aplicar y el perímetro heredado pasa a Gate 0 completo: revisar entonces el plan de retorno.
+
+Limitaciones de las comprobaciones actuales:
+
+- [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs del core y aún no es apto para los de un consumidor con formato anterior: véase el aviso de la [sección 0.5.0](#050-opt-in).
+- `check-worklog-presence.py` solo mira `stack.src_path` y `stack.tests_path`: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).
+
 ## Upgrade
 
 Usar [`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md). Checklist:

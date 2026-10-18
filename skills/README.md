@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.4 |
+| Versión | 0.3.5 |
 | Estado | Approved |
-| Fecha | 2026-10-02T17:28+02:00 |
+| Fecha | 2026-10-13T15:59+02:00 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
 
 Playbooks operativos reutilizables. Viven en **`skills/`**. **No** dependen de Cursor ni de `.cursor/skills/`.
@@ -26,6 +26,7 @@ Citar `skill-id@version` en worklogs del consumidor.
 | ⛔ | `security-review` | alta | Approved | [security-review/SKILL.md](security-review/SKILL.md) |
 | 📝 | `spec-draft-pbi` | media | Approved | [spec-draft-pbi/SKILL.md](spec-draft-pbi/SKILL.md) |
 | 📝 | `adr-propose` | media | Approved | [adr-propose/SKILL.md](adr-propose/SKILL.md) |
+| 🛠️ | `sdaf-adopt-existing` | media | Draft | [sdaf-adopt-existing/SKILL.md](sdaf-adopt-existing/SKILL.md) |
 | 🛠️ | `sdaf-upgrade` | media | Approved | [sdaf-upgrade/SKILL.md](sdaf-upgrade/SKILL.md) |
 | 🛠️ | `devops-ci-gate` | baja | Approved | [devops-ci-gate/SKILL.md](devops-ci-gate/SKILL.md) |
 
@@ -47,6 +48,7 @@ Skills de stack o dominio no forman parte de este core.
 | 📖 | [H06 §6](../handbook/06-ai-agent-framework.md#6-skills) | Skills vs contratos vs rules |
 | ⛔ | [sdaf-gate0](sdaf-gate0/SKILL.md) | STOP antes de código de producto |
 | 🛠️ | [sdaf-bootstrap](sdaf-bootstrap/SKILL.md) | Primera materialización |
+| 🛠️ | [sdaf-adopt-existing](sdaf-adopt-existing/SKILL.md) | Adopción sobre código existente |
 | 🛠️ | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Pin y upgrade |
 | 📖 | [H10](../handbook/10-code-review-and-quality-gates.md) | testing-review-pr / QG |
 
@@ -54,5 +56,6 @@ Skills de stack o dominio no forman parte de este core.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.5 | 2026-10-13T15:59+02:00 | Añade `sdaf-adopt-existing` (Draft) al catálogo (sin cambio de norma) |
 | 0.3.4 | 2026-10-02T17:28+02:00 | Etiqueta «Catálogo v0.3.x» pasa a «Catálogo vigente» (sin cambio de norma) |
 | 0.3.3 | 2026-09-19 | Fila inicial de historial (cabecera ya publicada) |

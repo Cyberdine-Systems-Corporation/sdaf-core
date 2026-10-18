@@ -176,6 +176,7 @@ nav:
       - skills/README.md
       - sdaf-gate0: skills/sdaf-gate0/SKILL.md
       - sdaf-bootstrap: skills/sdaf-bootstrap/SKILL.md
+      - sdaf-adopt-existing: skills/sdaf-adopt-existing/SKILL.md
       - sdaf-upgrade: skills/sdaf-upgrade/SKILL.md
       - sdaf-agent-router: skills/sdaf-agent-router/SKILL.md
       - sdaf-worklog-handoff: skills/sdaf-worklog-handoff/SKILL.md
