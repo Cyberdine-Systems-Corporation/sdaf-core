@@ -77,6 +77,10 @@ G0.4 y G0.6 van juntos: las unidades que declara el PBI (G0.4) son las de la lí
 > [!NOTE]
 > **Excepción:** spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.
 
+> [!NOTE]
+> **Excepción de adopción** ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)): quien incorpora SDAF a un repo con código previo la registra como ADR de excepción (`Tipo | Excepción`, [H13 §3](13-enmienda-excepciones-ciclo-de-vida.md#3-excepciones-temporales)), con alcance, caducidad y plan de retorno. Define dos perímetros: el **gobernado**, con Gate 0 completo, y el **heredado** (el código existente al adoptar), que admite solo cambios correctivos con worklog. Una feature o un cambio de comportamiento en una unidad heredada la pasa al perímetro gobernado antes de implementar.
+> Gate 0 no cambia. Las [specs de caracterización](04-specification-standard.md#4-cabecera-obligatoria) describen código anterior a la adopción y no son la spec retroactiva de §8 (ADR-008 §5); sus tests no son código de producto ni sustituyen el acceptance del PBI ([H09 §2](09-testing-framework.md)). La línea base que describe las unidades heredadas pertenece a la línea `0.5.0` opt-in (véase la nota de G0.6 arriba).
+
 ---
 
 ## 4. Gate 1 — Durante la implementación
@@ -128,5 +132,6 @@ Handoffs: el saliente deja worklog + artefactos; el entrante no asume chat no re
 > [!CAUTION]
 > Implementación de producto fusionada o presentada **sin** Gate 0 es violación SDAF.
 > Debe registrarse, revertirse o regularizarse (spec retroactiva **prohibida** como hábito; solo con ADR de excepción y plan de corrección).
+> La adopción sobre código existente no es esa regularización: véase la nota de excepción de adopción en §3.
 
 ---

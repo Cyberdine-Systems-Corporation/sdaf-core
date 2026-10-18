@@ -25,6 +25,13 @@ La excepción que [H00 §3.4](00-preface.md) ya exige se registra como ADR con:
 
 Caducada sin prórroga humana, la excepción deja de aplicar. Force-push, reescritura de historia y auto-merge no se exceptúan ([H06 §7](06-ai-agent-framework.md)).
 
+**Excepción de adopción** ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)). Es un caso de la misma clase, no un tipo nuevo de ADR. Solo aplica con el ADR Aceptado; en Propuesto no hay excepción.
+
+- Alcance: exceptúa [H00 §3.4](00-preface.md) únicamente respecto de Gate 0 ([H05 §3](05-development-workflow.md)) y de la spec retroactiva ([H05 §8](05-development-workflow.md)), y solo para el perímetro heredado.
+- Caducidad obligatoria, fijada por el humano. Caducada sin prórroga, el perímetro heredado pasa a Gate 0 completo.
+- Plan de retorno: lista las unidades heredadas.
+- No se exceptúa Gate 0 en el perímetro gobernado ni nada de lo ya enumerado arriba (force-push, reescritura de historia, auto-merge).
+
 ## 4. Estados de capítulo
 
 | Estado | Significado |

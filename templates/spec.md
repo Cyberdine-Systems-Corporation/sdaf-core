@@ -10,7 +10,7 @@
 | ADRs relacionados | |
 | PBIs / backlog | PBI-XXX-000 |
 | Unidades | Unidad A, Unidad B (nombres exactos de la línea base) |
-| Origen | (opcional) p. ej. descripción de código anterior a la adopción |
+| Origen | (opcional) `caracterización` si describe código anterior a la adopción ([H04 §4](../handbook/04-specification-standard.md#4-cabecera-obligatoria)) |
 | Derivados | |
 
 ## Contexto

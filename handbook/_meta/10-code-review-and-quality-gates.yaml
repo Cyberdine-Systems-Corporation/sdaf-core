@@ -1,8 +1,8 @@
 archivo: 10-code-review-and-quality-gates.md
 titulo: 10 — Code Review and Quality Gates
-version: 0.5.0
+version: 0.5.1
 estado: Approved
-fecha: "2026-10-11T23:12+02:00"
+fecha: "2026-10-13T15:48+02:00"
 parte: III — Calidad y entrega
 norma_superior: "[05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md)"
 deriva_hacia: Agente Testing+Review, PRs, CI local del consumidor
@@ -21,6 +21,9 @@ relacionado:
   - destino: "[14-architecture-description.md](14-architecture-description.md)"
     por_que: Línea base arquitectónica; §3.2 y QG-Arch se evalúan contra ella
 historial:
+  - version: 0.5.1
+    fecha: "2026-10-13T15:48+02:00"
+    cambio: "Nota de línea opt-in 0.5.0 junto a QG-Arch (sin cambio de norma)"
   - version: 0.5.0
     fecha: "2026-10-11T23:12+02:00"
     cambio: "§2, §3.1, §3.2 y QG-Arch contra la línea base (ADR-005); cambio incompatible, línea 0.5.0 opt-in"
@@ -37,9 +40,9 @@ historial:
     fecha: 2026-09-18
     cambio: "Draft: trasplante genérico del extract H17; coding standards fuera del core"
 cabecera:
-  Versión: 0.5.0
+  Versión: 0.5.1
   Estado: Approved
-  Fecha: "2026-10-11T23:12+02:00"
+  Fecha: "2026-10-13T15:48+02:00"
   Parte: III — Calidad y entrega
   Norma superior: "[05-development-workflow.md](05-development-workflow.md), [02-engineering-principles.md](02-engineering-principles.md), [09-testing-framework.md](09-testing-framework.md), [12-security-standards.md](12-security-standards.md), [08-agent-traceability.md](08-agent-traceability.md)"
   Deriva hacia: Agente Testing+Review, PRs, CI local del consumidor
