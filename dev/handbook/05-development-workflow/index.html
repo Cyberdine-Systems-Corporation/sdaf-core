@@ -3486,6 +3486,8 @@
       
         
       
+        
+      
     
     
     
@@ -3583,6 +3585,34 @@
     
   
     sdaf-bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/sdaf-adopt-existing/SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sdaf-adopt-existing
   
 
     
@@ -4539,6 +4569,9 @@ G0.6 y la línea base (<a href="../14-architecture-description/">H14</a>) perten
 Gate 0. Si falta G0.1–G0.6, <strong>STOP</strong>. No hay atajo de agente.</p>
 <p>[!NOTE]
 <strong>Excepción:</strong> spike técnico acotado, con ADR de excepción, duración máxima y sin merge a demo sin convertir a spec+tests.</p>
+<p>[!NOTE]
+<strong>Excepción de adopción</strong> (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): quien incorpora SDAF a un repo con código previo la registra como ADR de excepción (<code>Tipo | Excepción</code>, <a href="../13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>), con alcance, caducidad y plan de retorno. Define dos perímetros: el <strong>gobernado</strong>, con Gate 0 completo, y el <strong>heredado</strong> (el código existente al adoptar), que admite solo cambios correctivos con worklog. Una feature o un cambio de comportamiento en una unidad heredada la pasa al perímetro gobernado antes de implementar.
+Gate 0 no cambia. Las <a href="../04-specification-standard/#4-cabecera-obligatoria">specs de caracterización</a> describen código anterior a la adopción y no son la spec retroactiva de §8 (ADR-008 §5); sus tests no son código de producto ni sustituyen el acceptance del PBI (<a href="../09-testing-framework/">H09 §2</a>). La línea base que describe las unidades heredadas pertenece a la línea <code>0.5.0</code> opt-in (véase la nota de G0.6 arriba).</p>
 </blockquote>
 <hr />
 <h2 id="4-gate-1-durante-la-implementación">4. Gate 1 — Durante la implementación<a class="headerlink" href="#4-gate-1-durante-la-implementación" title="Permanent link">&para;</a></h2>
@@ -4645,7 +4678,8 @@ Gate 0. Si falta G0.1–G0.6, <strong>STOP</strong>. No hay atajo de agente.</p>
 <blockquote>
 <p>[!CAUTION]
 Implementación de producto fusionada o presentada <strong>sin</strong> Gate 0 es violación SDAF.
-Debe registrarse, revertirse o regularizarse (spec retroactiva <strong>prohibida</strong> como hábito; solo con ADR de excepción y plan de corrección).</p>
+Debe registrarse, revertirse o regularizarse (spec retroactiva <strong>prohibida</strong> como hábito; solo con ADR de excepción y plan de corrección).
+La adopción sobre código existente no es esa regularización: véase la nota de excepción de adopción en §3.</p>
 </blockquote>
 <hr />
 

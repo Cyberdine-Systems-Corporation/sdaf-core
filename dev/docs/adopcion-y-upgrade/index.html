@@ -1706,6 +1706,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#adoptar-sobre-un-repo-con-código" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adoptar sobre un repo con código
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3611,6 +3622,8 @@
       
         
       
+        
+      
     
     
     
@@ -3708,6 +3721,34 @@
     
   
     sdaf-bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/sdaf-adopt-existing/SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sdaf-adopt-existing
   
 
     
@@ -4494,6 +4535,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#adoptar-sobre-un-repo-con-código" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adoptar sobre un repo con código
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4779,6 +4831,30 @@ El pin recomendado del árbol es <code>v0.5.0</code>. <code>sdaf.version</code> 
 </tr>
 </tbody>
 </table>
+<h3 id="adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código<a class="headerlink" href="#adoptar-sobre-un-repo-con-código" title="Permanent link">&para;</a></h3>
+<p>Aplica cuando el repo ya tiene código previo a la adopción y no puede cumplir Gate 0 con él desde el primer día (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>). En un repo vacío, usar el flujo anterior.</p>
+<p>Precondiciones:</p>
+<ul>
+<li><code>sdaf-bootstrap</code> ejecutado: existen <code>sdaf.config.yaml</code> y el árbol.</li>
+<li>El repo adopta la línea <code>0.5.0</code> (opt-in): la línea base y G0.6 son de esa línea (<a href="#050-opt-in">sección 0.5.0</a>).</li>
+<li>Hay un humano que aceptará los ADRs y aprobará la línea base. Los agentes los dejan en Propuesto o Draft.</li>
+</ul>
+<p>Ejecutar <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a>. Sus pasos (los cinco de ADR-008 §6 más el cierre en Gate 0):</p>
+<ol>
+<li>Inventariar las unidades del código existente y proponer cuáles quedan en el perímetro heredado.</li>
+<li>Rellenar la línea base descriptiva en Draft, con esas unidades marcadas «heredada».</li>
+<li>Proponer un ADR de reconocimiento por decisión previa a la adopción.</li>
+<li>Proponer el ADR de excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>), con caducidad propuesta y plan de retorno que lista las unidades heredadas.</li>
+<li>Abrir el primer PBI gobernado en Draft y, si procede, specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>).</li>
+<li>Ejecutar Gate 0: el STOP esperado es G0.1, G0.2, G0.4 y G0.6 (G0.3 solo si el PBI toca límites, <a href="../../handbook/14-architecture-description/#6-cuándo-cambia">H14 §6</a>) hasta que un humano acepte los ADRs, apruebe la línea base y apruebe las specs con su acceptance.</li>
+</ol>
+<p>Aceptar el ADR de excepción legitima solo los cambios correctivos con worklog en el perímetro heredado; no desbloquea Gate 0 en el perímetro gobernado. Una feature nueva o un cambio de comportamiento pasa la unidad al perímetro gobernado antes de implementar.</p>
+<p>La caducidad la fija el humano. Caducada sin prórroga humana, la excepción deja de aplicar y el perímetro heredado pasa a Gate 0 completo: revisar entonces el plan de retorno.</p>
+<p>Limitaciones de las comprobaciones actuales:</p>
+<ul>
+<li><a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs del core y aún no es apto para los de un consumidor con formato anterior: véase el aviso de la <a href="#050-opt-in">sección 0.5.0</a>.</li>
+<li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
+</ul>
 <h2 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h2>
 <p>Usar <a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a>. Checklist:</p>
 <ol>

@@ -3558,6 +3558,8 @@
       
         
       
+        
+      
     
     
     
@@ -3655,6 +3657,34 @@
     
   
     sdaf-bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/sdaf-adopt-existing/SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    sdaf-adopt-existing
   
 
     
@@ -4695,10 +4725,11 @@
 </tr>
 <tr>
 <td>Origen</td>
-<td>Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>). Los valores permitidos los fija el procedimiento de adopción</td>
+<td>Opcional. Procedencia de la spec cuando no nace de un PBI nuevo, p. ej. la descripción de código anterior a la adopción (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>). Lista cerrada con un único valor, <code>caracterización</code>: la spec describe el comportamiento observado de código anterior a la adopción (ADR-008 §5). Sin el campo, la spec nace de un PBI nuevo</td>
 </tr>
 </tbody>
 </table>
+<p>Una spec con <code>Origen: caracterización</code> describe lo observado, no lo deseado, y lleva tests de caracterización. No es la spec retroactiva de <a href="../05-development-workflow/#8-violaciones">H05 §8</a> y solo pasa a <strong>Approved</strong> tras una revisión humana que decide si ese comportamiento es el deseado. Este <code>Origen</code> (procedencia de la spec) no es la columna «Origen» de las integraciones de la línea base ni el «Origen de cambios» del worklog.</p>
 <p>Solo specs <strong>Approved</strong> autorizan implementación de producto (salvo spike explícito con ADR de excepción y fecha de caducidad).</p>
 <hr />
 <h2 id="5-contenido-mínimo-por-tipo">5. Contenido mínimo por tipo<a class="headerlink" href="#5-contenido-mínimo-por-tipo" title="Permanent link">&para;</a></h2>
