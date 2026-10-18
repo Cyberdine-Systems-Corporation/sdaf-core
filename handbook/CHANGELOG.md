@@ -1,5 +1,18 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.5.1 — 2026-10-18T19:21+02:00
+
+Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Añade un procedimiento **opcional** para adoptar SDAF sobre un repo con código previo ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)); no añade gates ni cambia los existentes ([H13 §5](13-enmienda-excepciones-ciclo-de-vida.md)). Fusionado por @mortiz-iadev (CODEOWNERS) en el PR #50.
+
+- Capítulos: `H05` `0.6.0` (nota de la excepción de adopción y de los perímetros gobernado y heredado). `H13` `0.5.0` (§3: la excepción de adopción como caso de la excepción temporal; ADR con `Tipo | Excepción`, sin tipo nuevo). `H04` `0.4.0` (§4: «Origen» es lista cerrada y suma el valor `caracterización`; specs de caracterización). `H10` `0.5.1` (nota de la línea `0.5.0` opt-in junto a QG-Arch, sin cambio de norma).
+- Skills: [`sdaf-adopt-existing`](../skills/sdaf-adopt-existing/SKILL.md) `0.1.0` nueva (Draft, pendiente de aprobación humana; ADR-008 §6). Catálogo [`skills/README.md`](../skills/README.md) `0.3.5`.
+- Plantillas: `AGENTS.md.template` `0.5.1`. [`spec.md`](../templates/spec.md) (valor de Origen), [`adr.md`](../templates/adr.md) (marca «decisión heredada» para ADRs de reconocimiento) y [`architecture-description.md`](../templates/architecture-description.md) (marca «heredada» en unidades), sin bump de plantillas.
+- Guía: sección «Adoptar sobre un repo con código» en [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md#adoptar-sobre-un-repo-con-código). Navegación de MkDocs al día.
+- Diferido a un parche posterior (reabrible): H06 §6 (catálogo), `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` aún no listan la skill ni conocen los perímetros. Limitación de tooling: `check-worklog-presence.py` solo mira `stack.src_path` y `stack.tests_path` (la línea 0.6.0 trae unidades de código).
+- Worklog: [`worklogs/INIT-arquitectura/Iteration-022.md`](../worklogs/INIT-arquitectura/Iteration-022.md).
+
+Quien no adopte sobre código existente no tiene que hacer nada. `sdaf.version` sigue en `"0.5.0"`. Pin de árbol: `v0.5.1`, que se crea tras el merge. Quien siga en `v0.5.0` o anterior no está obligado a moverlo.
+
 ## 0.5.0 — 2026-10-12T18:47+02:00
 
 Línea nueva de constitución, **opt-in**, con cambio **incompatible** en Gate 0 (G0.6 nuevo; G0.3 y G0.4 redefinidos; [H13 §5](13-enmienda-excepciones-ciclo-de-vida.md)). **No** rompe citas `H00`–`H13`: H14 se añade sin renumerar. Aceptada por humano: Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS). Quien se quede en `0.4.x` o anterior no está obligado.
