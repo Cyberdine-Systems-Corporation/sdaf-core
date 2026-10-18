@@ -245,6 +245,17 @@ Diferido a un parche posterior: el catálogo de H06 §6, `sdaf-gate0` y `sdaf-bo
 
 No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
 
+## 0.5.2 (parche)
+
+Completa lo diferido en 0.5.1: el catálogo de [H06 §6](../handbook/06-ai-agent-framework.md) lista [`sdaf-adopt-existing`](../skills/sdaf-adopt-existing/SKILL.md) (`0.1.1`, Approved por aprobación humana), [H08 §5](../handbook/08-agent-traceability.md#5-cuándo-crear-worklog) exige worklog en los cambios correctivos del perímetro heredado, [`sdaf-gate0`](../skills/sdaf-gate0/SKILL.md) no hace STOP en ellos con el ADR de excepción de adopción Aceptado y vigente, y [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) deriva a la skill si el repo ya tiene código previo. No añade gates ni cambia los del perímetro gobernado.
+
+Al pinnear `v0.5.2`:
+
+1. Quien no adopte sobre código existente: nada que hacer.
+2. Quien lo haga, en la línea `0.5.0`: seguir [Adoptar sobre un repo con código](#adoptar-sobre-un-repo-con-código); un cambio correctivo en el perímetro heredado ya no se detiene en Gate 0 si el ADR sigue vigente, y una feature pasa antes al perímetro gobernado.
+
+No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
+
 ## Fuera de 0.5.x
 
 Sin implementar en esta línea:

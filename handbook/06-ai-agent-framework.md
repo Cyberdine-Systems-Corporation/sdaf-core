@@ -92,7 +92,7 @@ Catálogo core:
 | Prioridad | Skills |
 |-----------|--------|
 | Alta | `sdaf-gate0`, `sdaf-worklog-handoff`, `sdaf-agent-router`, `sdaf-bootstrap`, `testing-review-pr`, `security-review` |
-| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-upgrade` |
+| Media | `spec-draft-pbi`, `adr-propose`, `sdaf-adopt-existing`, `sdaf-upgrade` |
 | Baja | `devops-ci-gate` |
 
 ---

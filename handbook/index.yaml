@@ -40,7 +40,7 @@ capitulos:
   - id: 06-ai-agent-framework
     archivo: 06-ai-agent-framework.md
     meta: _meta/06-ai-agent-framework.yaml
-    version: "0.3.4"
+    version: "0.3.5"
     estado: Approved
     titulo: 06 — AI Agent Framework
   - id: 07-prompt-engineering-standard
@@ -52,7 +52,7 @@ capitulos:
   - id: 08-agent-traceability
     archivo: 08-agent-traceability.md
     meta: _meta/08-agent-traceability.yaml
-    version: "0.4.0"
+    version: "0.5.0"
     estado: Approved
     titulo: 08 — Agent Traceability Framework
   - id: 09-testing-framework

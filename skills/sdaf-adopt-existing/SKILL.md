@@ -8,10 +8,10 @@ description: Adopta SDAF sobre un repo con código existente (inventario de unid
 | Campo | Valor |
 |--------|--------|
 | ID | sdaf-adopt-existing |
-| Versión | 0.1.0 |
-| Estado | Draft |
+| Versión | 0.1.1 |
+| Estado | Approved |
 | Prioridad | media |
-| Fecha | 2026-10-13T15:59+02:00 |
+| Fecha | 2026-10-18T20:14+02:00 |
 | Norma | [ADR-008](../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md), [H05 §3](../../handbook/05-development-workflow.md), [H13 §3](../../handbook/13-enmienda-excepciones-ciclo-de-vida.md#3-excepciones-temporales), [H04 §4](../../handbook/04-specification-standard.md#4-cabecera-obligatoria), [H14](../../handbook/14-architecture-description.md) |
 
 ## Disparadores
@@ -21,7 +21,7 @@ description: Adopta SDAF sobre un repo con código existente (inventario de unid
 
 ## Pasos
 
-Citar `sdaf-adopt-existing@0.1.0` una sola vez, en el campo `skills` del worklog de adopción.
+Citar `sdaf-adopt-existing@0.1.1` una sola vez, en el campo `skills` del worklog de adopción.
 
 1. Inventariar las unidades del código existente con nombres estables (el tipo de unidad es libre), proponer cuáles quedan en el perímetro heredado y registrar el inventario en la sección «Inventario» del worklog.
 2. Rellenar `architecture/description.md` (la crea bootstrap; si no existe, crearla desde [`templates/architecture-description.md`](../../templates/architecture-description.md)) como línea base descriptiva en Draft: documenta lo existente tal como es, marca «heredada» las unidades heredadas y recoge las dependencias observadas o `N/A`, sin inventar reglas normativas de «permitida/prohibida». Se aprueba como descripción, no como diseño deseado.
@@ -36,7 +36,7 @@ Citar `sdaf-adopt-existing@0.1.0` una sola vez, en el campo `skills` del worklog
 - [ ] El recorrido termina en el STOP esperado de Gate 0 (G0.1, G0.2, G0.4, G0.6; G0.3 si el PBI toca límites). Orden humano: aceptar los ADRs, luego aprobar la línea base completando su sección de decisiones vigentes.
 - [ ] Aceptar el ADR de excepción legitima solo los cambios correctivos en el perímetro heredado: no desbloquea Gate 0 en el perímetro gobernado (lo hacen specs Approved con acceptance y la línea base Approved).
 - [ ] Nada del perímetro heredado tocado salvo cambios correctivos con worklog.
-- [ ] Worklog con los motivos del STOP y `sdaf-adopt-existing@0.1.0` en `skills`.
+- [ ] Worklog con los motivos del STOP y `sdaf-adopt-existing@0.1.1` en `skills`.
 
 ## Restricciones
 
@@ -59,4 +59,5 @@ Citar `sdaf-adopt-existing@0.1.0` una sola vez, en el campo `skills` del worklog
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.1 | 2026-10-18T20:14+02:00 | Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS; el agente transcribe la aprobación dada en el encargo, H00 §3.3) |
 | 0.1.0 | 2026-10-13T15:59+02:00 | Primera versión (ADR-008); Draft, pendiente de aprobación humana |
