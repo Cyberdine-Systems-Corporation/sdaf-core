@@ -232,6 +232,19 @@ Los ADRs del consumidor no se reescriben. [`scripts/check-adrs.py`](../scripts/c
 
 No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
 
+## 0.5.1 (parche)
+
+Procedimiento **opcional** para adoptar SDAF sobre un repo con código previo ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)): skill [`sdaf-adopt-existing`](../skills/sdaf-adopt-existing/SKILL.md) (Draft, pendiente de aprobación humana), excepción de adopción ([H13 §3](../handbook/13-enmienda-excepciones-ciclo-de-vida.md#3-excepciones-temporales)) y specs de caracterización ([H04 §4](../handbook/04-specification-standard.md#4-cabecera-obligatoria)). No añade gates ni cambia los existentes.
+
+Al pinnear `v0.5.1`:
+
+1. Quien no adopte sobre código existente: nada que hacer.
+2. Quien lo haga, en la línea `0.5.0`: seguir [Adoptar sobre un repo con código](#adoptar-sobre-un-repo-con-código).
+
+Diferido a un parche posterior: el catálogo de H06 §6, `sdaf-gate0` y `sdaf-bootstrap` aún no conocen la skill ni los perímetros.
+
+No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
+
 ## Fuera de 0.5.x
 
 Sin implementar en esta línea:
