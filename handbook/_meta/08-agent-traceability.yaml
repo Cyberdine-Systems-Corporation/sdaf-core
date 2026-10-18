@@ -1,8 +1,8 @@
 archivo: 08-agent-traceability.md
 titulo: 08 — Agent Traceability Framework
-version: 0.4.0
+version: 0.5.0
 estado: Approved
-fecha: "2026-09-24T18:54+02:00"
+fecha: "2026-10-18T19:44+02:00"
 parte: II — Ingeniería IA
 norma_superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md)"
 deriva_hacia: "`worklogs/` del consumidor, templates"
@@ -17,6 +17,9 @@ relacionado:
   - destino: "[10-code-review-and-quality-gates.md](10-code-review-and-quality-gates.md)"
     por_que: Origen de cambios en Gate 2 / QG-Review
 historial:
+  - version: 0.5.0
+    fecha: "2026-10-18T19:44+02:00"
+    cambio: "§5: el cambio correctivo en el perímetro heredado (excepción de adopción, ADR-008) exige worklog"
   - version: 0.4.0
     fecha: "2026-09-24T18:54+02:00"
     cambio: "Frontmatter; inicio/fin con hora y zona; tiempo ISO 8601 y coste estructurado (N/D solo con motivo); campos commit/PR/rama/SHA y resumen_acumulado; tabla vigente sigue válida (sin backfill)"
@@ -39,9 +42,9 @@ historial:
     fecha: 2026-08-24
     cambio: Extracción genérica; worklogs en el consumidor (ADR-008)
 cabecera:
-  Versión: 0.4.0
+  Versión: 0.5.0
   Estado: Approved
-  Fecha: "2026-09-24T18:54+02:00"
+  Fecha: "2026-10-18T19:44+02:00"
   Parte: II — Ingeniería IA
   Norma superior: "[06-ai-agent-framework.md](06-ai-agent-framework.md), [07-prompt-engineering-standard.md](07-prompt-engineering-standard.md), [05-development-workflow.md](05-development-workflow.md)"
   Deriva hacia: "`worklogs/` del consumidor, templates"

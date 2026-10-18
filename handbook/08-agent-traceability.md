@@ -81,6 +81,7 @@ Gate 2 / QG-Review comprueba este campo cuando el diff toca código de producto 
 | Cambio de handbook/ADR/spec material | Sí |
 | Typo trivial sin decisión | No obligatorio |
 | Spike con ADR de excepción | Sí |
+| Cambio correctivo en el perímetro heredado (excepción de adopción, [ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)) | Sí |
 | Ejecución que toca código de producto | Sí |
 
 ---
