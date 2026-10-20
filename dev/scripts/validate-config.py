@@ -36,8 +36,9 @@ EXTENSION_IDS = {
     "infrastructure",
     "ai",
 }
-# Última release de gentle-ai que incluye el componente sdd (retirado en main
-# por el merge 520ed86e8). Un SHA no se evalúa: sin red no se sabe si es anterior.
+# Última release de gentle-ai que incluye el componente sdd (retirado en main por
+# el merge 520ed86e8 y ausente desde v4.0.0). Un SHA no se evalúa: sin red no se sabe
+# si es anterior.
 GENTLE_AI_LAST_SDD = (3, 7, 0)
 SEMVER_RE = re.compile(r"^([0-9]+)\.([0-9]+)\.([0-9]+)$")
 

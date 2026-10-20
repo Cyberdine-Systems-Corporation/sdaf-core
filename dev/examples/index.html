@@ -4521,9 +4521,9 @@
 <p>Opcional. Declara si el consumidor adopta <a href="../docs/integracion-gentle-ai/">gentle-ai</a> y qué versión (<a href="../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>).</p>
 <ul>
 <li>Bloque ausente o <code>null</code>: no adoptado. Es el default y el de los ejemplos 01–07.</li>
-<li>Una release (<code>"3.7.0"</code>) o un SHA de commit completo: adoptado. El <code>AGENTS.md</code> lleva la cláusula de precedencia de la guía.</li>
-<li>Releases ≤ <code>3.7.0</code>: incluyen el componente <code>sdd</code>, incompatible con Gate 0. El validador avisa (<strong>T1</strong>) y el componente no se instala.</li>
-<li>08 declara el SHA <code>520ed86e8c598b01f439e28c34d391cd6f1744e3</code>, el commit de <code>main</code> que retira SDD: es reproducible y no dispara T1.</li>
+<li>Una release (<code>"4.2.0"</code>) o un SHA de commit completo: adoptado. El <code>AGENTS.md</code> lleva la cláusula de precedencia de la guía.</li>
+<li>Releases ≤ <code>3.7.0</code>: incluyen el componente <code>sdd</code>, incompatible con Gate 0. El validador avisa (<strong>T1</strong>) y el componente no se instala; desde v4.0.0 no existe.</li>
+<li>08 declara el SHA <code>4acaf4241beae1e0c977c92dfe406a270f8d40de</code>, el commit de la release v4.2.0: es reproducible y no dispara T1.</li>
 </ul>
 <p>No cambia Gate 0 ni el router. Solo aparece en 08.</p>
 <hr />
