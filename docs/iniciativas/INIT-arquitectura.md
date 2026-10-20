@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.22 |
+| Versión | 0.1.23 |
 | Estado | Draft |
-| Fecha | 2026-10-18T20:14+02:00 |
+| Fecha | 2026-10-20T21:56+02:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md), [Iteration-021](../../worklogs/INIT-arquitectura/Iteration-021.md), [Iteration-022](../../worklogs/INIT-arquitectura/Iteration-022.md), [Iteration-023](../../worklogs/INIT-arquitectura/Iteration-023.md) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md), [Iteration-021](../../worklogs/INIT-arquitectura/Iteration-021.md), [Iteration-022](../../worklogs/INIT-arquitectura/Iteration-022.md), [Iteration-023](../../worklogs/INIT-arquitectura/Iteration-023.md), [Iteration-024](../../worklogs/INIT-arquitectura/Iteration-024.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -97,7 +97,7 @@ Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a 
 
 Quien se quede en una línea anterior no está obligado (precedente de `0.3.0` y `0.4.0`).
 
-Estado a 2026-10-18: `v0.4.3`, `v0.5.0` y `v0.5.1` publicadas; `v0.5.2` con contenido listo en la rama, pendiente de revisión y publicación; `v0.6.0` pendiente.
+Estado a 2026-10-20: `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.5.2` publicadas; `v0.6.0` pendiente.
 
 **Entrega de `v0.5.0`** (decidida 2026-10-07T18:41+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat). Estrategia `auto-chain` con cadena `feature-branch-chain` (skill `chained-pr`): rama tracker `feat/linea-0.5.0` con PR en borrador, sin fusionar hasta completar la cadena; cada slice es un PR hijo (≤400 líneas cambiadas y ≤60 min de revisión) que apunta a la rama del anterior, y el primero al tracker. Orden: S1 ciclo de vida de ADRs (ARQ-3.3); S2 H14 y plantilla de línea base (3.1, 3.2); S3 specs, árbol y PBI (3.5, 3.4, 3.10); S4a precedencia y pipeline (3.7, 3.8); S4b gates y Architecture Agent (3.6, 3.9); S5 bootstrap e idioma (3.11, 3.12); S6 release (3.13). S1 se entrega con `size:exception` aceptada: 574 líneas, más de la mitad tests, fixtures, worklog y plan. Los slices normativos no pueden aterrizar solos en `main` (H14 y G0.6 se citan entre sí), por eso la cadena no se apila sobre `main`. Cada commit local pide confirmación del humano.
 
@@ -285,7 +285,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 **ARQ-5.3 — Skill `sdaf-adopt-existing`** (hecho: v0.5.1, #50)
 - Artefactos: `skills/sdaf-adopt-existing/SKILL.md`, `skills/README.md`, `AGENTS.md.template`, `docs/adopcion-y-upgrade.md` (sección «Adoptar sobre un repo con código»).
 - Aceptación: recorrido completo en un repo de prueba con código previo, sin violar Gate 0 en el perímetro gobernado.
-- Evidencia: recorrido en repo sintético de tres unidades; el hallazgo principal (la skill predecía mal Gate 0) se corrigió en la skill 0.1.0 (Draft; aprobada como 0.1.1 el 2026-10-18, decisión M). Lo diferido (recomendación del asistente, no objetada por el humano) se reabrió por decisión del humano el 2026-10-18 («Lo hacemos ahora») y se completa en `v0.5.2`: H06 §6, `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` (completado en v0.5.2, pendiente de publicación).
+- Evidencia: recorrido en repo sintético de tres unidades; el hallazgo principal (la skill predecía mal Gate 0) se corrigió en la skill 0.1.0 (Draft; aprobada como 0.1.1 el 2026-10-18, decisión M). Lo diferido (recomendación del asistente, no objetada por el humano) se reabrió por decisión del humano el 2026-10-18 («Lo hacemos ahora») y se completa en `v0.5.2`: H06 §6, `sdaf-gate0`, H08 §5 y `sdaf-bootstrap` (completado en v0.5.2, #53).
 
 ### Bloque 6 — Automatización (transversal)
 
@@ -323,7 +323,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 | H-9 | 3.8, 3.9, 3.12 |
 | H-10 | 1.1, 1.2, 1.3, 1.4 |
 
-Cerrados a 2026-10-18 (al menos un PBI hecho): H-1, H-2, H-3, H-4, H-7, H-8, H-9 y H-10 (8 de 10). Abiertos: H-5 y H-6 (`v0.6.0`).
+Cerrados a 2026-10-20 (al menos un PBI hecho): H-1, H-2, H-3, H-4, H-7, H-8, H-9 y H-10 (8 de 10). Abiertos: H-5 y H-6 (`v0.6.0`).
 
 ---
 
@@ -402,7 +402,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 - [x] D-1 a D-9 cerradas y registradas (Iteration-005).
 - [x] ADR-005 a 008 Aceptados o Rechazados por humano.
-- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente (publicadas `v0.4.3`, `v0.5.0` y `v0.5.1`; `v0.5.2` con contenido listo y pendiente de revisión y publicación; falta `v0.6.0`).
+- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente (publicadas `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.5.2`; falta `v0.6.0`).
 - [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6): 8 de 10 cerrados; faltan H-5 y H-6.
 - [ ] Piloto sin bloqueos en cada línea (hecho para `0.5.0`, sin bloqueos; en `0.5.1`, recorrido en repo sintético sin bloqueantes tras corregir la skill; pendiente en `0.6.0`).
 - [ ] Worklog por iteración con cambios materiales de handbook o ADR ([H08 §5](../../handbook/08-agent-traceability.md#5-cuándo-crear-worklog)).
@@ -413,11 +413,11 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 1. `v0.5.0` publicada (tag sobre `66ee77b`). La cadena de entrega queda cerrada y sus ramas, borradas.
 2. `v0.5.1` publicada (tag sobre `69af58f`; #50, #51 y #52).
-3. `v0.5.2` (parche: lo diferido de `v0.5.1`): contenido listo en la rama `docs/completar-adopcion-v0.5.2`. Siguen: revisión humana, PR, tag, GitHub Release y chore de publicación, por orden humana.
-4. Después, `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo.
-5. Bloque 6: Gate 0 semiautomático, coherencia arquitectónica y modo consumidor de `check-adrs.py` (hallazgo del piloto, ARQ-6.3). ARQ-6.3 y ARQ-6.1 ya pueden empezar.
+3. `v0.5.2` publicada (parche: lo diferido de `v0.5.1`): tag sobre `bd77795`; #53 (contenido y preparación) y #54 (chore de publicación); ramas borradas.
+4. Siguiente trabajo: bloque 6 (Gate 0 semiautomático, coherencia arquitectónica y modo consumidor de `check-adrs.py`, hallazgo del piloto). ARQ-6.3 y ARQ-6.1 ya pueden empezar.
+5. `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo.
 6. Decisión humana abierta: K (adopción en el consumidor del piloto). La skill `sdaf-adopt-existing` ya está aprobada (0.1.1, decisión M cerrada el 2026-10-18).
-7. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin en `v0.5.0` y la línea base aprobada por un humano.
+7. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin recomendado en `v0.5.2` y la línea base aprobada por un humano.
 
 ---
 
@@ -434,6 +434,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.23 | 2026-10-20T21:56+02:00 | `v0.5.2` publicada (tag sobre `bd77795`; #53 y #54): completa lo diferido de `v0.5.1` y deja `sdaf-adopt-existing` 0.1.1 aprobada; siguiente trabajo: bloque 6; worklog Iteration-024 |
 | 0.1.22 | 2026-10-18T20:14+02:00 | Skill `sdaf-adopt-existing` 0.1.1 Approved por aprobación humana (decisión M cerrada, 2026-10-18); sin cambio de norma |
 | 0.1.21 | 2026-10-18T19:56+02:00 | `v0.5.1` publicada (tag sobre `69af58f`; #50, #51 y #52): ARQ-5.1 a 5.3 hechos, H-8 cerrado (8 de 10); `v0.5.2` completa lo diferido (H06 0.3.5, H08 0.5.0, sdaf-gate0 0.4.0, sdaf-bootstrap 0.5.1), pendiente de revisión; worklog Iteration-023 |
 | 0.1.20 | 2026-10-18T18:43+02:00 | ARQ-5.1 a 5.3 (`v0.5.1`): excepción de adopción (H05 0.6.0, H13 0.5.0), specs de caracterización y ADRs de reconocimiento (H04 0.4.0, plantillas), skill `sdaf-adopt-existing` 0.1.0 (Draft) y nota de línea opt-in en H10 0.5.1; recorrido de aceptación en repo sintético; pendiente de revisión; worklog Iteration-022 |
