@@ -8,7 +8,7 @@ Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Complet
 - Skills: [`sdaf-gate0`](../skills/sdaf-gate0/SKILL.md) `0.4.0` (paso 8: la excepción de adopción no hace STOP en un cambio correctivo del perímetro heredado con el ADR Aceptado y vigente; una feature o un cambio de comportamiento pasa antes al perímetro gobernado, donde Gate 0 no cambia). [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) `0.5.1` (deriva a `sdaf-adopt-existing` si el repo ya tiene código previo). [`sdaf-adopt-existing`](../skills/sdaf-adopt-existing/SKILL.md) `0.1.1` Approved por aprobación humana de Manuel Ortiz de Villajos Quirós (2026-10-18; el agente transcribe, H00 §3.3); catálogo [`skills/README.md`](../skills/README.md) `0.3.6`.
 - Worklog: [`worklogs/INIT-arquitectura/Iteration-023.md`](../worklogs/INIT-arquitectura/Iteration-023.md).
 
-Quien no adopte sobre código existente no tiene que hacer nada. `sdaf.version` sigue en `"0.5.0"`. Pin de árbol: `v0.5.2`, que se crea tras el merge. Quien siga en `v0.5.1` o anterior no está obligado a moverlo.
+Quien no adopte sobre código existente no tiene que hacer nada. `sdaf.version` sigue en `"0.5.0"`. Pin de árbol: `v0.5.2`. Quien siga en `v0.5.1` o anterior no está obligado a moverlo.
 
 ## 0.5.1 — 2026-10-18T19:21+02:00
 
