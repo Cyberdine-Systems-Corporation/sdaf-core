@@ -105,9 +105,9 @@ No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o 
 Opcional. Declara si el consumidor adopta [gentle-ai](../docs/integracion-gentle-ai.md) y qué versión ([ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md)).
 
 - Bloque ausente o `null`: no adoptado. Es el default y el de los ejemplos 01–07.
-- Una release (`"3.7.0"`) o un SHA de commit completo: adoptado. El `AGENTS.md` lleva la cláusula de precedencia de la guía.
-- Releases ≤ `3.7.0`: incluyen el componente `sdd`, incompatible con Gate 0. El validador avisa (**T1**) y el componente no se instala.
-- 08 declara el SHA `520ed86e8c598b01f439e28c34d391cd6f1744e3`, el commit de `main` que retira SDD: es reproducible y no dispara T1.
+- Una release (`"4.2.0"`) o un SHA de commit completo: adoptado. El `AGENTS.md` lleva la cláusula de precedencia de la guía.
+- Releases ≤ `3.7.0`: incluyen el componente `sdd`, incompatible con Gate 0. El validador avisa (**T1**) y el componente no se instala; desde v4.0.0 no existe.
+- 08 declara el SHA `4acaf4241beae1e0c977c92dfe406a270f8d40de`, el commit de la release v4.2.0: es reproducible y no dispara T1.
 
 No cambia Gate 0 ni el router. Solo aparece en 08.
 

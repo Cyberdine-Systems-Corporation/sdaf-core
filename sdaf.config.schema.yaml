@@ -79,10 +79,10 @@ Tooling externo de agentes que el consumidor **adopta por elección propia** ([A
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
-| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada: una release (`"3.7.0"`) o un SHA de commit completo. No una rama: `main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |
+| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada: una release (`"4.2.0"`) o un SHA de commit completo. No una rama: `main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |
 
-- **T1 (aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.
-- Un SHA no dispara T1: el validador no sabe, sin red, si es anterior a la retirada de SDD. Para adoptar gentle-ai sin SDD antes de la próxima release, declara un SHA de `main` igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.
+- **T1 (aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala (desde v4.0.0 el componente no existe; [ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.
+- Un SHA no dispara T1: el validador no sabe, sin red, si es anterior a la retirada de SDD (v4.0.0). Para adoptar gentle-ai sin SDD, declara una release ≥ `4.0.0` (la guía revisa `4.2.0`) o un SHA igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.
 
 ---
 

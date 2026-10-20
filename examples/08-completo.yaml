@@ -3,7 +3,7 @@
 # (muchos activos + pack + fusiones + rutas custom = más superficie de handoff).
 # Combina: version, name, language, pack, src_path, tests_path, active, stubs, fusions, tooling.
 # tooling es opcional: aquí se declara gentle-ai solo para mostrar la clave (ADR-004).
-# El SHA es el commit de main que retira SDD; se instala con `go install .../cmd/gentle-ai@<sha>`.
+# Se declara un SHA de commit completo para mostrar la forma (aquí, el de la release v4.2.0); también vale una release, p. ej. "4.2.0".
 # Ids de extensión (frontend, infrastructure, ai, domain-application) exigen pack o contratos locales.
 
 sdaf:
@@ -39,4 +39,4 @@ agents:
     domain-application: [domain, application]
 
 tooling:
-  gentle_ai: "520ed86e8c598b01f439e28c34d391cd6f1744e3"
+  gentle_ai: "4acaf4241beae1e0c977c92dfe406a270f8d40de"
