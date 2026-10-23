@@ -35,37 +35,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from sdaf_adrs import adr_label, adr_num, fields, file_re, index_rows, refs, title_re  # noqa: E402
 from sdaf_meta import fecha_key, has_time  # noqa: E402
 
 ESTADOS = {"Propuesto", "Aceptado", "Rechazado", "Sustituido", "Deprecado"}
 TIPO_EXCEPCION = "Excepción"
-FILE_RE = re.compile(r"^ADR-([0-9]{3})-[a-z0-9-]+\.md$")
-TITLE_RE = re.compile(r"^# ADR-([0-9]{3}) — .+$", re.MULTILINE)
-FIELD_RE = re.compile(r"^\|\s*([^|]+?)\s*\|\s*(.*?)\s*\|\s*$", re.MULTILINE)
+FILE_RE = file_re()
+TITLE_RE = title_re()
 LEADING_DATE_RE = re.compile(r"^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:]+(?:Z|[+-][0-9]{2}:[0-9]{2}))")
-ADR_REF_RE = re.compile(r"ADR-([0-9]{3})")
-# Columnas: ADR | Estado | Título | [Sustituido por]. La 4.ª es opcional
-# (consumidores con el índice anterior); el grupo 4 es None si falta.
-INDEX_ROW_RE = re.compile(
-    r"^\|\s*\[ADR-([0-9]{3})\]\(([^)]+)\)\s*\|\s*([^|]+?)\s*\|"
-    r"(?:[ \t]*[^|\n]*?[ \t]*\|[ \t]*([^|\n]*?)[ \t]*\|)?",
-    re.MULTILINE,
-)
-
-
-def fields(text: str) -> dict[str, str]:
-    out: dict[str, str] = {}
-    for key, value in FIELD_RE.findall(text):
-        key = key.strip("* ")
-        if key in {"Campo", "ADR"} or set(key) <= {"-"}:
-            continue
-        out.setdefault(key, value.strip())
-    return out
-
-
-def refs(value: str) -> list[str]:
-    """Números de ADR citados en un valor, sin repetidos y en orden."""
-    return list(dict.fromkeys(ADR_REF_RE.findall(value)))
 
 
 def fecha_inicial(nombre: str, valor: str | None, fecha: str, errs: list[str]) -> re.Match[str] | None:
@@ -86,13 +63,13 @@ def fecha_inicial(nombre: str, valor: str | None, fecha: str, errs: list[str]) -
 def check_adr(path: Path) -> tuple[dict[str, str], list[str]]:
     """Devuelve (campos de cabecera, errores) de un ADR, sin mirar otros ADRs."""
     errs: list[str] = []
-    num = FILE_RE.match(path.name).group(1)
+    num = adr_num(FILE_RE.match(path.name).group(1))
     text = path.read_text(encoding="utf-8")
     title = TITLE_RE.search(text)
     if not title:
         errs.append("falta el título «# ADR-NNN — …»")
-    elif title.group(1) != num:
-        errs.append(f"el título dice ADR-{title.group(1)} y el fichero ADR-{num}")
+    elif adr_num(title.group(1)) != num:
+        errs.append(f"el título dice {adr_label(adr_num(title.group(1)))} y el fichero {adr_label(num)}")
     data = fields(text)
     estado = data.get("Estado")
     if estado not in ESTADOS:
@@ -166,7 +143,7 @@ def check_adr(path: Path) -> tuple[dict[str, str], list[str]]:
     return data, errs
 
 
-def sustitucion(num: str, datos: dict[str, dict[str, str]]) -> list[str]:
+def sustitucion(num: int, datos: dict[int, dict[str, str]]) -> list[str]:
     """Errores de existencia y reciprocidad de Sustituye y Sustituido por en el ADR `num`."""
     errs: list[str] = []
     data = datos[num]
@@ -176,30 +153,30 @@ def sustitucion(num: str, datos: dict[str, dict[str, str]]) -> list[str]:
         if len(sucesores) == 1 and sucesores[0] != num:
             sig = sucesores[0]
             if sig not in datos:
-                errs.append(f"Sustituido por ADR-{sig}, que no existe")
+                errs.append(f"Sustituido por {adr_label(sig)}, que no existe")
             elif datos[sig].get("Estado") not in {"Aceptado", "Sustituido"}:
                 errs.append(
-                    f"Sustituido por ADR-{sig}, que está {datos[sig].get('Estado')}: "
+                    f"Sustituido por {adr_label(sig)}, que está {datos[sig].get('Estado')}: "
                     "el sucesor debe estar Aceptado o Sustituido"
                 )
             elif num not in refs(datos[sig].get("Sustituye", "")):
-                errs.append(f"Sustituido por ADR-{sig}, pero ADR-{sig} no declara «Sustituye» ADR-{num}")
+                errs.append(f"Sustituido por {adr_label(sig)}, pero {adr_label(sig)} no declara «Sustituye» {adr_label(num)}")
     if estado == "Rechazado":
         return errs
     for ant in refs(data.get("Sustituye", "")):
         if ant == num:
             continue
         if ant not in datos:
-            errs.append(f"Sustituye ADR-{ant}, que no existe")
+            errs.append(f"Sustituye {adr_label(ant)}, que no existe")
             continue
         estado_ant = datos[ant].get("Estado")
         if estado in {"Aceptado", "Sustituido"}:
             if estado_ant != "Sustituido":
-                errs.append(f"Sustituye ADR-{ant}, que está {estado_ant}: debe estar Sustituido por ADR-{num}")
+                errs.append(f"Sustituye {adr_label(ant)}, que está {estado_ant}: debe estar Sustituido por {adr_label(num)}")
             elif refs(datos[ant].get("Sustituido por", "")) != [num]:
-                errs.append(f"Sustituye ADR-{ant}, pero ADR-{ant} no tiene «Sustituido por» ADR-{num}")
+                errs.append(f"Sustituye {adr_label(ant)}, pero {adr_label(ant)} no tiene «Sustituido por» {adr_label(num)}")
         elif estado == "Propuesto" and estado_ant != "Aceptado":
-            errs.append(f"Sustituye ADR-{ant}, que está {estado_ant}: debe estar Aceptado hasta aceptar este ADR")
+            errs.append(f"Sustituye {adr_label(ant)}, que está {estado_ant}: debe estar Aceptado hasta aceptar este ADR")
     return errs
 
 
@@ -213,17 +190,17 @@ def main() -> int:
         return 0
 
     failed = 0
-    datos: dict[str, dict[str, str]] = {}
-    files: dict[str, str] = {}
+    datos: dict[int, dict[str, str]] = {}
+    files: dict[int, str] = {}
     for path in sorted(folder.glob("ADR-*.md")):
         match = FILE_RE.match(path.name)
         if not match:
             print(f"FAIL {path.name}: nombre fuera de ADR-NNN-slug.md")
             failed += 1
             continue
-        num = match.group(1)
+        num = adr_num(match.group(1))
         if num in files:
-            print(f"FAIL ADR-{num} repetido: {files[num]} y {path.name}")
+            print(f"FAIL {adr_label(num)} repetido: {files[num]} y {path.name}")
             failed += 1
             continue
         files[num] = path.name
@@ -238,36 +215,36 @@ def main() -> int:
             failed += 1
 
     expected = [f"{i:03d}" for i in range(1, len(files) + 1)]
-    if sorted(files) != expected:
-        print(f"FAIL numeración con huecos: {sorted(files)} (se espera {expected})")
+    found = [f"{n:03d}" for n in sorted(files)]
+    if found != expected:
+        print(f"FAIL numeración con huecos: {found} (se espera {expected})")
         failed += 1
 
     readme = folder / "README.md"
-    listed: dict[str, tuple[str, str, str | None]] = {}
+    listed: dict[int, tuple[str, str, str | None]] = {}
     if readme.is_file():
-        for m in INDEX_ROW_RE.finditer(readme.read_text(encoding="utf-8")):
-            listed[m.group(1)] = (m.group(2), m.group(3), m.group(4))
+        listed = index_rows(readme.read_text(encoding="utf-8"))
     for num, name in files.items():
         if num not in listed:
-            print(f"FAIL README.md no lista ADR-{num}")
+            print(f"FAIL README.md no lista {adr_label(num)}")
             failed += 1
             continue
         href, estado, col_sust = listed[num]
         if href != name:
-            print(f"FAIL README.md enlaza ADR-{num} a {href}, no a {name}")
+            print(f"FAIL README.md enlaza {adr_label(num)} a {href}, no a {name}")
             failed += 1
         if estado != datos[num].get("Estado"):
-            print(f"FAIL README.md dice {estado} para ADR-{num}; el ADR dice {datos[num].get('Estado')}")
+            print(f"FAIL README.md dice {estado} para {adr_label(num)}; el ADR dice {datos[num].get('Estado')}")
             failed += 1
         if col_sust is not None:  # sin 4.ª columna no es error (índice anterior)
             sucesores = refs(datos[num].get("Sustituido por", ""))
             coherente = refs(col_sust) == sucesores if sucesores else col_sust == "—"
             if not coherente:
-                esperado = f"ADR-{sucesores[0]}" if sucesores else "—"
-                print(f"FAIL README.md dice «{col_sust}» en Sustituido por de ADR-{num}; el ADR dice {esperado}")
+                esperado = adr_label(sucesores[0]) if sucesores else "—"
+                print(f"FAIL README.md dice «{col_sust}» en Sustituido por de {adr_label(num)}; el ADR dice {esperado}")
                 failed += 1
     for num in listed.keys() - files.keys():
-        print(f"FAIL README.md lista ADR-{num}, que no existe")
+        print(f"FAIL README.md lista {adr_label(num)}, que no existe")
         failed += 1
 
     if failed:
