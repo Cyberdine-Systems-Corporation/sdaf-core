@@ -7,10 +7,15 @@ normalizado a entero (ADR-001 y ADR-0001 son el mismo); `adr_num` y
 
 El ancho admitido del número es `digits = (mínimo, máximo)` de dígitos y por
 defecto vale DIGITS = (3, 3). El mínimo fija además el relleno de ADR-NNN.
+
+`index_rows` lee el índice con columnas fijas (ADR | Estado | Título | [Sustituido
+por]); `index_table` lo lee por el nombre de las cabeceras, con las fijas como
+posición por defecto.
 """
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass, field
 from functools import lru_cache
 
 DIGITS = (3, 3)
@@ -38,9 +43,13 @@ def file_re(digits: tuple[int, int] = DIGITS) -> re.Pattern[str]:
 
 
 @lru_cache(maxsize=None)
-def title_re(digits: tuple[int, int] = DIGITS) -> re.Pattern[str]:
-    """Título «# ADR-NNN — …»; el grupo 1 son los dígitos."""
-    return re.compile(r"^# ADR-([0-9]%s) — .+$" % _width(digits), re.MULTILINE)
+def title_re(digits: tuple[int, int] = DIGITS, flex_sep: bool = False) -> re.Pattern[str]:
+    """Título «# ADR-NNN — …»; el grupo 1 son los dígitos.
+
+    Con `flex_sep` el separador puede ser también «-» o «:» (ADR-NNN: …).
+    """
+    sep = r"(?:[ \t]+[—-][ \t]+|[ \t]*:[ \t]+)" if flex_sep else " — "
+    return re.compile(r"^# ADR-([0-9]%s)%s.+$" % (_width(digits), sep), re.MULTILINE)
 
 
 @lru_cache(maxsize=None)
@@ -84,3 +93,51 @@ def index_rows(text: str, digits: tuple[int, int] = DIGITS) -> dict[int, tuple[s
     for m in index_row_re(digits).finditer(text):
         listed[adr_num(m.group(1))] = (m.group(2), m.group(3), m.group(4))
     return listed
+
+
+@dataclass
+class IndexTable:
+    """Índice leído por cabeceras: filas por número y posición de cada columna."""
+
+    rows: dict[int, tuple[str, list[str]]] = field(default_factory=dict)  # número → (enlace sin «./», celdas)
+    header: list[str] | None = None  # celdas de la cabecera reconocida; None si se usan las posiciones por defecto
+    cols: dict[str, int] = field(default_factory=dict)  # «estado» / «sustituido por» → posición (desde 0)
+
+    def cell(self, num: int, column: str) -> str | None:
+        """Valor de la columna en la fila de `num`; None si la columna no existe o la fila es más corta."""
+        pos = self.cols.get(column)
+        cells = self.rows[num][1]
+        return cells[pos] if pos is not None and pos < len(cells) else None
+
+    def column_name(self, column: str) -> str:
+        """Nombre y posición de la columna para los mensajes: «Estado» (4.ª)."""
+        pos = self.cols[column]
+        name = self.header[pos] if self.header else column.capitalize()
+        return f"«{name}» ({pos + 1}.ª)"
+
+
+def _cells(line: str) -> list[str]:
+    return [c.strip() for c in line.strip().strip("|").split("|")]
+
+
+def index_table(text: str, digits: tuple[int, int] = DIGITS) -> IndexTable:
+    """Lee el índice. Las columnas «Estado» y «Sustituido por» se localizan por la
+    primera fila de cabecera que las nombre (sin distinguir mayúsculas); sin
+    cabecera reconocible valen la 2.ª y la 4.ª. La primera celda es [ADR-N](href)
+    y un «./» inicial del enlace se descarta."""
+    link = re.compile(r"\[ADR-([0-9]%s)\]\(([^)]+)\)" % _width(digits))
+    table = IndexTable()
+    lines = [_cells(line) for line in text.splitlines() if line.lstrip().startswith("|")]
+    for cells in lines:
+        names = {c.strip("* ").casefold(): i for i, c in enumerate(cells)}
+        found = {k: names[k] for k in ("estado", "sustituido por") if k in names}
+        if found:
+            table.header, table.cols = cells, found
+            break
+    else:
+        table.cols = {"estado": 1, "sustituido por": 3}
+    for cells in lines:
+        m = link.match(cells[0])
+        if m:
+            table.rows[adr_num(m.group(1))] = (m.group(2).removeprefix("./"), cells)
+    return table
