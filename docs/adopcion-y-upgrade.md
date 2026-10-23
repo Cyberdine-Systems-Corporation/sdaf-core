@@ -79,8 +79,23 @@ La caducidad la fija el humano. Caducada sin prórroga humana, la excepción dej
 
 Limitaciones de las comprobaciones actuales:
 
-- [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs del core y aún no es apto para los de un consumidor con formato anterior: véase el aviso de la [sección 0.5.0](#050-opt-in).
+- El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) cubre los ADRs de un consumidor con formato anterior: véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
 - `check-worklog-presence.py` solo mira `stack.src_path` y `stack.tests_path`: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).
+
+### Validar los ADRs del consumidor
+
+Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) los comprueba sin reescribirlos; está disponible en la release que lo incluya.
+
+- En local, desde el checkout del core: `python scripts/check-adrs.py --consumer --legacy-up-to N --root <repo-del-consumidor>`.
+- Con la [action](../.github/actions/validate-sdaf/README.md): inputs `check-adrs: "true"` y `adrs-legacy-up-to: "N"`.
+
+`N` es el número del último ADR que existía al adoptar. Lo fija el humano y queda revisable en su workflow; sin él (`0`) ningún ADR es heredado.
+
+Se relaja para todos los ADRs: nombre y título con 3 o 4 dígitos, huecos de numeración, índice localizado por la cabecera (sin índice o sin columna `Estado` es un `AVISO`, no un error) y lectura robusta (BOM tolerado; un fichero que no es UTF-8 da un `FAIL` sin traceback).
+
+Se relaja solo para los heredados (número ≤ `N`): `Fecha` sin hora, `Estado` por una tabla cerrada de equivalencias (`accepted` → Aceptado, `superseded` → Sustituido, `rechazada` → Rechazado…) y `Aceptación` opcional.
+
+Sigue estricto siempre: Propuesto y Rechazado sin `Aceptación`, `Rechazo` completo, reciprocidad de Sustituye / Sustituido por, `Tipo` y `Caducidad` de las excepciones y número repetido. Un ADR nuevo (número > `N`) mantiene las reglas del core, incluida la `Aceptación` humana con hora y zona.
 
 ## Upgrade
 
@@ -228,7 +243,7 @@ Al pinnear `v0.5.0`:
 
 [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) con `0.5.0` crea la línea base en Draft y su STOP cita G0.1 y G0.6.
 
-Los ADRs del consumidor no se reescriben. [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).
+Los ADRs del consumidor no se reescriben. Por defecto [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (`--consumer`), disponible en la release que lo incluya: véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
 
 No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
 
