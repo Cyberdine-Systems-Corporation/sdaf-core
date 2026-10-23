@@ -1,5 +1,5 @@
 name: validate-sdaf
-description: Valida sdaf.config.yaml (schema + invariantes) y, opcionalmente, la presencia de worklog.
+description: Valida sdaf.config.yaml (schema + invariantes) y, opcionalmente, la presencia de worklog y los ADRs del consumidor.
 
 inputs:
   config-paths:
@@ -14,6 +14,14 @@ inputs:
     description: Tratar I4 como error.
     required: false
     default: "false"
+  check-adrs:
+    description: Comprobar los ADRs del consumidor con el modo consumidor de check-adrs.py.
+    required: false
+    default: "false"
+  adrs-legacy-up-to:
+    description: Número del último ADR heredado (anterior a la adopción); 0 = ninguno. Solo se usa con check-adrs.
+    required: false
+    default: "0"
 
 runs:
   using: composite
@@ -44,3 +52,13 @@ runs:
         set -euo pipefail
         ROOT="$(cd "${{ github.action_path }}/../../.." && pwd)"
         python "${ROOT}/scripts/check-worklog-presence.py" --cwd "${GITHUB_WORKSPACE}"
+    - name: ADRs del consumidor
+      if: inputs.check-adrs == 'true'
+      shell: bash
+      env:
+        SDAF_ACTION_ROOT: ${{ github.action_path }}
+        SDAF_ADRS_LEGACY_UP_TO: ${{ inputs.adrs-legacy-up-to }}
+      run: |
+        set -euo pipefail
+        ROOT="$(cd "${SDAF_ACTION_ROOT}/../../.." && pwd)"
+        python "${ROOT}/scripts/check-adrs.py" --consumer --legacy-up-to "${SDAF_ADRS_LEGACY_UP_TO:-0}" --root "${GITHUB_WORKSPACE}"
