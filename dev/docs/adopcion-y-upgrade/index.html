@@ -1717,6 +1717,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#validar-los-adrs-del-consumidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar los ADRs del consumidor
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4568,6 +4579,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#validar-los-adrs-del-consumidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar los ADRs del consumidor
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4896,9 +4918,19 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <p>La caducidad la fija el humano. Caducada sin prórroga humana, la excepción deja de aplicar y el perímetro heredado pasa a Gate 0 completo: revisar entonces el plan de retorno.</p>
 <p>Limitaciones de las comprobaciones actuales:</p>
 <ul>
-<li><a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs del core y aún no es apto para los de un consumidor con formato anterior: véase el aviso de la <a href="#050-opt-in">sección 0.5.0</a>.</li>
+<li>El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> cubre los ADRs de un consumidor con formato anterior: véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</li>
 <li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
 </ul>
+<h3 id="validar-los-adrs-del-consumidor">Validar los ADRs del consumidor<a class="headerlink" href="#validar-los-adrs-del-consumidor" title="Permanent link">&para;</a></h3>
+<p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible en la release que lo incluya.</p>
+<ul>
+<li>En local, desde el checkout del core: <code>python scripts/check-adrs.py --consumer --legacy-up-to N --root &lt;repo-del-consumidor&gt;</code>.</li>
+<li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: inputs <code>check-adrs: "true"</code> y <code>adrs-legacy-up-to: "N"</code>.</li>
+</ul>
+<p><code>N</code> es el número del último ADR que existía al adoptar. Lo fija el humano y queda revisable en su workflow; sin él (<code>0</code>) ningún ADR es heredado.</p>
+<p>Se relaja para todos los ADRs: nombre y título con 3 o 4 dígitos, huecos de numeración, índice localizado por la cabecera (sin índice o sin columna <code>Estado</code> es un <code>AVISO</code>, no un error) y lectura robusta (BOM tolerado; un fichero que no es UTF-8 da un <code>FAIL</code> sin traceback).</p>
+<p>Se relaja solo para los heredados (número ≤ <code>N</code>): <code>Fecha</code> sin hora, <code>Estado</code> por una tabla cerrada de equivalencias (<code>accepted</code> → Aceptado, <code>superseded</code> → Sustituido, <code>rechazada</code> → Rechazado…) y <code>Aceptación</code> opcional.</p>
+<p>Sigue estricto siempre: Propuesto y Rechazado sin <code>Aceptación</code>, <code>Rechazo</code> completo, reciprocidad de Sustituye / Sustituido por, <code>Tipo</code> y <code>Caducidad</code> de las excepciones y número repetido. Un ADR nuevo (número &gt; <code>N</code>) mantiene las reglas del core, incluida la <code>Aceptación</code> humana con hora y zona.</p>
 <h2 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h2>
 <p>Usar <a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a>. Checklist:</p>
 <ol>
@@ -5012,7 +5044,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Actualizar <code>sdaf.version</code> a <code>"0.5.0"</code>.</li>
 </ol>
 <p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
-<p>Los ADRs del consumidor no se reescriben. <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna): aún no es apto para los ADRs de un consumidor con formato anterior. Su modo consumidor está previsto en el backlog de la iniciativa (ARQ-6.3).</p>
+<p>Los ADRs del consumidor no se reescriben. Por defecto <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (<code>--consumer</code>), disponible en la release que lo incluya: véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
 <p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
 <h2 id="051-parche">0.5.1 (parche)<a class="headerlink" href="#051-parche" title="Permanent link">&para;</a></h2>
 <p>Procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): skill <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (Draft, pendiente de aprobación humana), excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>) y specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>). No añade gates ni cambia los existentes.</p>
