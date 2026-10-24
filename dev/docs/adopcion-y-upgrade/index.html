@@ -1728,6 +1728,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#comprobar-gate-0-en-el-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar Gate 0 en el PR
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4590,6 +4601,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#comprobar-gate-0-en-el-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar Gate 0 en el PR
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4931,6 +4953,19 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <p>Se relaja para todos los ADRs: nombre y título con 3 o 4 dígitos, huecos de numeración, índice localizado por la cabecera (sin índice o sin columna <code>Estado</code> es un <code>AVISO</code>, no un error) y lectura robusta (BOM tolerado; un fichero que no es UTF-8 da un <code>FAIL</code> sin traceback).</p>
 <p>Se relaja solo para los heredados (número ≤ <code>N</code>): <code>Fecha</code> sin hora, <code>Estado</code> por una tabla cerrada de equivalencias (<code>accepted</code> → Aceptado, <code>superseded</code> → Sustituido, <code>rechazada</code> → Rechazado…) y <code>Aceptación</code> opcional.</p>
 <p>Sigue estricto siempre: Propuesto y Rechazado sin <code>Aceptación</code>, <code>Rechazo</code> completo, reciprocidad de Sustituye / Sustituido por, <code>Tipo</code> y <code>Caducidad</code> de las excepciones y número repetido. Un ADR nuevo (número &gt; <code>N</code>) mantiene las reglas del core, incluida la <code>Aceptación</code> humana con hora y zona.</p>
+<h3 id="comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR<a class="headerlink" href="#comprobar-gate-0-en-el-pr" title="Permanent link">&para;</a></h3>
+<p>Opt-in de la línea <code>0.5.0</code> (con una línea anterior el comprobador avisa y no comprueba nada). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> hace las comprobaciones <strong>mecánicas</strong> de <a href="../../skills/sdaf-gate0/SKILL/">Gate 0</a> del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible en la release que lo incluya.</p>
+<ul>
+<li>En local, desde el checkout del core: <code>python scripts/check-gate0.py --root &lt;repo-del-consumidor&gt; [--pbi ID|RUTA ...]</code>.</li>
+<li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: input <code>check-gate0: "true"</code> y, si se quiere fijar el PBI, <code>gate0-pbi: "PBI-PRD-001"</code>. Sin <code>gate0-pbi</code> el PBI se deduce del diff del PR y el checkout necesita <code>fetch-depth: 0</code>.</li>
+</ul>
+<p>Es <strong>bloqueante</strong>: un <code>FAIL</code> falla el paso, igual que el STOP de Gate 0. Los <code>AVISO</code> no cambian el resultado.</p>
+<p>Limitaciones:</p>
+<ul>
+<li>G0.3 es juicio humano (<a href="../../handbook/14-architecture-description/#7-gate-0-y-qg-arch">H14 §6 y §7</a>): el comprobador lo avisa siempre y solo verifica que los ADRs citados existan y estén Aceptados. No calcula la vigencia (<code>Caducidad</code>).</li>
+<li>La excepción de adopción no se puede detectar mecánicamente y el comprobador nunca relaja un <code>FAIL</code> por ella; si la línea base declara unidades «heredada», solo añade un <code>AVISO</code>. Un PR correctivo legítimo en el perímetro heredado <strong>fallará el paso</strong>: quien tenga el input activo debe desactivarlo en ese PR y dejar la decisión a la persona responsable.</li>
+<li>No aprueba nada ni sustituye la revisión de la persona responsable: un resultado sin <code>FAIL</code> solo dice que los documentos que Gate 0 exige están y en el estado correcto.</li>
+</ul>
 <h2 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h2>
 <p>Usar <a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a>. Checklist:</p>
 <ol>
