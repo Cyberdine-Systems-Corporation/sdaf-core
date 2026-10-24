@@ -74,20 +74,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sdaf_adrs import DIGITS, adr_label, adr_num, fields, file_re, index_rows, index_table, refs, title_re  # noqa: E402
+from sdaf_adrs import DIGITS, ESTADOS_HEREDADOS, adr_label, adr_num, fields, file_re, index_rows, index_table, refs, title_re  # noqa: E402
 from sdaf_meta import fecha_key, has_time  # noqa: E402
 
 ESTADOS = {"Propuesto", "Aceptado", "Rechazado", "Sustituido", "Deprecado"}
 TIPO_EXCEPCION = "Excepción"
 # Modo consumidor: ancho del número y equivalencias de estado de los ADRs heredados.
 CONSUMER_DIGITS = (3, 4)
-ESTADOS_HEREDADOS = {
-    "proposed": "Propuesto", "propuesto": "Propuesto", "propuesta": "Propuesto",
-    "accepted": "Aceptado", "aceptado": "Aceptado", "aceptada": "Aceptado",
-    "rejected": "Rechazado", "rechazado": "Rechazado", "rechazada": "Rechazado",
-    "superseded": "Sustituido", "sustituido": "Sustituido", "sustituida": "Sustituido",
-    "deprecated": "Deprecado", "deprecado": "Deprecado", "deprecada": "Deprecado",
-}
 SIN_SUCESOR = {"", "—", "–", "-", "n/a"}  # celdas de «Sustituido por» del índice que significan «ninguno»
 LEADING_DATE_RE = re.compile(r"^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9:]+(?:Z|[+-][0-9]{2}:[0-9]{2}))")
 LEADING_ANY_DATE_RE = re.compile(
