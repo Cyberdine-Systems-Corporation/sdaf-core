@@ -1,0 +1,6 @@
+sdaf:
+  version: "0.5.0"
+
+stack:
+  src_path: src
+  tests_path: tests
