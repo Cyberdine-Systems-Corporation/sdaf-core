@@ -19,6 +19,14 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 
 DIGITS = (3, 3)
+# Equivalencias de estado de los ADRs heredados (minúsculas → estado canónico).
+ESTADOS_HEREDADOS = {
+    "proposed": "Propuesto", "propuesto": "Propuesto", "propuesta": "Propuesto",
+    "accepted": "Aceptado", "aceptado": "Aceptado", "aceptada": "Aceptado",
+    "rejected": "Rechazado", "rechazado": "Rechazado", "rechazada": "Rechazado",
+    "superseded": "Sustituido", "sustituido": "Sustituido", "sustituida": "Sustituido",
+    "deprecated": "Deprecado", "deprecado": "Deprecado", "deprecada": "Deprecado",
+}
 FIELD_RE = re.compile(r"^\|\s*([^|]+?)\s*\|\s*(.*?)\s*\|\s*$", re.MULTILINE)
 
 
