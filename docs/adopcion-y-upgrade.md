@@ -97,6 +97,21 @@ Se relaja solo para los heredados (número ≤ `N`): `Fecha` sin hora, `Estado` 
 
 Sigue estricto siempre: Propuesto y Rechazado sin `Aceptación`, `Rechazo` completo, reciprocidad de Sustituye / Sustituido por, `Tipo` y `Caducidad` de las excepciones y número repetido. Un ADR nuevo (número > `N`) mantiene las reglas del core, incluida la `Aceptación` humana con hora y zona.
 
+### Comprobar Gate 0 en el PR
+
+Opt-in de la línea `0.5.0` (con una línea anterior el comprobador avisa y no comprueba nada). [`scripts/check-gate0.py`](../scripts/check-gate0.py) hace las comprobaciones **mecánicas** de [Gate 0](../skills/sdaf-gate0/SKILL.md) del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible en la release que lo incluya.
+
+- En local, desde el checkout del core: `python scripts/check-gate0.py --root <repo-del-consumidor> [--pbi ID|RUTA ...]`.
+- Con la [action](../.github/actions/validate-sdaf/README.md): input `check-gate0: "true"` y, si se quiere fijar el PBI, `gate0-pbi: "PBI-PRD-001"`. Sin `gate0-pbi` el PBI se deduce del diff del PR y el checkout necesita `fetch-depth: 0`.
+
+Es **bloqueante**: un `FAIL` falla el paso, igual que el STOP de Gate 0. Los `AVISO` no cambian el resultado.
+
+Limitaciones:
+
+- G0.3 es juicio humano ([H14 §6 y §7](../handbook/14-architecture-description.md#7-gate-0-y-qg-arch)): el comprobador lo avisa siempre y solo verifica que los ADRs citados existan y estén Aceptados. No calcula la vigencia (`Caducidad`).
+- La excepción de adopción no se puede detectar mecánicamente y el comprobador nunca relaja un `FAIL` por ella; si la línea base declara unidades «heredada», solo añade un `AVISO`. Un PR correctivo legítimo en el perímetro heredado **fallará el paso**: quien tenga el input activo debe desactivarlo en ese PR y dejar la decisión a la persona responsable.
+- No aprueba nada ni sustituye la revisión de la persona responsable: un resultado sin `FAIL` solo dice que los documentos que Gate 0 exige están y en el estado correcto.
+
 ## Upgrade
 
 Usar [`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md). Checklist:
