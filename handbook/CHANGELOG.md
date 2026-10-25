@@ -1,5 +1,16 @@
 # CHANGELOG — handbook sdaf-core
 
+## 0.5.3 — 2026-10-25T18:55+01:00
+
+Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Solo tooling y docs: dos opt-in nuevos de la action `validate-sdaf`, desactivados por defecto (con los valores por defecto la action no cambia). La publicación conjunta como parche viene del diseño de ARQ-6.3 («Acepto las proposiciones, adelante», 2026-10-23) y del de ARQ-6.1 («APlicalo», 2026-10-24), aceptados por el humano; el número 0.5.3 es la propuesta del plan y la hora exacta de esas decisiones no se registró.
+
+- Scripts: modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) (`--consumer` y `--legacy-up-to N`, corte de ADRs heredados por número; el input `check-adrs` de la action fuerza `--consumer`). [`scripts/check-gate0.py`](../scripts/check-gate0.py) nuevo: comprobaciones **mecánicas** de G0.1, G0.2, G0.4, G0.5 y G0.6 del PBI en curso; es bloqueante (algún `FAIL` da código de salida 1) y no aprueba nada (G0.3 y la excepción de adopción siguen siendo juicio humano); input `check-gate0` y `gate0-pbi` de la action. Módulos de lectura compartidos `scripts/sdaf_adrs.py`, `scripts/sdaf_diff.py` y `scripts/sdaf_docs.py` (refactor sin cambio de comportamiento del core).
+- Guía: secciones «Validar los ADRs del consumidor» y «Comprobar Gate 0 en el PR» en [`docs/adopcion-y-upgrade.md`](../docs/adopcion-y-upgrade.md) y [README de la action](../.github/actions/validate-sdaf/README.md).
+- Capítulos y skills: sin cambios. `sdaf.version` sigue en `"0.5.0"`.
+- Worklogs: [`worklogs/INIT-arquitectura/Iteration-025.md`](../worklogs/INIT-arquitectura/Iteration-025.md), [`Iteration-026.md`](../worklogs/INIT-arquitectura/Iteration-026.md) y [`Iteration-027.md`](../worklogs/INIT-arquitectura/Iteration-027.md).
+
+Quien no use los inputs nuevos no tiene que hacer nada. Para usar `check-adrs` o `check-gate0` en la action hay que pinnear `v0.5.3`. Pin de árbol: `v0.5.3`, que se crea tras el merge. Quien siga en `v0.5.2` o anterior no está obligado a moverlo.
+
 ## 0.5.2 — 2026-10-18T19:56+02:00
 
 Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Completa lo diferido en 0.5.1 para la adopción sobre código existente ([ADR-008](../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente.md)): el catálogo, Gate 0, la tabla de worklog y el bootstrap ya conocen la skill y los perímetros. Decisión del humano el 2026-10-18 («Lo hacemos ahora»; la hora exacta no se registró).

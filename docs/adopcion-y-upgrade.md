@@ -84,7 +84,7 @@ Limitaciones de las comprobaciones actuales:
 
 ### Validar los ADRs del consumidor
 
-Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) los comprueba sin reescribirlos; está disponible en la release que lo incluya.
+Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) los comprueba sin reescribirlos; está disponible desde `v0.5.3` (se crea tras el merge del parche).
 
 - En local, desde el checkout del core: `python scripts/check-adrs.py --consumer --legacy-up-to N --root <repo-del-consumidor>`.
 - Con la [action](../.github/actions/validate-sdaf/README.md): inputs `check-adrs: "true"` y `adrs-legacy-up-to: "N"`.
@@ -99,7 +99,7 @@ Sigue estricto siempre: Propuesto y Rechazado sin `Aceptación`, `Rechazo` compl
 
 ### Comprobar Gate 0 en el PR
 
-Opt-in de la línea `0.5.0` (con una línea anterior el comprobador avisa y no comprueba nada). [`scripts/check-gate0.py`](../scripts/check-gate0.py) hace las comprobaciones **mecánicas** de [Gate 0](../skills/sdaf-gate0/SKILL.md) del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible en la release que lo incluya.
+Opt-in de la línea `0.5.0` (con una línea anterior el comprobador avisa y no comprueba nada). [`scripts/check-gate0.py`](../scripts/check-gate0.py) hace las comprobaciones **mecánicas** de [Gate 0](../skills/sdaf-gate0/SKILL.md) del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde `v0.5.3` (se crea tras el merge del parche).
 
 - En local, desde el checkout del core: `python scripts/check-gate0.py --root <repo-del-consumidor> [--pbi ID|RUTA ...]`.
 - Con la [action](../.github/actions/validate-sdaf/README.md): input `check-gate0: "true"` y, si se quiere fijar el PBI, `gate0-pbi: "PBI-PRD-001"`. Sin `gate0-pbi` el PBI se deduce del diff del PR y el checkout necesita `fetch-depth: 0`.
@@ -258,7 +258,7 @@ Al pinnear `v0.5.0`:
 
 [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) con `0.5.0` crea la línea base en Draft y su STOP cita G0.1 y G0.6.
 
-Los ADRs del consumidor no se reescriben. Por defecto [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (`--consumer`), disponible en la release que lo incluya: véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
+Los ADRs del consumidor no se reescriben. Por defecto [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (`--consumer`), disponible desde `v0.5.3` (se crea tras el merge del parche): véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
 
 No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
 
@@ -283,6 +283,18 @@ Al pinnear `v0.5.2`:
 
 1. Quien no adopte sobre código existente: nada que hacer.
 2. Quien lo haga, en la línea `0.5.0`: seguir [Adoptar sobre un repo con código](#adoptar-sobre-un-repo-con-código); un cambio correctivo en el perímetro heredado ya no se detiene en Gate 0 si el ADR sigue vigente, y una feature pasa antes al perímetro gobernado.
+
+No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
+
+## 0.5.3 (parche)
+
+Solo tooling y docs: el modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) y las comprobaciones mecánicas de Gate 0 de [`scripts/check-gate0.py`](../scripts/check-gate0.py), con sus inputs opt-in en la [action `validate-sdaf`](../.github/actions/validate-sdaf/README.md) (`check-adrs`, `adrs-legacy-up-to`, `check-gate0` y `gate0-pbi`), desactivados por defecto. No cambia capítulos ni skills, no añade gates ni cambia los existentes.
+
+Al pinnear `v0.5.3`:
+
+1. Quien no use los inputs: nada que hacer.
+2. Quien tenga ADRs heredados con formato anterior: seguir [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
+3. Quien quiera comprobar Gate 0 en el PR: seguir [Comprobar Gate 0 en el PR](#comprobar-gate-0-en-el-pr). El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.
 
 No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
 
