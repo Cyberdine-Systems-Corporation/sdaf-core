@@ -1916,6 +1916,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#053-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.3 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4789,6 +4800,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#053-parche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.3 (parche)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4944,7 +4966,7 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
 </ul>
 <h3 id="validar-los-adrs-del-consumidor">Validar los ADRs del consumidor<a class="headerlink" href="#validar-los-adrs-del-consumidor" title="Permanent link">&para;</a></h3>
-<p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible en la release que lo incluya.</p>
+<p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
 <ul>
 <li>En local, desde el checkout del core: <code>python scripts/check-adrs.py --consumer --legacy-up-to N --root &lt;repo-del-consumidor&gt;</code>.</li>
 <li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: inputs <code>check-adrs: "true"</code> y <code>adrs-legacy-up-to: "N"</code>.</li>
@@ -4954,7 +4976,7 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <p>Se relaja solo para los heredados (número ≤ <code>N</code>): <code>Fecha</code> sin hora, <code>Estado</code> por una tabla cerrada de equivalencias (<code>accepted</code> → Aceptado, <code>superseded</code> → Sustituido, <code>rechazada</code> → Rechazado…) y <code>Aceptación</code> opcional.</p>
 <p>Sigue estricto siempre: Propuesto y Rechazado sin <code>Aceptación</code>, <code>Rechazo</code> completo, reciprocidad de Sustituye / Sustituido por, <code>Tipo</code> y <code>Caducidad</code> de las excepciones y número repetido. Un ADR nuevo (número &gt; <code>N</code>) mantiene las reglas del core, incluida la <code>Aceptación</code> humana con hora y zona.</p>
 <h3 id="comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR<a class="headerlink" href="#comprobar-gate-0-en-el-pr" title="Permanent link">&para;</a></h3>
-<p>Opt-in de la línea <code>0.5.0</code> (con una línea anterior el comprobador avisa y no comprueba nada). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> hace las comprobaciones <strong>mecánicas</strong> de <a href="../../skills/sdaf-gate0/SKILL/">Gate 0</a> del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible en la release que lo incluya.</p>
+<p>Opt-in de la línea <code>0.5.0</code> (con una línea anterior el comprobador avisa y no comprueba nada). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> hace las comprobaciones <strong>mecánicas</strong> de <a href="../../skills/sdaf-gate0/SKILL/">Gate 0</a> del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
 <ul>
 <li>En local, desde el checkout del core: <code>python scripts/check-gate0.py --root &lt;repo-del-consumidor&gt; [--pbi ID|RUTA ...]</code>.</li>
 <li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: input <code>check-gate0: "true"</code> y, si se quiere fijar el PBI, <code>gate0-pbi: "PBI-PRD-001"</code>. Sin <code>gate0-pbi</code> el PBI se deduce del diff del PR y el checkout necesita <code>fetch-depth: 0</code>.</li>
@@ -5079,7 +5101,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Actualizar <code>sdaf.version</code> a <code>"0.5.0"</code>.</li>
 </ol>
 <p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
-<p>Los ADRs del consumidor no se reescriben. Por defecto <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (<code>--consumer</code>), disponible en la release que lo incluya: véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
+<p>Los ADRs del consumidor no se reescriben. Por defecto <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (<code>--consumer</code>), disponible desde <code>v0.5.3</code> (se crea tras el merge del parche): véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
 <p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
 <h2 id="051-parche">0.5.1 (parche)<a class="headerlink" href="#051-parche" title="Permanent link">&para;</a></h2>
 <p>Procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): skill <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (Draft, pendiente de aprobación humana), excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>) y specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>). No añade gates ni cambia los existentes.</p>
@@ -5096,6 +5118,15 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <ol>
 <li>Quien no adopte sobre código existente: nada que hacer.</li>
 <li>Quien lo haga, en la línea <code>0.5.0</code>: seguir <a href="#adoptar-sobre-un-repo-con-código">Adoptar sobre un repo con código</a>; un cambio correctivo en el perímetro heredado ya no se detiene en Gate 0 si el ADR sigue vigente, y una feature pasa antes al perímetro gobernado.</li>
+</ol>
+<p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
+<h2 id="053-parche">0.5.3 (parche)<a class="headerlink" href="#053-parche" title="Permanent link">&para;</a></h2>
+<p>Solo tooling y docs: el modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> y las comprobaciones mecánicas de Gate 0 de <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a>, con sus inputs opt-in en la <a href="../../.github/actions/validate-sdaf/">action <code>validate-sdaf</code></a> (<code>check-adrs</code>, <code>adrs-legacy-up-to</code>, <code>check-gate0</code> y <code>gate0-pbi</code>), desactivados por defecto. No cambia capítulos ni skills, no añade gates ni cambia los existentes.</p>
+<p>Al pinnear <code>v0.5.3</code>:</p>
+<ol>
+<li>Quien no use los inputs: nada que hacer.</li>
+<li>Quien tenga ADRs heredados con formato anterior: seguir <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</li>
+<li>Quien quiera comprobar Gate 0 en el PR: seguir <a href="#comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR</a>. El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.</li>
 </ol>
 <p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
 <h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
