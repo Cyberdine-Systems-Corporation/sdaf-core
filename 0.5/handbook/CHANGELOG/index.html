@@ -1277,6 +1277,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#053-2026-10-25t18550100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.3 — 2026-10-25T18:55+01:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#052-2026-10-18t19560200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4482,6 +4493,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#053-2026-10-25t18550100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.3 — 2026-10-25T18:55+01:00
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#052-2026-10-18t19560200" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4711,6 +4733,15 @@
 
 
 <h1 id="changelog-handbook-sdaf-core">CHANGELOG — handbook sdaf-core<a class="headerlink" href="#changelog-handbook-sdaf-core" title="Permanent link">&para;</a></h1>
+<h2 id="053-2026-10-25t18550100">0.5.3 — 2026-10-25T18:55+01:00<a class="headerlink" href="#053-2026-10-25t18550100" title="Permanent link">&para;</a></h2>
+<p>Parche de línea (<strong>no</strong> breaking de citas <code>H00</code>–<code>H14</code> ni de configs). Solo tooling y docs: dos opt-in nuevos de la action <code>validate-sdaf</code>, desactivados por defecto (con los valores por defecto la action no cambia). La publicación conjunta como parche viene del diseño de ARQ-6.3 («Acepto las proposiciones, adelante», 2026-10-23) y del de ARQ-6.1 («APlicalo», 2026-10-24), aceptados por el humano; el número 0.5.3 es la propuesta del plan y la hora exacta de esas decisiones no se registró.</p>
+<ul>
+<li>Scripts: modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> (<code>--consumer</code> y <code>--legacy-up-to N</code>, corte de ADRs heredados por número; el input <code>check-adrs</code> de la action fuerza <code>--consumer</code>). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> nuevo: comprobaciones <strong>mecánicas</strong> de G0.1, G0.2, G0.4, G0.5 y G0.6 del PBI en curso; es bloqueante (algún <code>FAIL</code> da código de salida 1) y no aprueba nada (G0.3 y la excepción de adopción siguen siendo juicio humano); input <code>check-gate0</code> y <code>gate0-pbi</code> de la action. Módulos de lectura compartidos <code>scripts/sdaf_adrs.py</code>, <code>scripts/sdaf_diff.py</code> y <code>scripts/sdaf_docs.py</code> (refactor sin cambio de comportamiento del core).</li>
+<li>Guía: secciones «Validar los ADRs del consumidor» y «Comprobar Gate 0 en el PR» en <a href="../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a> y <a href="../../.github/actions/validate-sdaf/">README de la action</a>.</li>
+<li>Capítulos y skills: sin cambios. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</li>
+<li>Worklogs: <a href="../../worklogs/INIT-arquitectura/Iteration-025/"><code>worklogs/INIT-arquitectura/Iteration-025.md</code></a>, <a href="../../worklogs/INIT-arquitectura/Iteration-026/"><code>Iteration-026.md</code></a> y <a href="../../worklogs/INIT-arquitectura/Iteration-027/"><code>Iteration-027.md</code></a>.</li>
+</ul>
+<p>Quien no use los inputs nuevos no tiene que hacer nada. Para usar <code>check-adrs</code> o <code>check-gate0</code> en la action hay que pinnear <code>v0.5.3</code>. Pin de árbol: <code>v0.5.3</code>, que se crea tras el merge. Quien siga en <code>v0.5.2</code> o anterior no está obligado a moverlo.</p>
 <h2 id="052-2026-10-18t19560200">0.5.2 — 2026-10-18T19:56+02:00<a class="headerlink" href="#052-2026-10-18t19560200" title="Permanent link">&para;</a></h2>
 <p>Parche de línea (<strong>no</strong> breaking de citas <code>H00</code>–<code>H14</code> ni de configs). Completa lo diferido en 0.5.1 para la adopción sobre código existente (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): el catálogo, Gate 0, la tabla de worklog y el bootstrap ya conocen la skill y los perímetros. Decisión del humano el 2026-10-18 («Lo hacemos ahora»; la hora exacta no se registró).</p>
 <ul>
@@ -4718,7 +4749,7 @@
 <li>Skills: <a href="../../skills/sdaf-gate0/SKILL/"><code>sdaf-gate0</code></a> <code>0.4.0</code> (paso 8: la excepción de adopción no hace STOP en un cambio correctivo del perímetro heredado con el ADR Aceptado y vigente; una feature o un cambio de comportamiento pasa antes al perímetro gobernado, donde Gate 0 no cambia). <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> <code>0.5.1</code> (deriva a <code>sdaf-adopt-existing</code> si el repo ya tiene código previo). <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> <code>0.1.1</code> Approved por aprobación humana de Manuel Ortiz de Villajos Quirós (2026-10-18; el agente transcribe, H00 §3.3); catálogo <a href="../../skills/"><code>skills/README.md</code></a> <code>0.3.6</code>.</li>
 <li>Worklog: <a href="../../worklogs/INIT-arquitectura/Iteration-023/"><code>worklogs/INIT-arquitectura/Iteration-023.md</code></a>.</li>
 </ul>
-<p>Quien no adopte sobre código existente no tiene que hacer nada. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>. Pin de árbol: <code>v0.5.2</code>, que se crea tras el merge. Quien siga en <code>v0.5.1</code> o anterior no está obligado a moverlo.</p>
+<p>Quien no adopte sobre código existente no tiene que hacer nada. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>. Pin de árbol: <code>v0.5.2</code>. Quien siga en <code>v0.5.1</code> o anterior no está obligado a moverlo.</p>
 <h2 id="051-2026-10-18t19210200">0.5.1 — 2026-10-18T19:21+02:00<a class="headerlink" href="#051-2026-10-18t19210200" title="Permanent link">&para;</a></h2>
 <p>Parche de línea (<strong>no</strong> breaking de citas <code>H00</code>–<code>H14</code> ni de configs). Añade un procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>); no añade gates ni cambia los existentes (<a href="../13-enmienda-excepciones-ciclo-de-vida/">H13 §5</a>). Fusionado por @mortiz-iadev (CODEOWNERS) en el PR #50.</p>
 <ul>
