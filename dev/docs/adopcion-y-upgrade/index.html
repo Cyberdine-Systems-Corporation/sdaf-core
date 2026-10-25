@@ -4875,11 +4875,11 @@
 <tbody>
 <tr>
 <td>Tag Git <code>vX.Y.Z</code></td>
-<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>, <code>v0.4.0</code>, <code>v0.4.1</code>, <code>v0.4.2</code>, <code>v0.4.3</code>, <code>v0.5.0</code>, <code>v0.5.1</code>, <code>v0.5.2</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>.</td>
+<td>Pin del <strong>árbol</strong> sdaf-core. Tags publicados: <code>v0.1.0</code>, <code>v0.2.0</code>, <code>v0.2.1</code>, <code>v0.3.2</code>, <code>v0.3.3</code>, <code>v0.4.0</code>, <code>v0.4.1</code>, <code>v0.4.2</code>, <code>v0.4.3</code>, <code>v0.5.0</code>, <code>v0.5.1</code>, <code>v0.5.2</code>, <code>v0.5.3</code>. <strong>No</strong> existen <code>v0.3.0</code> ni <code>v0.3.1</code>.</td>
 </tr>
 <tr>
 <td><code>sdaf.version</code> en <code>sdaf.config.yaml</code></td>
-<td>Línea de <strong>constitución</strong> (semver <strong>mayor.menor</strong>). Con pin <code>v0.5.0</code>, <code>v0.5.1</code> o <code>v0.5.2</code>, <code>"0.5.0"</code>; con pin <code>v0.4.x</code>, <code>"0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>. No es un tag.</td>
+<td>Línea de <strong>constitución</strong> (semver <strong>mayor.menor</strong>). Con pin <code>v0.5.0</code>, <code>v0.5.1</code>, <code>v0.5.2</code> o <code>v0.5.3</code>, <code>"0.5.0"</code>; con pin <code>v0.4.x</code>, <code>"0.4.0"</code>; con pin <code>v0.3.3</code>, <code>"0.3.0"</code>. No es un tag.</td>
 </tr>
 <tr>
 <td>Capítulos / skills</td>
@@ -4889,7 +4889,7 @@
 </table>
 <blockquote>
 <p>[!TIP]
-El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> nombra la línea (<code>"0.5.0"</code>, <code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.5.1</code>, <code>v0.5.0</code>, <code>v0.4.3</code>, <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
+El pin recomendado del árbol es <code>v0.5.3</code>. <code>sdaf.version</code> nombra la línea (<code>"0.5.0"</code>, <code>"0.4.0"</code> o <code>"0.3.0"</code>), no un tag: <code>v0.3.0</code> no existe. Quien se quede en <code>v0.5.2</code>, <code>v0.5.1</code>, <code>v0.5.0</code>, <code>v0.4.3</code>, <code>v0.3.3</code> o <code>v0.2.1</code> no está obligado.</p>
 </blockquote>
 <p>Subir de <code>0.1.x</code> a <code>0.2.0</code> es un upgrade consciente (breaking de citas de handbook).</p>
 <h2 id="adopción-canónica">Adopción (canónica)<a class="headerlink" href="#adopción-canónica" title="Permanent link">&para;</a></h2>
@@ -4906,10 +4906,10 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <li>Añadir sdaf-core como <strong>submodule</strong> pinneado a un tag, p. ej. en <code>.sdaf/</code>:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git submodule add -b main &lt;url-sdaf-core&gt; .sdaf
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.5.2
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cd .sdaf &amp;&amp; git checkout v0.5.3
 </code></pre></div>
 <ol>
-<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.5.0"</code> con pin <code>v0.5.0</code>, <code>v0.5.1</code> o <code>v0.5.2</code>, <code>"0.4.0"</code> con pin <code>v0.4.x</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
+<li>Copiar un escenario de <a href="../../examples/"><code>examples/</code></a> a <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>sdaf.version</code> nombra la línea de constitución: <code>"0.5.0"</code> con pin <code>v0.5.0</code>, <code>v0.5.1</code>, <code>v0.5.2</code> o <code>v0.5.3</code>, <code>"0.4.0"</code> con pin <code>v0.4.x</code>, <code>"0.3.0"</code> con pin <code>v0.3.3</code>).</li>
 <li>Ejecutar la skill <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> (o seguir sus pasos a mano).</li>
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../AGENTS.md.template"><code>AGENTS.md.template</code></a>.</li>
 <li>Opcional: validar <code>sdaf.config.yaml</code> con la composite action <a href="../../.github/actions/validate-sdaf/"><code>.github/actions/validate-sdaf</code></a> (disponible desde <code>v0.4.0</code>).</li>
@@ -4966,7 +4966,7 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
 </ul>
 <h3 id="validar-los-adrs-del-consumidor">Validar los ADRs del consumidor<a class="headerlink" href="#validar-los-adrs-del-consumidor" title="Permanent link">&para;</a></h3>
-<p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
+<p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible desde <code>v0.5.3</code>.</p>
 <ul>
 <li>En local, desde el checkout del core: <code>python scripts/check-adrs.py --consumer --legacy-up-to N --root &lt;repo-del-consumidor&gt;</code>.</li>
 <li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: inputs <code>check-adrs: "true"</code> y <code>adrs-legacy-up-to: "N"</code>.</li>
@@ -4976,7 +4976,7 @@ El pin recomendado del árbol es <code>v0.5.2</code>. <code>sdaf.version</code> 
 <p>Se relaja solo para los heredados (número ≤ <code>N</code>): <code>Fecha</code> sin hora, <code>Estado</code> por una tabla cerrada de equivalencias (<code>accepted</code> → Aceptado, <code>superseded</code> → Sustituido, <code>rechazada</code> → Rechazado…) y <code>Aceptación</code> opcional.</p>
 <p>Sigue estricto siempre: Propuesto y Rechazado sin <code>Aceptación</code>, <code>Rechazo</code> completo, reciprocidad de Sustituye / Sustituido por, <code>Tipo</code> y <code>Caducidad</code> de las excepciones y número repetido. Un ADR nuevo (número &gt; <code>N</code>) mantiene las reglas del core, incluida la <code>Aceptación</code> humana con hora y zona.</p>
 <h3 id="comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR<a class="headerlink" href="#comprobar-gate-0-en-el-pr" title="Permanent link">&para;</a></h3>
-<p>Opt-in de la línea <code>0.5.0</code> (con una línea anterior el comprobador avisa y no comprueba nada). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> hace las comprobaciones <strong>mecánicas</strong> de <a href="../../skills/sdaf-gate0/SKILL/">Gate 0</a> del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
+<p>Opt-in de la línea <code>0.5.0</code> (con una línea anterior el comprobador avisa y no comprueba nada). <a href="../../scripts/check-gate0.py"><code>scripts/check-gate0.py</code></a> hace las comprobaciones <strong>mecánicas</strong> de <a href="../../skills/sdaf-gate0/SKILL/">Gate 0</a> del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde <code>v0.5.3</code>.</p>
 <ul>
 <li>En local, desde el checkout del core: <code>python scripts/check-gate0.py --root &lt;repo-del-consumidor&gt; [--pbi ID|RUTA ...]</code>.</li>
 <li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: input <code>check-gate0: "true"</code> y, si se quiere fijar el PBI, <code>gate0-pbi: "PBI-PRD-001"</code>. Sin <code>gate0-pbi</code> el PBI se deduce del diff del PR y el checkout necesita <code>fetch-depth: 0</code>.</li>
@@ -5101,7 +5101,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Actualizar <code>sdaf.version</code> a <code>"0.5.0"</code>.</li>
 </ol>
 <p><a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a> con <code>0.5.0</code> crea la línea base en Draft y su STOP cita G0.1 y G0.6.</p>
-<p>Los ADRs del consumidor no se reescriben. Por defecto <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (<code>--consumer</code>), disponible desde <code>v0.5.3</code> (se crea tras el merge del parche): véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
+<p>Los ADRs del consumidor no se reescriben. Por defecto <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> valida los ADRs <strong>del core</strong> (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (<code>--consumer</code>), disponible desde <code>v0.5.3</code>: véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
 <p>No rompe citas. <code>sdaf.version</code> pasa a <code>"0.5.0"</code> solo si el consumidor adopta la línea.</p>
 <h2 id="051-parche">0.5.1 (parche)<a class="headerlink" href="#051-parche" title="Permanent link">&para;</a></h2>
 <p>Procedimiento <strong>opcional</strong> para adoptar SDAF sobre un repo con código previo (<a href="../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): skill <a href="../../skills/sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> (Draft, pendiente de aprobación humana), excepción de adopción (<a href="../../handbook/13-enmienda-excepciones-ciclo-de-vida/#3-excepciones-temporales">H13 §3</a>) y specs de caracterización (<a href="../../handbook/04-specification-standard/#4-cabecera-obligatoria">H04 §4</a>). No añade gates ni cambia los existentes.</p>

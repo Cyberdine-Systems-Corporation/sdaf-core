@@ -4285,7 +4285,7 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97</span><span class="w"> </span><span class="c1"># v7.0.0</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">"3.12"</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.2</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.3</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">config-paths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdaf.config.yaml</span>
 </code></pre></div>
@@ -4346,7 +4346,7 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">adrs-legacy-up-to</span><span class="p">:</span><span class="w"> </span><span class="s">"12"</span>
 </code></pre></div>
 <p><code>adrs-legacy-up-to</code> es <code>N</code>: los ADRs con número ≤ <code>N</code> son heredados y solo ellos reciben las relajaciones de contenido; los ADRs nuevos (número &gt; <code>N</code>) mantienen las reglas del core. Un valor vacío cuenta como <code>0</code>; uno no numérico lo rechaza el script. Qué se relaja y cómo elegir <code>N</code>: <a href="../../../docs/adopcion-y-upgrade/#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
-<p>Disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
+<p>Disponible desde <code>v0.5.3</code>.</p>
 <h2 id="gate-0-comprobaciones-mecánicas">Gate 0 (comprobaciones mecánicas)<a class="headerlink" href="#gate-0-comprobaciones-mecánicas" title="Permanent link">&para;</a></h2>
 <p>Con <code>check-gate0: "true"</code> la action ejecuta <code>scripts/check-gate0.py</code> sobre el workspace: comprobaciones <strong>mecánicas</strong> de G0.1, G0.2, G0.4, G0.5 y G0.6 del PBI en curso. Es opt-in y <strong>bloqueante</strong>: con algún <code>FAIL</code> el paso falla. G0.3 es juicio humano: sale siempre como <code>AVISO</code> y solo se verifica que los ADRs citados existan y estén Aceptados.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7.0.1</span>
@@ -4364,7 +4364,7 @@
 <li>Sin diff de PR y sin <code>gate0-pbi</code>, el comprobador avisa y no comprueba; con un diff de PR que no se puede calcular, el paso <strong>falla</strong>.</li>
 </ul>
 <p>Qué comprueba, sus límites (la excepción de adopción no se detecta y un PR correctivo en perímetro heredado fallará el paso) y cómo desactivarlo en ese caso: <a href="../../../docs/adopcion-y-upgrade/#comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR</a>. El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.</p>
-<p>Disponible desde <code>v0.5.3</code> (se crea tras el merge del parche).</p>
+<p>Disponible desde <code>v0.5.3</code>.</p>
 <p>Checkout del consumidor: en PRs, <code>fetch-depth: 0</code>. Si <code>check-worklog</code> es <code>true</code> y el diff contra la base no se puede calcular, el paso <strong>falla</strong>; no se da por bueno. Con <code>check-gate0</code> y sin <code>gate0-pbi</code> rige lo mismo.</p>
 
 
