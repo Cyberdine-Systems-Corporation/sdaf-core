@@ -9,7 +9,7 @@ Parche de línea (**no** breaking de citas `H00`–`H14` ni de configs). Solo to
 - Capítulos y skills: sin cambios. `sdaf.version` sigue en `"0.5.0"`.
 - Worklogs: [`worklogs/INIT-arquitectura/Iteration-025.md`](../worklogs/INIT-arquitectura/Iteration-025.md), [`Iteration-026.md`](../worklogs/INIT-arquitectura/Iteration-026.md) y [`Iteration-027.md`](../worklogs/INIT-arquitectura/Iteration-027.md).
 
-Quien no use los inputs nuevos no tiene que hacer nada. Para usar `check-adrs` o `check-gate0` en la action hay que pinnear `v0.5.3`. Pin de árbol: `v0.5.3`, que se crea tras el merge. Quien siga en `v0.5.2` o anterior no está obligado a moverlo.
+Quien no use los inputs nuevos no tiene que hacer nada. Para usar `check-adrs` o `check-gate0` en la action hay que pinnear `v0.5.3`. Pin de árbol: `v0.5.3`. Quien siga en `v0.5.2` o anterior no está obligado a moverlo.
 
 ## 0.5.2 — 2026-10-18T19:56+02:00
 

@@ -11,12 +11,12 @@
 
 | Concepto | Uso |
 |----------|-----|
-| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`, `v0.4.3`, `v0.5.0`, `v0.5.1`, `v0.5.2`. **No** existen `v0.3.0` ni `v0.3.1`. |
-| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.5.0`, `v0.5.1` o `v0.5.2`, `"0.5.0"`; con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
+| Tag Git `vX.Y.Z` | Pin del **árbol** sdaf-core. Tags publicados: `v0.1.0`, `v0.2.0`, `v0.2.1`, `v0.3.2`, `v0.3.3`, `v0.4.0`, `v0.4.1`, `v0.4.2`, `v0.4.3`, `v0.5.0`, `v0.5.1`, `v0.5.2`, `v0.5.3`. **No** existen `v0.3.0` ni `v0.3.1`. |
+| `sdaf.version` en `sdaf.config.yaml` | Línea de **constitución** (semver **mayor.menor**). Con pin `v0.5.0`, `v0.5.1`, `v0.5.2` o `v0.5.3`, `"0.5.0"`; con pin `v0.4.x`, `"0.4.0"`; con pin `v0.3.3`, `"0.3.0"`. No es un tag. |
 | Capítulos / skills | Alineados a la misma línea (`0.2.x`, `0.3.x`, `0.4.x` o `0.5.x` según pin) |
 
 > [!TIP]
-> El pin recomendado del árbol es `v0.5.2`. `sdaf.version` nombra la línea (`"0.5.0"`, `"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.5.1`, `v0.5.0`, `v0.4.3`, `v0.3.3` o `v0.2.1` no está obligado.
+> El pin recomendado del árbol es `v0.5.3`. `sdaf.version` nombra la línea (`"0.5.0"`, `"0.4.0"` o `"0.3.0"`), no un tag: `v0.3.0` no existe. Quien se quede en `v0.5.2`, `v0.5.1`, `v0.5.0`, `v0.4.3`, `v0.3.3` o `v0.2.1` no está obligado.
 
 Subir de `0.1.x` a `0.2.0` es un upgrade consciente (breaking de citas de handbook).
 
@@ -38,10 +38,10 @@ flowchart TD
 
 ```text
 git submodule add -b main <url-sdaf-core> .sdaf
-cd .sdaf && git checkout v0.5.2
+cd .sdaf && git checkout v0.5.3
 ```
 
-2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.5.0"` con pin `v0.5.0`, `v0.5.1` o `v0.5.2`, `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
+2. Copiar un escenario de [`examples/`](../examples/README.md) a `sdaf.config.yaml` en la raíz del consumidor (`sdaf.version` nombra la línea de constitución: `"0.5.0"` con pin `v0.5.0`, `v0.5.1`, `v0.5.2` o `v0.5.3`, `"0.4.0"` con pin `v0.4.x`, `"0.3.0"` con pin `v0.3.3`).
 3. Ejecutar la skill [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) (o seguir sus pasos a mano).
 4. Materializar `AGENTS.md` desde [`AGENTS.md.template`](../AGENTS.md.template).
 5. Opcional: validar `sdaf.config.yaml` con la composite action [`.github/actions/validate-sdaf`](../.github/actions/validate-sdaf/README.md) (disponible desde `v0.4.0`).
@@ -84,7 +84,7 @@ Limitaciones de las comprobaciones actuales:
 
 ### Validar los ADRs del consumidor
 
-Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) los comprueba sin reescribirlos; está disponible desde `v0.5.3` (se crea tras el merge del parche).
+Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) los comprueba sin reescribirlos; está disponible desde `v0.5.3`.
 
 - En local, desde el checkout del core: `python scripts/check-adrs.py --consumer --legacy-up-to N --root <repo-del-consumidor>`.
 - Con la [action](../.github/actions/validate-sdaf/README.md): inputs `check-adrs: "true"` y `adrs-legacy-up-to: "N"`.
@@ -99,7 +99,7 @@ Sigue estricto siempre: Propuesto y Rechazado sin `Aceptación`, `Rechazo` compl
 
 ### Comprobar Gate 0 en el PR
 
-Opt-in de la línea `0.5.0` (con una línea anterior el comprobador avisa y no comprueba nada). [`scripts/check-gate0.py`](../scripts/check-gate0.py) hace las comprobaciones **mecánicas** de [Gate 0](../skills/sdaf-gate0/SKILL.md) del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde `v0.5.3` (se crea tras el merge del parche).
+Opt-in de la línea `0.5.0` (con una línea anterior el comprobador avisa y no comprueba nada). [`scripts/check-gate0.py`](../scripts/check-gate0.py) hace las comprobaciones **mecánicas** de [Gate 0](../skills/sdaf-gate0/SKILL.md) del PBI en curso: G0.1 (specs citadas existentes y Approved), G0.2 (acceptance), G0.4 (cabecera del PBI completa y unidades de la línea base), G0.5 (worklog citado) y G0.6 (línea base Approved). Está disponible desde `v0.5.3`.
 
 - En local, desde el checkout del core: `python scripts/check-gate0.py --root <repo-del-consumidor> [--pbi ID|RUTA ...]`.
 - Con la [action](../.github/actions/validate-sdaf/README.md): input `check-gate0: "true"` y, si se quiere fijar el PBI, `gate0-pbi: "PBI-PRD-001"`. Sin `gate0-pbi` el PBI se deduce del diff del PR y el checkout necesita `fetch-depth: 0`.
@@ -258,7 +258,7 @@ Al pinnear `v0.5.0`:
 
 [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md) con `0.5.0` crea la línea base en Draft y su STOP cita G0.1 y G0.6.
 
-Los ADRs del consumidor no se reescriben. Por defecto [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (`--consumer`), disponible desde `v0.5.3` (se crea tras el merge del parche): véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
+Los ADRs del consumidor no se reescriben. Por defecto [`scripts/check-adrs.py`](../scripts/check-adrs.py) valida los ADRs **del core** (fechas con hora y zona, numeración sin huecos, índice con el estado en la segunda columna); para los de un consumidor con formato anterior está su modo consumidor (`--consumer`), disponible desde `v0.5.3`: véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
 
 No rompe citas. `sdaf.version` pasa a `"0.5.0"` solo si el consumidor adopta la línea.
 

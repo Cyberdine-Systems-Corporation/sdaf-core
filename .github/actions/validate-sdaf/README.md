@@ -9,7 +9,7 @@ Usar desde un repo consumidor pinneado a un tag de sdaf-core que incluya esta ac
 - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
   with:
     python-version: "3.12"
-- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.2
+- uses: Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.3
   with:
     config-paths: sdaf.config.yaml
 ```
@@ -43,7 +43,7 @@ Con `check-adrs: "true"` la action ejecuta `scripts/check-adrs.py --consumer` so
 
 `adrs-legacy-up-to` es `N`: los ADRs con número ≤ `N` son heredados y solo ellos reciben las relajaciones de contenido; los ADRs nuevos (número > `N`) mantienen las reglas del core. Un valor vacío cuenta como `0`; uno no numérico lo rechaza el script. Qué se relaja y cómo elegir `N`: [Validar los ADRs del consumidor](../../../docs/adopcion-y-upgrade.md#validar-los-adrs-del-consumidor).
 
-Disponible desde `v0.5.3` (se crea tras el merge del parche).
+Disponible desde `v0.5.3`.
 
 ## Gate 0 (comprobaciones mecánicas)
 
@@ -66,6 +66,6 @@ Con `check-gate0: "true"` la action ejecuta `scripts/check-gate0.py` sobre el wo
 
 Qué comprueba, sus límites (la excepción de adopción no se detecta y un PR correctivo en perímetro heredado fallará el paso) y cómo desactivarlo en ese caso: [Comprobar Gate 0 en el PR](../../../docs/adopcion-y-upgrade.md#comprobar-gate-0-en-el-pr). El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.
 
-Disponible desde `v0.5.3` (se crea tras el merge del parche).
+Disponible desde `v0.5.3`.
 
 Checkout del consumidor: en PRs, `fetch-depth: 0`. Si `check-worklog` es `true` y el diff contra la base no se puede calcular, el paso **falla**; no se da por bueno. Con `check-gate0` y sin `gate0-pbi` rige lo mismo.
