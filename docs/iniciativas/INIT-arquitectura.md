@@ -3,13 +3,13 @@
 | Campo | Valor |
 |--------|--------|
 | ID | INIT-arquitectura |
-| Versión | 0.1.26 |
+| Versión | 0.1.27 |
 | Estado | Draft |
-| Fecha | 2026-10-25T18:55+01:00 |
+| Fecha | 2026-10-25T19:29+01:00 |
 | Base | `v0.4.2` + `9c90c79` (`main`, 2026-09-27) |
 | Responsable de aceptar | Manuel Ortiz de Villajos Quirós (@mortiz-iadev, CODEOWNERS) |
 | ADRs | ADR-005 (Aceptado 2026-10-03), ADR-006 y ADR-007 (Aceptados 2026-10-07), ADR-008 (Aceptado 2026-10-08), ADR-009 (Aceptado 2026-10-12) |
-| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md), [Iteration-021](../../worklogs/INIT-arquitectura/Iteration-021.md), [Iteration-022](../../worklogs/INIT-arquitectura/Iteration-022.md), [Iteration-023](../../worklogs/INIT-arquitectura/Iteration-023.md), [Iteration-024](../../worklogs/INIT-arquitectura/Iteration-024.md), [Iteration-025](../../worklogs/INIT-arquitectura/Iteration-025.md), [Iteration-026](../../worklogs/INIT-arquitectura/Iteration-026.md), [Iteration-027](../../worklogs/INIT-arquitectura/Iteration-027.md) |
+| Worklogs | [Iteration-001](../../worklogs/INIT-arquitectura/Iteration-001.md), [Iteration-002](../../worklogs/INIT-arquitectura/Iteration-002.md), [Iteration-003](../../worklogs/INIT-arquitectura/Iteration-003.md), [Iteration-004](../../worklogs/INIT-arquitectura/Iteration-004.md), [Iteration-005](../../worklogs/INIT-arquitectura/Iteration-005.md), [Iteration-006](../../worklogs/INIT-arquitectura/Iteration-006.md), [Iteration-007](../../worklogs/INIT-arquitectura/Iteration-007.md), [Iteration-008](../../worklogs/INIT-arquitectura/Iteration-008.md), [Iteration-009](../../worklogs/INIT-arquitectura/Iteration-009.md), [Iteration-010](../../worklogs/INIT-arquitectura/Iteration-010.md), [Iteration-011](../../worklogs/INIT-arquitectura/Iteration-011.md), [Iteration-012](../../worklogs/INIT-arquitectura/Iteration-012.md), [Iteration-013](../../worklogs/INIT-arquitectura/Iteration-013.md), [Iteration-014](../../worklogs/INIT-arquitectura/Iteration-014.md), [Iteration-015](../../worklogs/INIT-arquitectura/Iteration-015.md), [Iteration-016](../../worklogs/INIT-arquitectura/Iteration-016.md), [Iteration-017](../../worklogs/INIT-arquitectura/Iteration-017.md), [Iteration-018](../../worklogs/INIT-arquitectura/Iteration-018.md), [Iteration-019](../../worklogs/INIT-arquitectura/Iteration-019.md), [Iteration-020](../../worklogs/INIT-arquitectura/Iteration-020.md), [Iteration-021](../../worklogs/INIT-arquitectura/Iteration-021.md), [Iteration-022](../../worklogs/INIT-arquitectura/Iteration-022.md), [Iteration-023](../../worklogs/INIT-arquitectura/Iteration-023.md), [Iteration-024](../../worklogs/INIT-arquitectura/Iteration-024.md), [Iteration-025](../../worklogs/INIT-arquitectura/Iteration-025.md), [Iteration-026](../../worklogs/INIT-arquitectura/Iteration-026.md), [Iteration-027](../../worklogs/INIT-arquitectura/Iteration-027.md), [Iteration-028](../../worklogs/INIT-arquitectura/Iteration-028.md) |
 
 > [!NOTE]
 > 🛠️ Plan de iniciativa: organiza trabajo sobre el core. **No** es constitución ni sustituye al [handbook](../../handbook/README.md) ni a los [ADRs](../../architecture/decisions/README.md).
@@ -98,7 +98,7 @@ Bloquean los PBIs indicados. Recomendación en negrita; el humano decide. D-1 a 
 
 Quien se quede en una línea anterior no está obligado (precedente de `0.3.0` y `0.4.0`).
 
-Estado a 2026-10-25: `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.5.2` publicadas; `v0.5.3` (ARQ-6.3 y ARQ-6.1) preparado, pendiente de tag; `v0.6.0` pendiente.
+Estado a 2026-10-25: `v0.4.3`, `v0.5.0`, `v0.5.1`, `v0.5.2` y `v0.5.3` publicadas; `v0.6.0` pendiente.
 
 **Entrega de `v0.5.0`** (decidida 2026-10-07T18:41+02:00, Manuel Ortiz de Villajos Quirós, CODEOWNERS; transcrita del chat). Estrategia `auto-chain` con cadena `feature-branch-chain` (skill `chained-pr`): rama tracker `feat/linea-0.5.0` con PR en borrador, sin fusionar hasta completar la cadena; cada slice es un PR hijo (≤400 líneas cambiadas y ≤60 min de revisión) que apunta a la rama del anterior, y el primero al tracker. Orden: S1 ciclo de vida de ADRs (ARQ-3.3); S2 H14 y plantilla de línea base (3.1, 3.2); S3 specs, árbol y PBI (3.5, 3.4, 3.10); S4a precedencia y pipeline (3.7, 3.8); S4b gates y Architecture Agent (3.6, 3.9); S5 bootstrap e idioma (3.11, 3.12); S6 release (3.13). S1 se entrega con `size:exception` aceptada: 574 líneas, más de la mitad tests, fixtures, worklog y plan. Los slices normativos no pueden aterrizar solos en `main` (H14 y G0.6 se citan entre sí), por eso la cadena no se apila sobre `main`. Cada commit local pide confirmación del humano.
 
@@ -290,7 +290,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 
 ### Bloque 6 — Automatización (transversal)
 
-**ARQ-6.1 — Gate 0 semiautomático** (hecho: #61 y #62; action y guía en el PR de cierre; pendiente de publicar en el parche junto a ARQ-6.3; Iteration-026)
+**ARQ-6.1 — Gate 0 semiautomático** (hecho: #61 y #62; action y guía en el PR de cierre; publicado en `v0.5.3` junto a ARQ-6.3; Iteration-026)
 - Hallazgos: H-7.
 - Artefactos: `scripts/check-gate0.py`, input `check-gate0` en `.github/actions/validate-sdaf/action.yml`, fixtures.
 - Comprueba: el PBI existe con la plantilla de ARQ-3.10; las specs enlazadas existen y están Approved; hay acceptance; hay worklog; línea base Approved (G0.6).
@@ -302,7 +302,7 @@ Formato de cada PBI: hallazgos · artefactos · clase de cambio · criterios de 
 - Comprueba: la línea base lista todos los ADRs vigentes y ningún sustituido; las unidades de `stack.units` existen en la línea base; las specs citan unidades existentes.
 - Depende de: ARQ-3.3, ARQ-4.5.
 
-**ARQ-6.3 — ADRs del consumidor** (hecho: #58 y #59; action y guía en el PR de cierre; pendiente de publicar en el parche junto a ARQ-6.1; Iteration-025)
+**ARQ-6.3 — ADRs del consumidor** (hecho: #58 y #59; action y guía en el PR de cierre; publicado en `v0.5.3` junto a ARQ-6.1; Iteration-025)
 - Artefactos: `check-adrs.py --root` expuesto en la action (input `check-adrs`).
 - Hallazgo del piloto de `0.5.0`: el checker valida hoy los ADRs del core y falla sobre los de un consumidor con formato anterior. Hace falta un **modo consumidor** que acepte fechas sin hora y zona anteriores a la línea, huecos de numeración y un índice con otras columnas (estado en otra posición).
 - Depende de: ARQ-3.3.
@@ -403,7 +403,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 - [x] D-1 a D-9 cerradas y registradas (Iteration-005).
 - [x] ADR-005 a 008 Aceptados o Rechazados por humano.
-- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente (publicadas `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.5.2`; falta `v0.6.0`; ARQ-6.3 y ARQ-6.1 hechos, pendientes de publicar en un parche, 25 de 34 PBIs hechos).
+- [ ] `v0.4.3`, `v0.5.0`, `v0.5.1` y `v0.6.0` publicadas o descartadas explícitamente (publicadas `v0.4.3`, `v0.5.0`, `v0.5.1`, `v0.5.2` y `v0.5.3`; falta `v0.6.0`; ARQ-6.3 y ARQ-6.1 hechos y publicados en `v0.5.3`, 25 de 34 PBIs hechos).
 - [ ] Cada hallazgo H-1 a H-10 cerrado por al menos un PBI hecho (sección 6): 8 de 10 cerrados; faltan H-5 y H-6.
 - [ ] Piloto sin bloqueos en cada línea (hecho para `0.5.0`, sin bloqueos; en `0.5.1`, recorrido en repo sintético sin bloqueantes tras corregir la skill; pendiente en `0.6.0`).
 - [ ] Worklog por iteración con cambios materiales de handbook o ADR ([H08 §5](../../handbook/08-agent-traceability.md#5-cuándo-crear-worklog)).
@@ -415,10 +415,11 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 1. `v0.5.0` publicada (tag sobre `66ee77b`). La cadena de entrega queda cerrada y sus ramas, borradas.
 2. `v0.5.1` publicada (tag sobre `69af58f`; #50, #51 y #52).
 3. `v0.5.2` publicada (parche: lo diferido de `v0.5.1`): tag sobre `bd77795`; #53 (contenido y preparación) y #54 (chore de publicación); ramas borradas.
-4. ARQ-6.3 (modo consumidor de `check-adrs.py`, hallazgo del piloto) hecho: #58 y #59 fusionados; el input de la action y la guía van en el PR de cierre (worklog Iteration-025). ARQ-6.1 (Gate 0 semiautomático) hecho: #61 y #62 fusionados; el input `check-gate0` de la action y la guía van en el PR de cierre (worklog Iteration-026). Ambos están preparados para el mismo parche `v0.5.3`, pendiente de tag (tag y Release con confirmación aparte; worklog Iteration-027). Del bloque 6 queda ARQ-6.2 (coherencia arquitectónica), que depende de ARQ-4.5.
-5. `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo (decisión J, abierta).
-6. Decisión humana abierta: K (adopción en el consumidor del piloto). La skill `sdaf-adopt-existing` ya está aprobada (0.1.1, decisión M cerrada el 2026-10-18).
-7. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin recomendado en `v0.5.2` y la línea base aprobada por un humano.
+4. `v0.5.3` publicada (parche de solo tooling y docs: ARQ-6.3, modo consumidor de `check-adrs.py`, y ARQ-6.1, Gate 0 semiautomático; worklogs Iteration-025, 026 y 027): tag anotado sobre `75933a4`, el merge de #64 (preparación); #65 (chore de publicación); GitHub Release `sdaf-core 0.5.3` marcada Latest; ramas borradas.
+5. Siguiente trabajo: el camino a `v0.6.0`, empezando por ARQ-4.1 (manifiesto `sdaf-pack.yaml` y su schema). Del bloque 6 queda ARQ-6.2 (coherencia arquitectónica), que depende de ARQ-4.5.
+6. `v0.6.0` (bloque 4, capas y topología): espera una release de `sdaf-stack-dotnet` con `sdaf-pack.yaml` (ARQ-4.7), que requiere autorización humana expresa sobre ese repo (decisión J, abierta).
+7. Decisión humana abierta: K (adopción en el consumidor del piloto). La skill `sdaf-adopt-existing` ya está aprobada (0.1.1, decisión M cerrada el 2026-10-18).
+8. Adopción de la línea `0.5.0` en consumidores: decisión de cada uno, con el pin recomendado en `v0.5.3` y la línea base aprobada por un humano.
 
 ---
 
@@ -435,6 +436,7 @@ El piloto es evidencia externa: sus hallazgos entran al core como cambios genér
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.1.27 | 2026-10-25T19:29+01:00 | `v0.5.3` publicada (tag anotado sobre `75933a4`, el merge de #64; #65 como chore de publicación; GitHub Release `sdaf-core 0.5.3` marcada Latest): ARQ-6.3 y ARQ-6.1 publicados, sin PBIs nuevos (siguen 25 de 34); pin recomendado en `v0.5.3`; siguiente trabajo: camino a `v0.6.0` desde ARQ-4.1; las decisiones J y K siguen abiertas; worklog Iteration-028 |
 | 0.1.26 | 2026-10-25T18:55+01:00 | Preparación del parche `v0.5.3` (ARQ-6.3 y ARQ-6.1: solo tooling y docs; capítulos, skills y `sdaf.version` sin cambios): entrada 0.5.3 en el CHANGELOG del handbook, sección 0.5.3 de la guía y textos de disponibilidad concretados; preparado, pendiente de tag; sin PBIs nuevos; worklog Iteration-027 |
 | 0.1.25 | 2026-10-24T20:18+02:00 | ARQ-6.1 (Gate 0 semiautomático): `check-gate0.py` con comprobaciones mecánicas de G0.1, G0.2, G0.4, G0.5 y G0.6, bloqueante y sin aprobar nada, e input `check-gate0` en la action con guía (#61 y #62 fusionados; G0.3 y la excepción de adopción siguen siendo juicio humano); pendiente de publicar junto a ARQ-6.3; 25 de 34 PBIs hechos; worklog Iteration-026 |
 | 0.1.24 | 2026-10-24T00:25+02:00 | ARQ-6.3 (modo consumidor de `check-adrs.py`): `--consumer` y `--legacy-up-to N` (corte por número), input `check-adrs` en la action y guía; pendiente de publicar junto a ARQ-6.1; worklog Iteration-025 |
