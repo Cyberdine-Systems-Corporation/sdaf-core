@@ -6,7 +6,7 @@
 
 Núcleo reutilizable del **Spec-Driven AI Development Framework** (SDAF): constitución del método, agentes, prompts, skills y plantillas.
 
-![release](https://img.shields.io/badge/release-v0.5.3-2d6a4f) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
+![release](https://img.shields.io/github/v/release/Cyberdine-Systems-Corporation/sdaf-core?color=2d6a4f&label=release) ![handbook](https://img.shields.io/badge/handbook-Approved-2d6a4f)
 
 No contiene código ni specs de un producto concreto.
 
