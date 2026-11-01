@@ -1,0 +1,34 @@
+# Manifiesto de pack de stack (sdaf-pack.yaml). Se valida con
+# scripts/validate-pack.py contra sdaf-pack.schema.json. Pack ficticio: sustituya
+# cada valor por los de su pack.
+
+# Nombre completo del pack: sdaf-stack-<id>, en minúsculas y guiones. Es el mismo
+# identificador que el consumidor escribe en stack.pack (sdaf-stack-<id>@semver).
+id: sdaf-stack-example
+
+# Versión del pack: semver estricto X.Y.Z.
+version: 0.1.0
+
+# Rango de líneas de constitución del core con las que el pack es compatible.
+# Uno o dos comparadores (>=, >, <=, <, = o ninguno) sobre X.Y.Z, separados por
+# un espacio; con dos, un límite inferior y uno superior.
+core: ">=0.5.0 <0.7.0"
+
+# Lo que el pack aporta; al menos una de las tres listas, con ids en kebab-case.
+provides:
+  # Ids de extensión del core para los que aporta contratos y prompts.
+  extension_ids:
+    - example-extension
+  # Skills versionadas del pack (skills/<id>/SKILL.md).
+  skills:
+    - example-skill
+  # Prompts del pack.
+  prompts:
+    - example-prompt
+
+# Opcional: otros packs de los que depende este, cada uno con su id completo y
+# un rango de versiones con la misma sintaxis que core. Un pack no se requiere
+# a sí mismo.
+requires:
+  - id: sdaf-stack-base
+    version: ">=1.0.0 <2.0.0"
