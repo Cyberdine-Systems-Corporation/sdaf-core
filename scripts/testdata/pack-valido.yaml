@@ -1,0 +1,10 @@
+id: sdaf-stack-example
+version: 0.1.0
+core: ">=0.5.0 <0.7.0"
+provides:
+  extension_ids: [example-extension]
+  skills: [example-skill]
+  prompts: [example-prompt]
+requires:
+  - id: sdaf-stack-base
+    version: ">=1.0.0 <2.0.0"

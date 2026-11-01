@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sdaf.local/sdaf-pack.schema.json",
+  "title": "sdaf-pack.yaml",
+  "description": "Manifiesto de un pack de stack (ADR-007 §3). Declara la identidad del pack, las líneas de constitución del core con las que es compatible y lo que aporta. El schema valida la sintaxis; comparar `core` con `sdaf.version` y contrastar `provides` con el catálogo del core lo hacen las comprobaciones de resolución, no este schema.",
+  "type": "object",
+  "required": ["id", "version", "core", "provides"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^sdaf-stack-[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Nombre completo del pack, `sdaf-stack-<id>` en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en `stack.pack` (`sdaf-stack-<id>@semver`)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semver estricto `X.Y.Z` de este pack."
+    },
+    "core": {
+      "type": "string",
+      "pattern": "^(>=|<=|>|<|=)?[0-9]+\\.[0-9]+\\.[0-9]+( (>=|<=|>|<|=)?[0-9]+\\.[0-9]+\\.[0-9]+)?$",
+      "description": "Rango de líneas de constitución del core compatibles, p. ej. `>=0.5.0 <0.7.0`: uno o dos comparadores (`>=`, `>`, `<=`, `<`, `=` o ninguno) sobre `X.Y.Z`, separados por un espacio. El schema valida solo la sintaxis; la coherencia del rango y su evaluación contra `sdaf.version` se comprueban fuera del schema."
+    },
+    "provides": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "description": "Lo que el pack aporta. Debe declarar al menos una lista. No hay catálogo cerrado de ids de extensión en el schema: contrastarlos con el catálogo del core es una comprobación aparte.",
+      "properties": {
+        "extension_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idKebab" },
+          "description": "Ids de extensión del core para los que el pack aporta contratos y prompts."
+        },
+        "skills": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idKebab" },
+          "description": "Ids de las skills versionadas que incluye el pack (`skills/<id>/SKILL.md`). El prefijo de stack lo exige el contrato de pack; el schema solo exige kebab-case."
+        },
+        "prompts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/idKebab" },
+          "description": "Ids de los prompts que incluye el pack."
+        }
+      }
+    },
+    "requires": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Otros packs de los que depende este (opcional). Un pack no puede requerirse a sí mismo; eso se comprueba fuera del schema.",
+      "items": {
+        "type": "object",
+        "required": ["id", "version"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^sdaf-stack-[a-z0-9]+(-[a-z0-9]+)*$",
+            "description": "Nombre completo del pack requerido, con el mismo formato que `id`."
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(>=|<=|>|<|=)?[0-9]+\\.[0-9]+\\.[0-9]+( (>=|<=|>|<|=)?[0-9]+\\.[0-9]+\\.[0-9]+)?$",
+            "description": "Rango de versiones aceptadas del pack requerido, con la misma sintaxis que `core`."
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "idKebab": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "description": "Identificador en kebab-case: minúsculas y dígitos separados por guiones, empezando por letra."
+    }
+  }
+}
