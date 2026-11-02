@@ -1723,6 +1723,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manifiesto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifiesto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manifiesto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relación-con-stackpack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relación con stack.pack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validar-un-manifiesto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar un manifiesto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prohibido" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4380,6 +4419,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#manifiesto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifiesto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manifiesto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relación-con-stackpack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relación con stack.pack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validar-un-manifiesto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar un manifiesto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prohibido" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4469,6 +4547,7 @@
 <ul>
 <li>Formato: <code>sdaf-stack-&lt;id&gt;@&lt;semver&gt;</code> (p. ej. <code>sdaf-stack-dotnet@0.3.0</code>).</li>
 <li>El consumidor lo declara en <code>stack.pack</code> de <code>sdaf.config.yaml</code>.</li>
+<li>El pack declara su propia identidad en el <a href="#manifiesto">manifiesto</a> <code>sdaf-pack.yaml</code>: su <code>id</code> es el nombre completo <code>sdaf-stack-&lt;id&gt;</code>, el mismo que se escribe en <code>stack.pack</code>.</li>
 <li><code>null</code> = solo método; sin playbooks de lenguaje/UI del pack.</li>
 </ul>
 <h2 id="obligatorio">Obligatorio<a class="headerlink" href="#obligatorio" title="Permanent link">&para;</a></h2>
@@ -4477,7 +4556,65 @@
 <li><strong>Skills</strong> versionadas (<code>skills/&lt;id&gt;/SKILL.md</code>) con prefijo de stack (<code>csharp-*</code>, <code>blazor-*</code>, etc.).</li>
 <li><strong>Contratos y prompts</strong> solo para <strong>ids de extensión</strong> reconocidos por el core (<code>frontend</code>, <code>infrastructure</code>, <code>domain-application</code>, <code>ai</code>, … — ver <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>).</li>
 <li>Declaración explícita de qué aporta y qué <strong>no</strong> puede contradecir (capítulos Approved del handbook del core).</li>
+<li><strong>Manifiesto</strong> <code>sdaf-pack.yaml</code> en la raíz del pack, válido contra el schema del core (ver <a href="#manifiesto">Manifiesto</a>). Durante <code>0.6.x</code> su ausencia es un aviso, no un error.</li>
 </ol>
+<h2 id="manifiesto">Manifiesto<a class="headerlink" href="#manifiesto" title="Permanent link">&para;</a></h2>
+<p><code>sdaf-pack.yaml</code>, en la raíz del pack, declara la identidad del pack, con qué líneas de constitución del core es compatible y qué aporta (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §3</a>). El core lo valida con <a href="../../sdaf-pack.schema.json"><code>sdaf-pack.schema.json</code></a> y <a href="../../scripts/validate-pack.py"><code>scripts/validate-pack.py</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td style="text-align: center;">Sí</td>
+<td>Nombre completo <code>sdaf-stack-&lt;id&gt;</code>, en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en <code>stack.pack</code>.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td style="text-align: center;">Sí</td>
+<td>Semver estricto <code>X.Y.Z</code> del pack.</td>
+</tr>
+<tr>
+<td><code>core</code></td>
+<td style="text-align: center;">Sí</td>
+<td>Rango semver de líneas de constitución compatibles, p. ej. <code>"&gt;=0.5.0 &lt;0.7.0"</code>: uno o dos comparadores (<code>&gt;=</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&lt;</code>, <code>=</code> o ninguno) sobre <code>X.Y.Z</code>, separados por un espacio. Con dos, un límite inferior y uno superior, y el rango no puede quedar vacío.</td>
+</tr>
+<tr>
+<td><code>provides</code></td>
+<td style="text-align: center;">Sí</td>
+<td>Lo que el pack aporta: al menos una de las listas <code>extension_ids</code>, <code>skills</code> y <code>prompts</code>, con ids en kebab-case y sin repeticiones.</td>
+</tr>
+<tr>
+<td><code>requires</code></td>
+<td style="text-align: center;">No</td>
+<td>Lista de <code>{id, version}</code> con los packs de los que depende: <code>id</code> con el formato de <code>id</code> y <code>version</code> como rango, con la sintaxis de <code>core</code>. Un pack no puede requerirse a sí mismo.</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo mínimo (pack ficticio <code>sdaf-stack-example</code>; la plantilla comentada y completa es <a href="../../templates/sdaf-pack.yaml"><code>templates/sdaf-pack.yaml</code></a>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdaf-stack-example</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1.0</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">core</span><span class="p">:</span><span class="w"> </span><span class="s">"&gt;=0.5.0</span><span class="nv"> </span><span class="s">&lt;0.7.0"</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">provides</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">skills</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-skill</span>
+</code></pre></div>
+<h3 id="relación-con-stackpack">Relación con <code>stack.pack</code><a class="headerlink" href="#relación-con-stackpack" title="Permanent link">&para;</a></h3>
+<p>El <code>id</code> y la <code>version</code> del manifiesto deben coincidir con la referencia <code>id@version</code> que escribe el consumidor en <code>stack.pack</code> (p. ej. <code>sdaf-stack-example@0.1.0</code>).</p>
+<blockquote>
+<p>[!WARNING]
+Esa comprobación <strong>no existe todavía</strong>. Hoy <code>validate-pack.py</code> valida el manifiesto de forma aislada: el schema, la coherencia de los rangos y que un pack no se requiera a sí mismo. Siguen pendientes, para ARQ-4.2: contrastar el manifiesto con <code>stack.pack</code>, comparar <code>core</code> con <code>sdaf.version</code>, detectar colisiones de ids, contrastar <code>extension_ids</code> con los ids que reconoce el core y emitir el aviso por manifiesto ausente.</p>
+</blockquote>
+<p>Durante <code>0.6.x</code>, un pack sin manifiesto es un aviso, no un error (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a>, Consecuencias). Ese aviso lo implementa ARQ-4.2.</p>
+<h3 id="validar-un-manifiesto">Validar un manifiesto<a class="headerlink" href="#validar-un-manifiesto" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>scripts/validate-pack.py<span class="w"> </span>&lt;ruta&gt;
+</code></pre></div>
+<p>Sin argumentos valida la plantilla. La salida es <code>OK  &lt;ruta&gt;</code> o una línea <code>FAIL &lt;ruta&gt;: &lt;motivo&gt;</code> por problema; el código de salida es 0 si todo valida y 1 si hay algún <code>FAIL</code>. Requiere PyYAML y jsonschema.</p>
 <h2 id="prohibido">Prohibido<a class="headerlink" href="#prohibido" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>[!WARNING]
