@@ -1,0 +1,17 @@
+# Fixture de config: referencia que incumple el patrón.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs:
+    - example@1.0
+
+agents:
+  active:
+    - specification
+    - frontend
+  stubs: []

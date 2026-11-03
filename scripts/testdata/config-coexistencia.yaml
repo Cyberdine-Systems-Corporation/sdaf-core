@@ -1,0 +1,18 @@
+# Fixture de config: stack.pack no nulo y stack.packs a la vez.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  pack: sdaf-stack-example@0.1.0
+  packs:
+    - sdaf-stack-other@0.2.0
+
+agents:
+  active:
+    - specification
+    - frontend
+  stubs: []

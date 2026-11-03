@@ -4,7 +4,7 @@ Catálogo **humano** de claves. La fuente de **validación** ejecutable es [`sda
 
 El archivo vive en la **raíz del repo consumidor**. Materializa nombre, idioma, rutas de código, pack de stack (opcional), el modelo de agentes y el tooling externo (opcional).
 
-Si `stack.pack` ≠ null, cumplir [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md).
+Si `stack.packs` declara algún pack, cumplir [`docs/contrato-pack-stack.md`](docs/contrato-pack-stack.md).
 
 Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
@@ -31,7 +31,8 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
-| `stack.pack` | string \| `null` | sí (puede ser `null`) | `null` | Identificador `id@version` de un pack (`sdaf-stack-dotnet@0.3.0`). `null` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
+| `stack.packs` | lista de strings | sí, salvo que se use el alias `stack.pack` (puede ser `[]`) | `[]` | Referencias `id@version` de los packs adoptados (`["sdaf-stack-example@0.3.0"]`), sin repetidos y con un id por pack: dos referencias con el mismo id son error aunque difiera la versión. `[]` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
+| `stack.pack` | string \| `null` | no (alias obsoleto) | `null` | Alias obsoleto de `stack.packs` con un único elemento: `pack: "sdaf-stack-example@0.3.0"` equivale a `packs: ["sdaf-stack-example@0.3.0"]`. Con un valor no nulo el validador avisa y pide `stack.packs`. No puede coexistir con `stack.packs` (error, también con `packs: []`); `stack.pack: null` junto a `stack.packs` no entra en conflicto. |
 | `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
 | `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
 
@@ -71,7 +72,7 @@ Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el
 1. Un id **no** puede estar a la vez en `active` y `stubs`.
 2. Toda clave de `fusions` debe aparecer en `active`.
 3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).
-4. Ids de extensión requieren `stack.pack` o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/<id>-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.
+4. Ids de extensión requieren algún pack en `stack.packs` (o el alias `stack.pack`) o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/<id>-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.
 
 ### `tooling` (opcional)
 
@@ -93,6 +94,6 @@ sdaf.config.yaml
     → AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)
     → sdaf-gate0         (stack.src_path)
     → sdaf-agent-router  (active / stubs / fusions)
-    → pack de stack      (si pack != null)
+    → packs de stack     (si stack.packs no está vacío)
     → AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)
 ```
