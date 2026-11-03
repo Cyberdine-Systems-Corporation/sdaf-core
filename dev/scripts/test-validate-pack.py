@@ -170,6 +170,14 @@ def en_linea(tmp: Path) -> None:
     caso("provides con lista que no es lista", manifest(provides={"extension_ids": "example-extension"}), 1, "provides/extension_ids", "lista")
     caso("provides con las tres listas", manifest(provides={
         "extension_ids": ["example-extension"], "skills": ["example-skill"], "prompts": ["example-prompt"]}), 0)
+    # Lo mismo en cada elemento de provides: un bloque literal `|` deja "id\n".
+    caso("provides.extension_ids con salto de línea final",
+         manifest(provides={"extension_ids": ["example-extension\n"]}), 1,
+         "provides/extension_ids/0", "saltos de línea")
+    caso("provides.skills con salto de línea final",
+         manifest(provides={"skills": ["a-skill\n"]}), 1, "provides/skills/0", "saltos de línea")
+    caso("provides.prompts con salto de línea final",
+         manifest(provides={"prompts": ["example-prompt\n"]}), 1, "provides/prompts/0", "saltos de línea")
     # requires.
     req = {"id": "sdaf-stack-base", "version": ">=1.0.0 <2.0.0"}
     caso("requires válido", manifest(requires=[req]), 0)
