@@ -7,10 +7,13 @@ FAIL. Un YAML inválido, un fichero que no es UTF-8 o una raíz que no es un map
 son FAIL, nunca un traceback.
 
 Además del schema (sdaf-pack.schema.json) comprueba, en `core` y en cada
-`requires[].version`, la coherencia del rango, y que un pack no se requiere a sí
-mismo. Un rango son uno o dos comparadores `X.Y.Z` separados por un espacio. Los
-comparadores admitidos son `>=` y `>` (límite inferior), `<=` y `<` (límite
-superior) y `=` o ninguno (versión exacta). Las versiones se comparan como tuplas
+`requires[].version`, la coherencia del rango, que un pack no se requiere a sí
+mismo, y que `id`, `version`, `core`, los valores de `requires` y cada elemento de
+`provides` no lleven espacios o saltos de línea en los extremos. Las reglas de
+rango y de bordes viven en sdaf_packs.py. Un rango son uno o dos comparadores
+`X.Y.Z` separados por un espacio. Los comparadores admitidos son `>=` y `>`
+(límite inferior), `<=` y `<` (límite superior) y `=` o ninguno (versión exacta).
+Las versiones se comparan como tuplas
 de enteros (0.10.0 es mayor que 0.9.0), nunca como texto. Con dos comparadores
 debe haber un límite inferior y uno superior, en cualquier orden; el rango no
 puede quedar vacío: el inferior debe ser menor que el superior, salvo
@@ -21,21 +24,21 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from pathlib import Path
 
 import yaml
 from jsonschema import Draft202012Validator
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from sdaf_packs import edge_issue, range_issue  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = json.loads((ROOT / "sdaf-pack.schema.json").read_text(encoding="utf-8"))
 VALIDATOR = Draft202012Validator(SCHEMA)
 TEMPLATE = ROOT / "templates" / "sdaf-pack.yaml"
 
-COMPARATOR_RE = re.compile(r"(>=|<=|>|<|=)?([0-9]+)\.([0-9]+)\.([0-9]+)")
-LOWER = {">=", ">"}
-UPPER = {"<=", "<"}
 TYPES = {
     "object": "un mapa",
     "array": "una lista",
@@ -85,56 +88,6 @@ def schema_reason(error) -> str:
     return error.message
 
 
-def parse_range(text: str) -> list[tuple[str, tuple[int, int, int]]] | None:
-    """Devuelve [(comparador, (X, Y, Z))] o None si la sintaxis no es válida."""
-    parts = text.split(" ")
-    if len(parts) > 2:
-        return None
-    parsed = []
-    for part in parts:
-        match = COMPARATOR_RE.fullmatch(part)
-        if not match:
-            return None
-        parsed.append((match.group(1) or "=", tuple(int(g) for g in match.group(2, 3, 4))))
-    return parsed
-
-
-def range_issue(text: str) -> str | None:
-    """Motivo si el rango es incoherente; None si es coherente o de sintaxis inválida."""
-    parsed = parse_range(text)
-    if parsed is None or len(parsed) < 2:
-        return None
-    (op_a, _), (op_b, _) = parsed
-    if "=" in (op_a, op_b):
-        return f"el rango {text!r} combina una igualdad con otro comparador"
-    if (op_a in LOWER) == (op_b in LOWER):
-        return (
-            f"el rango {text!r} combina dos límites del mismo sentido; "
-            "use un límite inferior (>=, >) y uno superior (<, <=)"
-        )
-    (low_op, low), (up_op, up) = sorted(
-        parsed, key=lambda c: 0 if c[0] in LOWER else 1
-    )
-    if low < up or (low == up and (low_op, up_op) == (">=", "<=")):
-        return None
-    dotted = lambda v: ".".join(str(n) for n in v)  # noqa: E731
-    return (
-        f"el rango {text!r} está vacío: el límite inferior ({dotted(low)}) "
-        f"debe ser menor que el superior ({dotted(up)})"
-    )
-
-
-def edge_issue(where: str, value) -> str | None:
-    """Motivo si un texto lleva espacios o saltos de línea en los extremos.
-
-    Los patrones del schema usan `$`, que en Python admite un salto de línea
-    final (p. ej. el de un bloque literal `|` de YAML); aquí se rechaza.
-    """
-    if isinstance(value, str) and value != value.strip():
-        return f"{where}: el valor lleva espacios o saltos de línea al inicio o al final ({value!r})"
-    return None
-
-
 def semantic_issues(data: dict) -> list[str]:
     issues: list[str] = []
     for key in ("id", "version", "core"):
@@ -146,6 +99,14 @@ def semantic_issues(data: dict) -> list[str]:
             if isinstance(item, dict):
                 for key in ("id", "version"):
                     if reason := edge_issue(f"requires/{i}/{key}", item.get(key)):
+                        issues.append(reason)
+    provides = data.get("provides")
+    if isinstance(provides, dict):
+        for key in ("extension_ids", "skills", "prompts"):
+            items = provides.get(key)
+            if isinstance(items, list):
+                for i, item in enumerate(items):
+                    if reason := edge_issue(f"provides/{key}/{i}", item):
                         issues.append(reason)
     core = data.get("core")
     if isinstance(core, str) and (reason := range_issue(core)):
