@@ -27,12 +27,13 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 
-Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime: el pack es un overlay opcional.
+Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime: el pack es una capa opcional. `stack.overlay.replaces` solo declara qué ids de extensión sustituye la capa del consumidor; no adopta ni cambia packs.
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
 | `stack.packs` | lista de strings | sí, salvo que se use el alias `stack.pack` (puede ser `[]`) | `[]` | Referencias `id@version` de los packs adoptados (`["sdaf-stack-example@0.3.0"]`), sin repetidos y con un id por pack: dos referencias con el mismo id son error aunque difiera la versión. `[]` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
 | `stack.pack` | string \| `null` | no (alias obsoleto) | `null` | Alias obsoleto de `stack.packs` con un único elemento: `pack: "sdaf-stack-example@0.3.0"` equivale a `packs: ["sdaf-stack-example@0.3.0"]`. Con un valor no nulo el validador avisa y pide `stack.packs`. No puede coexistir con `stack.packs` (error, también con `packs: []`); `stack.pack: null` junto a `stack.packs` no entra en conflicto. |
+| `stack.overlay.replaces` | lista de strings | no | sin default | Ids de extensión cuya sustitución explícita por el overlay del consumidor declara la config ([ADR-007](architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §5). Cada id debe estar declarado en `agents.active`, `agents.stubs` o `agents.fusions` (clave o miembro), no puede repetirse ni lleva espacios o saltos de línea en los extremos, y no vale para ids del núcleo: el validador lo rechaza. `overlay` es un objeto sin otras claves; `overlay: {}` y la clave ausente equivalen. |
 | `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
 | `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
 

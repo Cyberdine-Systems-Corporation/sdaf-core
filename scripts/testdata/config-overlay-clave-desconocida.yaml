@@ -1,0 +1,19 @@
+# Fixture de config: stack.overlay con una clave desconocida.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs:
+    - sdaf-stack-example@0.1.0
+  overlay:
+    foo: bar
+
+agents:
+  active:
+    - specification
+    - frontend
+  stubs: []
