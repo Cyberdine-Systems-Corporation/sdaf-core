@@ -30,11 +30,14 @@
     },
     "stack": {
       "type": "object",
-      "required": ["pack"],
+      "anyOf": [
+        { "required": ["pack"] },
+        { "required": ["packs"] }
+      ],
       "additionalProperties": false,
       "properties": {
         "pack": {
-          "description": "sdaf-stack-<id>@semver o null",
+          "description": "Alias obsoleto de packs con un solo elemento: sdaf-stack-<id>@semver o null. No puede coexistir con packs (salvo pack: null).",
           "anyOf": [
             { "type": "null" },
             {
@@ -42,6 +45,15 @@
               "pattern": "^sdaf-stack-[a-z0-9-]+@[0-9]+\\.[0-9]+\\.[0-9]+$"
             }
           ]
+        },
+        "packs": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Packs de stack declarados, cada uno como sdaf-stack-<id>@semver; [] = ninguno",
+          "items": {
+            "type": "string",
+            "pattern": "^sdaf-stack-[a-z0-9]+(-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
+          }
         },
         "src_path": { "type": "string", "default": "src" },
         "tests_path": { "type": "string", "default": "tests" }

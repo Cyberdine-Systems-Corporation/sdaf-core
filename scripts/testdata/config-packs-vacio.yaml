@@ -1,0 +1,16 @@
+# Fixture de config: packs vacío sin alias equivale a sin packs; I4 avisa.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+
+agents:
+  active:
+    - specification
+    - frontend
+  stubs: []
