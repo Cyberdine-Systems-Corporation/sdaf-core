@@ -55,6 +55,19 @@
             "pattern": "^sdaf-stack-[a-z0-9]+(-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
           }
         },
+        "overlay": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Capa del consumidor sobre el core y los packs (ADR-007 §1). Opcional.",
+          "properties": {
+            "replaces": {
+              "type": "array",
+              "uniqueItems": true,
+              "description": "Ids de extensión que el overlay del consumidor sustituye de forma explícita (ADR-007 §5). Cada id debe estar declarado en agents. No admite ids del núcleo.",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
         "src_path": { "type": "string", "default": "src" },
         "tests_path": { "type": "string", "default": "tests" }
       }

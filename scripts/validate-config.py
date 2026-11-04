@@ -6,6 +6,8 @@ I1–I3 son error. I4 es aviso salvo --strict-i4. T1 es siempre aviso.
 Los packs se declaran en stack.packs; stack.pack es un alias obsoleto que avisa.
 Un YAML roto, un fichero que no es UTF-8 o una raíz que no es un mapa son FAIL,
 nunca un traceback.
+Cada id de stack.overlay.replaces debe ser un id de extensión (no del núcleo) y
+estar declarado en agents.active, agents.stubs o agents.fusions (ADR-007 §5).
 
 Con --pack-manifest RUTA (repetible) se validan además los manifiestos de pack
 con las reglas de validate-pack.py y se cruzan con la config: su id@version debe
@@ -95,6 +97,19 @@ def declared_packs(stack: dict) -> tuple[list[str], bool]:
     else:
         refs = []
     return refs, alias is not None
+
+
+def overlay_replaces(stack: dict) -> list[tuple[int, str]]:
+    """Devuelve los (índice, id) de `stack.overlay.replaces`.
+
+    Solo se recogen cadenas: el schema rechaza el resto. El índice es la posición
+    en la lista original, para que la ruta del mensaje apunte al elemento.
+    """
+    overlay = stack.get("overlay")
+    replaces = overlay.get("replaces") if isinstance(overlay, dict) else None
+    if not isinstance(replaces, list):
+        return []
+    return [(i, x) for i, x in enumerate(replaces) if isinstance(x, str)]
 
 
 def read_manifests(paths: list[Path]) -> tuple[list[Manifest], list[tuple[str, list[str]]]]:
@@ -221,10 +236,23 @@ def semantic_issues(
     ]
     if isinstance(stack.get("packs"), list):
         edges.extend((f"stack/packs/{i}", ref) for i, ref in enumerate(stack["packs"]))
+    replaces = overlay_replaces(stack)
+    edges.extend((f"stack/overlay/replaces/{i}", rid) for i, rid in replaces)
     for where, value in edges:
         issue = edge_issue(where, value)
         if issue:
             errors.append(issue)
+
+    # ADR-007 §5: el overlay solo sustituye ids de extensión declarados en la config.
+    declared = set(active) | set(stubs) | set(fusions)
+    for members in fusions.values():
+        declared.update(members)
+    for i, rid in replaces:
+        where = f"stack/overlay/replaces/{i}"
+        if rid in CORE_IDS:
+            errors.append(f"{where}: los ids de agente del núcleo no se sustituyen (ADR-007 §5): {rid}")
+        elif rid not in declared:
+            errors.append(f"{where}: id no declarado en agents: {rid}")
 
     version_text = sdaf_block.get("version")
     version_match = SEMVER_RE.match(version_text) if isinstance(version_text, str) else None

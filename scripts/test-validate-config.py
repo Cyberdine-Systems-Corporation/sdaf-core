@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprueba fixtures del validador de config (I1–I4, packs, alias, manifiestos, bordes, tooling y T1).
+"""Comprueba fixtures del validador de config (I1–I4, packs, alias, manifiestos, overlay, bordes, tooling y T1).
 
 Cada caso lanza `validate-config.py` como proceso y comprueba salida y código de
 salida. Los fixtures viven en scripts/testdata/; los casos en línea se escriben
@@ -133,6 +133,72 @@ def casos_en_linea(tmp: Path) -> None:
         "I4",
         ausentes=(ALIAS_AVISO,),
     )
+
+
+def casos_overlay(tmp: Path) -> None:
+    """stack.overlay.replaces: forma en el schema y reglas de ADR-007 §5 en el validador."""
+    valido = DATA / "config-overlay-valido.yaml"
+    texto = valido.read_text(encoding="utf-8")
+    ruta = "stack/overlay/replaces/0"
+    n = 0
+
+    def caso(nombre: str, contenido: str, exit_esperado: int, *motivos: str, ausentes=(), args=()) -> None:
+        nonlocal n
+        n += 1
+        fichero = tmp / f"overlay-{n}.yaml"
+        fichero.write_text(contenido, encoding="utf-8")
+        check(nombre, [*args, str(fichero)], exit_esperado, *motivos, ausentes=ausentes)
+
+    def con(reemplazo: str) -> str:
+        """Config válida cuyo bloque overlay se sustituye por `reemplazo`."""
+        return texto.replace("  overlay:\n    replaces:\n      - frontend\n", reemplazo)
+
+    sin_aviso = ("WARN", "FAIL", "replaces")
+    # Fixtures: una regla por fichero.
+    check("overlay válido", [str(valido)], 0, ausentes=sin_aviso)
+    check(
+        "overlay con un id del núcleo",
+        [str(DATA / "config-overlay-nucleo.yaml")], 1,
+        ruta, "los ids de agente del núcleo no se sustituyen (ADR-007 §5)", "architecture",
+    )
+    check(
+        "overlay con un id no declarado en agents",
+        [str(DATA / "config-overlay-no-declarado.yaml")], 1,
+        ruta, "id no declarado en agents: example-extension",
+    )
+    check("overlay con un id solo miembro de una fusión", [str(DATA / "config-overlay-fusion-miembro.yaml")], 0, ausentes=sin_aviso)
+    check(
+        "overlay con un id repetido",
+        [str(DATA / "config-overlay-repetido.yaml")], 1,
+        "stack/overlay/replaces", "non-unique", ausentes=("no declarado", "núcleo"),
+    )
+    check("overlay con salto de línea final", [str(DATA / "config-overlay-salto.yaml")], 1, ruta, "espacios o saltos de línea")
+    check("overlay vacío", [str(DATA / "config-overlay-vacio.yaml")], 0, ausentes=sin_aviso)
+    check(
+        "overlay con una clave desconocida",
+        [str(DATA / "config-overlay-clave-desconocida.yaml")], 1,
+        "stack/overlay: Additional properties are not allowed ('foo' was unexpected)",
+    )
+    check(
+        "replaces que no es una lista",
+        [str(DATA / "config-overlay-no-lista.yaml")], 1,
+        "stack/overlay/replaces: 'frontend' is not of type 'array'", ausentes=("no declarado", "Traceback"),
+    )
+
+    # Variantes en línea.
+    caso("overlay con replaces vacío", con("  overlay:\n    replaces: []\n"), 0, ausentes=sin_aviso)
+    caso("overlay con un id en stubs", con("  overlay:\n    replaces:\n      - ai\n").replace("  stubs: []", "  stubs:\n    - ai"), 0, ausentes=sin_aviso)
+    caso("overlay con varios ids, uno inválido", con("  overlay:\n    replaces:\n      - frontend\n      - nope\n"), 1, "stack/overlay/replaces/1", "id no declarado en agents: nope", ausentes=("replaces/0",))
+    caso("overlay con un id ficticio declarado en active", con("  overlay:\n    replaces:\n      - example-extension\n").replace("    - frontend\n", "    - example-extension\n"), 0, ausentes=sin_aviso)
+    caso("overlay con packs vacío no avisa", con("  overlay:\n    replaces:\n      - frontend\n").replace("  packs:\n    - sdaf-stack-example@0.1.0\n", "  packs: []\n"), 0, "I4", ausentes=("replaces", "FAIL"))
+    caso("overlay con el alias stack.pack", texto.replace("  packs:\n    - sdaf-stack-example@0.1.0\n", "  pack: sdaf-stack-example@0.1.0\n"), 0, ALIAS_AVISO, ausentes=("FAIL", "replaces"))
+    caso("overlay con --strict-i4 y un pack declarado", texto, 0, ausentes=sin_aviso, args=["--strict-i4"])
+    caso("replaces con un id vacío", con('  overlay:\n    replaces:\n      - ""\n'), 1, "stack/overlay/replaces/0: ''", ausentes=("Traceback",))
+    caso("replaces con un elemento que no es texto", con("  overlay:\n    replaces:\n      - 5\n"), 1, "stack/overlay/replaces/0", "is not of type 'string'", ausentes=("no declarado",))
+    caso("overlay null", con("  overlay: null\n"), 1, "stack/overlay: None is not of type 'object'", ausentes=("Traceback",))
+    caso("overlay que no es un mapa", con("  overlay:\n    - frontend\n"), 1, "stack/overlay", "is not of type 'object'", ausentes=("Traceback",))
+    caso("replaces con un id del núcleo y otro con salto", con("  overlay:\n    replaces:\n      - specification\n      - |\n        frontend\n"), 1, "stack/overlay/replaces/0", "stack/overlay/replaces/1", "núcleo", "espacios o saltos de línea")
+    caso("sin overlay la config sigue válida", con(""), 0, ausentes=sin_aviso)
 
 
 def texto_manifiesto(
@@ -393,6 +459,8 @@ def main() -> int:
     casos_packs()
     with tempfile.TemporaryDirectory(prefix="sdaf config ") as tmpdir:
         casos_en_linea(Path(tmpdir))
+    with tempfile.TemporaryDirectory(prefix="sdaf overlay ") as tmpdir:
+        casos_overlay(Path(tmpdir))
     with tempfile.TemporaryDirectory(prefix="sdaf manifiestos ") as tmpdir:
         casos_manifiestos(Path(tmpdir))
     casos_satisfies()
