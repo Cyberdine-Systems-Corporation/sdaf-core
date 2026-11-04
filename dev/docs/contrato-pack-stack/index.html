@@ -1735,10 +1735,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#relación-con-stackpack" class="md-nav__link">
+  <a href="#relación-con-stackpacks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relación con stack.pack
+        Relación con stack.packs
       
     </span>
   </a>
@@ -1750,6 +1750,28 @@
     <span class="md-ellipsis">
       
         Validar un manifiesto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cruzar-la-config-con-los-manifiestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cruzar la config con los manifiestos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qué-no-existe-todavía" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué no existe todavía
       
     </span>
   </a>
@@ -4431,10 +4453,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#relación-con-stackpack" class="md-nav__link">
+  <a href="#relación-con-stackpacks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relación con stack.pack
+        Relación con stack.packs
       
     </span>
   </a>
@@ -4446,6 +4468,28 @@
     <span class="md-ellipsis">
       
         Validar un manifiesto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cruzar-la-config-con-los-manifiestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cruzar la config con los manifiestos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qué-no-existe-todavía" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué no existe todavía
       
     </span>
   </a>
@@ -4546,9 +4590,9 @@
 <h2 id="identidad">Identidad<a class="headerlink" href="#identidad" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formato: <code>sdaf-stack-&lt;id&gt;@&lt;semver&gt;</code> (p. ej. <code>sdaf-stack-dotnet@0.3.0</code>).</li>
-<li>El consumidor lo declara en <code>stack.pack</code> de <code>sdaf.config.yaml</code>.</li>
-<li>El pack declara su propia identidad en el <a href="#manifiesto">manifiesto</a> <code>sdaf-pack.yaml</code>: su <code>id</code> es el nombre completo <code>sdaf-stack-&lt;id&gt;</code>, el mismo que se escribe en <code>stack.pack</code>.</li>
-<li><code>null</code> = solo método; sin playbooks de lenguaje/UI del pack.</li>
+<li>El consumidor lo declara en <code>stack.packs</code> de <code>sdaf.config.yaml</code>, una referencia <code>id@version</code> por pack (p. ej. <code>["sdaf-stack-example@0.1.0"]</code>). <code>stack.pack</code>, con una sola referencia, es un alias obsoleto (ver <a href="#relación-con-stackpacks">Relación con <code>stack.packs</code></a>).</li>
+<li>El pack declara su propia identidad en el <a href="#manifiesto">manifiesto</a> <code>sdaf-pack.yaml</code>: su <code>id</code> es el nombre completo <code>sdaf-stack-&lt;id&gt;</code>, el mismo que se escribe en <code>stack.packs</code>.</li>
+<li><code>stack.packs: []</code> (o el alias <code>stack.pack: null</code>) = solo método; sin playbooks de lenguaje/UI del pack.</li>
 </ul>
 <h2 id="obligatorio">Obligatorio<a class="headerlink" href="#obligatorio" title="Permanent link">&para;</a></h2>
 <ol>
@@ -4556,7 +4600,7 @@
 <li><strong>Skills</strong> versionadas (<code>skills/&lt;id&gt;/SKILL.md</code>) con prefijo de stack (<code>csharp-*</code>, <code>blazor-*</code>, etc.).</li>
 <li><strong>Contratos y prompts</strong> solo para <strong>ids de extensión</strong> reconocidos por el core (<code>frontend</code>, <code>infrastructure</code>, <code>domain-application</code>, <code>ai</code>, … — ver <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>).</li>
 <li>Declaración explícita de qué aporta y qué <strong>no</strong> puede contradecir (capítulos Approved del handbook del core).</li>
-<li><strong>Manifiesto</strong> <code>sdaf-pack.yaml</code> en la raíz del pack, válido contra el schema del core (ver <a href="#manifiesto">Manifiesto</a>). Durante <code>0.6.x</code> su ausencia es un aviso, no un error.</li>
+<li><strong>Manifiesto</strong> <code>sdaf-pack.yaml</code> en la raíz del pack, válido contra el schema del core (ver <a href="#manifiesto">Manifiesto</a>). Durante <code>0.6.x</code> su ausencia es un aviso, no un error (ver <a href="#cruzar-la-config-con-los-manifiestos">Aviso por manifiesto ausente</a>).</li>
 </ol>
 <h2 id="manifiesto">Manifiesto<a class="headerlink" href="#manifiesto" title="Permanent link">&para;</a></h2>
 <p><code>sdaf-pack.yaml</code>, en la raíz del pack, declara la identidad del pack, con qué líneas de constitución del core es compatible y qué aporta (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §3</a>). El core lo valida con <a href="../../sdaf-pack.schema.json"><code>sdaf-pack.schema.json</code></a> y <a href="../../scripts/validate-pack.py"><code>scripts/validate-pack.py</code></a>.</p>
@@ -4572,7 +4616,7 @@
 <tr>
 <td><code>id</code></td>
 <td style="text-align: center;">Sí</td>
-<td>Nombre completo <code>sdaf-stack-&lt;id&gt;</code>, en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en <code>stack.pack</code>.</td>
+<td>Nombre completo <code>sdaf-stack-&lt;id&gt;</code>, en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en <code>stack.packs</code>.</td>
 </tr>
 <tr>
 <td><code>version</code></td>
@@ -4604,17 +4648,75 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">skills</span><span class="p">:</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-skill</span>
 </code></pre></div>
-<h3 id="relación-con-stackpack">Relación con <code>stack.pack</code><a class="headerlink" href="#relación-con-stackpack" title="Permanent link">&para;</a></h3>
-<p>El <code>id</code> y la <code>version</code> del manifiesto deben coincidir con la referencia <code>id@version</code> que escribe el consumidor en <code>stack.pack</code> (p. ej. <code>sdaf-stack-example@0.1.0</code>).</p>
-<blockquote>
-<p>[!WARNING]
-Esa comprobación <strong>no existe todavía</strong>. Hoy <code>validate-pack.py</code> valida el manifiesto de forma aislada: el schema, la coherencia de los rangos y que un pack no se requiera a sí mismo. Siguen pendientes, para ARQ-4.2: contrastar el manifiesto con <code>stack.pack</code>, comparar <code>core</code> con <code>sdaf.version</code>, detectar colisiones de ids, contrastar <code>extension_ids</code> con los ids que reconoce el core y emitir el aviso por manifiesto ausente.</p>
-</blockquote>
-<p>Durante <code>0.6.x</code>, un pack sin manifiesto es un aviso, no un error (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a>, Consecuencias). Ese aviso lo implementa ARQ-4.2.</p>
+<h3 id="relación-con-stackpacks">Relación con <code>stack.packs</code><a class="headerlink" href="#relación-con-stackpacks" title="Permanent link">&para;</a></h3>
+<p>El consumidor declara los packs en <code>stack.packs</code>, una lista de referencias <code>id@version</code> (p. ej. <code>sdaf-stack-example@0.1.0</code>) sin repetidos. Reglas que comprueba <a href="../../scripts/validate-config.py"><code>scripts/validate-config.py</code></a>:</p>
+<ul>
+<li><strong>Alias obsoleto.</strong> <code>stack.pack</code> equivale a <code>stack.packs</code> con un único elemento. Con un valor no nulo, la config valida pero avisa (<code>WARN</code>): <code>stack.pack está obsoleto; usar stack.packs: ["&lt;id@version&gt;"]</code>. Con <code>stack.pack: null</code> no hay aviso. Una config de <code>0.5.x</code> con <code>stack.pack</code> sigue validando.</li>
+<li><strong>Sin coexistencia.</strong> <code>stack.pack</code> (no nulo) y <code>stack.packs</code> en la misma config son un error, también con <code>packs: []</code>; se usa solo <code>stack.packs</code>. <code>stack.pack: null</code> junto a <code>stack.packs</code> no entra en conflicto.</li>
+<li><strong>Un id por pack.</strong> Dos referencias con el mismo <code>id</code> son un error aunque difiera la versión.</li>
+<li><strong>Sin espacios ni saltos en los extremos.</strong> <code>sdaf.version</code>, <code>stack.pack</code>, cada elemento de <code>stack.packs</code> y <code>tooling.gentle_ai</code> se rechazan si llevan espacios o saltos de línea al inicio o al final (p. ej. un bloque literal <code>|</code> de YAML, que deja un salto final). Lo comprueba el validador; el schema JSON, por sí solo, sigue admitiendo el salto final porque sus patrones terminan en <code>$</code>.</li>
+<li><strong>Un YAML roto no rompe el validador.</strong> Un YAML inválido, un fichero que no es UTF-8 o una raíz que no es un mapa dan <code>FAIL</code> con un motivo, nunca un traceback.</li>
+</ul>
+<p>Estas reglas operan sobre la config sola. Para cruzarla con los manifiestos hay que pasarlos con <code>--pack-manifest</code> (<a href="#cruzar-la-config-con-los-manifiestos">ver más abajo</a>).</p>
 <h3 id="validar-un-manifiesto">Validar un manifiesto<a class="headerlink" href="#validar-un-manifiesto" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>scripts/validate-pack.py<span class="w"> </span>&lt;ruta&gt;
 </code></pre></div>
 <p>Sin argumentos valida la plantilla. La salida es <code>OK  &lt;ruta&gt;</code> o una línea <code>FAIL &lt;ruta&gt;: &lt;motivo&gt;</code> por problema; el código de salida es 0 si todo valida y 1 si hay algún <code>FAIL</code>. Requiere PyYAML y jsonschema.</p>
+<p>Valida el manifiesto de forma aislada: el schema, la coherencia de los rangos, que un pack no se requiera a sí mismo y que ningún <code>id</code>, <code>version</code>, <code>core</code>, valor de <code>requires</code> ni elemento de <code>provides</code> lleve espacios o saltos de línea en los extremos. No lo cruza con ninguna config; de eso se ocupa <code>validate-config.py</code>.</p>
+<h3 id="cruzar-la-config-con-los-manifiestos">Cruzar la config con los manifiestos<a class="headerlink" href="#cruzar-la-config-con-los-manifiestos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>scripts/validate-config.py<span class="w"> </span>sdaf.config.yaml<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--pack-manifest<span class="w"> </span>&lt;ruta/a/sdaf-pack.yaml&gt;<span class="w"> </span>--pack-manifest<span class="w"> </span>&lt;otra/ruta/sdaf-pack.yaml&gt;
+</code></pre></div>
+<p><code>--pack-manifest RUTA</code> es repetible, una vez por manifiesto. <strong>Sin el flag no se lee ningún manifiesto</strong> y el resto de reglas no cambia. El core no impone dónde vive el manifiesto de cada pack: se pasa la ruta. Cada manifiesto se valida con las mismas reglas que <code>validate-pack.py</code> y, si es válido, se cruza con la config:</p>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th>Resultado</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manifiesto inválido o repetido</td>
+<td><code>FAIL</code></td>
+<td>El manifiesto no valida (mismos motivos que <code>validate-pack.py</code>), no se puede leer, o se pasa dos veces. Un manifiesto así queda fuera de los demás cruces; su <code>FAIL</code> ya hace que el resultado sea 1.</td>
+</tr>
+<tr>
+<td>Coincidencia con la referencia</td>
+<td><code>FAIL</code></td>
+<td>El <code>id@version</code> del manifiesto debe figurar literalmente en <code>stack.packs</code> (o en el alias <code>stack.pack</code>). Un manifiesto cuya versión difiere de la referencia, o que ninguna referencia nombra, da <code>manifiesto no referenciado</code>.</td>
+</tr>
+<tr>
+<td>Rango <code>core</code></td>
+<td><code>FAIL</code></td>
+<td>El rango <code>core</code> del manifiesto debe incluir <code>sdaf.version</code>.</td>
+</tr>
+<tr>
+<td>Colisión de ids</td>
+<td><code>FAIL</code></td>
+<td>Un mismo id en <code>provides.extension_ids</code>, <code>provides.skills</code> o <code>provides.prompts</code> de dos manifiestos referenciados (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §5</a>).</td>
+</tr>
+<tr>
+<td>I4 con manifiestos</td>
+<td><code>WARN</code> (o <code>FAIL</code> con <code>--strict-i4</code>)</td>
+<td>Ver más abajo.</td>
+</tr>
+<tr>
+<td>Manifiesto ausente</td>
+<td><code>WARN</code></td>
+<td>Solo si <code>sdaf.version</code> es <code>0.6.0</code> o posterior; ver más abajo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rango <code>core</code> y límites <code>X.Y.0</code>.</strong> <code>sdaf.version</code> nombra una <strong>línea</strong> de constitución (p. ej. <code>0.6.0</code>), no un tag (<code>v0.6.3</code>). El validador compara la tupla de enteros <code>X.Y.Z</code> tal cual: la línea <code>0.6.0</code> cumple <code>&lt;0.7.0</code> y <code>&gt;=0.5.0</code>; una línea con patch distinto de 0, como <code>0.6.3</code>, cumple <code>&lt;0.7.0</code> pero no <code>&lt;=0.6.0</code>. Por eso los rangos de <code>core</code> deben usar límites <code>X.Y.0</code> (<code>"&gt;=0.5.0 &lt;0.7.0"</code>), no límites con patch. Un rango fuera de la línea da <code>FAIL core: el rango '&lt;rango&gt;' de &lt;id@version&gt; (&lt;ruta&gt;) no incluye sdaf.version &lt;línea&gt;</code>.</p>
+<p><strong>I4 con manifiestos.</strong> Los ids de extensión que usan los agentes (I4, ver <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) se contrastan con <code>provides.extension_ids</code> solo si <strong>todos</strong> los packs declarados tienen manifiesto entre los pasados: entonces cada id de extensión usado debe figurar en <code>provides.extension_ids</code> de algún pack. Si falta el manifiesto de algún pack declarado no se puede concluir qué ids aporta, y cualquier pack declarado anula I4, igual que sin manifiestos.</p>
+<p><strong>Aviso por manifiesto ausente.</strong> Durante <code>0.6.x</code>, un pack sin manifiesto es un aviso, no un error (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a>, Consecuencias). Lo emite <code>validate-config.py</code> solo con <code>sdaf.version</code> <code>&gt;= 0.6.0</code> y por cada pack declarado sin manifiesto entre los pasados: <code>pack &lt;id@version&gt; sin manifiesto entre los pasados (aviso durante 0.6.x)</code>. En una config <code>0.5.x</code> no se emite nunca; recibe solo el aviso del alias.</p>
+<h3 id="qué-no-existe-todavía">Qué no existe todavía<a class="headerlink" href="#qué-no-existe-todavía" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>[!WARNING]
+Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifiesto con el catálogo de ids del core; el overlay y la sustitución explícita (ARQ-4.3); la materialización y la ruta normada de los packs (ARQ-4.4); <code>stack.units</code> (ARQ-4.5); un input de la action <code>validate-sdaf</code> para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7).</p>
+</blockquote>
 <h2 id="prohibido">Prohibido<a class="headerlink" href="#prohibido" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>[!WARNING]
@@ -4629,7 +4731,7 @@ El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.<
 <h2 id="relación-con-adrs-del-consumidor">Relación con ADRs del consumidor<a class="headerlink" href="#relación-con-adrs-del-consumidor" title="Permanent link">&para;</a></h2>
 <p>El pack aporta playbooks. El <strong>stack concreto</strong> (lenguaje, UI, BD, topología) sigue decidiéndose por <strong>ADRs del consumidor</strong>.</p>
 <h2 id="cumplimiento">Cumplimiento<a class="headerlink" href="#cumplimiento" title="Permanent link">&para;</a></h2>
-<p>Gate 0 y el router leen <code>stack.pack</code>. Si el pack no cumple este contrato, el consumidor debe corregir el pack o quitar la referencia.</p>
+<p>Gate 0 y el router leen los packs declarados (<code>stack.packs</code>, o el alias obsoleto <code>stack.pack</code>). Si el pack no cumple este contrato, el consumidor debe corregir el pack o quitar la referencia.</p>
 <h2 id="pack-de-referencia">Pack de referencia<a class="headerlink" href="#pack-de-referencia" title="Permanent link">&para;</a></h2>
 <p>Pack de referencia: <a href="https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.3.0"><code>sdaf-stack-dotnet@0.3.0</code></a> (primera publicación: <a href="https://github.com/Cyberdine-Systems-Corporation/sdaf-stack-dotnet/releases/tag/v0.1.0"><code>v0.1.0</code></a>).</p>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
@@ -4650,7 +4752,7 @@ El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.<
 <tr>
 <td>🛠️</td>
 <td><a href="../adopcion-y-upgrade/">adopcion-y-upgrade.md</a></td>
-<td>Cómo declarar <code>stack.pack</code></td>
+<td>Cómo declarar el pack en la config</td>
 </tr>
 <tr>
 <td>🛠️</td>
