@@ -89,17 +89,50 @@ python scripts/validate-config.py sdaf.config.yaml \
 
 **Aviso por manifiesto ausente.** Durante `0.6.x`, un pack sin manifiesto es un aviso, no un error ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md), Consecuencias). Lo emite `validate-config.py` solo con `sdaf.version` `>= 0.6.0` y por cada pack declarado sin manifiesto entre los pasados: `pack <id@version> sin manifiesto entre los pasados (aviso durante 0.6.x)`. En una config `0.5.x` no se emite nunca; recibe solo el aviso del alias.
 
+### Resolución por id
+
+La **regla** (qué ids se sustituyen y cuáles no, qué es una colisión y qué excepción hay) vive en un solo sitio: [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id), que aplica [ADR-007 §5](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md). Esta sección no la repite: describe el **mecanismo**.
+
+**Declarar la sustitución.** `stack.overlay.replaces` en `sdaf.config.yaml` es una lista, opcional y sin valor por defecto, de ids de extensión que el overlay del consumidor sustituye de forma explícita. `overlay` es un objeto sin otras claves; `overlay: {}` equivale a no declararlo, y una config de `0.5.x` sin la clave sigue validando. El campo está en el [catálogo de la config](../sdaf.config.schema.yaml) y en [`sdaf.config.schema.json`](../sdaf.config.schema.json). Ejemplo (ids ficticios):
+
+```yaml
+stack:
+  packs:
+    - sdaf-stack-example@0.1.0
+  overlay:
+    replaces:
+      - example-extension
+agents:
+  active:
+    - specification
+    - example-extension
+```
+
+**Qué comprueba hoy [`scripts/validate-config.py`](../scripts/validate-config.py)**, sin ningún flag, sobre cada id de `replaces`:
+
+| Regla | Resultado | Condición |
+|-------|-----------|-----------|
+| Id del núcleo | `FAIL` | El id figura entre los ids del núcleo del catálogo. Mensaje: `stack/overlay/replaces/0: los ids de agente del núcleo no se sustituyen (ADR-007 §5): architecture`. |
+| Id no declarado | `FAIL` | El id no es clave ni miembro de `agents.active`, `agents.stubs` o `agents.fusions`. Mensaje: `stack/overlay/replaces/0: id no declarado en agents: example-extension`. |
+| Espacios o saltos en los extremos | `FAIL` | Igual que el resto de valores de la config (p. ej. un bloque literal de YAML, que deja un salto final). |
+| Ids repetidos | `FAIL` | Lo comprueba el schema (`uniqueItems`). |
+| Forma | `FAIL` | `replaces` no es una lista, o `overlay` lleva otra clave: lo comprueba el schema. |
+
+A efectos del validador, un id de extensión es cualquier id que no sea del núcleo. `replaces` sin packs declarados no da aviso.
+
+**Límite.** No se comprueba que algún pack aporte de verdad el id de `replaces`, ni se cruza con los `provides` de los manifiestos.
+
 ### Qué no existe todavía
 
 > [!WARNING]
-> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; el overlay y la sustitución explícita (ARQ-4.3); la materialización y la ruta normada de los packs (ARQ-4.4); `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7).
+> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; la detección de la colisión entre un pack y el overlay, que queda para la materialización (ARQ-4.4) porque los `agents/<id>-agent.md` de un consumidor suelen ser enlaces materializados y darían falsos positivos; la materialización y la ruta normada de los packs (ARQ-4.4); `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita ya tienen declaración (`stack.overlay.replaces`) y la validación mínima de arriba.
 
 ## Prohibido
 
 > [!WARNING]
 > El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.
 
-- Redefinir o sustituir agentes del **núcleo** (specification, architecture, testing-review, stubs del core).
+- Redefinir o sustituir agentes del **núcleo** (specification, architecture, testing-review, stubs del core; [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id)).
 - Saltar Gate 0 o autorizar implementación sin specs Approved.
 - Incluir `specs/`, `knowledge/` o handbook de un producto concreto.
 - Contradecir el handbook Approved de sdaf-core.
@@ -121,5 +154,6 @@ Pack de referencia: [`sdaf-stack-dotnet@0.3.0`](https://github.com/Cyberdine-Sys
 | | Destino | Por qué |
 |--|---------|---------|
 | 📖 | [handbook/01 §6](../handbook/01-sdaf-framework.md#6-gobierno-antes-de-implementar) | Ancla constitucional |
+| 📖 | [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id) | Capas y regla de resolución por id |
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Cómo declarar el pack en la config |
 | 🛠️ | [examples/README.md](../examples/README.md) | Escenarios 04, 07 y 08 |

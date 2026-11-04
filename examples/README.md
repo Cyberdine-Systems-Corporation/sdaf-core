@@ -7,7 +7,7 @@ Cada archivo es un escenario **completo y válido** en la línea vigente. Copia 
 | [01-default-core.yaml](01-default-core.yaml) | Recomendado: solo método, 3 activos, stubs del core, sin pack ni fusiones extra |
 | [02-minimo.yaml](02-minimo.yaml) | Mínimo obligatorio (defaults de rutas) |
 | [03-rutas-custom.yaml](03-rutas-custom.yaml) | Código/tests fuera de `src/` y `tests/` |
-| [04-pack-stack.yaml](04-pack-stack.yaml) | Overlay técnico (`stack.pack`) sin cambiar el modelo de agentes del core |
+| [04-pack-stack.yaml](04-pack-stack.yaml) | Pack de stack (`stack.pack`) sin cambiar el modelo de agentes del core |
 | [05-fusiones-mvp.yaml](05-fusiones-mvp.yaml) | `testing-review` y `domain-application` como fusiones explícitas |
 | [06-agentes-desacoplados.yaml](06-agentes-desacoplados.yaml) | Testing y Review separados; Domain y Application activos |
 | [07-pack-frontend.yaml](07-pack-frontend.yaml) | Pack + agente `frontend` (extensión; el core no lo envía) |
@@ -28,7 +28,7 @@ flowchart TD
   Q1 -->|Recomendado| E01[01-default-core]
   Q1 -->|No| Q2{Codigo fuera de src?}
   Q2 -->|Si| E03[03-rutas-custom]
-  Q2 -->|No| Q3{Que overlay?}
+  Q2 -->|No| Q3{Que variante?}
   Q3 -->|Pack de stack| E04[04-pack-stack]
   Q3 -->|Fusiones MVP| E05[05-fusiones-mvp]
   Q3 -->|Agentes desacoplados| E06[06-agentes-desacoplados]

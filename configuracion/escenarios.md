@@ -31,7 +31,7 @@ Código/tests fuera de `src/` y `tests/`.
 
 ## 04 — Pack de stack
 
-Overlay técnico (`stack.pack`) sin cambiar el modelo de agentes del core.
+Pack de stack (`stack.pack`) sin cambiar el modelo de agentes del core.
 
 ```yaml
 --8<-- "examples/04-pack-stack.yaml"
