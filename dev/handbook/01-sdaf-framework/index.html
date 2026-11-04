@@ -884,6 +884,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-capas-y-resolución-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Capas y resolución por id
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4449,6 +4460,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-capas-y-resolución-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Capas y resolución por id
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4616,6 +4638,40 @@
 <li>Un pack no contradice las capas superiores. Si choca con un ADR del consumidor, gana el ADR y la skill del pack se marca <code>N/A: &lt;motivo&gt;</code> en el worklog.</li>
 <li>«ADRs vigentes» son los Aceptados y no sustituidos (<a href="../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/">ADR-006</a>).</li>
 </ul>
+<h3 id="33-capas-y-resolución-por-id">3.3 Capas y resolución por id<a class="headerlink" href="#33-capas-y-resolución-por-id" title="Permanent link">&para;</a></h3>
+<p>El método se compone de tres capas (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a> §1):</p>
+<table>
+<thead>
+<tr>
+<th>Capa</th>
+<th>Qué es</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core</strong></td>
+<td>La constitución del método: este handbook y los contratos que el core publica.</td>
+</tr>
+<tr>
+<td><strong>Packs de stack</strong> (0..n)</td>
+<td>Playbooks que cumplen el <a href="../../docs/contrato-pack-stack/">contrato de pack</a>.</td>
+</tr>
+<tr>
+<td><strong>Overlay del consumidor</strong></td>
+<td>Lo propio del producto: handbook de producto, línea base y ADRs, specs, <code>AGENTS.md</code> y artefactos locales (contratos, prompts, skills).</td>
+</tr>
+</tbody>
+</table>
+<p>El tooling externo no es una capa del modelo: es una capa de entorno <strong>subordinada</strong> (<a href="../../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>). Esta sección no cambia la prioridad ante conflicto de §3.2.</p>
+<p>Cuando más de una capa aporta un artefacto con el mismo id, rige la resolución por id (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a> §5):</p>
+<ol>
+<li><strong>Agentes del núcleo.</strong> Los ids de agente del núcleo (los activos y stubs que el core define, <a href="../06-ai-agent-framework/">H06</a>) no se sustituyen desde un pack ni desde el overlay. El overlay puede añadir prompts adicionales y contexto autorizado; no reemplaza el prompt base.</li>
+<li><strong>Ids de extensión.</strong> Un id de extensión es un id de agente que no pertenece al núcleo (p. ej. un agente que aporta un pack o el consumidor).</li>
+<li><strong>Colisión.</strong> Un mismo id aportado por dos packs, o por un pack y el overlay, es un <strong>error de validación</strong>. La única excepción es la sustitución explícita del overlay sobre un id de extensión, que la config del consumidor <strong>declara</strong>.</li>
+<li><strong>Skills y prompts.</strong> La excepción del punto anterior no se aplica a las skills ni a los prompts: su colisión es siempre un error. Las skills de pack mantienen el prefijo de stack que fija el contrato de pack.</li>
+</ol>
+<p>El orden de materialización de las capas es core, después packs, después overlay. Este capítulo solo lo menciona: su detalle lo fija el contrato de materialización del core (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a> §7), no esta sección.</p>
+<p>La regla vive aquí, en un solo sitio. El mecanismo (cómo se declara la sustitución y qué comprueba hoy el validador) está en la sección «Resolución por id» del <a href="../../docs/contrato-pack-stack/#resolución-por-id">contrato de pack</a>, que remite a esta sección y no la repite.</p>
 <hr />
 <h2 id="4-pipeline-de-dominio">4. Pipeline de dominio<a class="headerlink" href="#4-pipeline-de-dominio" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR

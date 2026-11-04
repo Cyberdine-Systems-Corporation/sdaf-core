@@ -1768,6 +1768,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#resolución-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolución por id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#qué-no-existe-todavía" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4486,6 +4497,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#resolución-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolución por id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#qué-no-existe-todavía" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4712,10 +4734,63 @@
 <p><strong>Rango <code>core</code> y límites <code>X.Y.0</code>.</strong> <code>sdaf.version</code> nombra una <strong>línea</strong> de constitución (p. ej. <code>0.6.0</code>), no un tag (<code>v0.6.3</code>). El validador compara la tupla de enteros <code>X.Y.Z</code> tal cual: la línea <code>0.6.0</code> cumple <code>&lt;0.7.0</code> y <code>&gt;=0.5.0</code>; una línea con patch distinto de 0, como <code>0.6.3</code>, cumple <code>&lt;0.7.0</code> pero no <code>&lt;=0.6.0</code>. Por eso los rangos de <code>core</code> deben usar límites <code>X.Y.0</code> (<code>"&gt;=0.5.0 &lt;0.7.0"</code>), no límites con patch. Un rango fuera de la línea da <code>FAIL core: el rango '&lt;rango&gt;' de &lt;id@version&gt; (&lt;ruta&gt;) no incluye sdaf.version &lt;línea&gt;</code>.</p>
 <p><strong>I4 con manifiestos.</strong> Los ids de extensión que usan los agentes (I4, ver <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) se contrastan con <code>provides.extension_ids</code> solo si <strong>todos</strong> los packs declarados tienen manifiesto entre los pasados: entonces cada id de extensión usado debe figurar en <code>provides.extension_ids</code> de algún pack. Si falta el manifiesto de algún pack declarado no se puede concluir qué ids aporta, y cualquier pack declarado anula I4, igual que sin manifiestos.</p>
 <p><strong>Aviso por manifiesto ausente.</strong> Durante <code>0.6.x</code>, un pack sin manifiesto es un aviso, no un error (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a>, Consecuencias). Lo emite <code>validate-config.py</code> solo con <code>sdaf.version</code> <code>&gt;= 0.6.0</code> y por cada pack declarado sin manifiesto entre los pasados: <code>pack &lt;id@version&gt; sin manifiesto entre los pasados (aviso durante 0.6.x)</code>. En una config <code>0.5.x</code> no se emite nunca; recibe solo el aviso del alias.</p>
+<h3 id="resolución-por-id">Resolución por id<a class="headerlink" href="#resolución-por-id" title="Permanent link">&para;</a></h3>
+<p>La <strong>regla</strong> (qué ids se sustituyen y cuáles no, qué es una colisión y qué excepción hay) vive en un solo sitio: <a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a>, que aplica <a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §5</a>. Esta sección no la repite: describe el <strong>mecanismo</strong>.</p>
+<p><strong>Declarar la sustitución.</strong> <code>stack.overlay.replaces</code> en <code>sdaf.config.yaml</code> es una lista, opcional y sin valor por defecto, de ids de extensión que el overlay del consumidor sustituye de forma explícita. <code>overlay</code> es un objeto sin otras claves; <code>overlay: {}</code> equivale a no declararlo, y una config de <code>0.5.x</code> sin la clave sigue validando. El campo está en el <a href="../../sdaf.config.schema.yaml">catálogo de la config</a> y en <a href="../../sdaf.config.schema.json"><code>sdaf.config.schema.json</code></a>. Ejemplo (ids ficticios):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">stack</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">packs</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdaf-stack-example@0.1.0</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">overlay</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">replaces</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-extension</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">agents</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">active</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">specification</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-extension</span>
+</code></pre></div>
+<p><strong>Qué comprueba hoy <a href="../../scripts/validate-config.py"><code>scripts/validate-config.py</code></a></strong>, sin ningún flag, sobre cada id de <code>replaces</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th>Resultado</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id del núcleo</td>
+<td><code>FAIL</code></td>
+<td>El id figura entre los ids del núcleo del catálogo. Mensaje: <code>stack/overlay/replaces/0: los ids de agente del núcleo no se sustituyen (ADR-007 §5): architecture</code>.</td>
+</tr>
+<tr>
+<td>Id no declarado</td>
+<td><code>FAIL</code></td>
+<td>El id no es clave ni miembro de <code>agents.active</code>, <code>agents.stubs</code> o <code>agents.fusions</code>. Mensaje: <code>stack/overlay/replaces/0: id no declarado en agents: example-extension</code>.</td>
+</tr>
+<tr>
+<td>Espacios o saltos en los extremos</td>
+<td><code>FAIL</code></td>
+<td>Igual que el resto de valores de la config (p. ej. un bloque literal de YAML, que deja un salto final).</td>
+</tr>
+<tr>
+<td>Ids repetidos</td>
+<td><code>FAIL</code></td>
+<td>Lo comprueba el schema (<code>uniqueItems</code>).</td>
+</tr>
+<tr>
+<td>Forma</td>
+<td><code>FAIL</code></td>
+<td><code>replaces</code> no es una lista, o <code>overlay</code> lleva otra clave: lo comprueba el schema.</td>
+</tr>
+</tbody>
+</table>
+<p>A efectos del validador, un id de extensión es cualquier id que no sea del núcleo. <code>replaces</code> sin packs declarados no da aviso.</p>
+<p><strong>Límite.</strong> No se comprueba que algún pack aporte de verdad el id de <code>replaces</code>, ni se cruza con los <code>provides</code> de los manifiestos.</p>
 <h3 id="qué-no-existe-todavía">Qué no existe todavía<a class="headerlink" href="#qué-no-existe-todavía" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>[!WARNING]
-Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifiesto con el catálogo de ids del core; el overlay y la sustitución explícita (ARQ-4.3); la materialización y la ruta normada de los packs (ARQ-4.4); <code>stack.units</code> (ARQ-4.5); un input de la action <code>validate-sdaf</code> para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7).</p>
+Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifiesto con el catálogo de ids del core; la detección de la colisión entre un pack y el overlay, que queda para la materialización (ARQ-4.4) porque los <code>agents/&lt;id&gt;-agent.md</code> de un consumidor suelen ser enlaces materializados y darían falsos positivos; la materialización y la ruta normada de los packs (ARQ-4.4); <code>stack.units</code> (ARQ-4.5); un input de la action <code>validate-sdaf</code> para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita ya tienen declaración (<code>stack.overlay.replaces</code>) y la validación mínima de arriba.</p>
 </blockquote>
 <h2 id="prohibido">Prohibido<a class="headerlink" href="#prohibido" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -4723,7 +4798,7 @@ Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifie
 El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.</p>
 </blockquote>
 <ul>
-<li>Redefinir o sustituir agentes del <strong>núcleo</strong> (specification, architecture, testing-review, stubs del core).</li>
+<li>Redefinir o sustituir agentes del <strong>núcleo</strong> (specification, architecture, testing-review, stubs del core; <a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a>).</li>
 <li>Saltar Gate 0 o autorizar implementación sin specs Approved.</li>
 <li>Incluir <code>specs/</code>, <code>knowledge/</code> o handbook de un producto concreto.</li>
 <li>Contradecir el handbook Approved de sdaf-core.</li>
@@ -4748,6 +4823,11 @@ El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.<
 <td>📖</td>
 <td><a href="../../handbook/01-sdaf-framework/#6-gobierno-antes-de-implementar">handbook/01 §6</a></td>
 <td>Ancla constitucional</td>
+</tr>
+<tr>
+<td>📖</td>
+<td><a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a></td>
+<td>Capas y regla de resolución por id</td>
 </tr>
 <tr>
 <td>🛠️</td>
