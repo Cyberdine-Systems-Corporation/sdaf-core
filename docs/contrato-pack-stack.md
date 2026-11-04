@@ -8,9 +8,9 @@ Norma operativa para autores de `sdaf-stack-<id>@<semver>`. Anclaje constitucion
 ## Identidad
 
 - Formato: `sdaf-stack-<id>@<semver>` (p. ej. `sdaf-stack-dotnet@0.3.0`).
-- El consumidor lo declara en `stack.pack` de `sdaf.config.yaml`.
-- El pack declara su propia identidad en el [manifiesto](#manifiesto) `sdaf-pack.yaml`: su `id` es el nombre completo `sdaf-stack-<id>`, el mismo que se escribe en `stack.pack`.
-- `null` = solo método; sin playbooks de lenguaje/UI del pack.
+- El consumidor lo declara en `stack.packs` de `sdaf.config.yaml`, una referencia `id@version` por pack (p. ej. `["sdaf-stack-example@0.1.0"]`). `stack.pack`, con una sola referencia, es un alias obsoleto (ver [Relación con `stack.packs`](#relación-con-stackpacks)).
+- El pack declara su propia identidad en el [manifiesto](#manifiesto) `sdaf-pack.yaml`: su `id` es el nombre completo `sdaf-stack-<id>`, el mismo que se escribe en `stack.packs`.
+- `stack.packs: []` (o el alias `stack.pack: null`) = solo método; sin playbooks de lenguaje/UI del pack.
 
 ## Obligatorio
 
@@ -18,7 +18,7 @@ Norma operativa para autores de `sdaf-stack-<id>@<semver>`. Anclaje constitucion
 2. **Skills** versionadas (`skills/<id>/SKILL.md`) con prefijo de stack (`csharp-*`, `blazor-*`, etc.).
 3. **Contratos y prompts** solo para **ids de extensión** reconocidos por el core (`frontend`, `infrastructure`, `domain-application`, `ai`, … — ver [`sdaf.config.schema.yaml`](../sdaf.config.schema.yaml)).
 4. Declaración explícita de qué aporta y qué **no** puede contradecir (capítulos Approved del handbook del core).
-5. **Manifiesto** `sdaf-pack.yaml` en la raíz del pack, válido contra el schema del core (ver [Manifiesto](#manifiesto)). Durante `0.6.x` su ausencia es un aviso, no un error.
+5. **Manifiesto** `sdaf-pack.yaml` en la raíz del pack, válido contra el schema del core (ver [Manifiesto](#manifiesto)). Durante `0.6.x` su ausencia es un aviso, no un error (ver [Aviso por manifiesto ausente](#cruzar-la-config-con-los-manifiestos)).
 
 ## Manifiesto
 
@@ -26,7 +26,7 @@ Norma operativa para autores de `sdaf-stack-<id>@<semver>`. Anclaje constitucion
 
 | Campo | Obligatorio | Contenido |
 |-------|:-----------:|-----------|
-| `id` | Sí | Nombre completo `sdaf-stack-<id>`, en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en `stack.pack`. |
+| `id` | Sí | Nombre completo `sdaf-stack-<id>`, en minúsculas y guiones. Es el mismo identificador que el consumidor escribe en `stack.packs`. |
 | `version` | Sí | Semver estricto `X.Y.Z` del pack. |
 | `core` | Sí | Rango semver de líneas de constitución compatibles, p. ej. `">=0.5.0 <0.7.0"`: uno o dos comparadores (`>=`, `>`, `<=`, `<`, `=` o ninguno) sobre `X.Y.Z`, separados por un espacio. Con dos, un límite inferior y uno superior, y el rango no puede quedar vacío. |
 | `provides` | Sí | Lo que el pack aporta: al menos una de las listas `extension_ids`, `skills` y `prompts`, con ids en kebab-case y sin repeticiones. |
@@ -43,14 +43,17 @@ provides:
     - example-skill
 ```
 
-### Relación con `stack.pack`
+### Relación con `stack.packs`
 
-El `id` y la `version` del manifiesto deben coincidir con la referencia `id@version` que escribe el consumidor en `stack.pack` (p. ej. `sdaf-stack-example@0.1.0`).
+El consumidor declara los packs en `stack.packs`, una lista de referencias `id@version` (p. ej. `sdaf-stack-example@0.1.0`) sin repetidos. Reglas que comprueba [`scripts/validate-config.py`](../scripts/validate-config.py):
 
-> [!WARNING]
-> Esa comprobación **no existe todavía**. Hoy `validate-pack.py` valida el manifiesto de forma aislada: el schema, la coherencia de los rangos y que un pack no se requiera a sí mismo. Siguen pendientes, para ARQ-4.2: contrastar el manifiesto con `stack.pack`, comparar `core` con `sdaf.version`, detectar colisiones de ids, contrastar `extension_ids` con los ids que reconoce el core y emitir el aviso por manifiesto ausente.
+- **Alias obsoleto.** `stack.pack` equivale a `stack.packs` con un único elemento. Con un valor no nulo, la config valida pero avisa (`WARN`): `stack.pack está obsoleto; usar stack.packs: ["<id@version>"]`. Con `stack.pack: null` no hay aviso. Una config de `0.5.x` con `stack.pack` sigue validando.
+- **Sin coexistencia.** `stack.pack` (no nulo) y `stack.packs` en la misma config son un error, también con `packs: []`; se usa solo `stack.packs`. `stack.pack: null` junto a `stack.packs` no entra en conflicto.
+- **Un id por pack.** Dos referencias con el mismo `id` son un error aunque difiera la versión.
+- **Sin espacios ni saltos en los extremos.** `sdaf.version`, `stack.pack`, cada elemento de `stack.packs` y `tooling.gentle_ai` se rechazan si llevan espacios o saltos de línea al inicio o al final (p. ej. un bloque literal `|` de YAML, que deja un salto final). Lo comprueba el validador; el schema JSON, por sí solo, sigue admitiendo el salto final porque sus patrones terminan en `$`.
+- **Un YAML roto no rompe el validador.** Un YAML inválido, un fichero que no es UTF-8 o una raíz que no es un mapa dan `FAIL` con un motivo, nunca un traceback.
 
-Durante `0.6.x`, un pack sin manifiesto es un aviso, no un error ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md), Consecuencias). Ese aviso lo implementa ARQ-4.2.
+Estas reglas operan sobre la config sola. Para cruzarla con los manifiestos hay que pasarlos con `--pack-manifest` ([ver más abajo](#cruzar-la-config-con-los-manifiestos)).
 
 ### Validar un manifiesto
 
@@ -59,6 +62,37 @@ python scripts/validate-pack.py <ruta>
 ```
 
 Sin argumentos valida la plantilla. La salida es `OK  <ruta>` o una línea `FAIL <ruta>: <motivo>` por problema; el código de salida es 0 si todo valida y 1 si hay algún `FAIL`. Requiere PyYAML y jsonschema.
+
+Valida el manifiesto de forma aislada: el schema, la coherencia de los rangos, que un pack no se requiera a sí mismo y que ningún `id`, `version`, `core`, valor de `requires` ni elemento de `provides` lleve espacios o saltos de línea en los extremos. No lo cruza con ninguna config; de eso se ocupa `validate-config.py`.
+
+### Cruzar la config con los manifiestos
+
+```bash
+python scripts/validate-config.py sdaf.config.yaml \
+  --pack-manifest <ruta/a/sdaf-pack.yaml> --pack-manifest <otra/ruta/sdaf-pack.yaml>
+```
+
+`--pack-manifest RUTA` es repetible, una vez por manifiesto. **Sin el flag no se lee ningún manifiesto** y el resto de reglas no cambia. El core no impone dónde vive el manifiesto de cada pack: se pasa la ruta. Cada manifiesto se valida con las mismas reglas que `validate-pack.py` y, si es válido, se cruza con la config:
+
+| Regla | Resultado | Condición |
+|-------|-----------|-----------|
+| Manifiesto inválido o repetido | `FAIL` | El manifiesto no valida (mismos motivos que `validate-pack.py`), no se puede leer, o se pasa dos veces. Un manifiesto así queda fuera de los demás cruces; su `FAIL` ya hace que el resultado sea 1. |
+| Coincidencia con la referencia | `FAIL` | El `id@version` del manifiesto debe figurar literalmente en `stack.packs` (o en el alias `stack.pack`). Un manifiesto cuya versión difiere de la referencia, o que ninguna referencia nombra, da `manifiesto no referenciado`. |
+| Rango `core` | `FAIL` | El rango `core` del manifiesto debe incluir `sdaf.version`. |
+| Colisión de ids | `FAIL` | Un mismo id en `provides.extension_ids`, `provides.skills` o `provides.prompts` de dos manifiestos referenciados ([ADR-007 §5](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md)). |
+| I4 con manifiestos | `WARN` (o `FAIL` con `--strict-i4`) | Ver más abajo. |
+| Manifiesto ausente | `WARN` | Solo si `sdaf.version` es `0.6.0` o posterior; ver más abajo. |
+
+**Rango `core` y límites `X.Y.0`.** `sdaf.version` nombra una **línea** de constitución (p. ej. `0.6.0`), no un tag (`v0.6.3`). El validador compara la tupla de enteros `X.Y.Z` tal cual: la línea `0.6.0` cumple `<0.7.0` y `>=0.5.0`; una línea con patch distinto de 0, como `0.6.3`, cumple `<0.7.0` pero no `<=0.6.0`. Por eso los rangos de `core` deben usar límites `X.Y.0` (`">=0.5.0 <0.7.0"`), no límites con patch. Un rango fuera de la línea da `FAIL core: el rango '<rango>' de <id@version> (<ruta>) no incluye sdaf.version <línea>`.
+
+**I4 con manifiestos.** Los ids de extensión que usan los agentes (I4, ver [`sdaf.config.schema.yaml`](../sdaf.config.schema.yaml)) se contrastan con `provides.extension_ids` solo si **todos** los packs declarados tienen manifiesto entre los pasados: entonces cada id de extensión usado debe figurar en `provides.extension_ids` de algún pack. Si falta el manifiesto de algún pack declarado no se puede concluir qué ids aporta, y cualquier pack declarado anula I4, igual que sin manifiestos.
+
+**Aviso por manifiesto ausente.** Durante `0.6.x`, un pack sin manifiesto es un aviso, no un error ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md), Consecuencias). Lo emite `validate-config.py` solo con `sdaf.version` `>= 0.6.0` y por cada pack declarado sin manifiesto entre los pasados: `pack <id@version> sin manifiesto entre los pasados (aviso durante 0.6.x)`. En una config `0.5.x` no se emite nunca; recibe solo el aviso del alias.
+
+### Qué no existe todavía
+
+> [!WARNING]
+> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; el overlay y la sustitución explícita (ARQ-4.3); la materialización y la ruta normada de los packs (ARQ-4.4); `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7).
 
 ## Prohibido
 
@@ -76,7 +110,7 @@ El pack aporta playbooks. El **stack concreto** (lenguaje, UI, BD, topología) s
 
 ## Cumplimiento
 
-Gate 0 y el router leen `stack.pack`. Si el pack no cumple este contrato, el consumidor debe corregir el pack o quitar la referencia.
+Gate 0 y el router leen los packs declarados (`stack.packs`, o el alias obsoleto `stack.pack`). Si el pack no cumple este contrato, el consumidor debe corregir el pack o quitar la referencia.
 
 ## Pack de referencia
 
@@ -87,5 +121,5 @@ Pack de referencia: [`sdaf-stack-dotnet@0.3.0`](https://github.com/Cyberdine-Sys
 | | Destino | Por qué |
 |--|---------|---------|
 | 📖 | [handbook/01 §6](../handbook/01-sdaf-framework.md#6-gobierno-antes-de-implementar) | Ancla constitucional |
-| 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Cómo declarar `stack.pack` |
+| 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Cómo declarar el pack en la config |
 | 🛠️ | [examples/README.md](../examples/README.md) | Escenarios 04, 07 y 08 |
