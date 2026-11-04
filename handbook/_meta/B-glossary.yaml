@@ -1,8 +1,8 @@
 archivo: B-glossary.md
 titulo: Apéndice B — Glossary
-version: 0.3.3
+version: 0.3.4
 estado: Approved
-fecha: 2026-09-19
+fecha: "2026-11-04T23:46+01:00"
 parte: Apéndices
 norma_superior: "Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor"
 deriva_hacia: ""
@@ -16,7 +16,12 @@ relacionado:
     por_que: Encargo vigente y git/remoto (§7)
   - destino: "[12-security-standards.md](12-security-standards.md)"
     por_que: QG-Sec y OWASP
+  - destino: "[ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md)"
+    por_que: Capas del método (overlay del consumidor)
 historial:
+  - version: 0.3.4
+    fecha: "2026-11-04T23:46+01:00"
+    cambio: "«Overlay (consumidor)» nuevo; «Pack de stack» deja de definirse como overlay; «Overlay (H12)» se desambigua (sin cambio de norma)"
   - version: 0.3.3
     fecha: 2026-09-19
     cambio: Encargo vigente (H06 §7)
@@ -30,8 +35,8 @@ historial:
     fecha: 2026-09-18
     cambio: "Draft: términos de método (extract A; sin dominio de producto)"
 cabecera:
-  Versión: 0.3.3
+  Versión: 0.3.4
   Estado: Approved
-  Fecha: 2026-09-19
+  Fecha: "2026-11-04T23:46+01:00"
   Parte: Apéndices
   Norma superior: "Este handbook; el glossary de dominio canónico vive en `specs/domain/` del consumidor"

@@ -75,6 +75,29 @@ Reglas de resolución:
 - Un pack no contradice las capas superiores. Si choca con un ADR del consumidor, gana el ADR y la skill del pack se marca `N/A: <motivo>` en el worklog.
 - «ADRs vigentes» son los Aceptados y no sustituidos ([ADR-006](../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs.md)).
 
+### 3.3 Capas y resolución por id
+
+El método se compone de tres capas ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §1):
+
+| Capa | Qué es |
+|------|--------|
+| **Core** | La constitución del método: este handbook y los contratos que el core publica. |
+| **Packs de stack** (0..n) | Playbooks que cumplen el [contrato de pack](../docs/contrato-pack-stack.md). |
+| **Overlay del consumidor** | Lo propio del producto: handbook de producto, línea base y ADRs, specs, `AGENTS.md` y artefactos locales (contratos, prompts, skills). |
+
+El tooling externo no es una capa del modelo: es una capa de entorno **subordinada** ([ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). Esta sección no cambia la prioridad ante conflicto de §3.2.
+
+Cuando más de una capa aporta un artefacto con el mismo id, rige la resolución por id ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §5):
+
+1. **Agentes del núcleo.** Los ids de agente del núcleo (los activos y stubs que el core define, [H06](06-ai-agent-framework.md)) no se sustituyen desde un pack ni desde el overlay. El overlay puede añadir prompts adicionales y contexto autorizado; no reemplaza el prompt base.
+2. **Ids de extensión.** Un id de extensión es un id de agente que no pertenece al núcleo (p. ej. un agente que aporta un pack o el consumidor).
+3. **Colisión.** Un mismo id aportado por dos packs, o por un pack y el overlay, es un **error de validación**. La única excepción es la sustitución explícita del overlay sobre un id de extensión, que la config del consumidor **declara**.
+4. **Skills y prompts.** La excepción del punto anterior no se aplica a las skills ni a los prompts: su colisión es siempre un error. Las skills de pack mantienen el prefijo de stack que fija el contrato de pack.
+
+El orden de materialización de las capas es core, después packs, después overlay. Este capítulo solo lo menciona: su detalle lo fija el contrato de materialización del core ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §7), no esta sección.
+
+La regla vive aquí, en un solo sitio. El mecanismo (cómo se declara la sustitución y qué comprueba hoy el validador) está en la sección «Resolución por id» del [contrato de pack](../docs/contrato-pack-stack.md#resolución-por-id), que remite a esta sección y no la repite.
+
 ---
 
 ## 4. Pipeline de dominio

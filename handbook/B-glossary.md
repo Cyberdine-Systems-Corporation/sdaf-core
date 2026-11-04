@@ -30,7 +30,8 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 | **QG-Build / Unit / Accept / Arch / Docs / Sec / Review** | Quality gates técnicos de H10 |
 | **QG-Sec** | Gate de H12 §5.2: secreto en claro, bypass de auth, injection, SSRF o CVE crítica identificada en el review |
 | **QG-Review** | Checklist H10 §3 más aprobación humana nominada del merge; el dictamen de un agente no basta |
-| **Overlay (H12)** | Control N/A salvo ADR del consumidor (mismo patrón que QG-Docs) |
+| **Overlay (H12)** | Control N/A salvo ADR del consumidor (mismo patrón que QG-Docs); no es la capa del consumidor (ver «Overlay (consumidor)») |
+| **Overlay (consumidor)** | Capa del consumidor sobre el core y los packs: handbook de producto, línea base y ADRs, specs, `AGENTS.md` y artefactos locales ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §1; [H01 §3.3](01-sdaf-framework.md#33-capas-y-resolución-por-id)); no es un pack ni el control de H12 |
 | **Origen de cambios** | Campo ATF: `humano` / `ia` / `mixto` / `dependencia` (H08 §4.3) |
 | **OWASP Top 10** | Mapa de riesgos web usado como marco en el baseline de H12 |
 | **IA de producto** | Asistencia al usuario final en el producto consumidor |
@@ -38,6 +39,6 @@ Glosario de **ingeniería y SDAF**. No sustituye el ubiquitous language de negoc
 | **Runtime local autocontenido** | App + dependencias levantables en local sin exigir cloud (H11) |
 | **Vertical slice** | Unidad de feature coherente de extremo a extremo (H05); no implica un patrón de stack |
 | **Encargo vigente** | El mensaje de usuario **de este turno**; no el historial de la conversación (H06 §7) |
-| **Pack de stack** | Overlay técnico opcional (`sdaf-stack-*`); no contradice este handbook |
+| **Pack de stack** | Playbooks de stack opcionales (`sdaf-stack-*`), una de las capas del método ([H01 §3.3](01-sdaf-framework.md#33-capas-y-resolución-por-id)); no contradice este handbook |
 
 ---

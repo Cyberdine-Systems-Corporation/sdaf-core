@@ -10,7 +10,7 @@ capitulos:
   - id: 01-sdaf-framework
     archivo: 01-sdaf-framework.md
     meta: _meta/01-sdaf-framework.yaml
-    version: "0.3.0"
+    version: "0.4.0"
     estado: Approved
     titulo: 01 — SDAF Framework
   - id: 02-engineering-principles
@@ -100,7 +100,7 @@ capitulos:
   - id: B-glossary
     archivo: B-glossary.md
     meta: _meta/B-glossary.yaml
-    version: "0.3.3"
+    version: "0.3.4"
     estado: Approved
     titulo: Apéndice B — Glossary
   - id: README
