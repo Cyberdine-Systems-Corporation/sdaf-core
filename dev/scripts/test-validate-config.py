@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-"""Comprueba fixtures del validador de config (I1–I4, packs, alias, bordes, tooling y T1).
+"""Comprueba fixtures del validador de config (I1–I4, packs, alias, manifiestos, bordes, tooling y T1).
 
 Cada caso lanza `validate-config.py` como proceso y comprueba salida y código de
 salida. Los fixtures viven en scripts/testdata/; los casos en línea se escriben
-en un directorio temporal (ruta con espacios). Los casos de packs se ejecutan
-todos y se informa del número de fallos.
+en un directorio temporal (ruta con espacios). Los casos de packs y de
+manifiestos se ejecutan todos y se informa del número de fallos; la tabla de
+`satisfies` llama directamente a sdaf_packs.
 """
 from __future__ import annotations
 
+import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -42,17 +45,21 @@ def check(
     ausentes: tuple[str, ...] = (),
     etiqueta: str | None = None,
 ) -> None:
-    """Exige exit, línea OK/FAIL con la ruta, cada motivo presente y cada ausente ausente."""
-    ruta = Path(args[-1])
+    """Exige exit, línea OK/FAIL con la ruta, cada motivo presente y cada ausente ausente.
+
+    La ruta es la última del comando, o `etiqueta` si el FAIL sale en otro fichero
+    (p. ej. un manifiesto).
+    """
+    buscada = etiqueta or Path(args[-1]).name
     res = run(args)
     out = res.stdout
     prefijo = "OK   " if exit_esperado == 0 else "FAIL "
-    lineas = [x for x in out.splitlines() if x.startswith(prefijo) and ruta.name in x]
+    lineas = [x for x in out.splitlines() if x.startswith(prefijo) and buscada in x]
     problemas = []
     if res.returncode != exit_esperado:
         problemas.append(f"exit {res.returncode}, se esperaba {exit_esperado}")
     if not lineas:
-        problemas.append(f"falta una línea '{prefijo.strip()} ...{ruta.name}'")
+        problemas.append(f"falta una línea '{prefijo.strip()} ...{buscada}'")
     if "Traceback" in out + res.stderr:
         problemas.append("traceback en la salida")
     for motivo in motivos:
@@ -126,6 +133,172 @@ def casos_en_linea(tmp: Path) -> None:
         "I4",
         ausentes=(ALIAS_AVISO,),
     )
+
+
+def texto_manifiesto(
+    id: str = "sdaf-stack-example",
+    version: str = "0.1.0",
+    core: str = ">=0.5.0 <0.7.0",
+    ext: tuple[str, ...] = ("example-extension",),
+    skills: tuple[str, ...] = ("example-skill",),
+    prompts: tuple[str, ...] = ("example-prompt",),
+) -> str:
+    listas = {"extension_ids": ext, "skills": skills, "prompts": prompts}
+    provides = "".join(f"  {k}: {json.dumps(list(v))}\n" for k, v in listas.items() if v)
+    return f"id: {id}\nversion: {version}\ncore: {json.dumps(core)}\nprovides:\n{provides}"
+
+
+def casos_manifiestos(tmp: Path) -> None:
+    """S8–S10: --pack-manifest, rango core, colisiones, I4 con manifiestos y aviso de ausencia."""
+    valido, otro = DATA / "pack-valido.yaml", DATA / "pack-otro.yaml"
+    uno = (DATA / "config-packs-uno.yaml").read_text(encoding="utf-8")
+    cubierto = uno.replace("frontend", "example-extension")
+    dos = (DATA / "config-packs-060.yaml").read_text(encoding="utf-8")
+    dos_frontend = dos.replace("example-extension", "frontend")
+    n = 0
+
+    def cfg(texto: str, version: str = "0.5.0") -> str:
+        nonlocal n
+        n += 1
+        ruta = tmp / f"config-{n}.yaml"
+        ruta.write_text(re.sub(r'version: "[0-9.]+"', f'version: "{version}"', texto, count=1), encoding="utf-8")
+        return str(ruta)
+
+    def man(**cambios) -> Path:
+        nonlocal n
+        n += 1
+        ruta = tmp / f"pack-{n}.yaml"
+        ruta.write_text(texto_manifiesto(**cambios), encoding="utf-8")
+        return ruta
+
+    def caso(nombre, config, manifiestos, exit_esperado, *motivos, ausentes=(), extra=(), etiqueta=None) -> None:
+        args = list(extra)
+        for m in manifiestos:
+            args += ["--pack-manifest", str(m)]
+        check(nombre, [*args, config], exit_esperado, *motivos, ausentes=ausentes, etiqueta=etiqueta)
+
+    # S8: validación y cruce con la config.
+    caso("manifiesto válido y coincidente", cfg(cubierto), [valido], 0, ausentes=("WARN", "FAIL"))
+    caso("dos manifiestos válidos y coincidentes", cfg(dos), [valido, otro], 0, ausentes=("WARN", "FAIL"))
+    caso(
+        "manifiesto con alias stack.pack",
+        cfg(cubierto.replace("  packs:\n    - sdaf-stack-example@0.1.0\n", "  pack: sdaf-stack-example@0.1.0\n")),
+        [valido], 0, ALIAS_AVISO, ausentes=("FAIL", "no referenciado"),
+    )
+    caso("id que no coincide", cfg(cubierto), [man(id="sdaf-stack-nope")], 1, "no referenciado", "sdaf-stack-nope@0.1.0", "sdaf-stack-example@0.1.0")
+    caso("versión que no coincide", cfg(cubierto), [man(version="0.2.0")], 1, "no referenciado", "sdaf-stack-example@0.2.0", "sdaf-stack-example@0.1.0")
+    caso("manifiesto no referenciado", cfg(cubierto), [valido, otro], 1, "no referenciado", "sdaf-stack-other@0.2.0")
+    caso("manifiesto sin packs declarados", cfg(uno.replace("  packs:\n    - sdaf-stack-example@0.1.0\n", "  packs: []\n")), [valido], 1, "no referenciado", "ningún pack")
+    caso(
+        "manifiesto inválido", cfg(cubierto), [DATA / "pack-sin-core.yaml"], 1, "obligatoria 'core'",
+        etiqueta="pack-sin-core.yaml", ausentes=("no referenciado",),
+    )
+    caso("manifiesto con YAML roto", cfg(cubierto), [DATA / "pack-yaml-invalido.yaml"], 1, "YAML inválido", etiqueta="pack-yaml-invalido.yaml")
+    caso("manifiesto con raíz que no es un mapa", cfg(cubierto), [DATA / "pack-raiz-lista.yaml"], 1, "no es un mapa", etiqueta="pack-raiz-lista.yaml")
+    inexistente = tmp / "no-existe-pack.yaml"
+    caso("manifiesto inexistente", cfg(cubierto), [inexistente], 1, "no se puede leer", etiqueta="no-existe-pack.yaml")
+    copia = tmp / "pack-copia.yaml"
+    copia.write_text(valido.read_text(encoding="utf-8"), encoding="utf-8")
+    caso(
+        "dos manifiestos con el mismo id@version", cfg(cubierto), [valido, copia], 1, "pack-copia.yaml",
+        "sdaf-stack-example@0.1.0", "duplica", etiqueta="pack-copia.yaml", ausentes=("colisión",),
+    )
+    caso("sin --pack-manifest no se lee ningún manifiesto", cfg(cubierto), [], 0, ausentes=("WARN", "sin manifiesto", "no referenciado"))
+    caso("config con sdaf.version que no es texto y un manifiesto", cfg(cubierto.replace('version: "0.5.0"', "version: 5")), [valido], 1, "sdaf/version")
+
+    # S9: rango core frente a sdaf.version (tupla X.Y.Z literal).
+    fuera = "no incluye sdaf.version"
+    caso("0.4.0 queda fuera de >=0.5.0", cfg(cubierto, "0.4.0"), [valido], 1, fuera, "0.4.0", ">=0.5.0 <0.7.0", "sdaf-stack-example@0.1.0")
+    caso("0.7.0 queda fuera de <0.7.0", cfg(cubierto, "0.7.0"), [valido], 1, fuera, "0.7.0", ">=0.5.0 <0.7.0")
+    caso("0.6.0 queda dentro", cfg(cubierto, "0.6.0"), [valido], 0, ausentes=(fuera, "FAIL"))
+    caso("0.6.9 queda dentro (patch distinto de 0)", cfg(cubierto, "0.6.9"), [valido], 0, ausentes=(fuera, "FAIL"))
+    caso("0.5.0 es el límite inferior inclusivo", cfg(cubierto, "0.5.0"), [valido], 0, ausentes=(fuera,))
+    caso("0.5.0 queda fuera de >0.5.0", cfg(cubierto, "0.5.0"), [man(core=">0.5.0 <0.7.0")], 1, fuera, ">0.5.0 <0.7.0")
+    caso("0.7.0 queda dentro de <=0.7.0", cfg(cubierto, "0.7.0"), [man(core=">=0.5.0 <=0.7.0")], 0, ausentes=(fuera,))
+    caso("0.7.1 queda fuera de <=0.7.0", cfg(cubierto, "0.7.1"), [man(core=">=0.5.0 <=0.7.0")], 1, fuera)
+    caso("= admite solo esa versión", cfg(cubierto, "0.5.1"), [man(core="=0.5.1")], 0, ausentes=(fuera,))
+    caso("= rechaza otra versión", cfg(cubierto, "0.5.2"), [man(core="=0.5.1")], 1, fuera, "=0.5.1")
+    caso("versión sin comparador es exacta", cfg(cubierto, "0.5.2"), [man(core="0.5.1")], 1, fuera, "0.5.1")
+    caso("versión exacta con >=X <=X", cfg(cubierto, "0.5.1"), [man(core=">=0.5.1 <=0.5.1")], 0, ausentes=(fuera,))
+    caso("versión exacta con >=X <=X rechaza otra", cfg(cubierto, "0.5.2"), [man(core=">=0.5.1 <=0.5.1")], 1, fuera)
+    caso("las versiones se comparan como enteros", cfg(cubierto, "0.10.0"), [man(core=">=0.9.0 <0.11.0")], 0, ausentes=(fuera,))
+    caso("rango con límites inferior y superior en orden inverso", cfg(cubierto, "0.8.0"), [man(core="<0.7.0 >=0.5.0")], 1, fuera)
+
+    # S10: colisiones entre manifiestos.
+    colision = "colisión"
+    caso(
+        "colisión de id de extensión", cfg(dos), [valido, man(id="sdaf-stack-other", version="0.2.0", ext=("example-extension",), skills=("other-skill",), prompts=("other-prompt",))],
+        1, colision, "extensión", "example-extension", "sdaf-stack-example@0.1.0", "sdaf-stack-other@0.2.0",
+    )
+    caso(
+        "colisión de id de skill", cfg(dos), [valido, man(id="sdaf-stack-other", version="0.2.0", ext=("other-extension",), skills=("example-skill",), prompts=("other-prompt",))],
+        1, colision, "skill", "example-skill", "sdaf-stack-example@0.1.0", "sdaf-stack-other@0.2.0",
+    )
+    caso(
+        "colisión de id de prompt", cfg(dos), [valido, man(id="sdaf-stack-other", version="0.2.0", ext=("other-extension",), skills=("other-skill",), prompts=("example-prompt",))],
+        1, colision, "prompt", "example-prompt", "sdaf-stack-example@0.1.0", "sdaf-stack-other@0.2.0",
+    )
+    caso("sin colisión entre packs distintos", cfg(dos), [valido, otro], 0, ausentes=(colision,))
+    caso(
+        "el mismo id en tipos distintos no colisiona", cfg(dos), [valido, man(id="sdaf-stack-other", version="0.2.0", ext=(), skills=("example-extension",), prompts=())],
+        0, ausentes=(colision, "FAIL"),
+    )
+
+    # S10: I4 con manifiestos.
+    i4_nuevo = "I4: id(s) de extensión no aportados por ningún pack"
+    caso("I4 cubierto por los manifiestos", cfg(dos), [valido, otro], 0, ausentes=("I4",))
+    caso("I4 no cubierto avisa", cfg(dos_frontend), [valido, otro], 0, "WARN", i4_nuevo, "frontend")
+    caso("I4 no cubierto con --strict-i4 falla", cfg(dos_frontend), [valido, otro], 1, i4_nuevo, "frontend", extra=["--strict-i4"])
+    caso("I4 cubierto con --strict-i4 no falla", cfg(dos), [valido, otro], 0, ausentes=("I4",), extra=["--strict-i4"])
+    caso("I4 con un pack sin manifiesto conserva la conducta actual", cfg(dos_frontend), [valido], 0, ausentes=("I4", "WARN"))
+    caso("I4 sin manifiestos conserva la conducta actual", cfg(dos_frontend), [], 0, ausentes=("I4", "WARN"))
+    caso("I4 con --strict-i4 y un pack sin manifiesto no falla", cfg(dos_frontend), [valido], 0, ausentes=("I4",), extra=["--strict-i4"])
+    caso("I4 usa la unión de los packs", cfg(dos.replace("    - specification\n", "    - specification\n    - other-extension\n")), [valido, otro], 0, ausentes=("I4",))
+
+    # S10: aviso de ausencia (D3).
+    aviso = "sin manifiesto entre los pasados (aviso durante 0.6.x)"
+    caso("0.6.0 avisa del pack sin manifiesto", cfg(dos, "0.6.0"), [valido], 0, "WARN", "pack sdaf-stack-other@0.2.0 " + aviso, ausentes=("pack sdaf-stack-example@0.1.0 sin",))
+    caso("0.6.0 avisa de cada pack sin manifiesto", cfg(dos, "0.6.0"), [], 0, "pack sdaf-stack-example@0.1.0 " + aviso, "pack sdaf-stack-other@0.2.0 " + aviso)
+    caso("0.6.0 con todos los manifiestos no avisa", cfg(dos, "0.6.0"), [valido, otro], 0, ausentes=(aviso,))
+    caso("0.5.0 nunca avisa de la ausencia", cfg(dos, "0.5.0"), [valido], 0, ausentes=(aviso,))
+    caso("0.5.9 nunca avisa de la ausencia", cfg(dos, "0.5.9"), [], 0, ausentes=(aviso,))
+    caso("0.10.0 avisa (la línea se compara como tupla)", cfg(dos, "0.10.0"), [], 0, aviso)
+    caso("el aviso de ausencia no cambia el exit con --strict-i4", cfg(dos, "0.6.0"), [valido], 0, aviso, extra=["--strict-i4"])
+    caso("0.6.0 sin packs declarados no avisa", cfg(uno.replace("  packs:\n    - sdaf-stack-example@0.1.0\n", "  packs: []\n").replace("frontend", "domain"), "0.6.0"), [], 0, ausentes=(aviso,))
+
+
+def casos_satisfies() -> None:
+    """S9: tabla de `satisfies` con límites inclusivos y exclusivos y sintaxis inválida."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from sdaf_packs import parse_range, satisfies
+
+    tabla = [
+        ((0, 5, 0), ">=0.5.0", True), ((0, 4, 9), ">=0.5.0", False), ((0, 5, 1), ">=0.5.0", True),
+        ((0, 5, 0), ">0.5.0", False), ((0, 5, 1), ">0.5.0", True),
+        ((0, 7, 0), "<0.7.0", False), ((0, 6, 9), "<0.7.0", True),
+        ((0, 7, 0), "<=0.7.0", True), ((0, 7, 1), "<=0.7.0", False),
+        ((0, 5, 1), "=0.5.1", True), ((0, 5, 0), "=0.5.1", False), ((0, 5, 1), "0.5.1", True), ((0, 5, 2), "0.5.1", False),
+        ((0, 5, 1), ">=0.5.1 <=0.5.1", True), ((0, 5, 0), ">=0.5.1 <=0.5.1", False), ((0, 5, 2), ">=0.5.1 <=0.5.1", False),
+        ((0, 6, 0), ">=0.5.0 <0.7.0", True), ((0, 4, 0), ">=0.5.0 <0.7.0", False), ((0, 7, 0), ">=0.5.0 <0.7.0", False),
+        ((0, 8, 0), "<0.7.0 >=0.5.0", False), ((0, 6, 3), "<0.7.0 >=0.5.0", True),
+        ((0, 10, 0), ">=0.9.0 <0.11.0", True), ((0, 10, 0), "<0.9.0", False), ((1, 0, 0), "<0.99.0", False),
+    ]
+    for version, rango, esperado in tabla:
+        obtenido = satisfies(version, parse_range(rango))
+        nombre = f"satisfies {'.'.join(map(str, version))} en {rango!r}"
+        if obtenido is esperado:
+            print(f"OK {nombre}")
+        else:
+            FALLOS.append(nombre)
+            print(f"FAIL {nombre}: se obtuvo {obtenido}, se esperaba {esperado}")
+    for invalido in ("", "x.y.z", ">=0.5.0 <0.7.0 <0.8.0", ">=0.5"):
+        parsed = parse_range(invalido)
+        nombre = f"satisfies con rango de sintaxis inválida {invalido!r}"
+        if parsed is None and satisfies((0, 5, 0), parsed) is False:
+            print(f"OK {nombre}")
+        else:
+            FALLOS.append(nombre)
+            print(f"FAIL {nombre}: parse_range={parsed!r}")
 
 
 def regresion_examples() -> None:
@@ -220,6 +393,9 @@ def main() -> int:
     casos_packs()
     with tempfile.TemporaryDirectory(prefix="sdaf config ") as tmpdir:
         casos_en_linea(Path(tmpdir))
+    with tempfile.TemporaryDirectory(prefix="sdaf manifiestos ") as tmpdir:
+        casos_manifiestos(Path(tmpdir))
+    casos_satisfies()
     regresion_examples()
     print(f"fallos: {len(FALLOS)}")
     return 1 if FALLOS else 0
