@@ -4382,75 +4382,76 @@
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1">### `stack` (obligatorio como bloque; campos internos con default)</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="nt">Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">el pack es un overlay opcional.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="nt">Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">el pack es una capa opcional. `stack.overlay.replaces` solo declara qué ids de extensión sustituye la capa del consumidor; no adopta ni cambia packs.</span>
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p p-Indicator">|</span><span class="err"> `stack.packs` | lista de strings | sí, salvo que se use el alias `stack.pack` (puede ser `[]`) | `[]` | Referencias `id@version` de los packs adoptados (`["sdaf-stack-example@0.3.0"]`), sin repetidos y con un id por pack: dos referencias con el mismo id son error aunque difiera la versión. `[]` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="nt">| `stack.pack` | string \| `null` | no (alias obsoleto) | `null` | Alias obsoleto de `stack.packs` con un único elemento: `pack</span><span class="p">:</span><span class="w"> </span><span class="s">"sdaf-stack-example@0.3.0"</span><span class="nt">` equivale a `packs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"sdaf-stack-example@0.3.0"</span><span class="p p-Indicator">]</span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">. Con un valor no nulo el validador avisa y pide `stack.packs`. No puede coexistir con `stack.packs` (error, también con `packs</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="nt">`); `stack.pack</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null` junto a `stack.packs` no entra en conflicto. |</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p p-Indicator">|</span><span class="err"> `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p p-Indicator">|</span><span class="err"> `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="c1">### `agents` (obligatorio)</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Uso |</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|-----|</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p p-Indicator">|</span><span class="err"> `agents.active` | lista de ids | sí (≥1) | Agentes que entran en el handoff por defecto. Deben tener contrato + prompt. |</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p p-Indicator">|</span><span class="err"> `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p p-Indicator">|</span><span class="err"> `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1">#### Ids reconocidos por el core (línea vigente)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="p p-Indicator">|</span><span class="err"> Id | Rol | En el core |</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="p p-Indicator">|</span><span class="err">----|-----|------------|</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p p-Indicator">|</span><span class="err"> `specification` | Specs | activo típico |</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="p p-Indicator">|</span><span class="err"> `architecture` | ADRs / boundaries | activo típico |</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p p-Indicator">|</span><span class="err"> `testing-review` | Tests + review (fusión) | activo típico |</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="p p-Indicator">|</span><span class="err"> `product` | Backlog / PO | stub |</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="p p-Indicator">|</span><span class="err"> `domain` | Modelo de dominio | stub |</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p p-Indicator">|</span><span class="err"> `application` | Slices de aplicación | stub |</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p p-Indicator">|</span><span class="err"> `devops` | CI / runtime | stub |</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p p-Indicator">|</span><span class="err"> `review` | Review puro | stub |</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="p p-Indicator">|</span><span class="err"> `testing` | Tests puros | stub |</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="c1">#### Ids de extensión (pack o consumidor; no van en el núcleo)</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p p-Indicator">|</span><span class="err"> Id | Cuándo |</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="p p-Indicator">|</span><span class="err">----|--------|</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="p p-Indicator">|</span><span class="err"> `domain-application` | Fusión MVP de implementación |</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="p p-Indicator">|</span><span class="err"> `frontend` | UI (el pack define el framework) |</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="p p-Indicator">|</span><span class="err"> `infrastructure` | Persistencia / adapters |</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p p-Indicator">|</span><span class="err"> `ai` | Ingeniería de prompts de producto (no confundir con agentes SDAF) |</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
-<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="c1">#### Invariantes</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="l l-Scalar l-Scalar-Plain">1. Un id **no** puede estar a la vez en `active` y `stubs`.</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="l l-Scalar l-Scalar-Plain">2. Toda clave de `fusions` debe aparecer en `active`.</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="l l-Scalar l-Scalar-Plain">3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="l l-Scalar l-Scalar-Plain">4. Ids de extensión requieren algún pack en `stack.packs` (o el alias `stack.pack`) o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/&lt;id&gt;-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
-<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="c1">### `tooling` (opcional)</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
-<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="l l-Scalar l-Scalar-Plain">Tooling externo de agentes que el consumidor **adopta por elección propia** ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). Ninguna skill ni gate del core lo presupone</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sin el bloque, el método funciona igual.</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
-<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="nt">| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">una release (`"4.2.0"`) o un SHA de commit completo. No una rama</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
-<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">*</span><span class="nv">*T1</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala (desde v4.0.0 el componente no existe; [ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Un SHA no dispara T1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">el validador no sabe, sin red, si es anterior a la retirada de SDD (v4.0.0). Para adoptar gentle-ai sin SDD, declara una release ≥ `4.0.0` (la guía revisa `4.2.0`) o un SHA igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
-<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="nn">---</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
-<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="c1">## Relación con artefactos</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
-<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">text</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="l l-Scalar l-Scalar-Plain">sdaf.config.yaml</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-gate0         (stack.src_path)</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-agent-router  (active / stubs / fusions)</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ packs de stack     (si stack.packs no está vacío)</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p p-Indicator">|</span><span class="err"> `stack.overlay.replaces` | lista de strings | no | sin default | Ids de extensión cuya sustitución explícita por el overlay del consumidor declara la config ([ADR-007](architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §5). Cada id debe estar declarado en `agents.active`, `agents.stubs` o `agents.fusions` (clave o miembro), no puede repetirse ni lleva espacios o saltos de línea en los extremos, y no vale para ids del núcleo: el validador lo rechaza. `overlay` es un objeto sin otras claves; `overlay: {}` y la clave ausente equivalen. |</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p p-Indicator">|</span><span class="err"> `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="p p-Indicator">|</span><span class="err"> `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="c1">### `agents` (obligatorio)</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Uso |</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|-----|</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p p-Indicator">|</span><span class="err"> `agents.active` | lista de ids | sí (≥1) | Agentes que entran en el handoff por defecto. Deben tener contrato + prompt. |</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p p-Indicator">|</span><span class="err"> `agents.stubs` | lista de ids | sí (puede ser `[]`) | Contratos listos, **no** invocados salvo encargo humano explícito. |</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="p p-Indicator">|</span><span class="err"> `agents.fusions` | mapa id → lista de ids | no | `{}` si no hay fusiones. La clave es el id **fusionado** (debe estar en `active`); los miembros suelen estar en `stubs` o ausentes de `active`. |</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="c1">#### Ids reconocidos por el core (línea vigente)</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="p p-Indicator">|</span><span class="err"> Id | Rol | En el core |</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p p-Indicator">|</span><span class="err">----|-----|------------|</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="p p-Indicator">|</span><span class="err"> `specification` | Specs | activo típico |</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p p-Indicator">|</span><span class="err"> `architecture` | ADRs / boundaries | activo típico |</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="p p-Indicator">|</span><span class="err"> `testing-review` | Tests + review (fusión) | activo típico |</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="p p-Indicator">|</span><span class="err"> `product` | Backlog / PO | stub |</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p p-Indicator">|</span><span class="err"> `domain` | Modelo de dominio | stub |</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p p-Indicator">|</span><span class="err"> `application` | Slices de aplicación | stub |</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p p-Indicator">|</span><span class="err"> `devops` | CI / runtime | stub |</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="p p-Indicator">|</span><span class="err"> `review` | Review puro | stub |</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="p p-Indicator">|</span><span class="err"> `testing` | Tests puros | stub |</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="c1">#### Ids de extensión (pack o consumidor; no van en el núcleo)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="p p-Indicator">|</span><span class="err"> Id | Cuándo |</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="p p-Indicator">|</span><span class="err">----|--------|</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="p p-Indicator">|</span><span class="err"> `domain-application` | Fusión MVP de implementación |</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="p p-Indicator">|</span><span class="err"> `frontend` | UI (el pack define el framework) |</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p p-Indicator">|</span><span class="err"> `infrastructure` | Persistencia / adapters |</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="p p-Indicator">|</span><span class="err"> `ai` | Ingeniería de prompts de producto (no confundir con agentes SDAF) |</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="c1">#### Invariantes</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="l l-Scalar l-Scalar-Plain">1. Un id **no** puede estar a la vez en `active` y `stubs`.</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="l l-Scalar l-Scalar-Plain">2. Toda clave de `fusions` debe aparecer en `active`.</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="l l-Scalar l-Scalar-Plain">3. Los miembros de una fusión no deben estar en `active` (evitar dos dueños del mismo trabajo).</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="l l-Scalar l-Scalar-Plain">4. Ids de extensión requieren algún pack en `stack.packs` (o el alias `stack.pack`) o contratos locales en el consumidor; el core no los envía. El validador emite **aviso** por defecto; `--strict-i4` lo convierte en error. Con `--consumer-root` (la action `validate-sdaf` lo pasa siempre) el mensaje nombra además los ids sin contrato en `agents/&lt;id&gt;-agent.md`; no comprueba el prompt, y tener el contrato no retira el aviso ni el error.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="c1">### `tooling` (opcional)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="l l-Scalar l-Scalar-Plain">Tooling externo de agentes que el consumidor **adopta por elección propia** ([ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). Ninguna skill ni gate del core lo presupone</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sin el bloque, el método funciona igual.</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="p p-Indicator">|</span><span class="err"> Clave | Tipo | Obligatorio | Default | Uso |</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="p p-Indicator">|</span><span class="err">-------|------|-------------|---------|-----|</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="nt">| `tooling.gentle_ai` | string semver \| SHA de 40 hex \| `null` | no | `null` (o bloque ausente) | Versión de gentle-ai adoptada</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">una release (`"4.2.0"`) o un SHA de commit completo. No una rama</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">main` cambia sin aviso. `null` = no adoptado. Si se declara, el `AGENTS.md` del consumidor lleva la cláusula de precedencia de [`docs/integracion-gentle-ai.md`](docs/integracion-gentle-ai.md). No cambia Gate 0 ni el router. |</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">*</span><span class="nv">*T1</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(aviso):** si `gentle_ai` es una release ≤ `3.7.0`, el validador avisa de que incluye el componente `sdd`, que no se instala (desde v4.0.0 el componente no existe; [ADR-004](architecture/decisions/ADR-004-tooling-externo-de-agentes.md)). No cambia el exit code.</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Un SHA no dispara T1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">el validador no sabe, sin red, si es anterior a la retirada de SDD (v4.0.0). Para adoptar gentle-ai sin SDD, declara una release ≥ `4.0.0` (la guía revisa `4.2.0`) o un SHA igual o posterior al merge `520ed86e8c598b01f439e28c34d391cd6f1744e3`.</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="nn">---</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="c1">## Relación con artefactos</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">text</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="l l-Scalar l-Scalar-Plain">sdaf.config.yaml</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-gate0         (stack.src_path)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ sdaf-agent-router  (active / stubs / fusions)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ packs de stack     (si stack.packs no está vacío)</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">→ AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>## JSON Schema
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -4512,53 +4513,66 @@
 <a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>            "pattern": "^sdaf-stack-[a-z0-9]+(-[a-z0-9]+)*@[0-9]+\\.[0-9]+\\.[0-9]+$"
 <a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>          }
 <a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>        },
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>        "src_path": { "type": "string", "default": "src" },
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>        "tests_path": { "type": "string", "default": "tests" }
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>      }
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    },
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    "agents": {
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>      "type": "object",
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>      "required": ["active", "stubs"],
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>      "additionalProperties": false,
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>      "properties": {
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>        "active": {
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>          "type": "array",
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>          "minItems": 1,
-<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>          "uniqueItems": true,
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>          "items": { "type": "string", "minLength": 1 }
-<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>        },
-<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>        "stubs": {
-<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>          "type": "array",
-<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>          "uniqueItems": true,
-<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>          "items": { "type": "string", "minLength": 1 }
-<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>        },
-<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>        "fusions": {
-<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>          "type": "object",
-<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>          "additionalProperties": {
-<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>            "type": "array",
-<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>            "uniqueItems": true,
-<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>            "items": { "type": "string", "minLength": 1 }
-<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>          }
-<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>        }
-<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>      }
-<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    },
-<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    "tooling": {
-<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>      "type": "object",
-<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>      "description": "Tooling externo de agentes adoptado por el consumidor (opcional; ADR-004). Ausente = ninguno.",
-<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>      "additionalProperties": false,
-<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>      "properties": {
-<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>        "gentle_ai": {
-<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>          "description": "Release (semver) o SHA de commit de 40 hex de gentle-ai adoptado, o null si no se adopta",
-<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>          "anyOf": [
-<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>            { "type": "null" },
-<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>            { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
-<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>            { "type": "string", "pattern": "^[0-9a-f]{40}$" }
-<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>          ]
-<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>        }
-<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>      }
-<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>    }
-<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>  }
-<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>}
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>        "overlay": {
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>          "type": "object",
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>          "additionalProperties": false,
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>          "description": "Capa del consumidor sobre el core y los packs (ADR-007 §1). Opcional.",
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>          "properties": {
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>            "replaces": {
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>              "type": "array",
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>              "uniqueItems": true,
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>              "description": "Ids de extensión que el overlay del consumidor sustituye de forma explícita (ADR-007 §5). Cada id debe estar declarado en agents. No admite ids del núcleo.",
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>              "items": { "type": "string", "minLength": 1 }
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            }
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>          }
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>        },
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>        "src_path": { "type": "string", "default": "src" },
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>        "tests_path": { "type": "string", "default": "tests" }
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>      }
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    },
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    "agents": {
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>      "type": "object",
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>      "required": ["active", "stubs"],
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>      "additionalProperties": false,
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>      "properties": {
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>        "active": {
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>          "type": "array",
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>          "minItems": 1,
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>          "uniqueItems": true,
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>          "items": { "type": "string", "minLength": 1 }
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>        },
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>        "stubs": {
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>          "type": "array",
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>          "uniqueItems": true,
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>          "items": { "type": "string", "minLength": 1 }
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>        },
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        "fusions": {
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>          "type": "object",
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>          "additionalProperties": {
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>            "type": "array",
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>            "uniqueItems": true,
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>            "items": { "type": "string", "minLength": 1 }
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>          }
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>        }
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>      }
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    },
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>    "tooling": {
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>      "type": "object",
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>      "description": "Tooling externo de agentes adoptado por el consumidor (opcional; ADR-004). Ausente = ninguno.",
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>      "additionalProperties": false,
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>      "properties": {
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>        "gentle_ai": {
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>          "description": "Release (semver) o SHA de commit de 40 hex de gentle-ai adoptado, o null si no se adopta",
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>          "anyOf": [
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>            { "type": "null" },
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>            { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>            { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>          ]
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>        }
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>      }
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>    }
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>  }
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>}
 </code></pre></div>
 <h2 id="relacionado">Relacionado<a class="headerlink" href="#relacionado" title="Permanent link">&para;</a></h2>
 <table>
