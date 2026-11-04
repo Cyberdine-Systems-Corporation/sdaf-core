@@ -1,0 +1,18 @@
+# Fixture de config en la línea 0.6.0: dos packs y un id de extensión que aporta el primero.
+sdaf:
+  version: "0.6.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs:
+    - sdaf-stack-example@0.1.0
+    - sdaf-stack-other@0.2.0
+
+agents:
+  active:
+    - specification
+    - example-extension
+  stubs: []
