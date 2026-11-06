@@ -32,6 +32,8 @@ jobs:
         run: python scripts/test-validate-config.py
       - name: Autocomprobación de packs (fixtures)
         run: python scripts/test-validate-pack.py
+      - name: Autocomprobación de la materialización (fixtures)
+        run: python scripts/test-materialize.py
       - name: Autocomprobación de worklog
         run: python scripts/test-worklog.py
       - name: Comprobar metadatos de versión

@@ -1,0 +1,7 @@
+id: sdaf-stack-other
+version: 0.2.0
+core: ">=0.5.0 <0.7.0"
+provides:
+  extension_ids: [other-extension]
+  skills: [other-skill]
+  prompts: [other-prompt]
