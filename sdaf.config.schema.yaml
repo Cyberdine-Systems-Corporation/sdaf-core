@@ -52,16 +52,14 @@ Reglas de `stack.units` (se aplican con cualquier `sdaf.version`):
 
 Ejemplo con dos unidades (una sin `tests`):
 
-```yaml
-stack:
-  packs: []
-  units:
-    - name: Unidad A
-      src: apps/api
-      tests: tests/api
-    - name: Unidad B
-      src: libs/core
-```
+    stack:
+      packs: []
+      units:
+        - name: Unidad A
+          src: apps/api
+          tests: tests/api
+        - name: Unidad B
+          src: libs/core
 
 ### `agents` (obligatorio)
 
