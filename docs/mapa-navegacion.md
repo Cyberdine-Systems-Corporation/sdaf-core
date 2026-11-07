@@ -53,6 +53,7 @@ Ninguna tarea de adopción o constitución exige más de **tres** clics desde el
 | 🧭 | [README.md](../README.md) | Tres puertas de entrada |
 | 🛠️ | [docs/README.md](README.md) | Índice HOWTO |
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Pin, bootstrap, upgrade |
+| 🛠️ | [materializacion.md](materializacion.md) | Materializar el core y los packs en el consumidor |
 | 🖼️ | [branding.md](branding.md) | Mark, lockups, paleta y motion |
 | 📝 | [checklist-pagina-docs.md](checklist-pagina-docs.md) | DoD de una página markdown |
 | 📖 | [H14](../handbook/14-architecture-description.md) | Línea base arquitectónica del consumidor (G0.6) |

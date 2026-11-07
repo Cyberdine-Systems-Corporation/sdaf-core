@@ -89,6 +89,18 @@ python scripts/validate-config.py sdaf.config.yaml \
 
 **Aviso por manifiesto ausente.** Durante `0.6.x`, un pack sin manifiesto es un aviso, no un error ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md), Consecuencias). Lo emite `validate-config.py` solo con `sdaf.version` `>= 0.6.0` y por cada pack declarado sin manifiesto entre los pasados: `pack <id@version> sin manifiesto entre los pasados (aviso durante 0.6.x)`. En una config `0.5.x` no se emite nunca; recibe solo el aviso del alias.
 
+### Ruta normada de los packs
+
+Un pack aporta sus agentes, prompts y skills en rutas fijas, las mismas que usa el core. La convención no se declara en el manifiesto: `provides` lista ids, no rutas, y [`sdaf-pack.schema.json`](../sdaf-pack.schema.json) no la lleva.
+
+| Aporte | Ruta en la raíz del pack |
+|--------|--------------------------|
+| Contrato de agente | `agents/<id>-agent.md` |
+| Prompt de agente | `prompts/agents/<id>-agent.md` |
+| Skill | `skills/<id>/SKILL.md` |
+
+El `<id>` del contrato y del prompt es el id de extensión del agente. [`scripts/materialize.py`](../scripts/materialize.py) materializa esos aportes en la misma ruta del consumidor y no toca nada que el pack ponga fuera de ellas; el uso y el contrato están en [materializacion.md](materializacion.md#convención-de-rutas).
+
 ### Resolución por id
 
 La **regla** (qué ids se sustituyen y cuáles no, qué es una colisión y qué excepción hay) vive en un solo sitio: [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id), que aplica [ADR-007 §5](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md). Esta sección no la repite: describe el **mecanismo**.
@@ -122,10 +134,12 @@ A efectos del validador, un id de extensión es cualquier id que no sea del núc
 
 **Límite.** No se comprueba que algún pack aporte de verdad el id de `replaces`, ni se cruza con los `provides` de los manifiestos.
 
+**Colisión entre un pack y el overlay.** No la detecta `validate-config.py`, que solo ve la config. La detecta [`scripts/materialize.py`](../scripts/materialize.py) antes de escribir, al materializar, y es el único sitio donde existe esa comprobación: ver [Colisiones](materializacion.md#colisiones) para el mecanismo y los mensajes. La norma sigue siendo la de [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id).
+
 ### Qué no existe todavía
 
 > [!WARNING]
-> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; la detección de la colisión entre un pack y el overlay, que queda para la materialización (ARQ-4.4) porque los `agents/<id>-agent.md` de un consumidor suelen ser enlaces materializados y darían falsos positivos; la materialización y la ruta normada de los packs (ARQ-4.4); `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita ya tienen declaración (`stack.overlay.replaces`) y la validación mínima de arriba.
+> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita tienen declaración (`stack.overlay.replaces`) y la validación mínima de arriba; la materialización y la detección de la colisión entre un pack y el overlay existen en [`scripts/materialize.py`](../scripts/materialize.py), sin publicar hasta la línea `0.6.0` ([materializacion.md](materializacion.md)).
 
 ## Prohibido
 
@@ -156,4 +170,5 @@ Pack de referencia: [`sdaf-stack-dotnet@0.3.0`](https://github.com/Cyberdine-Sys
 | 📖 | [handbook/01 §6](../handbook/01-sdaf-framework.md#6-gobierno-antes-de-implementar) | Ancla constitucional |
 | 📖 | [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id) | Capas y regla de resolución por id |
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Cómo declarar el pack en la config |
+| 🛠️ | [materializacion.md](materializacion.md) | Cómo se materializan el core y los packs en el consumidor |
 | 🛠️ | [examples/README.md](../examples/README.md) | Escenarios 04, 07 y 08 |
