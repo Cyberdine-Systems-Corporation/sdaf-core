@@ -8,6 +8,10 @@ Un YAML roto, un fichero que no es UTF-8 o una raíz que no es un mapa son FAIL,
 nunca un traceback.
 Cada id de stack.overlay.replaces debe ser un id de extensión (no del núcleo) y
 estar declarado en agents.active, agents.stubs o agents.fusions (ADR-007 §5).
+stack.units (ADR-007 §8) no puede coexistir con stack.src_path ni stack.tests_path
+(error); su nombre es único, sus rutas son relativas y acotadas (sin ruta
+absoluta, «..», «.» ni segmentos vacíos) y dos unidades con rutas solapadas dan
+aviso. Se acepta con cualquier sdaf.version.
 
 Con --pack-manifest RUTA (repetible) se validan además los manifiestos de pack
 con las reglas de validate-pack.py y se cruzan con la config: su id@version debe
@@ -57,6 +61,7 @@ EXTENSION_IDS = {
 # si es anterior.
 GENTLE_AI_LAST_SDD = (3, 7, 0)
 SEMVER_RE = re.compile(r"^([0-9]+)\.([0-9]+)\.([0-9]+)$")
+DRIVE_RE = re.compile(r"^[A-Za-z]:")
 # Desde esta línea del core un pack declarado sin manifiesto entre los pasados avisa.
 MANIFEST_NOTICE_FROM = (0, 6, 0)
 Manifest = tuple[str, str, dict]  # (etiqueta, id@version, datos del manifiesto válido)
@@ -110,6 +115,77 @@ def overlay_replaces(stack: dict) -> list[tuple[int, str]]:
     if not isinstance(replaces, list):
         return []
     return [(i, x) for i, x in enumerate(replaces) if isinstance(x, str)]
+
+
+def unit_path_issue(where: str, value) -> str | None:
+    """Motivo si la ruta de una unidad no es relativa ni acotada a un subárbol del repo."""
+    if not isinstance(value, str) or not value:
+        return None  # el schema rechaza lo que no es texto o está vacío
+    edge = edge_issue(where, value)
+    if edge:
+        return edge
+    if value[0] in "/\\" or DRIVE_RE.match(value):
+        return f"{where}: ruta absoluta no admitida ({value!r}); debe ser relativa a la raíz del repo"
+    segments = value.replace("\\", "/").rstrip("/").split("/")
+    if ".." in segments:
+        return f"{where}: la ruta lleva un segmento '..' ({value!r})"
+    if segments == ["."]:
+        return f"{where}: la ruta {value!r} abarca todo el repo; indicar el directorio de la unidad"
+    if any(s in ("", ".") for s in segments):
+        return f"{where}: la ruta lleva segmentos vacíos o '.' ({value!r})"
+    return None
+
+
+def unit_issues(stack: dict) -> tuple[list[str], list[str]]:
+    """Devuelve (errores, avisos) de `stack.units`; el schema ya rechaza las formas inválidas."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    if "units" not in stack:
+        return errors, warnings
+    shortcut = [f"stack.{k}" for k in ("src_path", "tests_path") if k in stack]
+    if shortcut:
+        errors.append(
+            f"stack: stack.units y {' y '.join(shortcut)} no pueden coexistir; "
+            "declarar las rutas solo en stack.units o solo con el atajo de una sola unidad"
+        )
+    units = stack["units"]
+    if not isinstance(units, list):
+        return errors, warnings
+    names: dict[str, int] = {}
+    paths: list[tuple[int, str, str, list[str]]] = []  # (unidad, ruta de config, valor, segmentos)
+    for i, unit in enumerate(units):
+        if not isinstance(unit, dict):
+            continue
+        name = unit.get("name")
+        issue = edge_issue(f"stack/units/{i}/name", name)
+        if issue:
+            errors.append(issue)
+        elif isinstance(name, str) and name:
+            if name in names:
+                errors.append(
+                    f"stack/units/{i}/name: el nombre está repetido ({name!r}); "
+                    f"ya lo usa la unidad {names[name]}"
+                )
+            else:
+                names[name] = i
+        for key in ("src", "tests"):
+            where = f"stack/units/{i}/{key}"
+            value = unit.get(key)
+            issue = unit_path_issue(where, value)
+            if issue:
+                errors.append(issue)
+            elif isinstance(value, str) and value:
+                segments = value.replace("\\", "/").rstrip("/").split("/")
+                paths.append((i, where, value, segments))
+    # Solape entre unidades distintas: igual o contenida, por segmentos (no por prefijo de texto).
+    for a, (ui, wi, vi, si) in enumerate(paths):
+        for uj, wj, vj, sj in paths[a + 1:]:
+            if ui == uj:
+                continue
+            n = min(len(si), len(sj))
+            if si[:n] == sj[:n]:
+                warnings.append(f"{wi} ({vi!r}) solapa con {wj} ({vj!r})")
+    return errors, warnings
 
 
 def read_manifests(paths: list[Path]) -> tuple[list[Manifest], list[tuple[str, list[str]]]]:
@@ -216,6 +292,10 @@ def semantic_issues(
             "stack.pack está obsoleto; usar stack.packs: "
             f"[{json.dumps(stack['pack'], ensure_ascii=False)}]"
         )
+
+    unit_errors, unit_warnings = unit_issues(stack)
+    errors.extend(unit_errors)
+    warnings.extend(unit_warnings)
 
     by_id: dict[str, list[str]] = {}
     for ref in dict.fromkeys(packs):
