@@ -194,6 +194,38 @@ def test_line() -> bool:
     return ok
 
 
+def units_config(body: str) -> Mutation:
+    """Sustituye la config del fixture por una de la línea 0.5.0 con el bloque `stack` dado."""
+    return put(CONFIG, 'sdaf:\n  version: "0.5.0"\n\nstack:\n' + body)
+
+
+UNITS = ("  units:\n    - name: Unidad A\n      src: apps/api\n      tests: tests/api\n"
+         "    - name: Unidad B\n      src: libs/core\n")
+
+
+def test_units() -> bool:
+    ok = True
+    ok &= case("Gate 0: el diff toca una unidad declarada distinta de src/", units_config(UNITS), 0,
+               ("PBI-PRD-001",), args=("--changed", "apps/api/a.py", WORKLOG), absent=("FAIL", "sin código de producto"))
+    ok &= case("Gate 0: el diff toca la segunda unidad", units_config(UNITS), 0,
+               ("PBI-PRD-001",), args=("--changed", "libs/core/a.py", WORKLOG), absent=("FAIL", "sin código de producto"))
+    ok &= case("Gate 0: con units, src/ no declarado no es código de producto", units_config(UNITS), 0,
+               ("OK sin código de producto",), args=("--changed", "src/a.py", WORKLOG), absent=("FAIL", "PBI-PRD-001"))
+    ok &= case("Gate 0: prefijo por texto no cuenta (apps/api2)", units_config(UNITS), 0,
+               ("OK sin código de producto",), args=("--changed", "apps/api2/a.py", WORKLOG), absent=("FAIL",))
+    ok &= case("Gate 0: unidad declarada sin PBI en curso", units_config(UNITS), 1,
+               ("FAIL G0.4: no hay PBI en curso",), args=("--changed", "apps/api/a.py", "docs/nota.md"))
+    for label, body, reason in (
+        ("stack que es lista", "  - src_path\n", "stack"),
+        ("units vacía", "  units: []\n", "units"),
+        ("unidad sin src", "  units:\n    - name: A\n", "src"),
+    ):
+        ok &= case(f"Gate 0: config con {label} falla con el motivo", units_config(body), 1,
+                   (f"FAIL {CONFIG}: no se pueden leer las rutas de código (", reason),
+                   args=("--changed", "apps/api/a.py", WORKLOG), absent=("AttributeError", "TypeError"))
+    return ok
+
+
 def test_g04() -> bool:
     ok = True
     ok &= case("Gate 0: campo de cabecera ausente", edit(PBI, "| Worklogs | `worklogs/unidad-a/Iteration-001.md` |\n", ""),
@@ -316,7 +348,7 @@ def test_encoding() -> bool:
 
 
 def main() -> int:
-    results = [test_valid(), test_git_diff(), test_selection(), test_line(), test_g04(), test_g01(), test_g02(),
+    results = [test_valid(), test_git_diff(), test_selection(), test_line(), test_units(), test_g04(), test_g01(), test_g02(),
                test_g03(), test_g05(), test_g06(), test_adoption_exception(), test_encoding()]
     return 0 if all(results) else 1
 

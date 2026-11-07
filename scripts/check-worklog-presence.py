@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Falla si el diff toca código de producto y no hay cambio bajo worklogs/.
 
+El código de producto son las rutas de todas las unidades de `stack.units`
+o, si la config no las declara, las del atajo `src_path`/`tests_path`.
+Si la config existe pero no se pueden leer esas rutas, sale 1 con el motivo.
 No parsea campos del worklog. Un diff solo de markdown (typo) sale 0.
 Sin diff de PR y sin --changed: sale 0 (nada que comprobar).
 En un PR, si no se puede calcular el diff (checkout superficial, base
@@ -16,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sdaf_diff import DiffUnavailable, git_changed, is_product, load_product_prefixes  # noqa: E402
+from sdaf_diff import ConfigUnreadable, DiffUnavailable, git_changed, is_product, load_product_prefixes  # noqa: E402
 
 WORKLOG_PREFIX = "worklogs/"
 MD_SUFFIXES = {".md", ".md.template"}
@@ -38,7 +41,11 @@ def main() -> int:
     parser.add_argument("--cwd", default=".", help="Raíz del repo a inspeccionar.")
     args = parser.parse_args()
     cwd = Path(args.cwd).resolve()
-    prefixes = load_product_prefixes(cwd)
+    try:
+        prefixes = load_product_prefixes(cwd)
+    except ConfigUnreadable as exc:
+        print(f"FAIL sdaf.config.yaml: no se pueden leer las rutas de código ({exc})")
+        return 1
 
     if args.changed is not None:
         changed = [p.replace("\\", "/") for p in args.changed]

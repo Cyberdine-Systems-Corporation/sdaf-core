@@ -10,21 +10,88 @@ import json
 import os
 import subprocess
 from pathlib import Path
+from typing import Any, NamedTuple
 
 import yaml
 
 
-def load_product_prefixes(cwd: Path) -> list[str]:
-    prefixes = ["src/", "tests/"]
+class ConfigUnreadable(ValueError):
+    """`sdaf.config.yaml` existe pero no se pueden leer de él las rutas de código; el mensaje es el motivo."""
+
+
+class Unit(NamedTuple):
+    """Una unidad de código del consumidor: `name` solo en `stack.units`, `tests` es opcional."""
+
+    name: str | None
+    src: str
+    tests: str | None
+
+
+def _mapping(value: Any, what: str) -> dict[str, Any]:
+    if value is None:
+        return {}
+    if not isinstance(value, dict):
+        raise ConfigUnreadable(f"«{what}» no es un mapa")
+    return value
+
+
+def _path_text(value: Any, what: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ConfigUnreadable(f"{what} no es un texto no vacío")
+    return value
+
+
+def _unit(item: Any, index: int) -> Unit:
+    where = f"stack.units[{index}]"
+    if not isinstance(item, dict):
+        raise ConfigUnreadable(f"{where} no es un mapa")
+    name = item.get("name")
+    tests = item.get("tests")
+    return Unit(
+        name if isinstance(name, str) else None,
+        _path_text(item.get("src"), f"{where}.src"),
+        None if tests is None else _path_text(tests, f"{where}.tests"),
+    )
+
+
+def load_units(cwd: Path) -> list[Unit]:
+    """Unidades de código del consumidor: `stack.units` o, si no hay, la única del atajo.
+
+    Sin `sdaf.config.yaml` devuelve la unidad por defecto (`src`, `tests`). Con `stack.units`
+    gana la lista sobre `src_path`/`tests_path` (validate-config ya rechaza que convivan).
+    Una config que no se puede leer lanza `ConfigUnreadable` con el motivo; nunca otra excepción.
+    """
     cfg = cwd / "sdaf.config.yaml"
     if not cfg.is_file():
-        return prefixes
-    data = yaml.safe_load(cfg.read_text(encoding="utf-8")) or {}
-    stack = data.get("stack") or {}
-    src = stack.get("src_path") or "src"
-    tests = stack.get("tests_path") or "tests"
-    prefixes = [str(src).replace("\\", "/").rstrip("/") + "/"]
-    prefixes.append(str(tests).replace("\\", "/").rstrip("/") + "/")
+        return [Unit(None, "src", "tests")]
+    try:
+        data = yaml.safe_load(cfg.read_text(encoding="utf-8"))
+    except yaml.YAMLError:
+        raise ConfigUnreadable("el YAML no es válido") from None
+    except UnicodeDecodeError:
+        raise ConfigUnreadable("el fichero no es UTF-8") from None
+    except OSError:
+        raise ConfigUnreadable("no se puede leer el fichero") from None
+    stack = _mapping(_mapping(data, "raíz").get("stack"), "stack")
+    if "units" in stack:
+        units = stack["units"]
+        if not isinstance(units, list) or not units:
+            raise ConfigUnreadable("stack.units no es una lista con al menos una unidad")
+        return [_unit(item, i) for i, item in enumerate(units)]
+    return [Unit(None, str(stack.get("src_path") or "src"), str(stack.get("tests_path") or "tests"))]
+
+
+def _prefix(path: str) -> str:
+    return path.replace("\\", "/").rstrip("/") + "/"
+
+
+def load_product_prefixes(cwd: Path) -> list[str]:
+    """Prefijos de las rutas de código de todas las unidades (src y, si hay, tests), sin repetir."""
+    prefixes: list[str] = []
+    for unit in load_units(cwd):
+        for path in (unit.src, unit.tests):
+            if path is not None and _prefix(path) not in prefixes:
+                prefixes.append(_prefix(path))
     return prefixes
 
 

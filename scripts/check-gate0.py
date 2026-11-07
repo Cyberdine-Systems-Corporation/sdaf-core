@@ -29,7 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sdaf_adrs import ESTADOS_HEREDADOS, adr_label, adr_num, file_re, refs  # noqa: E402
 from sdaf_adrs import fields as adr_fields  # noqa: E402
-from sdaf_diff import DiffUnavailable, git_changed, is_product, load_product_prefixes  # noqa: E402
+from sdaf_diff import ConfigUnreadable, DiffUnavailable, git_changed, is_product, load_product_prefixes  # noqa: E402
 from sdaf_docs import (  # noqa: E402
     baseline, find_pbis, frontmatter, header_fields, is_placeholder, read, section, spec_index, split_list,
 )
@@ -239,7 +239,8 @@ def select_by_diff(ctx: Context, rep: Report, args: argparse.Namespace) -> list[
     try:
         prefixes = load_product_prefixes(root)
     except CONFIG_ERRORS as exc:
-        rep.fail(f"{CONFIG}: no se pueden leer las rutas de código ({type(exc).__name__})")
+        reason = str(exc) if isinstance(exc, ConfigUnreadable) else type(exc).__name__
+        rep.fail(f"{CONFIG}: no se pueden leer las rutas de código ({reason})")
         return None
     if args.changed is not None:
         changed = [norm(p) for p in args.changed]
