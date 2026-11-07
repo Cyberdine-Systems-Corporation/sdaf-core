@@ -14,7 +14,7 @@
         <link rel="prev" href="../adopcion-y-upgrade/">
       
       
-        <link rel="next" href="../integracion-gentle-ai/">
+        <link rel="next" href="../materializacion/">
       
       
         
@@ -1549,6 +1549,8 @@
       
         
       
+        
+      
     
     
     
@@ -1768,6 +1770,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ruta-normada-de-los-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruta normada de los packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#resolución-por-id" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1853,6 +1866,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../materializacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materialización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2001,7 +2042,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2023,14 +2064,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6_9" id="__nav_6_9_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4497,6 +4538,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ruta-normada-de-los-packs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ruta normada de los packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#resolución-por-id" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4734,6 +4786,31 @@
 <p><strong>Rango <code>core</code> y límites <code>X.Y.0</code>.</strong> <code>sdaf.version</code> nombra una <strong>línea</strong> de constitución (p. ej. <code>0.6.0</code>), no un tag (<code>v0.6.3</code>). El validador compara la tupla de enteros <code>X.Y.Z</code> tal cual: la línea <code>0.6.0</code> cumple <code>&lt;0.7.0</code> y <code>&gt;=0.5.0</code>; una línea con patch distinto de 0, como <code>0.6.3</code>, cumple <code>&lt;0.7.0</code> pero no <code>&lt;=0.6.0</code>. Por eso los rangos de <code>core</code> deben usar límites <code>X.Y.0</code> (<code>"&gt;=0.5.0 &lt;0.7.0"</code>), no límites con patch. Un rango fuera de la línea da <code>FAIL core: el rango '&lt;rango&gt;' de &lt;id@version&gt; (&lt;ruta&gt;) no incluye sdaf.version &lt;línea&gt;</code>.</p>
 <p><strong>I4 con manifiestos.</strong> Los ids de extensión que usan los agentes (I4, ver <a href="../../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) se contrastan con <code>provides.extension_ids</code> solo si <strong>todos</strong> los packs declarados tienen manifiesto entre los pasados: entonces cada id de extensión usado debe figurar en <code>provides.extension_ids</code> de algún pack. Si falta el manifiesto de algún pack declarado no se puede concluir qué ids aporta, y cualquier pack declarado anula I4, igual que sin manifiestos.</p>
 <p><strong>Aviso por manifiesto ausente.</strong> Durante <code>0.6.x</code>, un pack sin manifiesto es un aviso, no un error (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a>, Consecuencias). Lo emite <code>validate-config.py</code> solo con <code>sdaf.version</code> <code>&gt;= 0.6.0</code> y por cada pack declarado sin manifiesto entre los pasados: <code>pack &lt;id@version&gt; sin manifiesto entre los pasados (aviso durante 0.6.x)</code>. En una config <code>0.5.x</code> no se emite nunca; recibe solo el aviso del alias.</p>
+<h3 id="ruta-normada-de-los-packs">Ruta normada de los packs<a class="headerlink" href="#ruta-normada-de-los-packs" title="Permanent link">&para;</a></h3>
+<p>Un pack aporta sus agentes, prompts y skills en rutas fijas, las mismas que usa el core. La convención no se declara en el manifiesto: <code>provides</code> lista ids, no rutas, y <a href="../../sdaf-pack.schema.json"><code>sdaf-pack.schema.json</code></a> no la lleva.</p>
+<table>
+<thead>
+<tr>
+<th>Aporte</th>
+<th>Ruta en la raíz del pack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contrato de agente</td>
+<td><code>agents/&lt;id&gt;-agent.md</code></td>
+</tr>
+<tr>
+<td>Prompt de agente</td>
+<td><code>prompts/agents/&lt;id&gt;-agent.md</code></td>
+</tr>
+<tr>
+<td>Skill</td>
+<td><code>skills/&lt;id&gt;/SKILL.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>El <code>&lt;id&gt;</code> del contrato y del prompt es el id de extensión del agente. <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a> materializa esos aportes en la misma ruta del consumidor y no toca nada que el pack ponga fuera de ellas; el uso y el contrato están en <a href="../materializacion/#convención-de-rutas">materializacion.md</a>.</p>
 <h3 id="resolución-por-id">Resolución por id<a class="headerlink" href="#resolución-por-id" title="Permanent link">&para;</a></h3>
 <p>La <strong>regla</strong> (qué ids se sustituyen y cuáles no, qué es una colisión y qué excepción hay) vive en un solo sitio: <a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a>, que aplica <a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §5</a>. Esta sección no la repite: describe el <strong>mecanismo</strong>.</p>
 <p><strong>Declarar la sustitución.</strong> <code>stack.overlay.replaces</code> en <code>sdaf.config.yaml</code> es una lista, opcional y sin valor por defecto, de ids de extensión que el overlay del consumidor sustituye de forma explícita. <code>overlay</code> es un objeto sin otras claves; <code>overlay: {}</code> equivale a no declararlo, y una config de <code>0.5.x</code> sin la clave sigue validando. El campo está en el <a href="../../sdaf.config.schema.yaml">catálogo de la config</a> y en <a href="../../sdaf.config.schema.json"><code>sdaf.config.schema.json</code></a>. Ejemplo (ids ficticios):</p>
@@ -4787,10 +4864,11 @@
 </table>
 <p>A efectos del validador, un id de extensión es cualquier id que no sea del núcleo. <code>replaces</code> sin packs declarados no da aviso.</p>
 <p><strong>Límite.</strong> No se comprueba que algún pack aporte de verdad el id de <code>replaces</code>, ni se cruza con los <code>provides</code> de los manifiestos.</p>
+<p><strong>Colisión entre un pack y el overlay.</strong> No la detecta <code>validate-config.py</code>, que solo ve la config. La detecta <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a> antes de escribir, al materializar, y es el único sitio donde existe esa comprobación: ver <a href="../materializacion/#colisiones">Colisiones</a> para el mecanismo y los mensajes. La norma sigue siendo la de <a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a>.</p>
 <h3 id="qué-no-existe-todavía">Qué no existe todavía<a class="headerlink" href="#qué-no-existe-todavía" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>[!WARNING]
-Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifiesto con el catálogo de ids del core; la detección de la colisión entre un pack y el overlay, que queda para la materialización (ARQ-4.4) porque los <code>agents/&lt;id&gt;-agent.md</code> de un consumidor suelen ser enlaces materializados y darían falsos positivos; la materialización y la ruta normada de los packs (ARQ-4.4); <code>stack.units</code> (ARQ-4.5); un input de la action <code>validate-sdaf</code> para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita ya tienen declaración (<code>stack.overlay.replaces</code>) y la validación mínima de arriba.</p>
+Siguen sin existir: el contraste de los <code>extension_ids</code> de un manifiesto con el catálogo de ids del core; <code>stack.units</code> (ARQ-4.5); un input de la action <code>validate-sdaf</code> para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita tienen declaración (<code>stack.overlay.replaces</code>) y la validación mínima de arriba; la materialización y la detección de la colisión entre un pack y el overlay existen en <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a>, sin publicar hasta la línea <code>0.6.0</code> (<a href="../materializacion/">materializacion.md</a>).</p>
 </blockquote>
 <h2 id="prohibido">Prohibido<a class="headerlink" href="#prohibido" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -4833,6 +4911,11 @@ El pack no puede saltar Gate 0 ni contradecir capítulos Approved de sdaf-core.<
 <td>🛠️</td>
 <td><a href="../adopcion-y-upgrade/">adopcion-y-upgrade.md</a></td>
 <td>Cómo declarar el pack en la config</td>
+</tr>
+<tr>
+<td>🛠️</td>
+<td><a href="../materializacion/">materializacion.md</a></td>
+<td>Cómo se materializan el core y los packs en el consumidor</td>
 </tr>
 <tr>
 <td>🛠️</td>

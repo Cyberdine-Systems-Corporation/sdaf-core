@@ -1549,6 +1549,8 @@
       
         
       
+        
+      
     
     
     
@@ -1992,6 +1994,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../materializacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Materialización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../integracion-gentle-ai/" class="md-nav__link">
         
   
@@ -2128,7 +2158,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2150,14 +2180,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6_9" id="__nav_6_9_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5021,8 +5051,8 @@ El pin recomendado del árbol es <code>v0.5.3</code>. <code>sdaf.version</code> 
 <h2 id="pack-de-stack">Pack de stack<a class="headerlink" href="#pack-de-stack" title="Permanent link">&para;</a></h2>
 <p>Si <code>stack.pack</code> ≠ <code>null</code>, cumplir <a href="../contrato-pack-stack/"><code>contrato-pack-stack.md</code></a>.</p>
 <h3 id="materialización-en-el-consumidor">Materialización en el consumidor<a class="headerlink" href="#materialización-en-el-consumidor" title="Permanent link">&para;</a></h3>
-<p>Preferir <strong>symlinks relativos</strong> (Git mode <code>120000</code>) de skills, agentes, prompts y reglas del core y del pack hacia la raíz del consumidor. En repos de referencia (p. ej. ShiftFlow-sdaf) hay un script documentado <code>scripts/materialize-submodules.ps1</code> + HOWTO <code>docs/materializacion-submodules.md</code>. Superficie Cursor opcional: <code>.cursor/skills/&lt;id&gt;</code> enlazada al submodule.</p>
-<p>Copia literal solo como fallback documentado.</p>
+<p>Preferir <strong>symlinks relativos</strong> (Git mode <code>120000</code>) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a>, y su contrato y guía de uso están en <a href="../materializacion/"><code>materializacion.md</code></a>: orden core → packs → overlay, ruta normada de los aportes, registro <code>.sdaf-origin</code>, detección de colisiones y <code>--dry-run</code>. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver <a href="#fuera-de-05x">Fuera de 0.5.x</a>). <code>AGENTS.md</code> y las reglas de editor no los materializa ese script: los materializa <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>.</p>
+<p>Copia literal solo como fallback documentado: el script la usa si el sistema no permite enlaces simbólicos y registra su origen en <code>.sdaf-origin</code>.</p>
 <blockquote>
 <p>[!WARNING]
 No usar junctions de Windows (<code>mklink /J</code>).</p>
@@ -5134,7 +5164,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <ul>
 <li>Métricas de sprint / capacidad humana detallada (producto)</li>
 <li>Glosario de dominio (pertenece al producto)</li>
-<li>Script de materialización en el core (previsto en la línea 0.6.0)</li>
+<li>Publicación del script de materialización: <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a> ya existe en el árbol, pero no se publica hasta la línea 0.6.0</li>
 </ul>
 <p><code>project.language</code> distinto de <code>es</code> ya no está pendiente: lo registra <a href="../../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a> y otro idioma exige un ADR sustituto.</p>
 <p>No se reintroducen huecos numéricos “por si acaso” en el handbook del core.</p>
