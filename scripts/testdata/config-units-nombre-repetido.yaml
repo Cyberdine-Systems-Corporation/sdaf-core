@@ -1,0 +1,20 @@
+# Fixture de config: stack.units con dos unidades del mismo nombre.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+  units:
+    - name: Unidad A
+      src: apps/api
+    - name: Unidad A
+      src: libs/core
+
+agents:
+  active:
+    - specification
+  stubs: []

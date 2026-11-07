@@ -1,0 +1,19 @@
+# Fixture de config: stack.units junto a stack.src_path (coexistencia = error).
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+  src_path: src
+  units:
+    - name: Unidad A
+      src: apps/api
+
+agents:
+  active:
+    - specification
+  stubs: []

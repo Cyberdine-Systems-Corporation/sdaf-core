@@ -1,0 +1,19 @@
+# Fixture de config: stack.units con un nombre con salto de línea final (bloque literal).
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+  units:
+    - name: |
+        Unidad A
+      src: apps/api
+
+agents:
+  active:
+    - specification
+  stubs: []

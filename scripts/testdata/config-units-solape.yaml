@@ -1,0 +1,20 @@
+# Fixture de config: stack.units con dos unidades cuyas rutas se solapan (aviso, no error).
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+  units:
+    - name: Unidad A
+      src: apps
+    - name: Unidad B
+      src: apps/api
+
+agents:
+  active:
+    - specification
+  stubs: []

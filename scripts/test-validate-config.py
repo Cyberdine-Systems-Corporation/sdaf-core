@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprueba fixtures del validador de config (I1–I4, packs, alias, manifiestos, overlay, bordes, tooling y T1).
+"""Comprueba fixtures del validador de config (I1–I4, packs, alias, manifiestos, overlay, units, bordes, tooling y T1).
 
 Cada caso lanza `validate-config.py` como proceso y comprueba salida y código de
 salida. Los fixtures viven en scripts/testdata/; los casos en línea se escriben
@@ -199,6 +199,101 @@ def casos_overlay(tmp: Path) -> None:
     caso("overlay que no es un mapa", con("  overlay:\n    - frontend\n"), 1, "stack/overlay", "is not of type 'object'", ausentes=("Traceback",))
     caso("replaces con un id del núcleo y otro con salto", con("  overlay:\n    replaces:\n      - specification\n      - |\n        frontend\n"), 1, "stack/overlay/replaces/0", "stack/overlay/replaces/1", "núcleo", "espacios o saltos de línea")
     caso("sin overlay la config sigue válida", con(""), 0, ausentes=sin_aviso)
+
+
+def casos_unidades(tmp: Path) -> None:
+    """stack.units: forma en el schema, coexistencia con el atajo y reglas de nombre, ruta y solape."""
+    valida = DATA / "config-units-valida.yaml"
+    texto = valida.read_text(encoding="utf-8")
+    bloque = texto[texto.index("  units:\n"):texto.index("\nagents:")]
+    n = 0
+
+    def caso(nombre: str, contenido: str, exit_esperado: int, *motivos: str, ausentes=(), args=()) -> None:
+        nonlocal n
+        n += 1
+        fichero = tmp / f"unidades-{n}.yaml"
+        fichero.write_text(contenido, encoding="utf-8")
+        check(nombre, [*args, str(fichero)], exit_esperado, *motivos, ausentes=ausentes)
+
+    def con(units: str) -> str:
+        """Config válida cuyo bloque units se sustituye por `units`."""
+        return texto.replace(bloque, units)
+
+    def una(src: str = "apps/api", tests: str | None = None, name: str = "Unidad A") -> str:
+        extra = f"      tests: {tests}\n" if tests is not None else ""
+        return f"  units:\n    - name: {name}\n      src: {src}\n{extra}"
+
+    otra = "    - name: Unidad B\n      src: libs/core\n"
+    sin_aviso = ("WARN", "FAIL", "Traceback")
+    check("units válida con dos unidades", [str(valida)], 0, ausentes=sin_aviso)
+    check(
+        "units junto a src_path",
+        [str(DATA / "config-units-con-src-path.yaml")], 1,
+        "stack.units", "stack.src_path", "no pueden coexistir", ausentes=("tests_path", "Traceback"),
+    )
+    check(
+        "units junto a tests_path",
+        [str(DATA / "config-units-con-tests-path.yaml")], 1,
+        "stack.units", "stack.tests_path", "no pueden coexistir", ausentes=("src_path", "Traceback"),
+    )
+    check(
+        "units con nombre repetido",
+        [str(DATA / "config-units-nombre-repetido.yaml")], 1,
+        "stack/units/1/name", "repetido", "'Unidad A'", ausentes=("units/0", "Traceback"),
+    )
+    check(
+        "units con salto de línea final en el nombre",
+        [str(DATA / "config-units-nombre-salto.yaml")], 1,
+        "stack/units/0/name", "espacios o saltos de línea", ausentes=("Traceback",),
+    )
+    check(
+        "units con rutas solapadas avisa sin fallar",
+        [str(DATA / "config-units-solape.yaml")], 0,
+        "WARN", "solapa", "stack/units/0/src", "stack/units/1/src", ausentes=("FAIL", "Traceback"),
+    )
+    check("units con tests dentro de su propio src no avisa", [str(DATA / "config-units-tests-en-su-src.yaml")], 0, ausentes=sin_aviso)
+
+    # En línea: una regla por caso.
+    caso("units con una sola unidad sin tests", con(una()), 0, ausentes=sin_aviso)
+    caso("units con sdaf.version 0.6.0", con(una()).replace('"0.5.0"', '"0.6.0"'), 0, ausentes=sin_aviso)
+    caso("units con pack null", con(una()).replace("  packs: []\n", "  pack: null\n"), 0, ausentes=sin_aviso)
+    caso("units junto a src_path y tests_path", con("  src_path: src\n  tests_path: tests\n" + una()), 1, "stack.src_path", "stack.tests_path", "no pueden coexistir")
+    caso("units sin src", con("  units:\n    - name: Unidad A\n      tests: tests/api\n"), 1, "stack/units/0", "'src' is a required property", ausentes=("Traceback",))
+    caso("units sin name", con("  units:\n    - src: apps/api\n"), 1, "stack/units/0", "'name' is a required property", ausentes=("Traceback",))
+    caso("units con tests vacío", con(una(tests='""')), 1, "stack/units/0/tests", ausentes=("Traceback",))
+    caso("units con name vacío", con(una(name='""')), 1, "stack/units/0/name", ausentes=("Traceback",))
+    caso("units con una clave desconocida", con(una() + "      foo: x\n"), 1, "stack/units/0", "Additional properties are not allowed ('foo' was unexpected)")
+    caso("units con una unidad que no es objeto", con("  units:\n    - apps/api\n"), 1, "stack/units/0", "is not of type 'object'", ausentes=("Traceback",))
+    caso("units vacía", con("  units: []\n"), 1, "stack/units", "should be non-empty", ausentes=("Traceback",))
+    caso("units que no es una lista", con("  units: apps/api\n"), 1, "stack/units", "is not of type 'array'", ausentes=("Traceback",))
+    caso("units con src que no es texto", con(una(src="5")), 1, "stack/units/0/src", "is not of type 'string'", ausentes=("Traceback", "absoluta"))
+    caso("units con espacio final en src", con(una(src='"apps/api "')), 1, "stack/units/0/src", "espacios o saltos de línea")
+    caso("units con espacio final en tests", con(una(tests='"tests/api "')), 1, "stack/units/0/tests", "espacios o saltos de línea")
+    caso("units con ruta absoluta en src", con(una(src="/apps/api")), 1, "stack/units/0/src", "ruta absoluta")
+    caso("units con ruta absoluta en tests", con(una(tests="/tests/api")), 1, "stack/units/0/tests", "ruta absoluta", ausentes=("units/0/src",))
+    caso("units con barra invertida inicial", con(una(src="'\\apps\\api'")), 1, "stack/units/0/src", "ruta absoluta")
+    caso("units con letra de unidad", con(una(src="'C:/apps/api'")), 1, "stack/units/0/src", "ruta absoluta")
+    caso("units con letra de unidad y barra invertida", con(una(tests="'D:\\tests'")), 1, "stack/units/0/tests", "ruta absoluta")
+    caso("units con segmento .. en src", con(una(src="apps/../libs")), 1, "stack/units/0/src", "..")
+    caso("units con .. inicial en tests", con(una(tests="../tests")), 1, "stack/units/0/tests", "..", ausentes=("units/0/src",))
+    caso("units con .. y barra invertida", con(una(src="'apps\\..\\libs'")), 1, "stack/units/0/src", "..")
+    caso("units con ruta .", con(una(src=".")), 1, "stack/units/0/src", "todo el repo")
+    caso("units con ruta ./", con(una(src="./")), 1, "stack/units/0/src", "todo el repo")
+    caso("units con segmento . intermedio", con(una(src="apps/./api")), 1, "stack/units/0/src", "segmentos vacíos o '.'")
+    caso("units con segmento vacío intermedio", con(una(tests="tests//api")), 1, "stack/units/0/tests", "segmentos vacíos o '.'")
+    caso("units con barra final en src es válida", con(una(src="apps/api/")), 0, ausentes=sin_aviso)
+    caso("units con nombre libre con espacios y signos", con(una(name="'Servicio de pagos (v2)'")), 0, ausentes=sin_aviso)
+    caso("units con nombres que difieren solo en mayúsculas", con(una() + "    - name: unidad a\n      src: libs/core\n"), 0, ausentes=sin_aviso)
+    caso("units con rutas iguales entre unidades avisa", con(una() + "    - name: Unidad B\n      src: apps/api\n"), 0, "WARN", "solapa", "stack/units/0/src", "stack/units/1/src", ausentes=("FAIL",))
+    caso("units con tests de una unidad dentro del src de otra avisa", con(una() + "    - name: Unidad B\n      src: libs/core\n      tests: apps/api/tests\n"), 0, "WARN", "stack/units/0/src", "stack/units/1/tests", ausentes=("FAIL",))
+    caso("units con src de una unidad dentro de los tests de otra avisa", con(una(tests="tests") + "    - name: Unidad B\n      src: tests/b\n"), 0, "WARN", "stack/units/0/tests", "stack/units/1/src", ausentes=("FAIL",))
+    caso("units con tests iguales entre unidades avisa", con(una(tests="tests") + "    - name: Unidad B\n      src: libs/core\n      tests: tests\n"), 0, "WARN", "stack/units/0/tests", "stack/units/1/tests", ausentes=("FAIL",))
+    caso("units con prefijo de texto sin solape no avisa", con(una() + "    - name: Unidad B\n      src: apps/api2\n"), 0, ausentes=sin_aviso)
+    caso("units con barras distintas solapadas avisa", con(una(src="'apps\\api\\v1'") + "    - name: Unidad B\n      src: apps/api/\n"), 0, "WARN", "solapa", ausentes=("FAIL",))
+    caso("units con una ruta inválida no avisa de solape", con(una(src="/apps") + "    - name: Unidad B\n      src: apps\n"), 1, "ruta absoluta", ausentes=("WARN", "solapa"))
+    caso("units con varios problemas a la vez", con("  units:\n    - name: Unidad A\n      src: /a\n    - name: Unidad A\n      src: ../b\n"), 1, "stack/units/0/src", "stack/units/1/name", "stack/units/1/src")
+    caso("sin units el atajo src_path y tests_path sigue válido", texto.replace(bloque, "  src_path: src\n  tests_path: tests"), 0, ausentes=sin_aviso)
+    caso("src_path y tests_path no se endurecen", texto.replace(bloque, "  src_path: /abs/../x\n  tests_path: ."), 0, ausentes=sin_aviso)
 
 
 def texto_manifiesto(
@@ -461,6 +556,8 @@ def main() -> int:
         casos_en_linea(Path(tmpdir))
     with tempfile.TemporaryDirectory(prefix="sdaf overlay ") as tmpdir:
         casos_overlay(Path(tmpdir))
+    with tempfile.TemporaryDirectory(prefix="sdaf unidades ") as tmpdir:
+        casos_unidades(Path(tmpdir))
     with tempfile.TemporaryDirectory(prefix="sdaf manifiestos ") as tmpdir:
         casos_manifiestos(Path(tmpdir))
     casos_satisfies()

@@ -1,0 +1,21 @@
+# Fixture de config: stack.units válida con dos unidades, una con tests y otra sin tests.
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: FixtureConfig
+  language: es
+
+stack:
+  packs: []
+  units:
+    - name: Unidad A
+      src: apps/api
+      tests: tests/api
+    - name: Unidad B
+      src: libs/core
+
+agents:
+  active:
+    - specification
+  stubs: []
