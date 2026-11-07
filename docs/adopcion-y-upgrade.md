@@ -151,9 +151,9 @@ Si `stack.pack` ≠ `null`, cumplir [`contrato-pack-stack.md`](contrato-pack-sta
 
 ### Materialización en el consumidor
 
-Preferir **symlinks relativos** (Git mode `120000`) de skills, agentes, prompts y reglas del core y del pack hacia la raíz del consumidor. En repos de referencia (p. ej. ShiftFlow-sdaf) hay un script documentado `scripts/materialize-submodules.ps1` + HOWTO `docs/materializacion-submodules.md`. Superficie Cursor opcional: `.cursor/skills/<id>` enlazada al submodule.
+Preferir **symlinks relativos** (Git mode `120000`) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, [`scripts/materialize.py`](../scripts/materialize.py), y su contrato y guía de uso están en [`materializacion.md`](materializacion.md): orden core → packs → overlay, ruta normada de los aportes, registro `.sdaf-origin`, detección de colisiones y `--dry-run`. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver [Fuera de 0.5.x](#fuera-de-05x)). `AGENTS.md` y las reglas de editor no los materializa ese script: los materializa [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md).
 
-Copia literal solo como fallback documentado.
+Copia literal solo como fallback documentado: el script la usa si el sistema no permite enlaces simbólicos y registra su origen en `.sdaf-origin`.
 
 > [!WARNING]
 > No usar junctions de Windows (`mklink /J`).
@@ -304,7 +304,7 @@ Sin implementar en esta línea:
 
 - Métricas de sprint / capacidad humana detallada (producto)
 - Glosario de dominio (pertenece al producto)
-- Script de materialización en el core (previsto en la línea 0.6.0)
+- Publicación del script de materialización: [`scripts/materialize.py`](../scripts/materialize.py) ya existe en el árbol, pero no se publica hasta la línea 0.6.0
 
 `project.language` distinto de `es` ya no está pendiente: lo registra [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md) y otro idioma exige un ADR sustituto.
 

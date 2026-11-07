@@ -125,6 +125,7 @@ nav:
       - docs/README.md
       - Adopción y upgrade: docs/adopcion-y-upgrade.md
       - Contrato de pack: docs/contrato-pack-stack.md
+      - Materialización: docs/materializacion.md
       - Integración gentle-ai: docs/integracion-gentle-ai.md
       - Mapa de navegación: docs/mapa-navegacion.md
       - Branding: docs/branding.md

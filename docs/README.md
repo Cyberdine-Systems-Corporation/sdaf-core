@@ -7,6 +7,7 @@
 |--|------|-----|
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Pin a tag, bootstrap, upgrade, migración 0.1→0.2, opt-in 0.3.x, 0.4.x y 0.5.x |
 | 📦 | [contrato-pack-stack.md](contrato-pack-stack.md) | Norma de un `sdaf-stack-*` |
+| 🛠️ | [materializacion.md](materializacion.md) | Materializar agentes, prompts y skills del core y de los packs en el consumidor |
 | 🛠️ | [integracion-gentle-ai.md](integracion-gentle-ai.md) | Usar gentle-ai (memoria, skills, MCP) sin saltar Gate 0 ni H06 §7 |
 | 🧭 | [mapa-navegacion.md](mapa-navegacion.md) | Ocho tareas, clics y vocabulario visual |
 | 🖼️ | [branding.md](branding.md) | Mark, lockups, paleta, simbología y motion |
