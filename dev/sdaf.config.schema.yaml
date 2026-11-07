@@ -27,15 +27,39 @@ Catálogo y ejemplos: [`examples/README.md`](examples/README.md).
 
 ### `stack` (obligatorio como bloque; campos internos con default)
 
-Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime: el pack es una capa opcional. `stack.overlay.replaces` solo declara qué ids de extensión sustituye la capa del consumidor; no adopta ni cambia packs.
+Gobernanza de **dónde** está el código y **si** hay pack técnico. No fija el runtime: el pack es una capa opcional. `stack.overlay.replaces` solo declara qué ids de extensión sustituye la capa del consumidor; no adopta ni cambia packs. El código se declara con `stack.units` (una o varias unidades) o, para una sola, con el atajo `stack.src_path` y `stack.tests_path`.
 
 | Clave | Tipo | Obligatorio | Default | Uso |
 |-------|------|-------------|---------|-----|
 | `stack.packs` | lista de strings | sí, salvo que se use el alias `stack.pack` (puede ser `[]`) | `[]` | Referencias `id@version` de los packs adoptados (`["sdaf-stack-example@0.3.0"]`), sin repetidos y con un id por pack: dos referencias con el mismo id son error aunque difiera la versión. `[]` = solo método; skills/agentes de UI/infra no existen salvo que el consumidor los añada a mano. |
 | `stack.pack` | string \| `null` | no (alias obsoleto) | `null` | Alias obsoleto de `stack.packs` con un único elemento: `pack: "sdaf-stack-example@0.3.0"` equivale a `packs: ["sdaf-stack-example@0.3.0"]`. Con un valor no nulo el validador avisa y pide `stack.packs`. No puede coexistir con `stack.packs` (error, también con `packs: []`); `stack.pack: null` junto a `stack.packs` no entra en conflicto. |
 | `stack.overlay.replaces` | lista de strings | no | sin default | Ids de extensión cuya sustitución explícita por el overlay del consumidor declara la config ([ADR-007](architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §5). Cada id debe estar declarado en `agents.active`, `agents.stubs` o `agents.fusions` (clave o miembro), no puede repetirse ni lleva espacios o saltos de línea en los extremos, y no vale para ids del núcleo: el validador lo rechaza. `overlay` es un objeto sin otras claves; `overlay: {}` y la clave ausente equivalen. |
-| `stack.src_path` | string | no | `src` | Ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. |
-| `stack.tests_path` | string | no | `tests` | Ruta relativa a tests derivados de specs. |
+| `stack.units` | lista de objetos | no | sin default | Unidades de código del consumidor, cada una con `name`, `src` y, opcional, `tests`. Al menos una si se declara. Sus nombres coinciden con las unidades de la línea base ([ADR-005](architecture/decisions/ADR-005-linea-base-arquitectonica.md)); el validador no lo comprueba. Gate 0 y la comprobación de worklog usan las rutas de todas las unidades. No puede coexistir con `stack.src_path` ni con `stack.tests_path` (error). Reglas debajo de la tabla. |
+| `stack.units[].name` | string | sí | — | Nombre de la unidad: texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. No tiene que ser kebab-case. |
+| `stack.units[].src` | string | sí | — | Ruta relativa al código de la unidad. |
+| `stack.units[].tests` | string | no | sin default | Ruta relativa a los tests de la unidad. Puede quedar dentro de `src`. |
+| `stack.src_path` | string | no | `src` | Atajo de una sola unidad: ruta relativa al código de producto. Gate 0 y skills de implementación la usan en lugar de asumir `src/`. No se valida más allá de ser texto y no puede coexistir con `stack.units`. |
+| `stack.tests_path` | string | no | `tests` | Atajo de una sola unidad: ruta relativa a tests derivados de specs. No se valida más allá de ser texto y no puede coexistir con `stack.units`. |
+
+`stack.units` es la forma general; `src_path` y `tests_path` son el atajo de una sola unidad y no están obsoletos (a diferencia de `stack.pack`). Los scripts que leen las rutas de código usan todas las unidades.
+
+Reglas de `stack.units` (se aplican con cualquier `sdaf.version`):
+
+- **Coexistencia:** declarar `stack.units` junto a `stack.src_path` o `stack.tests_path` (cualquiera de las dos claves) es error.
+- **Nombre:** no puede repetirse en la lista ni llevar espacios o saltos de línea en los extremos; el mensaje nombra el índice de la unidad repetida y el valor.
+- **Rutas (`src` y `tests`):** relativas, sin ruta absoluta (no empiezan por `/` ni `\`, ni por letra de unidad con `:`), sin segmento `..`, sin ser `.` ni llevar segmentos `.` o vacíos (una ruta así abarcaría todo el repo o nunca coincidiría con el diff) y sin espacios o saltos de línea en los extremos. Se aceptan `/` y `\` como separador y una barra final. Es error.
+- **Solape:** si la ruta de una unidad (`src` o `tests`) es igual a la de otra unidad o está dentro de ella, el validador **avisa**; no cambia el código de salida. Se compara por segmentos (`apps/api` no solapa con `apps/api2`). Una unidad con `tests` dentro de su propio `src` no avisa.
+
+Ejemplo con dos unidades (una sin `tests`):
+
+    stack:
+      packs: []
+      units:
+        - name: Unidad A
+          src: apps/api
+          tests: tests/api
+        - name: Unidad B
+          src: libs/core
 
 ### `agents` (obligatorio)
 
@@ -93,7 +117,7 @@ Tooling externo de agentes que el consumidor **adopta por elección propia** ([A
 ```text
 sdaf.config.yaml
     → AGENTS.md          (desde AGENTS.md.template + project.name + agents.*)
-    → sdaf-gate0         (stack.src_path)
+    → sdaf-gate0         (rutas de código: stack.units o src_path/tests_path)
     → sdaf-agent-router  (active / stubs / fusions)
     → packs de stack     (si stack.packs no está vacío)
     → AGENTS.md          (cláusula de precedencia si tooling.gentle_ai != null)
