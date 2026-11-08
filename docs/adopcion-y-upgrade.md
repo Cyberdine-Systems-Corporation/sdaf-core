@@ -80,7 +80,7 @@ La caducidad la fija el humano. Caducada sin prórroga humana, la excepción dej
 Limitaciones de las comprobaciones actuales:
 
 - El modo consumidor de [`scripts/check-adrs.py`](../scripts/check-adrs.py) cubre los ADRs de un consumidor con formato anterior: véase [Validar los ADRs del consumidor](#validar-los-adrs-del-consumidor).
-- `check-worklog-presence.py` solo mira `stack.src_path` y `stack.tests_path`: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).
+- `check-worklog-presence.py` mira las rutas de código de la config: con `stack.units` (línea 0.6.0, sin publicar) cubre las rutas de todas las unidades; sin ellas, `stack.src_path` y `stack.tests_path`. El código heredado fuera de esas rutas sigue sin quedar cubierto por esa comprobación.
 
 ### Validar los ADRs del consumidor
 

@@ -139,7 +139,7 @@ A efectos del validador, un id de extensión es cualquier id que no sea del núc
 ### Qué no existe todavía
 
 > [!WARNING]
-> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; `stack.units` (ARQ-4.5); un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita tienen declaración (`stack.overlay.replaces`) y la validación mínima de arriba; la materialización y la detección de la colisión entre un pack y el overlay existen en [`scripts/materialize.py`](../scripts/materialize.py), sin publicar hasta la línea `0.6.0` ([materializacion.md](materializacion.md)).
+> Siguen sin existir: el contraste de los `extension_ids` de un manifiesto con el catálogo de ids del core; un input de la action `validate-sdaf` para pasar manifiestos; y el manifiesto del pack de referencia (ARQ-4.7). El overlay y la sustitución explícita tienen declaración (`stack.overlay.replaces`) y la validación mínima de arriba; la materialización y la detección de la colisión entre un pack y el overlay existen en [`scripts/materialize.py`](../scripts/materialize.py), sin publicar hasta la línea `0.6.0` ([materializacion.md](materializacion.md)).
 
 ## Prohibido
 

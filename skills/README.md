@@ -2,9 +2,9 @@
 
 | Campo | Valor |
 |--------|--------|
-| Versión | 0.3.6 |
+| Versión | 0.3.8 |
 | Estado | Approved |
-| Fecha | 2026-10-18T20:14+02:00 |
+| Fecha | 2026-11-08T12:57+01:00 |
 | Norma | `handbook/03`, `handbook/06` §6, `handbook/07`, `AGENTS.md.template` |
 
 Playbooks operativos reutilizables. Viven en **`skills/`**. **No** dependen de Cursor ni de `.cursor/skills/`.
@@ -56,6 +56,8 @@ Skills de stack o dominio no forman parte de este core.
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.3.8 | 2026-11-08T12:57+01:00 | `sdaf-gate0` (0.4.1) y `sdaf-bootstrap` (0.6.0) pasan a Approved por aprobación humana (sin cambio de norma) |
+| 0.3.7 | 2026-11-07T18:30+01:00 | `sdaf-gate0` (0.4.1) y `sdaf-bootstrap` (0.6.0) pasan a Draft por nueva versión, pendientes de aprobación humana (unidades de código, ARQ-4.5; sin cambio de norma) |
 | 0.3.6 | 2026-10-18T20:14+02:00 | `sdaf-adopt-existing` pasa a Approved por aprobación humana (sin cambio de norma) |
 | 0.3.5 | 2026-10-13T15:59+02:00 | Añade `sdaf-adopt-existing` (Draft) al catálogo (sin cambio de norma) |
 | 0.3.4 | 2026-10-02T17:28+02:00 | Etiqueta «Catálogo v0.3.x» pasa a «Catálogo vigente» (sin cambio de norma) |
