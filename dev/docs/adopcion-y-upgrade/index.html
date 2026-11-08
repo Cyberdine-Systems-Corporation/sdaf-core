@@ -1741,6 +1741,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#comprobar-la-coherencia-de-adrs-unidades-y-specs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar la coherencia de ADRs, unidades y specs
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4653,6 +4664,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#comprobar-la-coherencia-de-adrs-unidades-y-specs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar la coherencia de ADRs, unidades y specs
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5018,6 +5040,13 @@ El pin recomendado del árbol es <code>v0.5.3</code>. <code>sdaf.version</code> 
 <li>La excepción de adopción no se puede detectar mecánicamente y el comprobador nunca relaja un <code>FAIL</code> por ella; si la línea base declara unidades «heredada», solo añade un <code>AVISO</code>. Un PR correctivo legítimo en el perímetro heredado <strong>fallará el paso</strong>: quien tenga el input activo debe desactivarlo en ese PR y dejar la decisión a la persona responsable.</li>
 <li>No aprueba nada ni sustituye la revisión de la persona responsable: un resultado sin <code>FAIL</code> solo dice que los documentos que Gate 0 exige están y en el estado correcto.</li>
 </ul>
+<h3 id="comprobar-la-coherencia-de-adrs-unidades-y-specs">Comprobar la coherencia de ADRs, unidades y specs<a class="headerlink" href="#comprobar-la-coherencia-de-adrs-unidades-y-specs" title="Permanent link">&para;</a></h3>
+<p>Opt-in, disponible desde la línea <code>0.6.0</code> (sin publicar: ningún tag publicado la incluye todavía). <a href="../../scripts/check-architecture.py"><code>scripts/check-architecture.py</code></a> comprueba, en un repo con línea base Approved, que esta no se contradice con los ADRs, con las unidades de <code>stack.units</code> ni con las specs.</p>
+<ul>
+<li>En local, desde el checkout del core: <code>python scripts/check-architecture.py --root &lt;repo-del-consumidor&gt;</code>.</li>
+<li>Con la <a href="../../.github/actions/validate-sdaf/">action</a>: input <code>check-architecture: "true"</code>, junto a <code>check-adrs</code> si se usa. Es bloqueante: un <code>FAIL</code> falla el paso.</li>
+</ul>
+<p>Qué es <code>FAIL</code>, qué es <code>AVISO</code> y qué se ignora está en la sección «Comprobar la coherencia arquitectónica» del <a href="../../.github/actions/validate-sdaf/">README de la action</a>. Sin línea base Approved, o con <code>sdaf.version</code> anterior a <code>0.5.0</code>, avisa y no comprueba nada. No aprueba nada ni sustituye la revisión de la persona responsable.</p>
 <h2 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">&para;</a></h2>
 <p>Usar <a href="../../skills/sdaf-upgrade/SKILL/"><code>sdaf-upgrade</code></a>. Checklist:</p>
 <ol>

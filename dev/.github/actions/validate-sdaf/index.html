@@ -4272,6 +4272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comprobar-la-coherencia-arquitectónica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobar la coherencia arquitectónica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#gate-0-comprobaciones-mecánicas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4356,6 +4367,11 @@
 <td>Número del último ADR heredado (anterior a la adopción); <code>0</code> = ninguno. Solo se usa con <code>check-adrs</code>.</td>
 </tr>
 <tr>
+<td><code>check-architecture</code></td>
+<td><code>false</code></td>
+<td>Si <code>true</code>, ejecuta <code>check-architecture.py</code>: coherencia entre la línea base, los ADRs, <code>stack.units</code> y las specs. Bloqueante: un <code>FAIL</code> falla el paso.</td>
+</tr>
+<tr>
 <td><code>check-gate0</code></td>
 <td><code>false</code></td>
 <td>Si <code>true</code>, ejecuta las comprobaciones mecánicas de Gate 0 con <code>check-gate0.py</code>. Bloqueante: un <code>FAIL</code> falla el paso.</td>
@@ -4377,15 +4393,31 @@
 </code></pre></div>
 <p><code>adrs-legacy-up-to</code> es <code>N</code>: los ADRs con número ≤ <code>N</code> son heredados y solo ellos reciben las relajaciones de contenido; los ADRs nuevos (número &gt; <code>N</code>) mantienen las reglas del core. Un valor vacío cuenta como <code>0</code>; uno no numérico lo rechaza el script. Qué se relaja y cómo elegir <code>N</code>: <a href="../../../docs/adopcion-y-upgrade/#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</p>
 <p>Disponible desde <code>v0.5.3</code>.</p>
+<h2 id="comprobar-la-coherencia-arquitectónica">Comprobar la coherencia arquitectónica<a class="headerlink" href="#comprobar-la-coherencia-arquitectónica" title="Permanent link">&para;</a></h2>
+<p>Con <code>check-architecture: "true"</code> la action ejecuta <code>scripts/check-architecture.py</code> sobre el workspace: comprueba que la línea base (<code>architecture/description.md</code>), los ADRs, las unidades de <code>stack.units</code> y las specs no se contradicen. Es opt-in y <strong>bloqueante</strong>: con algún <code>FAIL</code> el paso falla. No aprueba nada ni sustituye la revisión de la persona responsable. Corre después de <code>check-adrs</code> y antes de <code>check-gate0</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@&lt;tag-con-la-línea-0.6.0&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">check-adrs</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">check-architecture</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+</code></pre></div>
+<ul>
+<li><code>FAIL</code>: una unidad de <code>stack.units</code> o de una spec que no figura en la línea base; un ADR listado en «Decisiones vigentes» (sección 6) que no existe o que está sustituido; una <code>sdaf.config.yaml</code> ilegible; un fichero que no es UTF-8.</li>
+<li><code>AVISO</code> (no cambia el resultado): un ADR vigente que falta en la sección 6; un ADR listado que no es vigente ni sustituido (Propuesto, Rechazado, Deprecado…); la sección ausente, o con <code>N/A</code> habiendo ADRs vigentes; una spec sin campo <code>Unidades</code>.</li>
+<li>«Vigente» es <a href="../../../architecture/decisions/ADR-006-ciclo-de-vida-de-adrs/">ADR-006 §4</a>: estado Aceptado (o su equivalente heredado) y sin «Sustituido por», leído de los ficheros ADR, no del índice. No evalúa la fecha de <code>Caducidad</code>.</li>
+<li>Se comprueban todas las specs bajo <code>specs/</code>; los placeholders de plantilla se ignoran. El atajo <code>src_path</code>/<code>tests_path</code> no tiene nombres de unidad y no hay nada que cotejar.</li>
+<li>No comprueba nada, solo avisa y sale 0, si no hay línea base, si no está Approved (G0.6 de <code>check-gate0</code> ya lo exige) o si <code>sdaf.version</code> es anterior a <code>0.5.0</code>.</li>
+</ul>
+<p>Cómo activarlo y qué cubre: <a href="../../../docs/adopcion-y-upgrade/#comprobar-la-coherencia-de-adrs-unidades-y-specs">Comprobar la coherencia de ADRs, unidades y specs</a>.</p>
+<p>Disponible desde la línea <code>0.6.0</code> (sin publicar): ningún tag publicado incluye este input todavía.</p>
 <h2 id="gate-0-comprobaciones-mecánicas">Gate 0 (comprobaciones mecánicas)<a class="headerlink" href="#gate-0-comprobaciones-mecánicas" title="Permanent link">&para;</a></h2>
 <p>Con <code>check-gate0: "true"</code> la action ejecuta <code>scripts/check-gate0.py</code> sobre el workspace: comprobaciones <strong>mecánicas</strong> de G0.1, G0.2, G0.4, G0.5 y G0.6 del PBI en curso. Es opt-in y <strong>bloqueante</strong>: con algún <code>FAIL</code> el paso falla. G0.3 es juicio humano: sale siempre como <code>AVISO</code> y solo se verifica que los ADRs citados existan y estén Aceptados.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7.0.1</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"> </span><span class="c1"># necesario para deducir el PBI del diff</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.3</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">check-gate0</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">gate0-pbi</span><span class="p">:</span><span class="w"> </span><span class="s">"PBI-PRD-001"</span><span class="w"> </span><span class="c1"># opcional: sin él, el PBI se deduce del diff</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7.0.1</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"> </span><span class="c1"># necesario para deducir el PBI del diff</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cyberdine-Systems-Corporation/sdaf-core/.github/actions/validate-sdaf@v0.5.3</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">check-gate0</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">gate0-pbi</span><span class="p">:</span><span class="w"> </span><span class="s">"PBI-PRD-001"</span><span class="w"> </span><span class="c1"># opcional: sin él, el PBI se deduce del diff</span>
 </code></pre></div>
 <ul>
 <li>Sin <code>gate0-pbi</code>, el PBI en curso sale del diff del PR: solo si toca código de producto (las rutas de las unidades de <code>stack.units</code> o, sin ellas, <code>stack.src_path</code> y <code>stack.tests_path</code>), con los PBIs de <code>backlog/</code> tocados y los que citan un worklog tocado. Si el diff toca producto y no identifica ningún PBI, es un <code>FAIL</code> (STOP).</li>

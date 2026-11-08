@@ -1,5 +1,5 @@
 name: validate-sdaf
-description: Valida sdaf.config.yaml (schema + invariantes) y, opcionalmente, la presencia de worklog, los ADRs del consumidor y las comprobaciones mecánicas de Gate 0.
+description: Valida sdaf.config.yaml (schema + invariantes) y, opcionalmente, la presencia de worklog, los ADRs del consumidor, la coherencia arquitectónica y las comprobaciones mecánicas de Gate 0.
 
 inputs:
   config-paths:
@@ -22,6 +22,10 @@ inputs:
     description: Número del último ADR heredado (anterior a la adopción); 0 = ninguno. Solo se usa con check-adrs.
     required: false
     default: "0"
+  check-architecture:
+    description: Comprobar la coherencia arquitectónica (línea base, ADRs, unidades de stack.units y specs) con check-architecture.py. Bloqueante (falla el paso si hay algún FAIL); no aprueba nada. Sin línea base Approved o con sdaf.version anterior a 0.5.0, avisa y no comprueba nada.
+    required: false
+    default: "false"
   check-gate0:
     description: Ejecutar las comprobaciones MECÁNICAS de Gate 0 del PBI en curso con check-gate0.py. Bloqueante (falla el paso si hay algún FAIL); no aprueba nada ni sustituye el juicio humano de G0.3. Si el PBI se deduce del diff, el checkout necesita fetch-depth 0.
     required: false
@@ -70,6 +74,15 @@ runs:
         set -euo pipefail
         ROOT="$(cd "${SDAF_ACTION_ROOT}/../../.." && pwd)"
         python "${ROOT}/scripts/check-adrs.py" --consumer --legacy-up-to "${SDAF_ADRS_LEGACY_UP_TO:-0}" --root "${GITHUB_WORKSPACE}"
+    - name: Coherencia arquitectónica
+      if: inputs.check-architecture == 'true'
+      shell: bash
+      env:
+        SDAF_ACTION_ROOT: ${{ github.action_path }}
+      run: |
+        set -euo pipefail
+        ROOT="$(cd "${SDAF_ACTION_ROOT}/../../.." && pwd)"
+        python "${ROOT}/scripts/check-architecture.py" --root "${GITHUB_WORKSPACE}"
     - name: Gate 0 (comprobaciones mecánicas)
       if: inputs.check-gate0 == 'true'
       shell: bash
