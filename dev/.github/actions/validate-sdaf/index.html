@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../../docs/assets/sdaf-core-icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4388,7 +4388,7 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">gate0-pbi</span><span class="p">:</span><span class="w"> </span><span class="s">"PBI-PRD-001"</span><span class="w"> </span><span class="c1"># opcional: sin él, el PBI se deduce del diff</span>
 </code></pre></div>
 <ul>
-<li>Sin <code>gate0-pbi</code>, el PBI en curso sale del diff del PR: solo si toca código de producto (<code>stack.src_path</code>, <code>stack.tests_path</code>), con los PBIs de <code>backlog/</code> tocados y los que citan un worklog tocado. Si el diff toca producto y no identifica ningún PBI, es un <code>FAIL</code> (STOP).</li>
+<li>Sin <code>gate0-pbi</code>, el PBI en curso sale del diff del PR: solo si toca código de producto (las rutas de las unidades de <code>stack.units</code> o, sin ellas, <code>stack.src_path</code> y <code>stack.tests_path</code>), con los PBIs de <code>backlog/</code> tocados y los que citan un worklog tocado. Si el diff toca producto y no identifica ningún PBI, es un <code>FAIL</code> (STOP).</li>
 <li><code>gate0-pbi</code> admite IDs o rutas separados por espacio (una ruta no puede contener espacios). Un valor que empiece por <code>-</code> se rechaza; el valor nunca se interpreta como código.</li>
 <li>Con <code>sdaf.version</code> anterior a <code>0.5.0</code> el comprobador avisa y no comprueba nada.</li>
 <li>Sin diff de PR y sin <code>gate0-pbi</code>, el comprobador avisa y no comprueba; con un diff de PR que no se puede calcular, el paso <strong>falla</strong>.</li>
@@ -4454,7 +4454,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

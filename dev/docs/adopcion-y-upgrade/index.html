@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/sdaf-core-icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4993,7 +4993,7 @@ El pin recomendado del árbol es <code>v0.5.3</code>. <code>sdaf.version</code> 
 <p>Limitaciones de las comprobaciones actuales:</p>
 <ul>
 <li>El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> cubre los ADRs de un consumidor con formato anterior: véase <a href="#validar-los-adrs-del-consumidor">Validar los ADRs del consumidor</a>.</li>
-<li><code>check-worklog-presence.py</code> solo mira <code>stack.src_path</code> y <code>stack.tests_path</code>: el código heredado fuera de esas rutas no queda cubierto por esa comprobación hasta que haya unidades de código (v0.6.0).</li>
+<li><code>check-worklog-presence.py</code> mira las rutas de código de la config: con <code>stack.units</code> (línea 0.6.0, sin publicar) cubre las rutas de todas las unidades; sin ellas, <code>stack.src_path</code> y <code>stack.tests_path</code>. El código heredado fuera de esas rutas sigue sin quedar cubierto por esa comprobación.</li>
 </ul>
 <h3 id="validar-los-adrs-del-consumidor">Validar los ADRs del consumidor<a class="headerlink" href="#validar-los-adrs-del-consumidor" title="Permanent link">&para;</a></h3>
 <p>Hace falta cuando los ADRs del repo son anteriores a la adopción y no siguen el formato del core. El modo consumidor de <a href="../../scripts/check-adrs.py"><code>scripts/check-adrs.py</code></a> los comprueba sin reescribirlos; está disponible desde <code>v0.5.3</code>.</p>
@@ -5258,7 +5258,7 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

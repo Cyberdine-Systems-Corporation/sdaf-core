@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../docs/assets/sdaf-core-icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4328,6 +4328,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#stackunits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack.units
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#agentsactive-vs-agentsstubs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4502,7 +4513,16 @@
 </ul>
 <p>El stack concreto (lenguaje, UI, base de datos) sigue yéndose a <strong>ADRs del consumidor</strong>. El pack solo aporta playbooks.</p>
 <h3 id="stacksrc_path-stacktests_path"><code>stack.src_path</code> / <code>stack.tests_path</code><a class="headerlink" href="#stacksrc_path-stacktests_path" title="Permanent link">&para;</a></h3>
-<p>Rutas relativas a la raíz del consumidor. <code>sdaf-gate0</code> trata cambios bajo <code>src_path</code> como implementación de producto. Si el código vive en <code>apps/api</code>, decláralo aquí; no hace falta enmienda al handbook.</p>
+<p>Rutas relativas a la raíz del consumidor. <code>sdaf-gate0</code> trata cambios bajo <code>src_path</code> como implementación de producto. Si el código vive en <code>apps/api</code>, decláralo aquí; no hace falta enmienda al handbook. Son el atajo de una sola unidad de código.</p>
+<h3 id="stackunits"><code>stack.units</code><a class="headerlink" href="#stackunits" title="Permanent link">&para;</a></h3>
+<p>Lista de unidades de código del consumidor, cada una con <code>name</code>, <code>src</code> y, opcional, <code>tests</code>: la forma general cuando hay más de una. Gate 0 y la comprobación de worklog usan las rutas de todas las unidades.</p>
+<ul>
+<li><strong>No se mezcla con el atajo:</strong> declarar <code>stack.units</code> junto a <code>stack.src_path</code> o <code>stack.tests_path</code> es error.</li>
+<li><strong>Nombre:</strong> texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base (<a href="../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a>); el validador todavía no lo comprueba.</li>
+<li><strong>Rutas:</strong> relativas a la raíz, sin ruta absoluta ni segmento <code>..</code>. Si una unidad se solapa con otra, el validador avisa; no es error.</li>
+<li><strong>Con cualquier <code>sdaf.version</code>:</strong> no depende de la versión del core.</li>
+</ul>
+<p>Aún no hay un ejemplo con varias unidades en este directorio: llegará con ARQ-4.6. El catálogo de claves (<a href="../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) trae las reglas completas y un ejemplo.</p>
 <h3 id="agentsactive-vs-agentsstubs"><code>agents.active</code> vs <code>agents.stubs</code><a class="headerlink" href="#agentsactive-vs-agentsstubs" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4685,7 +4705,7 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

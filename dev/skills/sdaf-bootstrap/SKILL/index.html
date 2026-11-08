@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../docs/assets/sdaf-core-icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4479,7 +4479,7 @@
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.5.1</td>
+<td>0.6.0</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4491,7 +4491,7 @@
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-18T19:44+02:00</td>
+<td>2026-11-08T12:57+01:00</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -4507,12 +4507,12 @@
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Elegir escenario de <a href="../../../examples/"><code>examples/</code></a> (default <a href="../../../examples/01-default-core.yaml"><code>01-default-core.yaml</code></a>).</li>
-<li>Escribir <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>project.name</code>, <code>sdaf.version</code> = versión del core pinneada). <code>tooling</code> es opcional: declarar <code>tooling.gentle_ai</code> solo si el equipo adopta gentle-ai (<a href="../../../docs/integracion-gentle-ai/"><code>docs/integracion-gentle-ai.md</code></a>).</li>
+<li>Escribir <code>sdaf.config.yaml</code> en la raíz del consumidor (<code>project.name</code>, <code>sdaf.version</code> = versión del core pinneada). Las rutas del código de producto se declaran con <code>stack.units</code> (varias unidades) o con el atajo <code>stack.src_path</code>/<code>stack.tests_path</code> (una sola), sin mezclarlos: conviven como error. <code>tooling</code> es opcional: declarar <code>tooling.gentle_ai</code> solo si el equipo adopta gentle-ai (<a href="../../../docs/integracion-gentle-ai/"><code>docs/integracion-gentle-ai.md</code></a>).</li>
 <li>Materializar <code>AGENTS.md</code> desde <a href="../../../AGENTS.md.template"><code>AGENTS.md.template</code></a>: sustituir <code>{{PROJECT_NAME}}</code> y alinear active/stubs/fusions con la config. Conservar la sección «Tooling externo (opcional)» solo si <code>tooling.gentle_ai</code> ≠ <code>null</code>; si no, borrarla.</li>
 <li>Crear árbol vacío según <a href="../../../handbook/03-repository-organization/">H03</a>: <code>knowledge/raw</code>, <code>knowledge/curated</code>, <code>specs/{product,domain,application,integration,acceptance}</code>, <code>architecture/decisions</code>, <code>backlog</code>, <code>worklogs</code>, <code>agents</code>, <code>prompts</code>, <code>skills</code>, <code>templates</code>, <code>docs</code>; stub de handbook de producto desde <a href="../../../templates/handbook-product/"><code>templates/handbook-product.md</code></a>. Solo si <code>sdaf.version</code> es <code>0.5.0</code> o superior (la línea es opt-in: con una versión anterior, p. ej. <code>0.4.0</code>, no se crea), crear <code>architecture/description.md</code> copiando <a href="../../../templates/architecture-description/"><code>templates/architecture-description.md</code></a> (<a href="../../../handbook/14-architecture-description/">H14</a>): Estado <code>Draft</code>, Fecha real (cabecera e historial), sin el aviso de uso, cada sección con <code>N/A: pendiente de redactar</code> y sin filas de ejemplo.</li>
-<li>Si <code>stack.pack</code> ≠ <code>null</code>, verificar <a href="../../../docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a> y materializar aportes del pack + core con symlinks relativos en el consumidor (script documentado <code>scripts/materialize-submodules.ps1</code> o manual según <a href="../../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>); opcional <code>.cursor/skills/</code> → submodule.</li>
-<li>Copiar reglas IDE si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> y <code>.cursor/rules/git-remoto-encargo.mdc</code> vía materialización). <strong>No</strong> crear código de producto en <code>src/</code> sin Gate 0. Bootstrap <strong>no</strong> incluye commit ni remoto salvo que este turno lo nombre (H06 §7).</li>
-<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado por G0.1 (sin specs Approved) y, si <code>sdaf.version</code> es <code>0.5.0</code> o superior, también por G0.6 (línea base en Draft: la aprueba un humano; <a href="../../../handbook/05-development-workflow/">H05 §3</a>). Abrir worklog de bootstrap, registrar cada motivo del STOP y citar <code>sdaf-bootstrap@0.5.1</code>.</li>
+<li>Si <code>stack.packs</code> no está vacío (el alias <code>stack.pack</code> está obsoleto), verificar <a href="../../../docs/contrato-pack-stack/"><code>docs/contrato-pack-stack.md</code></a> y materializar los aportes del core y de los packs con symlinks relativos en el consumidor. Con <code>sdaf.version</code> <code>0.6.0</code> o superior, con <a href="../../../scripts/materialize.py"><code>scripts/materialize.py</code></a> según <a href="../../../docs/materializacion/"><code>docs/materializacion.md</code></a>; con una versión anterior, a mano según <a href="../../../docs/adopcion-y-upgrade/"><code>docs/adopcion-y-upgrade.md</code></a>. Opcional <code>.cursor/skills/</code> → submodule.</li>
+<li>Copiar reglas IDE si aplica (<code>.cursor/rules/idioma-castellano.mdc</code> y <code>.cursor/rules/git-remoto-encargo.mdc</code> vía materialización). <strong>No</strong> crear código de producto en las rutas de código de la config sin Gate 0. Bootstrap <strong>no</strong> incluye commit ni remoto salvo que este turno lo nombre (H06 §7).</li>
+<li>Ejecutar checklist Gate 0 en vacío → <strong>STOP</strong> esperado por G0.1 (sin specs Approved) y, si <code>sdaf.version</code> es <code>0.5.0</code> o superior, también por G0.6 (línea base en Draft: la aprueba un humano; <a href="../../../handbook/05-development-workflow/">H05 §3</a>). Abrir worklog de bootstrap, registrar cada motivo del STOP y citar <code>sdaf-bootstrap@0.6.0</code>.</li>
 <li>Si el repo ya tiene código previo a la adopción, seguir con <a href="../../sdaf-adopt-existing/SKILL/"><code>sdaf-adopt-existing</code></a> antes de abrir ningún PBI; el bootstrap no cambia.</li>
 </ol>
 <h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
@@ -4563,6 +4563,16 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.6.0</td>
+<td>2026-11-08T12:57+01:00</td>
+<td>Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS, dada en el encargo «Aprueba sdaf-gate0 0.4.1 y sdaf-bootstrap 0.6.0»; el agente transcribe la aprobación, H00 §3.3)</td>
+</tr>
+<tr>
+<td>0.6.0</td>
+<td>2026-11-07T18:29+01:00</td>
+<td>Rutas de código con <code>stack.units</code> o el atajo <code>src_path</code>/<code>tests_path</code> (paso 2); el paso 5 usa <code>stack.packs</code> y materializa con <code>scripts/materialize.py</code> desde la línea <code>0.6.0</code> (a mano con una versión anterior); el paso 6 no crea código en las rutas de código de la config sin Gate 0</td>
+</tr>
 <tr>
 <td>0.5.1</td>
 <td>2026-10-18T19:44+02:00</td>
@@ -4651,7 +4661,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

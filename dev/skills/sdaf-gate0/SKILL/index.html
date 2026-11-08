@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../docs/assets/sdaf-core-icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -4483,7 +4483,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 <tr>
 <td>Versión</td>
-<td>0.4.0</td>
+<td>0.4.1</td>
 </tr>
 <tr>
 <td>Estado</td>
@@ -4495,7 +4495,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 <tr>
 <td>Fecha</td>
-<td>2026-10-18T19:44+02:00</td>
+<td>2026-11-08T12:57+01:00</td>
 </tr>
 <tr>
 <td>Norma</td>
@@ -4506,7 +4506,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 <h2 id="disparadores">Disparadores<a class="headerlink" href="#disparadores" title="Permanent link">&para;</a></h2>
 <ul>
 <li>“Implementar PBI-…”, “empezar feature”, “abrir slice de producto”.</li>
-<li>Cualquier cambio en código de producto (<code>src/</code> o ruta de <code>sdaf.config</code>) sin Gate 0 cerrado.</li>
+<li>Cualquier cambio en código de producto (las rutas de cualquier unidad de <code>stack.units</code> o, en su defecto, <code>src_path</code>/<code>tests_path</code> de <code>sdaf.config</code>) sin Gate 0 cerrado.</li>
 </ul>
 <h2 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h2>
 <ol>
@@ -4519,7 +4519,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 <li>Comprobar <strong>G0.6</strong>: leer <code>architecture/description.md</code>; debe existir y tener estado <strong>Approved</strong>. Si falta o es Draft → no se satisface.</li>
 <li>Excepción de adopción (<a href="../../../architecture/decisions/ADR-008-adopcion-sobre-codigo-existente/">ADR-008</a>): un cambio <strong>correctivo</strong> en una unidad del perímetro heredado, con el ADR de excepción de adopción <strong>Aceptado</strong> y vigente (no caducado), no hace STOP por Gate 0 y exige worklog. Una feature o un cambio de comportamiento en esa unidad pasa antes al perímetro gobernado (Gate 0 completo). Sin ADR Aceptado, o con la excepción caducada, no aplica.</li>
 <li>Si falta algún ítem y no aplica el paso 8 → <strong>STOP</strong>. Listar gaps; no implementar producto. Ofrecer solo docs/specs/ADR/línea base en Draft.</li>
-<li>Si todo OK → registrar <code>sdaf-gate0@0.4.0</code> en worklog y continuar con el agente de implementación.</li>
+<li>Si todo OK → registrar <code>sdaf-gate0@0.4.1</code> en worklog y continuar con el agente de implementación.</li>
 </ol>
 <blockquote>
 <p>[!CAUTION]
@@ -4580,6 +4580,16 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>0.4.1</td>
+<td>2026-11-08T12:57+01:00</td>
+<td>Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS, dada en el encargo «Aprueba sdaf-gate0 0.4.1 y sdaf-bootstrap 0.6.0»; el agente transcribe la aprobación, H00 §3.3)</td>
+</tr>
+<tr>
+<td>0.4.1</td>
+<td>2026-11-07T18:29+01:00</td>
+<td>El disparador admite unidades de código (<code>stack.units</code>) además de <code>src_path</code>/<code>tests_path</code>; sin cambio de gates</td>
+</tr>
 <tr>
 <td>0.4.0</td>
 <td>2026-10-18T19:44+02:00</td>
@@ -4655,7 +4665,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "toc.follow", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>
