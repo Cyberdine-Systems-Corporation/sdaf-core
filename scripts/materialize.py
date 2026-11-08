@@ -68,7 +68,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sdaf_packs import label_of, load_manifest, read_manifest  # noqa: E402
+from sdaf_packs import load_manifest, read_manifest  # noqa: E402
 
 REGISTRY_NAME = ".sdaf-origin"
 CONFIG_NAME = "sdaf.config.yaml"
@@ -261,10 +261,13 @@ def resolve_layers(
         errors.append(f"core: no existe el directorio {core}")
     else:
         layers.append(("core", core))
-    seen: dict[str, Path] = {}
+    seen: dict[str, str] = {}
     for arg in pack_args:
         root = Path(os.path.abspath(arg))
-        label = label_of(root)
+        # Los FAIL de un pack muestran la ruta tal como se pasó en --pack (sin barras
+        # finales), no la ruta resuelta: un pack fuera del repo del core no se delata
+        # con una ruta absoluta que el usuario no escribió.
+        label = arg.rstrip("/\\") or arg
         if not root.is_dir():
             errors.append(f"{label}: no existe el directorio del pack")
             continue
@@ -274,12 +277,12 @@ def resolve_layers(
             continue
         data, reasons = read_manifest(manifest)
         if data is None:
-            errors.extend(f"{label_of(manifest)}: {reason}" for reason in reasons)
+            errors.extend(f"{label}/{MANIFEST_NAME}: {reason}" for reason in reasons)
             continue
         if data["id"] in seen:
             errors.append(f"{label}: el pack {data['id']} ya se pasó desde {seen[data['id']]}")
             continue
-        seen[data["id"]] = root
+        seen[data["id"]] = label
         layers.append((f"pack:{data['id']}", root))
     return layers
 
@@ -322,9 +325,9 @@ def overlay_decision(item: Item, replaces: list[str]) -> tuple[bool, str]:
             f"{item.dest}: colisión entre el pack {item.layer[5:]} y el overlay; "
             f"declare '{item.ident}' en stack.overlay.replaces para sustituirlo"
         )
-    what = "skill" if item.kind == "skill" else "prompt"
+    what = "una skill" if item.kind == "skill" else "un prompt"
     return False, (
-        f"{item.dest}: colisión entre el pack {item.layer[5:]} y el overlay en una {what}; "
+        f"{item.dest}: colisión entre el pack {item.layer[5:]} y el overlay en {what}; "
         "las skills y los prompts no se sustituyen"
     )
 

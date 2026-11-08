@@ -188,11 +188,19 @@ def semantic_issues(data: dict) -> list[str]:
 
 
 def manifest_issues(data: dict) -> list[str]:
-    """Motivos de fallo de un manifiesto ya cargado: schema y coherencia."""
+    """Motivos de fallo de un manifiesto ya cargado: schema y coherencia.
+
+    jsonschema emite un error `required` por cada propiedad ausente y
+    `schema_reason` nombra todas las ausentes en cada uno: el mismo texto se
+    repetiría tantas veces como propiedades falten. Se conserva la primera
+    aparición de cada motivo, en el mismo orden, y ningún motivo distinto se pierde.
+    """
     reasons = []
     for err in sorted(VALIDATOR.iter_errors(data), key=lambda e: [str(p) for p in e.absolute_path]):
         where = "/".join(str(p) for p in err.absolute_path) or "(raíz)"
-        reasons.append(f"{where}: {schema_reason(err)}")
+        reason = f"{where}: {schema_reason(err)}"
+        if reason not in reasons:
+            reasons.append(reason)
     return reasons + semantic_issues(data)
 
 
