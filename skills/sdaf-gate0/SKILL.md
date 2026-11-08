@@ -9,9 +9,9 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 |--------|--------|
 | ID | sdaf-gate0 |
 | Versión | 0.4.1 |
-| Estado | Draft |
+| Estado | Approved |
 | Prioridad | alta |
-| Fecha | 2026-11-07T18:29+01:00 |
+| Fecha | 2026-11-08T12:57+01:00 |
 | Norma | [handbook/05](../../handbook/05-development-workflow.md) §3, [handbook/14](../../handbook/14-architecture-description.md) §7 |
 
 ## Disparadores
@@ -61,6 +61,7 @@ description: Verifica Gate 0 (G0.1–G0.6: specs Approved, acceptance, ADR Acept
 
 | Versión | Fecha | Cambio |
 |---------|--------|--------|
+| 0.4.1 | 2026-11-08T12:57+01:00 | Approved (aprobación humana de Manuel Ortiz de Villajos Quirós, CODEOWNERS, dada en el encargo «Aprueba sdaf-gate0 0.4.1 y sdaf-bootstrap 0.6.0»; el agente transcribe la aprobación, H00 §3.3) |
 | 0.4.1 | 2026-11-07T18:29+01:00 | El disparador admite unidades de código (`stack.units`) además de `src_path`/`tests_path`; sin cambio de gates |
 | 0.4.0 | 2026-10-18T19:44+02:00 | Perímetro heredado: la excepción de adopción (ADR-008) no hace STOP en cambios correctivos; sin cambio de gates en el perímetro gobernado |
 | 0.3.0 | 2026-10-11T23:12+02:00 | G0.6 nuevo (línea base Approved); G0.3 contra H14 §6 con ADR Aceptado; G0.4 con unidades de la línea base; STOP en G0.1–G0.6 |
