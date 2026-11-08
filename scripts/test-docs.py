@@ -215,9 +215,91 @@ def test_baseline() -> bool:
     return ok
 
 
+def description_adrs(decisiones: str | None) -> str:
+    """Línea base con la sección 6; sin `decisiones` la sección no existe."""
+    sec = "" if decisiones is None else f"## 6. Decisiones vigentes\n\nIntro.\n\n{decisiones}\n\n"
+    return (f"# Descripción de arquitectura\n\n| Campo | Valor |\n|---|---|\n| Estado | Approved |\n\n"
+            f"## 2. Unidades\n\n{TABLE}\n## 5. Calidad\n\nTexto.\n\n{sec}## 7. Riesgos\n\nTexto.\n")
+
+
+ADR_TABLE = ("| ADR | Decisión | Unidades afectadas |\n|-----|----------|--------------------|\n"
+             "| ADR-004 | Una frase | Unidad A |\n| [ADR-002](ADR-002-x.md) | Otra | Unidad A, Unidad B |\n"
+             "|  |  |  |")
+
+
+def test_baseline_adrs() -> bool:
+    ok = True
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        target = base / "architecture" / "description.md"
+        ok &= expect("baseline_adrs: fichero ausente", sdaf_docs.baseline_adrs(base), None)
+        write(target, description_adrs(ADR_TABLE))
+        ok &= expect("baseline_adrs: varias filas, ordenadas, enlace y fila vacía",
+                     sdaf_docs.baseline_adrs(base), (True, False, [2, 4]))
+        write(target, description_adrs(ADR_TABLE + "\n| ADR-NNN | Una frase | Unidad A |"))
+        ok &= expect("baseline_adrs: la fila de plantilla ADR-NNN se ignora",
+                     sdaf_docs.baseline_adrs(base), (True, False, [2, 4]))
+        write(target, description_adrs("| ADR | Decisión |\n|---|---|\n| ADR-0001 | a |\n| ADR-001 | repetida |\n| ADR-0012 | b |"))
+        ok &= expect("baseline_adrs: ADR-001 y ADR-0001 son el mismo y no se repite",
+                     sdaf_docs.baseline_adrs(base), (True, False, [1, 12]))
+        write(target, description_adrs("| Decisión | ADR |\n|---|---|\n| Una frase | ADR-007 |"))
+        ok &= expect("baseline_adrs: la columna ADR se localiza por la cabecera",
+                     sdaf_docs.baseline_adrs(base), (True, False, [7]))
+        write(target, description_adrs("`N/A: sin decisiones todavía`"))
+        ok &= expect("baseline_adrs: sección N/A sin tabla", sdaf_docs.baseline_adrs(base), (True, True, []))
+        write(target, description_adrs(None))
+        ok &= expect("baseline_adrs: sin sección 6", sdaf_docs.baseline_adrs(base), (False, False, []))
+        write(target, DESCRIPTION_TEMPLATE)
+        ok &= expect("baseline_adrs: plantilla sin rellenar (solo filas ADR-NNN)",
+                     sdaf_docs.baseline_adrs(base), (True, False, []))
+        target.write_bytes(description_adrs(ADR_TABLE).replace("Intro", "Introducción é").encode("latin-1"))
+        ok &= expect("baseline_adrs: fichero no UTF-8", sdaf_docs.baseline_adrs(base), None)
+    return ok
+
+
+def spec_doc(doc_id: str, unidades: str | None) -> str:
+    row = "" if unidades is None else f"| Unidades | {unidades} |\n"
+    return f"# Spec\n\n| Campo | Valor |\n|---|---|\n| ID | {doc_id} |\n| Estado | Approved |\n{row}\n## Contexto\n\nTexto.\n"
+
+
+def test_spec_units() -> bool:
+    ok = True
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        ok &= expect("spec_units: sin carpeta specs", sdaf_docs.spec_units(base), [])
+        write(base / "specs" / "product" / "SPEC-B.md", spec_doc("SPEC-B", "Unidad A, `Unidad B` (nueva)"))
+        write(base / "specs" / "SPEC-A.md", spec_doc("SPEC-A", "Unidad A"))
+        write(base / "specs" / "acceptance" / "deep" / "SPEC-C.md", spec_doc("SPEC-C", "Unidad B; Unidad C"))
+        write(base / "specs" / "SPEC-D.md", spec_doc("SPEC-D", "Unidad A, <nombre de la unidad>"))
+        write(base / "specs" / "SPEC-E.md", spec_doc("SPEC-E", "Unidad A, XXX, …"))
+        write(base / "specs" / "SPEC-F.md", spec_doc("SPEC-F", None))
+        write(base / "specs" / "README.md", "# Índice\n\nSin cabecera.\n")
+        write(base / "specs" / "notas.txt", "no es markdown")
+        ok &= expect("spec_units: varios niveles, orden por ruta, placeholders y campo ausente",
+                     sdaf_docs.spec_units(base),
+                     [("SPEC-A", "specs/SPEC-A.md", ["Unidad A"], True),
+                      ("SPEC-D", "specs/SPEC-D.md", ["Unidad A"], True),
+                      ("SPEC-E", "specs/SPEC-E.md", ["Unidad A"], True),
+                      ("SPEC-F", "specs/SPEC-F.md", None, True),
+                      ("SPEC-C", "specs/acceptance/deep/SPEC-C.md", ["Unidad B", "Unidad C"], True),
+                      ("SPEC-B", "specs/product/SPEC-B.md", ["Unidad A", "Unidad B"], True)])
+        write(base / "specs" / "SPEC-G.md", spec_doc("SPEC-G", "…"))
+        ok &= expect("spec_units: campo solo con placeholders = lista vacía, no None",
+                     [r for r in sdaf_docs.spec_units(base) if r[0] == "SPEC-G"],
+                     [("SPEC-G", "specs/SPEC-G.md", [], True)])
+        (base / "specs" / "SPEC-H.md").write_bytes(spec_doc("SPEC-H", "Unidad A").replace("Texto", "Textó").encode("latin-1"))
+        ok &= expect("spec_units: un .md no UTF-8 se marca ilegible y no oculta los demás",
+                     [r for r in sdaf_docs.spec_units(base) if r.path == "specs/SPEC-H.md"],
+                     [(None, "specs/SPEC-H.md", None, False)])
+        ok &= expect("spec_units: spec_index no cambia (README y SPEC-H fuera)",
+                     sorted(sdaf_docs.spec_index(base)), ["SPEC-A", "SPEC-B", "SPEC-C", "SPEC-D", "SPEC-E", "SPEC-F", "SPEC-G"])
+    return ok
+
+
 def main() -> int:
     results = [test_read(), test_header_fields(), test_section(), test_table_rows(), test_split_list(),
-               test_is_placeholder(), test_frontmatter(), test_indexes(), test_baseline()]
+               test_is_placeholder(), test_frontmatter(), test_indexes(), test_baseline(),
+               test_baseline_adrs(), test_spec_units()]
     return 0 if all(results) else 1
 
 

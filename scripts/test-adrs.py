@@ -11,8 +11,13 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+import sdaf_adrs  # noqa: E402
+
 ADRS = ROOT / "scripts" / "check-adrs.py"
 FIXTURE = ROOT / "scripts" / "testdata" / "adrs-ciclo-valido"
 FIXTURE_HEREDADO = ROOT / "scripts" / "testdata" / "adrs-consumidor-heredado"
@@ -250,8 +255,103 @@ def test_consumer_invalid() -> bool:
     return ok
 
 
+def expect_value(label: str, got: Any, want: Any) -> bool:
+    if got != want:
+        print(f"FAIL {label}: se obtuvo {got!r} (se esperaba {want!r})")
+        return False
+    print(f"OK {label}")
+    return True
+
+
+def test_adr_index() -> bool:
+    """`adr_index` (movida desde check-gate0) lee el Estado crudo del fichero, con 3 o 4 dígitos."""
+    ok = expect_value("adr_index: fixture del ciclo de vida",
+                      sdaf_adrs.adr_index(FIXTURE),
+                      {1: ("ADR-001-aceptado.md", "Aceptado"), 2: ("ADR-002-sustituido.md", "Sustituido"),
+                       3: ("ADR-003-sucesor.md", "Aceptado"), 4: ("ADR-004-rechazado.md", "Rechazado"),
+                       5: ("ADR-005-deprecado.md", "Deprecado"), 6: ("ADR-006-excepcion.md", "Aceptado")})
+    ok &= expect_value("adr_index: fixture heredado, estado crudo y 4 dígitos",
+                       sdaf_adrs.adr_index(FIXTURE_HEREDADO),
+                       {1: ("ADR-0001-primera-decision.md", "Accepted"), 2: ("ADR-0002-segunda-decision.md", "Superseded"),
+                        3: ("ADR-0003-tercera-decision.md", "Deprecated"), 5: ("ADR-0005-quinta-decision.md", "Aceptado"),
+                        6: ("ADR-0006-sexta-decision.md", "Propuesto")})
+    with tempfile.TemporaryDirectory() as tmp:
+        ok &= expect_value("adr_index: sin carpeta de ADRs", sdaf_adrs.adr_index(Path(tmp)), {})
+        folder = Path(tmp) / "architecture" / "decisions"
+        write(folder / "ADR-001-uno.md", adr_text("001", "Aceptado", {}))
+        write(folder / "ADR-0001-repetido.md", adr_text("0001", "Rechazado", {}))
+        write(folder / "ADR-12345-largo.md", adr_text("123", "Aceptado", {}))
+        write(folder / "ADR-002-Mayusculas.md", adr_text("002", "Aceptado", {}))
+        write(folder / "README.md", "# ADRs\n")
+        (folder / "ADR-003-ilegible.md").write_bytes(adr_text("003", "Aceptado", {}).replace("Prueba", "Pruebá").encode("cp1252"))
+        ok &= expect_value("adr_index: ADR-001 y ADR-0001 chocan (gana el primero), nombres ajenos fuera, ilegible sin Estado",
+                           sdaf_adrs.adr_index(Path(tmp)),
+                           {1: ("ADR-0001-repetido.md", "Rechazado"), 3: ("ADR-003-ilegible.md", None)})
+    return ok
+
+
+def vigencia_tree(root: Path, adrs: list[tuple[str, str, dict[str, str | None]]]) -> None:
+    for num, estado, extra in adrs:
+        write(root / "architecture" / "decisions" / f"ADR-{num}-prueba.md", adr_text(num, estado, extra))
+
+
+def test_adr_vigencia() -> bool:
+    ok = expect_value("adr_vigencia: fixture del ciclo de vida",
+                      sdaf_adrs.adr_vigencia(FIXTURE),
+                      {1: ("ADR-001-aceptado.md", "Aceptado", [], True, True),
+                       2: ("ADR-002-sustituido.md", "Sustituido", [3], True, False),
+                       3: ("ADR-003-sucesor.md", "Aceptado", [], True, True),
+                       4: ("ADR-004-rechazado.md", "Rechazado", [], True, False),
+                       5: ("ADR-005-deprecado.md", "Deprecado", [], True, False),
+                       6: ("ADR-006-excepcion.md", "Aceptado", [], True, True)})
+    ok &= expect_value("adr_vigencia: fixture heredado (Accepted/Superseded/Deprecated → canónico)",
+                       sdaf_adrs.adr_vigencia(FIXTURE_HEREDADO),
+                       {1: ("ADR-0001-primera-decision.md", "Aceptado", [], True, True),
+                        2: ("ADR-0002-segunda-decision.md", "Sustituido", [5], True, False),
+                        3: ("ADR-0003-tercera-decision.md", "Deprecado", [], True, False),
+                        5: ("ADR-0005-quinta-decision.md", "Aceptado", [], True, True),
+                        6: ("ADR-0006-sexta-decision.md", "Propuesto", [], True, False)})
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        ok &= expect_value("adr_vigencia: sin carpeta de ADRs", sdaf_adrs.adr_vigencia(root), {})
+        vigencia_tree(root, [
+            ("001", "Aceptado", {"Sustituido por": "[ADR-002](ADR-002-prueba.md)"}),  # incoherente, pero no vigente
+            ("002", "Aceptado", {"Sustituido por": "—"}),
+            ("003", "Aceptado", {"Sustituido por": "-"}),
+            ("004", "Aceptado", {"Sustituido por": "N/A"}),
+            ("005", "Propuesto", {"Aceptación": None}),
+            ("006", "Aceptado", {"Tipo": "Excepción", "Caducidad": "2020-01-01T00:00+01:00"}),
+        ])
+        vigencia_tree(root, [("0007", "accepted", {}), ("0008", "SUPERSEDED", {"Sustituido por": "ADR-0009"}),
+                             ("0009", "Rechazada", {"Aceptación": None})])
+        (root / "architecture" / "decisions" / "ADR-010-ilegible.md").write_bytes(
+            adr_text("010", "Aceptado", {}).replace("Prueba", "Pruebá").encode("cp1252"))
+        got = sdaf_adrs.adr_vigencia(root)
+        ok &= expect_value("adr_vigencia: Aceptado con «Sustituido por» no es vigente",
+                           got[1], ("ADR-001-prueba.md", "Aceptado", [2], True, False))
+        ok &= expect_value("adr_vigencia: «—», «-» y «N/A» en «Sustituido por» = ninguno",
+                           [got[n] for n in (2, 3, 4)],
+                           [(f"ADR-00{n}-prueba.md", "Aceptado", [], True, True) for n in (2, 3, 4)])
+        ok &= expect_value("adr_vigencia: Propuesto no es vigente", got[5], ("ADR-005-prueba.md", "Propuesto", [], True, False))
+        ok &= expect_value("adr_vigencia: la excepción Aceptada sigue vigente mientras no se depreque",
+                           got[6], ("ADR-006-prueba.md", "Aceptado", [], True, True))
+        ok &= expect_value("adr_vigencia: estado heredado «accepted» (4 dígitos) es Aceptado",
+                           got[7], ("ADR-0007-prueba.md", "Aceptado", [], True, True))
+        ok &= expect_value("adr_vigencia: «SUPERSEDED» con «Sustituido por» no es vigente",
+                           got[8], ("ADR-0008-prueba.md", "Sustituido", [9], True, False))
+        ok &= expect_value("adr_vigencia: estado heredado «Rechazada» = Rechazado, no vigente",
+                           got[9], ("ADR-0009-prueba.md", "Rechazado", [], True, False))
+        ok &= expect_value("adr_vigencia: ADR no UTF-8 = ilegible sin excepción",
+                           got[10], ("ADR-010-ilegible.md", None, [], False, False))
+        write(root / "architecture" / "decisions" / "ADR-011-raro.md", adr_text("011", "Estado inventado", {}))
+        ok &= expect_value("adr_vigencia: estado fuera de la tabla = None y no vigente",
+                           sdaf_adrs.adr_vigencia(root)[11], ("ADR-011-raro.md", None, [], True, False))
+    return ok
+
+
 def main() -> int:
-    results = [test_fixture(), test_valid_variants(), test_invalid(), test_consumer_valid(), test_consumer_invalid()]
+    results = [test_fixture(), test_valid_variants(), test_invalid(), test_consumer_valid(), test_consumer_invalid(),
+               test_adr_index(), test_adr_vigencia()]
     return 0 if all(results) else 1
 
 
