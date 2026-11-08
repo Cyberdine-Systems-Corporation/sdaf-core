@@ -197,6 +197,39 @@ def en_linea(tmp: Path) -> None:
     caso("valor escalar", "hola\n", 1, "no es un mapa")
 
 
+def sin_repetidos(tmp: Path) -> None:
+    """Un motivo idéntico no sale dos veces y los demás motivos siguen saliendo."""
+    casos = [
+        ("faltan dos propiedades obligatorias y hay dos patrones",
+         "id: mal\nversion: x\n",
+         ["(raíz): falta la propiedad obligatoria 'core', 'provides'",
+          "id: el valor 'mal' no cumple el patrón",
+          "version: el valor 'x' no cumple el patrón"]),
+        ("faltan las cuatro propiedades obligatorias", "{}\n",
+         ["(raíz): falta la propiedad obligatoria 'id', 'version', 'core', 'provides'"]),
+    ]
+    for n, (nombre, texto, motivos) in enumerate(casos, 1):
+        ruta = tmp / f"repetidos-{n}.yaml"
+        ruta.write_text(texto, encoding="utf-8")
+        res = run(str(ruta))
+        lineas = [x for x in res.stdout.splitlines() if x.startswith("FAIL ")]
+        problemas = []
+        if res.returncode != 1:
+            problemas.append(f"exit {res.returncode}, se esperaba 1")
+        for motivo in motivos:
+            veces = sum(1 for x in lineas if motivo in x)
+            if veces != 1:
+                problemas.append(f"'{motivo}' sale {veces} veces, se esperaba 1")
+        if len(set(lineas)) != len(lineas):
+            problemas.append("hay líneas FAIL repetidas")
+        if problemas:
+            FALLOS.append(f"sin repetidos: {nombre}")
+            print(f"FAIL sin repetidos: {nombre}: " + "; ".join(problemas))
+            print(res.stdout + res.stderr)
+        else:
+            print(f"OK sin repetidos: {nombre}")
+
+
 def cli(tmp: Path) -> None:
     res = run()
     ok = res.returncode == 0 and "OK  templates/sdaf-pack.yaml" in res.stdout
@@ -227,6 +260,7 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="sdaf pack ") as tmpdir:
         tmp = Path(tmpdir)
         en_linea(tmp)
+        sin_repetidos(tmp)
         cli(tmp)
     print(f"fallos: {len(FALLOS)}")
     return 1 if FALLOS else 0

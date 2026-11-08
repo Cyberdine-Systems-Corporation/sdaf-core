@@ -354,6 +354,26 @@ def casos_manifiestos(tmp: Path) -> None:
         "manifiesto inválido", cfg(cubierto), [DATA / "pack-sin-core.yaml"], 1, "obligatoria 'core'",
         etiqueta="pack-sin-core.yaml", ausentes=("no referenciado",),
     )
+    # Un motivo idéntico no se repite: faltan dos propiedades obligatorias a la vez.
+    incompleto = tmp / "pack-incompleto.yaml"
+    incompleto.write_text("id: mal\nversion: x\n", encoding="utf-8")
+    res = run(["--pack-manifest", str(incompleto), cfg(cubierto)])
+    faltan = "(raíz): falta la propiedad obligatoria 'core', 'provides'"
+    veces = res.stdout.count(faltan)
+    problemas = []
+    if res.returncode != 1:
+        problemas.append(f"exit {res.returncode}, se esperaba 1")
+    if veces != 1:
+        problemas.append(f"'{faltan}' sale {veces} veces, se esperaba 1")
+    for motivo in ("id: el valor 'mal' no cumple el patrón", "version: el valor 'x' no cumple el patrón"):
+        if motivo not in res.stdout:
+            problemas.append(f"falta el motivo '{motivo}'")
+    if problemas:
+        FALLOS.append("manifiesto inválido sin motivos repetidos")
+        print("FAIL manifiesto inválido sin motivos repetidos: " + "; ".join(problemas))
+        print(res.stdout + res.stderr)
+    else:
+        print("OK manifiesto inválido sin motivos repetidos")
     caso("manifiesto con YAML roto", cfg(cubierto), [DATA / "pack-yaml-invalido.yaml"], 1, "YAML inválido", etiqueta="pack-yaml-invalido.yaml")
     caso("manifiesto con raíz que no es un mapa", cfg(cubierto), [DATA / "pack-raiz-lista.yaml"], 1, "no es un mapa", etiqueta="pack-raiz-lista.yaml")
     inexistente = tmp / "no-existe-pack.yaml"
