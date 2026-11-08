@@ -17,8 +17,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from functools import lru_cache
+from pathlib import Path
+from typing import NamedTuple
 
 DIGITS = (3, 3)
+ADR_DIGITS = (3, 4)  # ancho admitido de ADR-N al leer ficheros: 3 en el core, 3 o 4 en consumidores
+ADR_FOLDER = "architecture/decisions"
 # Equivalencias de estado de los ADRs heredados (minúsculas → estado canónico).
 ESTADOS_HEREDADOS = {
     "proposed": "Propuesto", "propuesto": "Propuesto", "propuesta": "Propuesto",
@@ -149,3 +153,61 @@ def index_table(text: str, digits: tuple[int, int] = DIGITS) -> IndexTable:
         if m:
             table.rows[adr_num(m.group(1))] = (m.group(2).removeprefix("./"), cells)
     return table
+
+
+def _read(path: Path) -> str | None:
+    """Texto UTF-8 del fichero (BOM tolerado); None si no existe o no decodifica."""
+    try:
+        return path.read_text(encoding="utf-8-sig")
+    except (OSError, UnicodeDecodeError):
+        return None
+
+
+def _adr_files(root: Path) -> list[tuple[int, Path]]:
+    """(número, ruta) de los `ADR-N-slug.md` de `<root>/architecture/decisions`, de 3 o 4 dígitos, por nombre.
+
+    Si dos ficheros comparten número (ADR-001 y ADR-0001) gana el primero por orden de nombre.
+    """
+    folder = root / ADR_FOLDER
+    out: dict[int, Path] = {}
+    if not folder.is_dir():
+        return []
+    for path in sorted(folder.glob("ADR-*.md")):
+        match = file_re(ADR_DIGITS).match(path.name)
+        if match:
+            out.setdefault(adr_num(match.group(1)), path)
+    return list(out.items())
+
+
+def adr_index(root: Path) -> dict[int, tuple[str, str | None]]:
+    """Número de ADR → (nombre del fichero, Estado tal como figura o None si falta o el fichero es ilegible)."""
+    out: dict[int, tuple[str, str | None]] = {}
+    for num, path in _adr_files(root):
+        text = _read(path)
+        out[num] = (path.name, fields(text).get("Estado") if text is not None else None)
+    return out
+
+
+class AdrVigencia(NamedTuple):
+    """Vigencia de un ADR leída de su fichero (ADR-006 §4)."""
+
+    fichero: str  # nombre del fichero
+    estado: str | None  # Estado canónico (vía ESTADOS_HEREDADOS); None si falta, no se reconoce o el fichero es ilegible
+    sustituido_por: list[int]  # ADRs de «Sustituido por»; vacía si no hay fila o vale «—», «-», «N/A»…
+    legible: bool  # False si el fichero no existe o no es UTF-8
+    vigente: bool  # estado canónico Aceptado y sin «Sustituido por»
+
+
+def adr_vigencia(root: Path) -> dict[int, AdrVigencia]:
+    """Número de ADR → su vigencia, leída de los ficheros ADR (no del índice README)."""
+    out: dict[int, AdrVigencia] = {}
+    for num, path in _adr_files(root):
+        text = _read(path)
+        if text is None:
+            out[num] = AdrVigencia(path.name, None, [], False, False)
+            continue
+        data = fields(text)
+        estado = ESTADOS_HEREDADOS.get(data.get("Estado", "").strip().casefold())
+        sustituido_por = refs(data.get("Sustituido por", ""), ADR_DIGITS)
+        out[num] = AdrVigencia(path.name, estado, sustituido_por, True, estado == "Aceptado" and not sustituido_por)
+    return out

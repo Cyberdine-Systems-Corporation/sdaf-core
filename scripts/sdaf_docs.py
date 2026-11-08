@@ -13,8 +13,11 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from typing import NamedTuple
 
 import yaml
+
+from sdaf_adrs import ADR_DIGITS, refs
 
 H1_RE = re.compile(r"^# ", re.MULTILINE)
 FIELD_HEADER_RE = re.compile(r"^\|\s*Campo\s*\|\s*Valor\s*\|\s*$")
@@ -26,6 +29,8 @@ TRAILING_PAREN_RE = re.compile(r"\s*\([^()]*\)\s*$")
 # Coma o «;» fuera de paréntesis (no hay «)» antes de la siguiente «(»).
 LIST_SEP_RE = re.compile(r"[,;](?![^(]*\))")
 UNITS_TITLE_RE = r"Unidades\s*$"
+DECISIONS_TITLE_RE = r"Decisiones vigentes\s*$"
+NA_LINE_RE = re.compile(r"^`?N/A\s*:", re.IGNORECASE | re.MULTILINE)
 INHERITED_RE = re.compile(r"\bheredada\b", re.IGNORECASE)
 TEMPLATE_RESPONSIBILITY = "Qué hace y qué no hace"
 
@@ -178,3 +183,66 @@ def baseline(root: Path) -> tuple[str | None, list[str], list[str]] | None:
         if INHERITED_RE.search(resp):
             inherited.append(cells[unit_col])
     return header_fields(text).get("Estado"), units, inherited
+
+
+class BaselineAdrs(NamedTuple):
+    """Sección «Decisiones vigentes» de la línea base."""
+
+    seccion: bool  # la sección existe
+    na: bool  # la sección no tiene tabla y declara «N/A: motivo»
+    adrs: list[int]  # números de ADR de la columna `ADR`, normalizados, sin repetidos y ordenados
+
+
+def baseline_adrs(root: Path) -> BaselineAdrs | None:
+    """ADRs que lista la sección «Decisiones vigentes» de `architecture/description.md`.
+
+    None si el fichero no existe o no decodifica. Las filas de plantilla (`ADR-NNN`)
+    y las vacías no aportan números. La forma de `baseline()` no cambia.
+    """
+    text = read(root / "architecture" / "description.md")
+    if text is None:
+        return None
+    if not any(re.search(DECISIONS_TITLE_RE, line[3:].strip()) for line in text.splitlines() if line.startswith("## ")):
+        return BaselineAdrs(False, False, [])
+    body = section(text, DECISIONS_TITLE_RE)
+    header, rows = _table(body)
+    if not header:
+        return BaselineAdrs(True, NA_LINE_RE.search(body) is not None, [])
+    names = [h.casefold() for h in header]
+    col = names.index("adr") if "adr" in names else 0
+    found = {n for cells in rows if col < len(cells) for n in refs(cells[col], ADR_DIGITS)}
+    return BaselineAdrs(True, False, sorted(found))
+
+
+class SpecUnits(NamedTuple):
+    """Unidades que cita una spec."""
+
+    id: str | None  # fila `ID` de la cabecera; None si el fichero es ilegible
+    path: str  # ruta relativa a la raíz, con «/»
+    units: list[str] | None  # nombres del campo `Unidades` sin placeholders; None si la spec no tiene el campo
+    legible: bool  # False si el fichero no decodifica como UTF-8
+
+
+def spec_units(root: Path) -> list[SpecUnits]:
+    """Unidades citadas por cada spec de `specs/**/*.md`, ordenadas por ruta.
+
+    Mismo criterio que `spec_index` (solo los .md con fila `ID`), pero un .md que
+    no decodifica se devuelve con `legible=False` en lugar de ignorarse.
+    """
+    base = root / "specs"
+    out: list[SpecUnits] = []
+    if not base.is_dir():
+        return out
+    for path in sorted(base.rglob("*.md"), key=lambda p: p.relative_to(root).as_posix()):
+        rel = path.relative_to(root).as_posix()
+        text = read(path)
+        if text is None:
+            out.append(SpecUnits(None, rel, None, False))
+            continue
+        fields = header_fields(text)
+        if not fields.get("ID"):
+            continue
+        value = fields.get("Unidades")
+        units = None if value is None else [u for u in split_list(value) if not is_placeholder(u)]
+        out.append(SpecUnits(fields["ID"], rel, units, True))
+    return out

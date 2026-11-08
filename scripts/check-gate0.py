@@ -27,8 +27,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sdaf_adrs import ESTADOS_HEREDADOS, adr_label, adr_num, file_re, refs  # noqa: E402
-from sdaf_adrs import fields as adr_fields  # noqa: E402
+from sdaf_adrs import ADR_DIGITS, ADR_FOLDER, ESTADOS_HEREDADOS, adr_index, adr_label, refs  # noqa: E402
 from sdaf_diff import ConfigUnreadable, DiffUnavailable, git_changed, is_product, load_product_prefixes  # noqa: E402
 from sdaf_docs import (  # noqa: E402
     baseline, find_pbis, frontmatter, header_fields, is_placeholder, read, section, spec_index, split_list,
@@ -36,9 +35,7 @@ from sdaf_docs import (  # noqa: E402
 
 CONFIG = "sdaf.config.yaml"
 BASELINE = "architecture/description.md"
-ADR_FOLDER = "architecture/decisions"
 MIN_LINE = (0, 5, 0)  # el PBI de plantilla y la línea base son de la línea 0.5.0 (opt-in)
-ADR_DIGITS = (3, 4)  # ancho admitido de ADR-N: 3 en el core, 3 o 4 en consumidores
 APPROVED = "Approved"
 ACCEPTED = "Aceptado"
 INDEX_NAME = "readme.md"  # índice de backlog/: no es un PBI aunque el diff lo toque
@@ -144,21 +141,6 @@ def unreadable_md(root: Path, folder: str) -> list[str]:
     if not base.is_dir():
         return []
     return [p.relative_to(root).as_posix() for p in sorted(base.rglob("*.md")) if read(p) is None]
-
-
-def adr_index(root: Path) -> dict[int, tuple[str, str | None]]:
-    out: dict[int, tuple[str, str | None]] = {}
-    folder = root / ADR_FOLDER
-    if not folder.is_dir():
-        return out
-    for path in sorted(folder.glob("ADR-*.md")):
-        match = file_re(ADR_DIGITS).match(path.name)
-        if not match:
-            continue
-        text = read(path)
-        estado = adr_fields(text).get("Estado") if text is not None else None
-        out.setdefault(adr_num(match.group(1)), (path.name, estado))
-    return out
 
 
 def build_context(root: Path) -> Context:
