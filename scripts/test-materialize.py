@@ -460,6 +460,79 @@ def casos_colisiones(tmp: Path) -> None:
                             "skills/core-skill", "núcleo")
 
 
+def casos_articulo_colision(tmp: Path) -> None:
+    """Defecto de mensaje: la colisión con el overlay concuerda en género según el tipo."""
+    cola = "; las skills y los prompts no se sustituyen"
+
+    env = Entorno(tmp)
+    env.escribir("skills/example-skill/SKILL.md", "# Skill del overlay\n")
+    env.config_replaces("example-extension", "example-skill")
+    check_fail_sin_escribir(
+        "colisión pack/overlay en skill: «en una skill»", env, env.args("--mode", "copy"),
+        "skills/example-skill: colisión entre el pack sdaf-stack-example y el overlay en una skill" + cola)
+
+    env = Entorno(tmp)
+    env.escribir("prompts/agents/example-extension-agent.md", "# Prompt del overlay\n")
+    env.config_replaces("example-extension")
+    res = run(env.args("--mode", "copy"))
+    check(
+        "colisión pack/overlay en prompt: «en un prompt»", res, 1,
+        "prompts/agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay en un prompt"
+        + cola,
+        ausentes=("en una prompt", "en un skill"),
+    )
+
+
+def casos_ruta_de_pack(tmp: Path) -> None:
+    """Los FAIL de un pack muestran la ruta tal como se pasó en --pack, no la resuelta."""
+    marca = "sdaf mat"  # prefijo del directorio temporal: delata una ruta absoluta resuelta
+    for forma in ("relativa", "absoluta"):
+        def ruta(env: Entorno, rel: str) -> str:
+            return rel if forma == "relativa" else (env.base / rel).as_posix()
+
+        def lanzar(env: Entorno, *packs: str) -> subprocess.CompletedProcess[str]:
+            args = ["--consumer-root", str(env.consumer), "--mode", "copy"]
+            for p in packs:
+                args += ["--pack", p]
+            return run(args, cwd=env.base)
+
+        def ausentes(env: Entorno, rel: str) -> tuple[str, ...]:
+            if forma == "absoluta":
+                return ()
+            return (marca, str(env.base / rel), (env.base / rel).as_posix())
+
+        env = Entorno(tmp)
+        arg = ruta(env, "packs/no-existe")
+        res = lanzar(env, arg + "/")
+        check(f"ruta {forma}: pack inexistente, sin barra final", res, 1, f"FAIL {arg}: no existe el directorio del pack",
+              ausentes=(f"{arg}/:", *ausentes(env, "packs/no-existe")))
+
+        env = Entorno(tmp)
+        (env.otro / "sdaf-pack.yaml").unlink()
+        arg = ruta(env, "packs/otro")
+        res = lanzar(env, arg)
+        check(f"ruta {forma}: pack sin manifiesto", res, 1, f"FAIL {arg}: falta sdaf-pack.yaml",
+              ausentes=ausentes(env, "packs/otro"))
+
+        env = Entorno(tmp)
+        (env.otro / "sdaf-pack.yaml").write_text("id: sdaf-stack-other\nversion: 0.2.0\n", encoding="utf-8")
+        arg = ruta(env, "packs/otro")
+        res = lanzar(env, arg)
+        check(f"ruta {forma}: manifiesto inválido", res, 1,
+              f"FAIL {arg}/sdaf-pack.yaml: (raíz): falta la propiedad obligatoria 'core', 'provides'",
+              ausentes=ausentes(env, "packs/otro"))
+        if res.stdout.count("falta la propiedad obligatoria 'core', 'provides'") != 1:
+            caso(f"ruta {forma}: el motivo del manifiesto no se repite", ["el motivo sale más de una vez"], res.stdout)
+
+        env = Entorno(tmp)
+        shutil.copytree(env.example, env.base / "packs" / "copia")
+        primero, segundo = ruta(env, "packs/example"), ruta(env, "packs/copia")
+        res = lanzar(env, primero, segundo)
+        check(f"ruta {forma}: id repetido", res, 1,
+              f"FAIL {segundo}: el pack sdaf-stack-example ya se pasó desde {primero}",
+              ausentes=ausentes(env, "packs/copia"))
+
+
 def casos_dry_run(tmp: Path) -> None:
     """S7: --dry-run imprime el plan y no escribe nada, ni el registro."""
     env = Entorno(tmp)
@@ -675,6 +748,8 @@ def main() -> int:
         casos_symlink(tmp)
         casos_auto(tmp)
         casos_colisiones(tmp)
+        casos_articulo_colision(tmp)
+        casos_ruta_de_pack(tmp)
         casos_dry_run(tmp)
         casos_idempotencia(tmp)
         casos_errores(tmp)
