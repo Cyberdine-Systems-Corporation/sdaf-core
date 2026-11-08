@@ -1,0 +1,10 @@
+sdaf:
+  version: "0.5.0"
+
+stack:
+  units:
+    - name: Unidad A
+      src: apps/a
+      tests: tests/a
+    - name: Unidad B
+      src: libs/b
