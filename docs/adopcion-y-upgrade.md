@@ -112,6 +112,15 @@ Limitaciones:
 - La excepción de adopción no se puede detectar mecánicamente y el comprobador nunca relaja un `FAIL` por ella; si la línea base declara unidades «heredada», solo añade un `AVISO`. Un PR correctivo legítimo en el perímetro heredado **fallará el paso**: quien tenga el input activo debe desactivarlo en ese PR y dejar la decisión a la persona responsable.
 - No aprueba nada ni sustituye la revisión de la persona responsable: un resultado sin `FAIL` solo dice que los documentos que Gate 0 exige están y en el estado correcto.
 
+### Comprobar la coherencia de ADRs, unidades y specs
+
+Opt-in, disponible desde la línea `0.6.0` (sin publicar: ningún tag publicado la incluye todavía). [`scripts/check-architecture.py`](../scripts/check-architecture.py) comprueba, en un repo con línea base Approved, que esta no se contradice con los ADRs, con las unidades de `stack.units` ni con las specs.
+
+- En local, desde el checkout del core: `python scripts/check-architecture.py --root <repo-del-consumidor>`.
+- Con la [action](../.github/actions/validate-sdaf/README.md): input `check-architecture: "true"`, junto a `check-adrs` si se usa. Es bloqueante: un `FAIL` falla el paso.
+
+Qué es `FAIL`, qué es `AVISO` y qué se ignora está en la sección «Comprobar la coherencia arquitectónica» del [README de la action](../.github/actions/validate-sdaf/README.md). Sin línea base Approved, o con `sdaf.version` anterior a `0.5.0`, avisa y no comprueba nada. No aprueba nada ni sustituye la revisión de la persona responsable.
+
 ## Upgrade
 
 Usar [`sdaf-upgrade`](../skills/sdaf-upgrade/SKILL.md). Checklist:
