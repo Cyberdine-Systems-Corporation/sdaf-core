@@ -65,7 +65,18 @@ El stack concreto (lenguaje, UI, base de datos) sigue yéndose a **ADRs del cons
 
 ### `stack.src_path` / `stack.tests_path`
 
-Rutas relativas a la raíz del consumidor. `sdaf-gate0` trata cambios bajo `src_path` como implementación de producto. Si el código vive en `apps/api`, decláralo aquí; no hace falta enmienda al handbook.
+Rutas relativas a la raíz del consumidor. `sdaf-gate0` trata cambios bajo `src_path` como implementación de producto. Si el código vive en `apps/api`, decláralo aquí; no hace falta enmienda al handbook. Son el atajo de una sola unidad de código.
+
+### `stack.units`
+
+Lista de unidades de código del consumidor, cada una con `name`, `src` y, opcional, `tests`: la forma general cuando hay más de una. Gate 0 y la comprobación de worklog usan las rutas de todas las unidades.
+
+- **No se mezcla con el atajo:** declarar `stack.units` junto a `stack.src_path` o `stack.tests_path` es error.
+- **Nombre:** texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base ([ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md)); el validador todavía no lo comprueba.
+- **Rutas:** relativas a la raíz, sin ruta absoluta ni segmento `..`. Si una unidad se solapa con otra, el validador avisa; no es error.
+- **Con cualquier `sdaf.version`:** no depende de la versión del core.
+
+Aún no hay un ejemplo con varias unidades en este directorio: llegará con ARQ-4.6. El catálogo de claves ([`sdaf.config.schema.yaml`](../sdaf.config.schema.yaml)) trae las reglas completas y un ejemplo.
 
 ### `agents.active` vs `agents.stubs`
 

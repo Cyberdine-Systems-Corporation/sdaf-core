@@ -59,7 +59,7 @@ Con `check-gate0: "true"` la action ejecuta `scripts/check-gate0.py` sobre el wo
     gate0-pbi: "PBI-PRD-001" # opcional: sin él, el PBI se deduce del diff
 ```
 
-- Sin `gate0-pbi`, el PBI en curso sale del diff del PR: solo si toca código de producto (`stack.src_path`, `stack.tests_path`), con los PBIs de `backlog/` tocados y los que citan un worklog tocado. Si el diff toca producto y no identifica ningún PBI, es un `FAIL` (STOP).
+- Sin `gate0-pbi`, el PBI en curso sale del diff del PR: solo si toca código de producto (las rutas de las unidades de `stack.units` o, sin ellas, `stack.src_path` y `stack.tests_path`), con los PBIs de `backlog/` tocados y los que citan un worklog tocado. Si el diff toca producto y no identifica ningún PBI, es un `FAIL` (STOP).
 - `gate0-pbi` admite IDs o rutas separados por espacio (una ruta no puede contener espacios). Un valor que empiece por `-` se rechaza; el valor nunca se interpreta como código.
 - Con `sdaf.version` anterior a `0.5.0` el comprobador avisa y no comprueba nada.
 - Sin diff de PR y sin `gate0-pbi`, el comprobador avisa y no comprueba; con un diff de PR que no se puede calcular, el paso **falla**.
