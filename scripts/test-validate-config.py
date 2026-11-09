@@ -483,14 +483,36 @@ def casos_satisfies() -> None:
 
 
 def regresion_examples() -> None:
-    """Solo los examples con stack.pack emiten el aviso de alias y siguen saliendo 0."""
-    con_alias = {"04-pack-stack.yaml", "05-fusiones-mvp.yaml", "07-pack-frontend.yaml", "08-completo.yaml"}
-    for ruta in sorted((ROOT / "examples").glob("*.yaml")):
-        if ruta.name in con_alias:
-            check(f"examples/{ruta.name} avisa del alias", [str(ruta)], 0, ALIAS_AVISO)
+    """Ningún example emite el aviso del alias stack.pack (los que tienen pack usan stack.packs) y todos salen 0.
+
+    El alias sigue cubierto por los fixtures `config-alias*.yaml`. Los examples 09 y
+    10 existen y se validan, el 09 con los manifiestos de los dos packs ficticios.
+    """
+    ejemplos = sorted((ROOT / "examples").glob("*.yaml"))
+    nombres = {ruta.name for ruta in ejemplos}
+    for esperado in ("09-varios-packs.yaml", "10-varias-unidades.yaml"):
+        if esperado in nombres:
+            print(f"OK existe examples/{esperado}")
         else:
-            check(f"examples/{ruta.name} sin aviso de alias", [str(ruta)], 0, ausentes=(ALIAS_AVISO,))
+            FALLOS.append(f"existe examples/{esperado}")
+            print(f"FAIL falta examples/{esperado}")
+    for ruta in ejemplos:
+        check(f"examples/{ruta.name} sin aviso de alias", [str(ruta)], 0, ausentes=(ALIAS_AVISO,))
     check("sdaf.config.example.yaml sin aviso de alias", [str(ROOT / "sdaf.config.example.yaml")], 0, ausentes=(ALIAS_AVISO,))
+    manifiestos = ["--pack-manifest", str(DATA / "pack-valido.yaml"), "--pack-manifest", str(DATA / "pack-otro.yaml")]
+    check(
+        "examples/09-varios-packs.yaml con los manifiestos de sus dos packs",
+        [*manifiestos, str(ROOT / "examples" / "09-varios-packs.yaml")],
+        0,
+        ausentes=("WARN", "FAIL", ALIAS_AVISO),
+    )
+    check(
+        "examples/09-varios-packs.yaml con --strict-i4 y los manifiestos",
+        ["--strict-i4", *manifiestos, str(ROOT / "examples" / "09-varios-packs.yaml")],
+        0,
+        ausentes=("WARN", "FAIL"),
+    )
+    check("examples/10-varias-unidades.yaml sin avisos", [str(ROOT / "examples" / "10-varias-unidades.yaml")], 0, ausentes=("WARN", "FAIL"))
 
 
 def legacy() -> int:

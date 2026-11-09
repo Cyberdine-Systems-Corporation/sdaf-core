@@ -171,4 +171,4 @@ Pack de referencia: [`sdaf-stack-dotnet@0.3.0`](https://github.com/Cyberdine-Sys
 | 📖 | [handbook/01 §3.3](../handbook/01-sdaf-framework.md#33-capas-y-resolución-por-id) | Capas y regla de resolución por id |
 | 🛠️ | [adopcion-y-upgrade.md](adopcion-y-upgrade.md) | Cómo declarar el pack en la config |
 | 🛠️ | [materializacion.md](materializacion.md) | Cómo se materializan el core y los packs en el consumidor |
-| 🛠️ | [examples/README.md](../examples/README.md) | Escenarios 04, 07 y 08 |
+| 🛠️ | [examples/README.md](../examples/README.md) | Escenarios 04, 07, 08 y 09 (varios packs y overlay) |
