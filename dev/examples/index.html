@@ -4306,10 +4306,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stackpack" class="md-nav__link">
+  <a href="#stackpacks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        stack.pack
+        stack.packs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stackoverlayreplaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack.overlay.replaces
       
     </span>
   </a>
@@ -4458,7 +4469,7 @@
 </tr>
 <tr>
 <td><a href="04-pack-stack.yaml">04-pack-stack.yaml</a></td>
-<td>Pack de stack (<code>stack.pack</code>) sin cambiar el modelo de agentes del core</td>
+<td>Pack de stack (<code>stack.packs</code>) sin cambiar el modelo de agentes del core</td>
 </tr>
 <tr>
 <td><a href="05-fusiones-mvp.yaml">05-fusiones-mvp.yaml</a></td>
@@ -4475,6 +4486,14 @@
 <tr>
 <td><a href="08-completo.yaml">08-completo.yaml</a></td>
 <td>Todas las claves rellenadas a la vez, incluido <code>tooling</code> (referencia de techo)</td>
+</tr>
+<tr>
+<td><a href="09-varios-packs.yaml">09-varios-packs.yaml</a></td>
+<td>Core + dos packs (<code>stack.packs</code>) + <code>stack.overlay.replaces</code> con una sustitución explícita (ids ficticios)</td>
+</tr>
+<tr>
+<td><a href="10-varias-unidades.yaml">10-varias-unidades.yaml</a></td>
+<td>Monorepo: <code>stack.units</code> con tres unidades, una sin <code>tests</code>, en lugar del atajo <code>src_path</code>/<code>tests_path</code></td>
 </tr>
 </tbody>
 </table>
@@ -4494,10 +4513,12 @@
   Q3 --&gt;|Agentes desacoplados| E06[06-agentes-desacoplados]
   Q3 --&gt;|Pack y frontend| E07[07-pack-frontend]
   Q3 --&gt;|Todo declarado| E08[08-completo]
+  Q3 --&gt;|Varios packs y overlay| E09[09-varios-packs]
+  Q3 --&gt;|Varias unidades de codigo| E10[10-varias-unidades]
   classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
   class E01 ok
-  class E02,E03,E04,E05,E06,E07,E08 stub</code></pre>
+  class E02,E03,E04,E05,E06,E07,E08,E09,E10 stub</code></pre>
 <hr />
 <h2 id="uso-de-cada-bloque-detalle">Uso de cada bloque (detalle)<a class="headerlink" href="#uso-de-cada-bloque-detalle" title="Permanent link">&para;</a></h2>
 <h3 id="sdafversion"><code>sdaf.version</code><a class="headerlink" href="#sdafversion" title="Permanent link">&para;</a></h3>
@@ -4506,23 +4527,29 @@
 <p>Nombre corto del producto. Se usa al generar <code>AGENTS.md</code> (<code>{{PROJECT_NAME}}</code>). No es el nombre del pack ni el de la org de GitHub, salvo que coincidan.</p>
 <h3 id="projectlanguage"><code>project.language</code><a class="headerlink" href="#projectlanguage" title="Permanent link">&para;</a></h3>
 <p>En la línea vigente <strong>solo</strong> <code>es</code>. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack. La decisión está registrada en <a href="../architecture/decisions/ADR-009-idioma-de-artefactos/">ADR-009</a>.</p>
-<h3 id="stackpack"><code>stack.pack</code><a class="headerlink" href="#stackpack" title="Permanent link">&para;</a></h3>
+<h3 id="stackpacks"><code>stack.packs</code><a class="headerlink" href="#stackpacks" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>null</code>: Gate 0 y router funcionan; no hay skills <code>csharp-*</code> / <code>blazor-*</code> / equivalente.</li>
-<li><code>"sdaf-stack-&lt;id&gt;@&lt;semver&gt;"</code>: el consumidor <strong>añade</strong> contratos, skills y (si aplica) ids de agentes de extensión. El pack <strong>no</strong> puede contradecir el handbook del core.</li>
+<li><code>[]</code> (o el alias <code>stack.pack: null</code>, que usan 01, 02, 03 y 06): Gate 0 y router funcionan; no hay skills <code>csharp-*</code> / <code>blazor-*</code> / equivalente.</li>
+<li><code>["sdaf-stack-&lt;id&gt;@&lt;semver&gt;"]</code>: el consumidor <strong>añade</strong> contratos, skills y (si aplica) ids de agentes de extensión. El pack <strong>no</strong> puede contradecir el handbook del core. Con más de un elemento, dos referencias con el mismo id de pack son error aunque cambie la versión; el orden de las capas al materializar lo fija el de <code>--pack</code> (<a href="../docs/materializacion/#orden-de-capas">materialización</a>). <a href="09-varios-packs.yaml">09-varios-packs.yaml</a> lo muestra con dos packs ficticios.</li>
 </ul>
 <p>El stack concreto (lenguaje, UI, base de datos) sigue yéndose a <strong>ADRs del consumidor</strong>. El pack solo aporta playbooks.</p>
+<blockquote>
+<p>[!NOTE]
+El alias <code>stack.pack</code> (un solo pack, como texto o <code>null</code>) está obsoleto: el validador sigue aceptándolo con un aviso y pide usar <code>stack.packs</code>. No puede coexistir con <code>stack.packs</code>. Solo 01, 02, 03 y 06 conservan <code>stack.pack: null</code> (sin pack, sin aviso); el resto usa <code>stack.packs</code>. Los fixtures <code>config-alias*.yaml</code> de <code>scripts/testdata/</code> lo mantienen cubierto.</p>
+</blockquote>
+<h3 id="stackoverlayreplaces"><code>stack.overlay.replaces</code><a class="headerlink" href="#stackoverlayreplaces" title="Permanent link">&para;</a></h3>
+<p>Ids de extensión (nunca del núcleo) que el overlay del consumidor sustituye de forma explícita (<a href="../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007</a> §5). Cada id debe estar declarado en <code>agents</code>. Declararlo no instala ni cambia ningún pack; solo deja constancia de la sustitución. <a href="09-varios-packs.yaml">09-varios-packs.yaml</a> sustituye <code>example-extension</code>, uno de los ids que aportan sus packs.</p>
 <h3 id="stacksrc_path-stacktests_path"><code>stack.src_path</code> / <code>stack.tests_path</code><a class="headerlink" href="#stacksrc_path-stacktests_path" title="Permanent link">&para;</a></h3>
 <p>Rutas relativas a la raíz del consumidor. <code>sdaf-gate0</code> trata cambios bajo <code>src_path</code> como implementación de producto. Si el código vive en <code>apps/api</code>, decláralo aquí; no hace falta enmienda al handbook. Son el atajo de una sola unidad de código.</p>
 <h3 id="stackunits"><code>stack.units</code><a class="headerlink" href="#stackunits" title="Permanent link">&para;</a></h3>
 <p>Lista de unidades de código del consumidor, cada una con <code>name</code>, <code>src</code> y, opcional, <code>tests</code>: la forma general cuando hay más de una. Gate 0 y la comprobación de worklog usan las rutas de todas las unidades.</p>
 <ul>
 <li><strong>No se mezcla con el atajo:</strong> declarar <code>stack.units</code> junto a <code>stack.src_path</code> o <code>stack.tests_path</code> es error.</li>
-<li><strong>Nombre:</strong> texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base (<a href="../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a>); el validador todavía no lo comprueba.</li>
+<li><strong>Nombre:</strong> texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base (<a href="../architecture/decisions/ADR-005-linea-base-arquitectonica/">ADR-005</a>); <code>validate-config.py</code> no lo comprueba, <code>check-architecture.py</code> (ARQ-6.2) sí.</li>
 <li><strong>Rutas:</strong> relativas a la raíz, sin ruta absoluta ni segmento <code>..</code>. Si una unidad se solapa con otra, el validador avisa; no es error.</li>
 <li><strong>Con cualquier <code>sdaf.version</code>:</strong> no depende de la versión del core.</li>
 </ul>
-<p>Aún no hay un ejemplo con varias unidades en este directorio: llegará con ARQ-4.6. El catálogo de claves (<a href="../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) trae las reglas completas y un ejemplo.</p>
+<p><a href="10-varias-unidades.yaml">10-varias-unidades.yaml</a> muestra tres unidades de un monorepo, una de ellas sin <code>tests</code>. El catálogo de claves (<a href="../sdaf.config.schema.yaml"><code>sdaf.config.schema.yaml</code></a>) trae las reglas completas.</p>
 <h3 id="agentsactive-vs-agentsstubs"><code>agents.active</code> vs <code>agents.stubs</code><a class="headerlink" href="#agentsactive-vs-agentsstubs" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4566,11 +4593,11 @@
 </ul>
 <p>Los miembros van a <code>stubs</code> para poder desfusionar después sin inventar contratos.</p>
 <h3 id="extensiones-frontend-infrastructure-ai">Extensiones (<code>frontend</code>, <code>infrastructure</code>, <code>ai</code>)<a class="headerlink" href="#extensiones-frontend-infrastructure-ai" title="Permanent link">&para;</a></h3>
-<p>No están en <code>sdaf-core</code>. Solo en ejemplos 07 y 08, con <code>stack.pack</code> no nulo (o contratos locales equivalentes). Si los pones en <code>active</code> sin pack ni archivos <code>agents/&lt;id&gt;.md</code>, el router no tiene contrato.</p>
+<p>No están en <code>sdaf-core</code>. Solo en ejemplos 07 y 08, con algún pack en <code>stack.packs</code> (o contratos locales equivalentes). Los ids de extensión de 09 (<code>example-extension</code>, <code>other-extension</code>) son ficticios y vienen de los packs de ejemplo. Si los pones en <code>active</code> sin pack ni archivos <code>agents/&lt;id&gt;.md</code>, el router no tiene contrato.</p>
 <h3 id="toolinggentle_ai"><code>tooling.gentle_ai</code><a class="headerlink" href="#toolinggentle_ai" title="Permanent link">&para;</a></h3>
 <p>Opcional. Declara si el consumidor adopta <a href="../docs/integracion-gentle-ai/">gentle-ai</a> y qué versión (<a href="../architecture/decisions/ADR-004-tooling-externo-de-agentes/">ADR-004</a>).</p>
 <ul>
-<li>Bloque ausente o <code>null</code>: no adoptado. Es el default y el de los ejemplos 01–07.</li>
+<li>Bloque ausente o <code>null</code>: no adoptado. Es el default y el de todos los ejemplos salvo el 08.</li>
 <li>Una release (<code>"4.2.0"</code>) o un SHA de commit completo: adoptado. El <code>AGENTS.md</code> lleva la cláusula de precedencia de la guía.</li>
 <li>Releases ≤ <code>3.7.0</code>: incluyen el componente <code>sdd</code>, incompatible con Gate 0. El validador avisa (<strong>T1</strong>) y el componente no se instala; desde v4.0.0 no existe.</li>
 <li>08 declara el SHA <code>4acaf4241beae1e0c977c92dfe406a270f8d40de</code>, el commit de la release v4.2.0: es reproducible y no dispara T1.</li>
@@ -4603,8 +4630,16 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
 <td>Doble dueño del mismo diff</td>
 </tr>
 <tr>
-<td><code>frontend</code> activo y <code>pack: null</code></td>
+<td><code>frontend</code> activo y <code>packs: []</code></td>
 <td>Id de extensión sin playbook</td>
+</tr>
+<tr>
+<td><code>stack.units</code> junto a <code>src_path</code> o <code>tests_path</code></td>
+<td>Conviven como error: usar solo uno de los dos</td>
+</tr>
+<tr>
+<td><code>stack.pack</code> junto a <code>stack.packs</code></td>
+<td>Error; además <code>stack.pack</code> está obsoleto</td>
 </tr>
 <tr>
 <td><code>language: en</code></td>
@@ -4643,7 +4678,7 @@ Estos patrones dejan el router o Gate 0 en estado ambiguo. Corregir la config an
 <tr>
 <td>📦</td>
 <td><a href="../docs/contrato-pack-stack/">contrato-pack-stack.md</a></td>
-<td>Si <code>stack.pack</code> ≠ <code>null</code></td>
+<td>Si <code>stack.packs</code> no está vacío</td>
 </tr>
 </tbody>
 </table>
