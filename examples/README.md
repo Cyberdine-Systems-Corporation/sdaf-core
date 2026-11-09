@@ -7,11 +7,13 @@ Cada archivo es un escenario **completo y válido** en la línea vigente. Copia 
 | [01-default-core.yaml](01-default-core.yaml) | Recomendado: solo método, 3 activos, stubs del core, sin pack ni fusiones extra |
 | [02-minimo.yaml](02-minimo.yaml) | Mínimo obligatorio (defaults de rutas) |
 | [03-rutas-custom.yaml](03-rutas-custom.yaml) | Código/tests fuera de `src/` y `tests/` |
-| [04-pack-stack.yaml](04-pack-stack.yaml) | Pack de stack (`stack.pack`) sin cambiar el modelo de agentes del core |
+| [04-pack-stack.yaml](04-pack-stack.yaml) | Pack de stack (`stack.packs`) sin cambiar el modelo de agentes del core |
 | [05-fusiones-mvp.yaml](05-fusiones-mvp.yaml) | `testing-review` y `domain-application` como fusiones explícitas |
 | [06-agentes-desacoplados.yaml](06-agentes-desacoplados.yaml) | Testing y Review separados; Domain y Application activos |
 | [07-pack-frontend.yaml](07-pack-frontend.yaml) | Pack + agente `frontend` (extensión; el core no lo envía) |
 | [08-completo.yaml](08-completo.yaml) | Todas las claves rellenadas a la vez, incluido `tooling` (referencia de techo) |
+| [09-varios-packs.yaml](09-varios-packs.yaml) | Core + dos packs (`stack.packs`) + `stack.overlay.replaces` con una sustitución explícita (ids ficticios) |
+| [10-varias-unidades.yaml](10-varias-unidades.yaml) | Monorepo: `stack.units` con tres unidades, una sin `tests`, en lugar del atajo `src_path`/`tests_path` |
 
 Copia canónica en la raíz del core (mismo contenido que 01): [`../sdaf.config.example.yaml`](../sdaf.config.example.yaml).
 
@@ -34,10 +36,12 @@ flowchart TD
   Q3 -->|Agentes desacoplados| E06[06-agentes-desacoplados]
   Q3 -->|Pack y frontend| E07[07-pack-frontend]
   Q3 -->|Todo declarado| E08[08-completo]
+  Q3 -->|Varios packs y overlay| E09[09-varios-packs]
+  Q3 -->|Varias unidades de codigo| E10[10-varias-unidades]
   classDef ok fill:#d4edda,stroke:#2d6a4f,color:#1a1a1a;
   classDef stub fill:#e9ecef,stroke:#6c757d,color:#1a1a1a;
   class E01 ok
-  class E02,E03,E04,E05,E06,E07,E08 stub
+  class E02,E03,E04,E05,E06,E07,E08,E09,E10 stub
 ```
 
 ---
@@ -56,12 +60,19 @@ Nombre corto del producto. Se usa al generar `AGENTS.md` (`{{PROJECT_NAME}}`). N
 
 En la línea vigente **solo** `es`. Fija el idioma de commits, PRs, specs, ADRs, prompts y worklogs. No traduce el código fuente: eso lo decide el ADR de coding standards del consumidor o el pack. La decisión está registrada en [ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md).
 
-### `stack.pack`
+### `stack.packs`
 
-- `null`: Gate 0 y router funcionan; no hay skills `csharp-*` / `blazor-*` / equivalente.
-- `"sdaf-stack-<id>@<semver>"`: el consumidor **añade** contratos, skills y (si aplica) ids de agentes de extensión. El pack **no** puede contradecir el handbook del core.
+- `[]` (o el alias `stack.pack: null`, que usan 01, 02, 03 y 06): Gate 0 y router funcionan; no hay skills `csharp-*` / `blazor-*` / equivalente.
+- `["sdaf-stack-<id>@<semver>"]`: el consumidor **añade** contratos, skills y (si aplica) ids de agentes de extensión. El pack **no** puede contradecir el handbook del core. Con más de un elemento, dos referencias con el mismo id de pack son error aunque cambie la versión; el orden de las capas al materializar lo fija el de `--pack` ([materialización](../docs/materializacion.md#orden-de-capas)). [09-varios-packs.yaml](09-varios-packs.yaml) lo muestra con dos packs ficticios.
 
 El stack concreto (lenguaje, UI, base de datos) sigue yéndose a **ADRs del consumidor**. El pack solo aporta playbooks.
+
+> [!NOTE]
+> El alias `stack.pack` (un solo pack, como texto o `null`) está obsoleto: el validador sigue aceptándolo con un aviso y pide usar `stack.packs`. No puede coexistir con `stack.packs`. Solo 01, 02, 03 y 06 conservan `stack.pack: null` (sin pack, sin aviso); el resto usa `stack.packs`. Los fixtures `config-alias*.yaml` de `scripts/testdata/` lo mantienen cubierto.
+
+### `stack.overlay.replaces`
+
+Ids de extensión (nunca del núcleo) que el overlay del consumidor sustituye de forma explícita ([ADR-007](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md) §5). Cada id debe estar declarado en `agents`. Declararlo no instala ni cambia ningún pack; solo deja constancia de la sustitución. [09-varios-packs.yaml](09-varios-packs.yaml) sustituye `example-extension`, uno de los ids que aportan sus packs.
 
 ### `stack.src_path` / `stack.tests_path`
 
@@ -72,11 +83,11 @@ Rutas relativas a la raíz del consumidor. `sdaf-gate0` trata cambios bajo `src_
 Lista de unidades de código del consumidor, cada una con `name`, `src` y, opcional, `tests`: la forma general cuando hay más de una. Gate 0 y la comprobación de worklog usan las rutas de todas las unidades.
 
 - **No se mezcla con el atajo:** declarar `stack.units` junto a `stack.src_path` o `stack.tests_path` es error.
-- **Nombre:** texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base ([ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md)); el validador todavía no lo comprueba.
+- **Nombre:** texto libre, no vacío, único en la lista y sin espacios ni saltos de línea en los extremos. Debe coincidir con una unidad de la línea base ([ADR-005](../architecture/decisions/ADR-005-linea-base-arquitectonica.md)); `validate-config.py` no lo comprueba, `check-architecture.py` (ARQ-6.2) sí.
 - **Rutas:** relativas a la raíz, sin ruta absoluta ni segmento `..`. Si una unidad se solapa con otra, el validador avisa; no es error.
 - **Con cualquier `sdaf.version`:** no depende de la versión del core.
 
-Aún no hay un ejemplo con varias unidades en este directorio: llegará con ARQ-4.6. El catálogo de claves ([`sdaf.config.schema.yaml`](../sdaf.config.schema.yaml)) trae las reglas completas y un ejemplo.
+[10-varias-unidades.yaml](10-varias-unidades.yaml) muestra tres unidades de un monorepo, una de ellas sin `tests`. El catálogo de claves ([`sdaf.config.schema.yaml`](../sdaf.config.schema.yaml)) trae las reglas completas.
 
 ### `agents.active` vs `agents.stubs`
 
@@ -109,13 +120,13 @@ Los miembros van a `stubs` para poder desfusionar después sin inventar contrato
 
 ### Extensiones (`frontend`, `infrastructure`, `ai`)
 
-No están en `sdaf-core`. Solo en ejemplos 07 y 08, con `stack.pack` no nulo (o contratos locales equivalentes). Si los pones en `active` sin pack ni archivos `agents/<id>.md`, el router no tiene contrato.
+No están en `sdaf-core`. Solo en ejemplos 07 y 08, con algún pack en `stack.packs` (o contratos locales equivalentes). Los ids de extensión de 09 (`example-extension`, `other-extension`) son ficticios y vienen de los packs de ejemplo. Si los pones en `active` sin pack ni archivos `agents/<id>.md`, el router no tiene contrato.
 
 ### `tooling.gentle_ai`
 
 Opcional. Declara si el consumidor adopta [gentle-ai](../docs/integracion-gentle-ai.md) y qué versión ([ADR-004](../architecture/decisions/ADR-004-tooling-externo-de-agentes.md)).
 
-- Bloque ausente o `null`: no adoptado. Es el default y el de los ejemplos 01–07.
+- Bloque ausente o `null`: no adoptado. Es el default y el de todos los ejemplos salvo el 08.
 - Una release (`"4.2.0"`) o un SHA de commit completo: adoptado. El `AGENTS.md` lleva la cláusula de precedencia de la guía.
 - Releases ≤ `3.7.0`: incluyen el componente `sdd`, incompatible con Gate 0. El validador avisa (**T1**) y el componente no se instala; desde v4.0.0 no existe.
 - 08 declara el SHA `4acaf4241beae1e0c977c92dfe406a270f8d40de`, el commit de la release v4.2.0: es reproducible y no dispara T1.
@@ -134,7 +145,9 @@ No cambia Gate 0 ni el router. Solo aparece en 08.
 | Mismo id en `active` y `stubs` | Ambigüedad; el router no sabe si invocar |
 | `fusions.foo` sin `foo` en `active` | Fusión fantasma |
 | `domain` y `domain-application` ambos `active` | Doble dueño del mismo diff |
-| `frontend` activo y `pack: null` | Id de extensión sin playbook |
+| `frontend` activo y `packs: []` | Id de extensión sin playbook |
+| `stack.units` junto a `src_path` o `tests_path` | Conviven como error: usar solo uno de los dos |
+| `stack.pack` junto a `stack.packs` | Error; además `stack.pack` está obsoleto |
 | `language: en` | No soportado en la línea vigente ([ADR-009](../architecture/decisions/ADR-009-idioma-de-artefactos.md)) |
 | Omitir `sdaf.version` | No se sabe qué constitución del método aplica |
 | `tooling.gentle_ai: main` | Una rama no fija versión; declarar una release o un SHA de commit |
@@ -145,4 +158,4 @@ No cambia Gate 0 ni el router. Solo aparece en 08.
 |--|---------|---------|
 | 🛠️ | [docs/adopcion-y-upgrade.md](../docs/adopcion-y-upgrade.md) | Dónde copiar el escenario |
 | | [sdaf.config.schema.yaml](../sdaf.config.schema.yaml) | Catálogo de claves |
-| 📦 | [contrato-pack-stack.md](../docs/contrato-pack-stack.md) | Si `stack.pack` ≠ `null` |
+| 📦 | [contrato-pack-stack.md](../docs/contrato-pack-stack.md) | Si `stack.packs` no está vacío |

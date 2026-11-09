@@ -3,7 +3,7 @@
 > [!NOTE]
 > 🛠️ Página generada por MkDocs; cada bloque se incrusta en vivo desde [`examples/`](../examples/README.md). Copia el escenario que más se acerque y cambia `project.name`.
 
-**En esta página:** [01 Default core](#01-default-core-recomendado) · [02 Mínimo](#02-mínimo) · [03 Rutas custom](#03-rutas-custom) · [04 Pack de stack](#04-pack-de-stack) · [05 Fusiones MVP](#05-fusiones-mvp) · [06 Agentes desacoplados](#06-agentes-desacoplados) · [07 Pack frontend](#07-pack-frontend) · [08 Completo](#08-completo) · [Relacionado](#relacionado)
+**En esta página:** [01 Default core](#01-default-core-recomendado) · [02 Mínimo](#02-mínimo) · [03 Rutas custom](#03-rutas-custom) · [04 Pack de stack](#04-pack-de-stack) · [05 Fusiones MVP](#05-fusiones-mvp) · [06 Agentes desacoplados](#06-agentes-desacoplados) · [07 Pack frontend](#07-pack-frontend) · [08 Completo](#08-completo) · [09 Varios packs](#09-varios-packs) · [10 Varias unidades](#10-varias-unidades) · [Relacionado](#relacionado)
 
 ## 01 — Default core (recomendado)
 
@@ -31,7 +31,7 @@ Código/tests fuera de `src/` y `tests/`.
 
 ## 04 — Pack de stack
 
-Pack de stack (`stack.pack`) sin cambiar el modelo de agentes del core.
+Pack de stack (`stack.packs`) sin cambiar el modelo de agentes del core.
 
 ```yaml
 --8<-- "examples/04-pack-stack.yaml"
@@ -67,6 +67,22 @@ Todas las claves rellenadas a la vez (referencia de techo).
 
 ```yaml
 --8<-- "examples/08-completo.yaml"
+```
+
+## 09 — Varios packs
+
+Core + dos packs (`stack.packs`) + `stack.overlay.replaces` con una sustitución explícita. Los ids de pack y de extensión son ficticios.
+
+```yaml
+--8<-- "examples/09-varios-packs.yaml"
+```
+
+## 10 — Varias unidades
+
+Monorepo: `stack.units` con tres unidades (una sin `tests`) en lugar del atajo `src_path` y `tests_path`.
+
+```yaml
+--8<-- "examples/10-varias-unidades.yaml"
 ```
 
 ## Relacionado

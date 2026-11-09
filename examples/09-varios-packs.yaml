@@ -1,0 +1,42 @@
+# Core + dos packs + overlay: varios packs de stack a la vez y una sustitución explícita.
+# Uso: el proyecto toma capacidades de más de un pack (cada uno aporta sus propios ids de extensión)
+# y quiere reemplazar el agente de uno de ellos por el suyo, sin tocar el pack.
+# stack.packs es una lista de referencias id@version, una por pack y sin ids de pack repetidos.
+# stack.overlay.replaces lista ids de extensión que el overlay del consumidor sustituye (ADR-007 §5):
+# solo vale un id de extensión declarado en agents, nunca uno del núcleo.
+# Los ids son ficticios: sdaf-stack-example, sdaf-stack-other, example-extension y other-extension
+# no existen; son los de los manifiestos de ejemplo del repositorio (scripts/testdata/).
+# Con los manifiestos de ambos packs (--pack-manifest) I4 comprueba que cubren los ids de extensión.
+
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  packs:
+    - sdaf-stack-example@0.1.0
+    - sdaf-stack-other@0.2.0
+  src_path: src
+  tests_path: tests
+  overlay:
+    replaces:
+      - example-extension
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+    - example-extension
+    - other-extension
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

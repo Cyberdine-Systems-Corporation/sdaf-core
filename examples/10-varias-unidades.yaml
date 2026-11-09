@@ -1,0 +1,40 @@
+# Varias unidades: un monorepo con rutas de código y de tests por unidad.
+# Uso: el repositorio aloja varias unidades con su propio código y sus propios tests;
+# stack.units sustituye al atajo stack.src_path y stack.tests_path, y no se mezcla con él (conviven como error).
+# Cada unidad lleva name y src; tests es opcional (aquí, la Unidad C no tiene).
+# El name es texto libre, pero debe ser el mismo que el de la unidad en la línea base de arquitectura
+# (architecture/description.md): check-architecture.py (ARQ-6.2) los coteja con ella.
+# Sin pack: stack.packs vacío; con units no hace falta declarar src_path ni tests_path.
+
+sdaf:
+  version: "0.5.0"
+
+project:
+  name: MiProyecto
+  language: es
+
+stack:
+  packs: []
+  units:
+    - name: Unidad A
+      src: apps/api
+      tests: tests/api
+    - name: Unidad B
+      src: apps/web
+      tests: tests/web
+    - name: Unidad C
+      src: libs/core
+
+agents:
+  active:
+    - specification
+    - architecture
+    - testing-review
+  stubs:
+    - product
+    - domain
+    - application
+    - devops
+    - review
+    - testing
+  fusions: {}

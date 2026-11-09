@@ -12,7 +12,8 @@ project:
   language: es
 
 stack:
-  pack: sdaf-stack-dotnet@0.3.0
+  packs:
+    - sdaf-stack-dotnet@0.3.0
   src_path: src
   tests_path: tests
 
