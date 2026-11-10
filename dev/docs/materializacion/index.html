@@ -1808,6 +1808,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrar-aportes-ya-materializados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrar aportes ya materializados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#re-ejecución-e-idempotencia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4526,6 +4537,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrar-aportes-ya-materializados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrar aportes ya materializados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#re-ejecución-e-idempotencia" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4617,7 +4639,7 @@
 🛠️ Contrato y guía de uso. No sustituye el <a href="../../handbook/">handbook</a>: la regla de resolución por id vive en <a href="../../handbook/01-sdaf-framework/#33-capas-y-resolución-por-id">handbook/01 §3.3</a>.</p>
 <p><strong>Materializar</strong> es poner los agentes, prompts y skills del core y de los packs en las rutas del repo consumidor donde los lee el entorno de trabajo. Lo hace <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a> (<a href="../../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia/">ADR-007 §7</a>).</p>
 </blockquote>
-<p><strong>En esta página:</strong> <a href="#qué-es-y-qué-no-es">Qué es</a> · <a href="#orden-de-capas">Orden</a> · <a href="#convención-de-rutas">Rutas</a> · <a href="#uso">Uso</a> · <a href="#enlaces-simbólicos-y-copia">Enlaces y copias</a> · <a href="#el-registro-sdaf-origin">Registro</a> · <a href="#colisiones">Colisiones</a> · <a href="#re-ejecución-e-idempotencia">Re-ejecución</a> · <a href="#salida-y-códigos-de-salida">Salida</a> · <a href="#límites-conocidos">Límites</a></p>
+<p><strong>En esta página:</strong> <a href="#qué-es-y-qué-no-es">Qué es</a> · <a href="#orden-de-capas">Orden</a> · <a href="#convención-de-rutas">Rutas</a> · <a href="#uso">Uso</a> · <a href="#enlaces-simbólicos-y-copia">Enlaces y copias</a> · <a href="#el-registro-sdaf-origin">Registro</a> · <a href="#colisiones">Colisiones</a> · <a href="#migrar-aportes-ya-materializados">Migrar</a> · <a href="#re-ejecución-e-idempotencia">Re-ejecución</a> · <a href="#salida-y-códigos-de-salida">Salida</a> · <a href="#límites-conocidos">Límites</a></p>
 <h2 id="qué-es-y-qué-no-es">Qué es y qué no es<a class="headerlink" href="#qué-es-y-qué-no-es" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4854,6 +4876,17 @@ Versione <code>.sdaf-origin</code> junto con los enlaces o copias. Sin él, otro
 </code></pre></div>
 <p>Alcance de la sustitución: solo el <strong>contrato de agente</strong>. El prompt del pack con ese mismo id se sigue materializando; si el overlay tiene un fichero propio en esa ruta de prompt, es una colisión.</p>
 <p>Si el mismo <code>id</code> de pack se pasa dos veces con <code>--pack</code>, también es un <code>FAIL</code>.</p>
+<p>Los <code>FAIL</code> de las filas segunda, tercera y quinta (y el de un enlace simbólico sin registro, ver <a href="#re-ejecución-e-idempotencia">Re-ejecución</a>) terminan, además de lo que muestra la tabla, con esta pista: <code>; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)</code>. Las otras situaciones no la llevan. La pista no cambia el código de salida ni lo que se escribe.</p>
+<h2 id="migrar-aportes-ya-materializados">Migrar aportes ya materializados<a class="headerlink" href="#migrar-aportes-ya-materializados" title="Permanent link">&para;</a></h2>
+<p>Un destino que ya existe como enlace simbólico o como fichero y no figura en <a href="#el-registro-sdaf-origin"><code>.sdaf-origin</code></a> es del overlay <strong>por definición</strong>: el script no sabe de dónde salió. Por eso un consumidor que materializó agentes, prompts y skills por otro medio antes de <code>0.6.0</code> (los enlaces <code>120000</code> o las copias que recomendaba la guía de <code>0.5.x</code>) obtiene un <code>FAIL</code> en cada destino y no se escribe nada.</p>
+<p>El procedimiento, que no es automático:</p>
+<ol>
+<li><code>materialize.py --dry-run</code> con el core y los packs: cada <code>FAIL &lt;destino&gt;: ...</code> es un destino que choca.</li>
+<li>Revisar la lista y quitar con <code>git rm -r</code> solo los destinos que vienen del core o de un pack. Lo propio del consumidor se conserva; un contrato de agente de extensión mantenido a propósito no se quita: su id va en <code>stack.overlay.replaces</code>.</li>
+<li>Repetir <code>--dry-run</code> (ya sin colisiones) y ejecutar sin él.</li>
+<li>Versionar <code>.sdaf-origin</code> junto con los enlaces o copias.</li>
+</ol>
+<p>La salida literal de cada paso, sobre un repo sintético, está en <a href="../adopcion-y-upgrade/#si-ya-materializó-los-aportes-por-otro-medio">Migrar de 0.5.x a 0.6.0</a>. Un modo que adopte esos aportes sin quitarlos (registrar un enlace sin registro cuyo destino resuelto coincide con el origen planificado) es una idea para una versión posterior: hoy no existe ninguna opción de <code>materialize.py</code> que lo haga.</p>
 <h2 id="re-ejecución-e-idempotencia">Re-ejecución e idempotencia<a class="headerlink" href="#re-ejecución-e-idempotencia" title="Permanent link">&para;</a></h2>
 <p>El script puede ejecutarse tantas veces como haga falta. Solo reemplaza lo que figura en el registro <strong>y</strong> sigue siendo, en el destino, el enlace o la copia que el registro describe:</p>
 <table>
@@ -4878,7 +4911,7 @@ Versione <code>.sdaf-origin</code> junto con los enlaces o copias. Sin él, otro
 </tr>
 <tr>
 <td>Un enlace simbólico en el destino no figura en el registro</td>
-<td><code>FAIL &lt;destino&gt;: el destino es un enlace simbólico que no figura en .sdaf-origin</code>.</td>
+<td><code>FAIL &lt;destino&gt;: el destino es un enlace simbólico que no figura en .sdaf-origin</code>, seguido de la pista de <a href="#migrar-aportes-ya-materializados">migración</a>.</td>
 </tr>
 <tr>
 <td>El destino choca con un fichero real del overlay</td>

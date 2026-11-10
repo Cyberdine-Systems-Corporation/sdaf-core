@@ -1940,6 +1940,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrar-de-05x-a-060" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrar de 0.5.x a 0.6.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrar de 0.5.x a 0.6.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qué-cambia-para-un-consumidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué cambia para un consumidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#si-ya-materializó-los-aportes-por-otro-medio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si ya materializó los aportes por otro medio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas-de-la-migración" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas de la migración
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4863,6 +4924,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#migrar-de-05x-a-060" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrar de 0.5.x a 0.6.0
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrar de 0.5.x a 0.6.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qué-cambia-para-un-consumidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué cambia para un consumidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pasos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#si-ya-materializó-los-aportes-por-otro-medio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si ya materializó los aportes por otro medio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notas-de-la-migración" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notas de la migración
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fuera-de-05x" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4915,7 +5037,7 @@
 🛠️ HOWTO operativo. No sustituye el <a href="../../handbook/">handbook</a>.</p>
 <p><strong>Adoptar</strong> es pinnear este core, copiar un escenario de config y ejecutar bootstrap. <strong>Upgrade</strong> es mover el pin y alinear <code>sdaf.version</code>.</p>
 </blockquote>
-<p><strong>En esta página:</strong> <a href="#versionado">Versionado</a> · <a href="#adopción-canónica">Adopción</a> · <a href="#upgrade">Upgrade</a> · <a href="#migración-de-citas-handbook-01x-020">Migración 0.1→0.2</a> · <a href="#pack-de-stack">Pack</a></p>
+<p><strong>En esta página:</strong> <a href="#versionado">Versionado</a> · <a href="#adopción-canónica">Adopción</a> · <a href="#upgrade">Upgrade</a> · <a href="#migración-de-citas-handbook-01x-020">Migración 0.1→0.2</a> · <a href="#pack-de-stack">Pack</a> · <a href="#migrar-de-05x-a-060">Migrar a 0.6.0</a></p>
 <h2 id="versionado">Versionado<a class="headerlink" href="#versionado" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5080,7 +5202,7 @@ El pin recomendado del árbol es <code>v0.5.3</code>. <code>sdaf.version</code> 
 <h2 id="pack-de-stack">Pack de stack<a class="headerlink" href="#pack-de-stack" title="Permanent link">&para;</a></h2>
 <p>Si <code>stack.pack</code> ≠ <code>null</code>, cumplir <a href="../contrato-pack-stack/"><code>contrato-pack-stack.md</code></a>.</p>
 <h3 id="materialización-en-el-consumidor">Materialización en el consumidor<a class="headerlink" href="#materialización-en-el-consumidor" title="Permanent link">&para;</a></h3>
-<p>Preferir <strong>symlinks relativos</strong> (Git mode <code>120000</code>) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a>, y su contrato y guía de uso están en <a href="../materializacion/"><code>materializacion.md</code></a>: orden core → packs → overlay, ruta normada de los aportes, registro <code>.sdaf-origin</code>, detección de colisiones y <code>--dry-run</code>. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver <a href="#fuera-de-05x">Fuera de 0.5.x</a>). <code>AGENTS.md</code> y las reglas de editor no los materializa ese script: los materializa <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>.</p>
+<p>Preferir <strong>symlinks relativos</strong> (Git mode <code>120000</code>) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, <a href="../../scripts/materialize.py"><code>scripts/materialize.py</code></a>, y su contrato y guía de uso están en <a href="../materializacion/"><code>materializacion.md</code></a>: orden core → packs → overlay, ruta normada de los aportes, registro <code>.sdaf-origin</code>, detección de colisiones y <code>--dry-run</code>. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver <a href="#fuera-de-05x">Fuera de 0.5.x</a>); quien ya materializó por otro medio sigue <a href="#migrar-de-05x-a-060">Migrar de 0.5.x a 0.6.0</a>. <code>AGENTS.md</code> y las reglas de editor no los materializa ese script: los materializa <a href="../../skills/sdaf-bootstrap/SKILL/"><code>sdaf-bootstrap</code></a>.</p>
 <p>Copia literal solo como fallback documentado: el script la usa si el sistema no permite enlaces simbólicos y registra su origen en <code>.sdaf-origin</code>.</p>
 <blockquote>
 <p>[!WARNING]
@@ -5188,6 +5310,134 @@ No usar junctions de Windows (<code>mklink /J</code>).</p>
 <li>Quien quiera comprobar Gate 0 en el PR: seguir <a href="#comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR</a>. El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.</li>
 </ol>
 <p>No rompe citas. <code>sdaf.version</code> sigue en <code>"0.5.0"</code>.</p>
+<h2 id="migrar-de-05x-a-060">Migrar de 0.5.x a 0.6.0<a class="headerlink" href="#migrar-de-05x-a-060" title="Permanent link">&para;</a></h2>
+<p>La línea <code>0.6.0</code> es opt-in y <strong>sin publicar</strong>: ningún tag publicado la incluye todavía. Estos pasos valen cuando exista el tag y, antes, para ensayar la migración contra el árbol de <code>main</code> del core. Quien se quede en <code>0.5.x</code> no está obligado.</p>
+<h3 id="qué-cambia-para-un-consumidor">Qué cambia para un consumidor<a class="headerlink" href="#qué-cambia-para-un-consumidor" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Novedad</th>
+<th>Qué supone para el consumidor</th>
+<th>Dónde se explica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stack.packs</code></td>
+<td>Lista de referencias <code>id@version</code> (puede ser <code>[]</code>). <code>stack.pack</code> sigue valiendo como alias <strong>obsoleto</strong>: <code>validate-config.py</code> avisa <code>stack.pack está obsoleto; usar stack.packs: [...]</code>, y declarar los dos a la vez es un error.</td>
+<td><a href="../../sdaf.config.schema.yaml">Catálogo de la config</a>, <a href="../contrato-pack-stack/#relación-con-stackpacks">relación con <code>stack.packs</code></a></td>
+</tr>
+<tr>
+<td><code>stack.units</code> (opcional)</td>
+<td>Varias unidades de código con nombre. No puede convivir con <code>stack.src_path</code> ni <code>stack.tests_path</code>.</td>
+<td><a href="../../sdaf.config.schema.yaml">Catálogo de la config</a>, <a href="../../examples/">escenario 10</a></td>
+</tr>
+<tr>
+<td><code>stack.overlay.replaces</code> (opcional)</td>
+<td>Declara los ids de extensión cuyo contrato de agente es propio y sustituye al del pack.</td>
+<td><a href="../materializacion/#colisiones">Colisiones</a></td>
+</tr>
+<tr>
+<td>Manifiesto de pack <code>sdaf-pack.yaml</code></td>
+<td>Cada pack declara qué aporta y con qué línea del core es compatible. <code>validate-config.py --pack-manifest</code> lo cruza con la config; desde <code>sdaf.version</code> <code>"0.6.0"</code>, un pack declarado sin manifiesto entre los pasados avisa.</td>
+<td><a href="../contrato-pack-stack/#cruzar-la-config-con-los-manifiestos">Contrato de pack</a></td>
+</tr>
+<tr>
+<td><code>scripts/materialize.py</code></td>
+<td>Materializa agentes, prompts y skills del core y de los packs, con registro <code>.sdaf-origin</code>.</td>
+<td><a href="../materializacion/">Materialización</a></td>
+</tr>
+<tr>
+<td><code>check-architecture</code> (opt-in)</td>
+<td>Coherencia entre la línea base, los ADRs, <code>stack.units</code> y las specs.</td>
+<td><a href="#comprobar-la-coherencia-de-adrs-unidades-y-specs">Comprobar la coherencia</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="pasos">Pasos<a class="headerlink" href="#pasos" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Subir el pin del core al tag de la línea <code>0.6.0</code> y el de cada pack a una versión con <code>sdaf-pack.yaml</code> cuyo rango <code>core</code> incluya <code>0.6.0</code>; si no lo incluye, <code>--pack-manifest</code> falla.</li>
+<li>Poner <code>sdaf.version</code> a <code>"0.6.0"</code>.</li>
+<li>Pasar de <code>stack.pack</code> a <code>stack.packs</code>, conservando el pack y su versión:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w"> </span>stack:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gd">-  pack: sdaf-stack-example@0.1.0</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gi">+  packs:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gi">+    - sdaf-stack-example@0.1.0</span>
+</code></pre></div>
+<ol>
+<li>Validar la config con los manifiestos: <code>python .sdaf/scripts/validate-config.py sdaf.config.yaml --pack-manifest packs/example/sdaf-pack.yaml</code>.</li>
+<li>Si los agentes, prompts y skills ya estaban materializados por otro medio, seguir <a href="#si-ya-materializó-los-aportes-por-otro-medio">la sección siguiente</a> antes de ejecutar <code>materialize.py</code>.</li>
+<li>Opcional: activar <code>check-architecture</code> en la action y, si el repo tiene varias carpetas de código, declarar <code>stack.units</code>.</li>
+</ol>
+<h3 id="si-ya-materializó-los-aportes-por-otro-medio">Si ya materializó los aportes por otro medio<a class="headerlink" href="#si-ya-materializó-los-aportes-por-otro-medio" title="Permanent link">&para;</a></h3>
+<p>Esta guía recomendaba para <code>0.5.x</code> enlaces simbólicos (Git <code>120000</code>) o copias. Ese material <strong>no tiene registro</strong> <code>.sdaf-origin</code>, así que <code>materialize.py</code> lo trata como suyo del consumidor (overlay) y da <code>FAIL</code> en cada destino, sin escribir nada. La norma de colisiones no se repite aquí: está en <a href="../materializacion/#colisiones">Colisiones</a>. El procedimiento (rutas y ids ficticios; el core en <code>.sdaf/</code> y un pack en <code>packs/example/</code>):</p>
+<ol>
+<li>Ver qué destinos chocan. Cada <code>FAIL &lt;destino&gt;: ...</code> es uno, y termina con la pista de migración:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ python .sdaf/scripts/materialize.py --pack packs/example --dry-run
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>INFO el sistema no permite enlaces simbólicos: se copia
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>FAIL agents/architecture-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>FAIL agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay; declare 'example-extension' en stack.overlay.replaces para sustituirlo; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>FAIL agents/specification-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>FAIL prompts/agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay en un prompt; las skills y los prompts no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>FAIL prompts/agents/specification-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>FAIL skills/core-skill: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>FAIL skills/example-skill: colisión entre el pack sdaf-stack-example y el overlay en una skill; las skills y los prompts no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>FAIL no se escribió nada
+</code></pre></div>
+<p>La línea <code>INFO</code> solo sale donde el sistema no permite crear enlaces simbólicos (Windows sin privilegio): <code>auto</code> copia.</p>
+<ol>
+<li>Revisar la lista. Solo se eliminan los destinos que vienen del core o de un pack; lo propio del consumidor se conserva. Si un destino listado es un contrato de agente de extensión que el consumidor mantiene a propósito, no se elimina: se declara su id en <code>stack.overlay.replaces</code>. Con <code>sh</code>, los destinos salen solos:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ python .sdaf/scripts/materialize.py --pack packs/example --dry-run | sed -n 's/^FAIL \([^:]*\): .*/\1/p'
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>agents/architecture-agent.md
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>agents/example-extension-agent.md
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>agents/specification-agent.md
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>prompts/agents/example-extension-agent.md
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>prompts/agents/specification-agent.md
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>skills/core-skill
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>skills/example-skill
+</code></pre></div>
+<ol>
+<li>Quitarlos con <code>git rm -r -q -- &lt;destinos&gt;</code> (sirve igual para enlaces <code>120000</code> que para copias; <code>git rm</code> se niega si el destino tiene cambios sin confirmar: revíselos antes). Los ficheros propios, como <code>agents/local-agent.md</code> o <code>skills/local-skill/</code>, quedan donde están.</li>
+<li>Repetir <code>--dry-run</code>: ya no hay colisiones y el plan solo crea:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ python .sdaf/scripts/materialize.py --pack packs/example --dry-run
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>INFO el sistema no permite enlaces simbólicos: se copia
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>INFO plan: crear agents/architecture-agent.md &lt;- core [copy]
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>INFO plan: crear agents/example-extension-agent.md &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>INFO plan: crear agents/specification-agent.md &lt;- core [copy]
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>INFO plan: crear prompts/agents/example-extension-agent.md &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>INFO plan: crear prompts/agents/specification-agent.md &lt;- core [copy]
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>INFO plan: crear skills/core-skill &lt;- core [copy]
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>INFO plan: crear skills/example-skill &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>OK  dry-run: 7 acciones planificadas, no se escribió nada
+</code></pre></div>
+<ol>
+<li>Ejecutar sin <code>--dry-run</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ python .sdaf/scripts/materialize.py --pack packs/example
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>INFO el sistema no permite enlaces simbólicos: se copia
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>OK  agents/architecture-agent.md &lt;- core [copy]
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>OK  agents/example-extension-agent.md &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>OK  agents/specification-agent.md &lt;- core [copy]
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>OK  prompts/agents/example-extension-agent.md &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>OK  prompts/agents/specification-agent.md &lt;- core [copy]
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>OK  skills/core-skill &lt;- core [copy]
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>OK  skills/example-skill &lt;- pack:sdaf-stack-example [copy]
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>OK  7 elementos materializados desde 2 capas (.sdaf-origin)
+</code></pre></div>
+<ol>
+<li>Versionar <code>.sdaf-origin</code> junto con los enlaces o copias (<code>git add .sdaf-origin agents prompts skills</code>). Una segunda ejecución da <code>sin cambios</code> en todos y deja el árbol y el registro idénticos (<a href="../materializacion/#re-ejecución-e-idempotencia">Re-ejecución</a>).</li>
+</ol>
+<p>El mismo procedimiento, resumido, está en <a href="../materializacion/#migrar-aportes-ya-materializados">Migrar aportes ya materializados</a>.</p>
+<h3 id="notas-de-la-migración">Notas de la migración<a class="headerlink" href="#notas-de-la-migración" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>stack.units</code> y los ficheros transversales.</strong> Con <code>stack.units</code>, <code>check-worklog-presence.py</code> mira solo las rutas de las unidades: un fichero bajo <code>src/</code> o <code>tests/</code> que no cae en ninguna deja de exigir worklog (por ejemplo, uno de configuración común a todo el código). Declarar en las unidades las rutas que antes cubría <code>src_path</code>/<code>tests_path</code>, o añadir una unidad que los cubra.</li>
+<li><strong>Espejos de editor.</strong> <code>materialize.py</code> no crea ni actualiza los espejos de editor (reglas y skills que el editor lee de su propia ruta, como <code>.cursor/rules/</code> y <code>.cursor/skills/</code>). Quien los use debe mantenerlos aparte, incluidas las skills que <code>0.6.0</code> aporta y el consumidor no tenía: nadie las espeja por él.</li>
+<li><strong><code>check-gate0</code> es opt-in</strong> y exige PBIs con la plantilla de <code>0.5.x</code> (<a href="../../templates/pbi/"><code>templates/pbi.md</code></a>). <code>--pbi ID</code> busca el ID en la tabla <code>Campo | Valor</code> de la cabecera: un PBI anterior a la plantilla no se encuentra por ID y, pasado por ruta, da <code>FAIL</code> en G0.4 hasta que tenga la cabecera completa (<a href="#comprobar-gate-0-en-el-pr">Comprobar Gate 0 en el PR</a>).</li>
+</ul>
 <h2 id="fuera-de-05x">Fuera de 0.5.x<a class="headerlink" href="#fuera-de-05x" title="Permanent link">&para;</a></h2>
 <p>Sin implementar en esta línea:</p>
 <ul>

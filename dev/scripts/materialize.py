@@ -38,6 +38,9 @@ Colisiones, todas detectadas antes de escribir nada:
   skills y para los prompts; para el contrato de agente de un pack, error salvo que su
   id figure en `stack.overlay.replaces` de `sdaf.config.yaml` (ADR-007 §5): entonces
   el aporte del pack se omite con un INFO y el fichero del overlay se respeta.
+Un aporte materializado antes de 0.6.0 por otro medio (enlaces o copias sin registro) se
+ve como del overlay o como un enlace ajeno: esos FAIL (y solo ellos) terminan con una pista
+hacia docs/materializacion.md#migrar-aportes-ya-materializados.
 Del `sdaf.config.yaml` del consumidor solo se lee esa lista (opcional).
 
 Idempotencia: al volver a ejecutar solo se reemplazan los elementos del registro cuyo
@@ -75,6 +78,12 @@ CONFIG_NAME = "sdaf.config.yaml"
 MANIFEST_NAME = "sdaf-pack.yaml"
 AGENT_SUFFIX = "-agent.md"
 REGISTRY_VERSION = 1
+# Pista al final de los FAIL que puede provocar un aporte materializado antes de 0.6.0 (sin
+# registro, el script lo ve como del overlay o como un enlace ajeno).
+MIGRATION_HINT = (
+    "; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar "
+    "(docs/materializacion.md#migrar-aportes-ya-materializados)"
+)
 DEST_PATTERNS = (
     re.compile(r"agents/[^/]+-agent\.md"),
     re.compile(r"prompts/agents/[^/]+-agent\.md"),
@@ -317,18 +326,21 @@ def ancestor_problem(consumer: Path, dest: str) -> str | None:
 def overlay_decision(item: Item, replaces: list[str]) -> tuple[bool, str]:
     """(omitir, motivo de error) ante un aporte real del overlay en el destino."""
     if item.layer == "core":
-        return False, f"{item.dest}: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen"
+        return False, (
+            f"{item.dest}: el overlay ocupa un destino del núcleo; "
+            f"los ids del núcleo no se sustituyen{MIGRATION_HINT}"
+        )
     if item.kind == "agent":
         if item.ident in replaces:
             return True, ""
         return False, (
             f"{item.dest}: colisión entre el pack {item.layer[5:]} y el overlay; "
-            f"declare '{item.ident}' en stack.overlay.replaces para sustituirlo"
+            f"declare '{item.ident}' en stack.overlay.replaces para sustituirlo{MIGRATION_HINT}"
         )
     what = "una skill" if item.kind == "skill" else "un prompt"
     return False, (
         f"{item.dest}: colisión entre el pack {item.layer[5:]} y el overlay en {what}; "
-        "las skills y los prompts no se sustituyen"
+        f"las skills y los prompts no se sustituyen{MIGRATION_HINT}"
     )
 
 
@@ -384,7 +396,9 @@ def build_plan(
                 actions.append(Action("replace", dest, item.layer, planned_type, new_entry, item))
         elif os.path.lexists(path):
             if path.is_symlink():
-                errors.append(f"{dest}: el destino es un enlace simbólico que no figura en {REGISTRY_NAME}")
+                errors.append(
+                    f"{dest}: el destino es un enlace simbólico que no figura en {REGISTRY_NAME}{MIGRATION_HINT}"
+                )
                 continue
             skip, reason = overlay_decision(item, replaces)
             if skip:
