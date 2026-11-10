@@ -5,7 +5,7 @@
 >
 > **Materializar** es poner los agentes, prompts y skills del core y de los packs en las rutas del repo consumidor donde los lee el entorno de trabajo. Lo hace [`scripts/materialize.py`](../scripts/materialize.py) ([ADR-007 §7](../architecture/decisions/ADR-007-modelo-de-capas-y-precedencia.md)).
 
-**En esta página:** [Qué es](#qué-es-y-qué-no-es) · [Orden](#orden-de-capas) · [Rutas](#convención-de-rutas) · [Uso](#uso) · [Enlaces y copias](#enlaces-simbólicos-y-copia) · [Registro](#el-registro-sdaf-origin) · [Colisiones](#colisiones) · [Re-ejecución](#re-ejecución-e-idempotencia) · [Salida](#salida-y-códigos-de-salida) · [Límites](#límites-conocidos)
+**En esta página:** [Qué es](#qué-es-y-qué-no-es) · [Orden](#orden-de-capas) · [Rutas](#convención-de-rutas) · [Uso](#uso) · [Enlaces y copias](#enlaces-simbólicos-y-copia) · [Registro](#el-registro-sdaf-origin) · [Colisiones](#colisiones) · [Migrar](#migrar-aportes-ya-materializados) · [Re-ejecución](#re-ejecución-e-idempotencia) · [Salida](#salida-y-códigos-de-salida) · [Límites](#límites-conocidos)
 
 ## Qué es y qué no es
 
@@ -147,6 +147,21 @@ Alcance de la sustitución: solo el **contrato de agente**. El prompt del pack c
 
 Si el mismo `id` de pack se pasa dos veces con `--pack`, también es un `FAIL`.
 
+Los `FAIL` de las filas segunda, tercera y quinta (y el de un enlace simbólico sin registro, ver [Re-ejecución](#re-ejecución-e-idempotencia)) terminan, además de lo que muestra la tabla, con esta pista: `; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)`. Las otras situaciones no la llevan. La pista no cambia el código de salida ni lo que se escribe.
+
+## Migrar aportes ya materializados
+
+Un destino que ya existe como enlace simbólico o como fichero y no figura en [`.sdaf-origin`](#el-registro-sdaf-origin) es del overlay **por definición**: el script no sabe de dónde salió. Por eso un consumidor que materializó agentes, prompts y skills por otro medio antes de `0.6.0` (los enlaces `120000` o las copias que recomendaba la guía de `0.5.x`) obtiene un `FAIL` en cada destino y no se escribe nada.
+
+El procedimiento, que no es automático:
+
+1. `materialize.py --dry-run` con el core y los packs: cada `FAIL <destino>: ...` es un destino que choca.
+2. Revisar la lista y quitar con `git rm -r` solo los destinos que vienen del core o de un pack. Lo propio del consumidor se conserva; un contrato de agente de extensión mantenido a propósito no se quita: su id va en `stack.overlay.replaces`.
+3. Repetir `--dry-run` (ya sin colisiones) y ejecutar sin él.
+4. Versionar `.sdaf-origin` junto con los enlaces o copias.
+
+La salida literal de cada paso, sobre un repo sintético, está en [Migrar de 0.5.x a 0.6.0](adopcion-y-upgrade.md#si-ya-materializó-los-aportes-por-otro-medio). Un modo que adopte esos aportes sin quitarlos (registrar un enlace sin registro cuyo destino resuelto coincide con el origen planificado) es una idea para una versión posterior: hoy no existe ninguna opción de `materialize.py` que lo haga.
+
 ## Re-ejecución e idempotencia
 
 El script puede ejecutarse tantas veces como haga falta. Solo reemplaza lo que figura en el registro **y** sigue siendo, en el destino, el enlace o la copia que el registro describe:
@@ -156,7 +171,7 @@ El script puede ejecutarse tantas veces como haga falta. Solo reemplaza lo que f
 | Nada cambió | `OK  <destino> sin cambios (<capa>)`. El árbol y el registro quedan idénticos. |
 | Cambió el origen, la capa o el contenido del origen | El elemento se reemplaza y el registro se actualiza. |
 | Una copia o un enlace registrados fueron editados o redirigidos | `FAIL <destino>: el elemento registrado (copy) fue modificado; revíselo o elimínelo antes de volver a materializar`, sin escribir nada. |
-| Un enlace simbólico en el destino no figura en el registro | `FAIL <destino>: el destino es un enlace simbólico que no figura en .sdaf-origin`. |
+| Un enlace simbólico en el destino no figura en el registro | `FAIL <destino>: el destino es un enlace simbólico que no figura en .sdaf-origin`, seguido de la pista de [migración](#migrar-aportes-ya-materializados). |
 | El destino choca con un fichero real del overlay | Ver [Colisiones](#colisiones). |
 | Un elemento registrado ya no se aporta (se quitó el pack) | Si sigue intacto, se elimina: `OK  <destino> eliminado (ya no se aporta, <capa>)`. |
 | Un elemento registrado ya no se aporta y fue modificado | Se **conserva**, con `WARN <destino>: ya no se aporta y fue modificado; se conserva y deja de figurar en .sdaf-origin`. |

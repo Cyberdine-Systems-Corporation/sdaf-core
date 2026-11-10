@@ -724,6 +724,126 @@ def casos_errores(tmp: Path) -> None:
                             "agents", "no es un directorio")
 
 
+PISTA = (
+    "; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar "
+    "(docs/materializacion.md#migrar-aportes-ya-materializados)"
+)
+
+
+def linea_fail(linea: str) -> str:
+    """Línea FAIL exacta: el motivo del script, la pista al final y el salto de línea."""
+    return f"FAIL {linea}{PISTA}\n"
+
+
+def casos_pista_migracion(tmp: Path) -> None:
+    """Los FAIL que pueden venir de un aporte materializado antes de 0.6.0 acaban con la pista."""
+    nucleo = "el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen"
+    cola = "las skills y los prompts no se sustituyen"
+
+    env = Entorno(tmp)
+    env.escribir("agents/specification-agent.md", "# Agente del overlay\n")
+    check_fail_sin_escribir("pista: agente del núcleo ocupado por el overlay", env, env.args("--mode", "copy"),
+                            linea_fail(f"agents/specification-agent.md: {nucleo}"))
+
+    env = Entorno(tmp)
+    env.escribir("skills/core-skill/SKILL.md", "# Skill del overlay\n")
+    check_fail_sin_escribir("pista: skill del núcleo ocupada por el overlay", env, env.args("--mode", "copy"),
+                            linea_fail(f"skills/core-skill: {nucleo}"))
+
+    env = Entorno(tmp)
+    env.escribir("agents/example-extension-agent.md", "# Agente del overlay\n")
+    check_fail_sin_escribir(
+        "pista: agente de extensión ocupado por el overlay sin replaces", env, env.args("--mode", "copy"),
+        linea_fail("agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay; "
+                   "declare 'example-extension' en stack.overlay.replaces para sustituirlo"))
+
+    env = Entorno(tmp)
+    env.escribir("skills/example-skill/SKILL.md", "# Skill del overlay\n")
+    check_fail_sin_escribir(
+        "pista: skill de un pack ocupada por el overlay", env, env.args("--mode", "copy"),
+        linea_fail(f"skills/example-skill: colisión entre el pack sdaf-stack-example y el overlay en una skill; {cola}"))
+
+    env = Entorno(tmp)
+    env.escribir("prompts/agents/example-extension-agent.md", "# Prompt del overlay\n")
+    check_fail_sin_escribir(
+        "pista: prompt de un pack ocupado por el overlay", env, env.args("--mode", "copy"),
+        linea_fail("prompts/agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example "
+                   f"y el overlay en un prompt; {cola}"))
+
+    # Enlace sin registro: real si el sistema los permite; simulado siempre (sin privilegio de enlaces).
+    enlace = linea_fail(
+        "agents/specification-agent.md: el destino es un enlace simbólico que no figura en .sdaf-origin")
+    if puede_enlazar(tmp):
+        env = Entorno(tmp)
+        run(env.args("--mode", "symlink"))
+        (env.consumer / REGISTRO).unlink()
+        check_fail_sin_escribir("pista: enlace simbólico sin registro", env, env.args("--mode", "symlink"), enlace)
+    else:
+        saltar("pista: enlace simbólico sin registro", "el sistema no permite enlaces simbólicos")
+    try:
+        modulo = cargar_modulo()
+    except (OSError, ImportError) as exc:
+        caso("pista: enlace simbólico sin registro, simulado", [f"no se pudo importar materialize.py ({exc})"])
+    else:
+        env = Entorno(tmp)
+        env.escribir("agents/specification-agent.md", "# Soy un enlace simulado\n")
+        original = Path.is_symlink
+
+        def finge_enlace(self: Path) -> bool:
+            return self.as_posix().endswith("consumer/agents/specification-agent.md") or original(self)
+
+        antes = instantanea(env.base)
+        Path.is_symlink = finge_enlace
+        try:
+            codigo, salida = en_proceso(modulo, env.args("--mode", "copy"))
+        finally:
+            Path.is_symlink = original
+        problemas = []
+        if codigo != 1:
+            problemas.append(f"exit {codigo}, se esperaba 1")
+        if enlace not in salida:
+            problemas.append(f"falta {enlace.strip()!r}")
+        if instantanea(env.base) != antes:
+            problemas.append("se escribió algo pese al FAIL")
+        caso("pista: enlace simbólico sin registro, simulado", problemas, salida)
+
+    # Caso real de migración: aportes ya materializados por otro medio, sin .sdaf-origin.
+    env = Entorno(tmp)
+    run(env.args("--mode", "copy"))
+    (env.consumer / REGISTRO).unlink()
+    antes = instantanea(env.base)
+    res = run(env.args("--mode", "copy", "--dry-run"))
+    lineas = [x for x in res.stdout.splitlines() if x.startswith("FAIL ") and x != "FAIL no se escribió nada"]
+    problemas = []
+    if len(lineas) != len(TODOS):
+        problemas.append(f"{len(lineas)} FAIL de destino, se esperaban {len(TODOS)}")
+    sin_pista = [x for x in lineas if not x.endswith(PISTA)]
+    if sin_pista:
+        problemas.append(f"sin pista: {sin_pista[0]}")
+    if instantanea(env.base) != antes:
+        problemas.append("--dry-run escribió algo")
+    check("pista: --dry-run sobre aportes materializados sin registro", res, 1, "FAIL no se escribió nada",
+          extra=problemas)
+
+    # Los demás FAIL y la salida correcta no llevan la pista.
+    env = Entorno(tmp)
+    shutil.copy(env.consumer / ".sdaf/agents/specification-agent.md", env.example / "agents/specification-agent.md")
+    check_fail_sin_escribir("pista ausente: colisión entre capas", env, env.args("--mode", "copy"),
+                            "colisión, lo aportan core y pack:sdaf-stack-example")
+    res = run(env.args("--mode", "copy"))
+    caso("pista ausente: colisión entre capas, salida", [] if "migrar-aportes" not in res.stdout else ["lleva la pista"])
+
+    env = Entorno(tmp)
+    run(env.args("--mode", "copy"))
+    env.escribir("agents/specification-agent.md", "# Editada a mano\n")
+    res = run(env.args("--mode", "copy"))
+    check("pista ausente: elemento registrado y modificado", res, 1, "modificado", ausentes=("migrar-aportes",))
+
+    env = Entorno(tmp)
+    res = run(env.args("--mode", "copy"))
+    check("pista ausente: ejecución correcta", res, 0, ausentes=("migrar-aportes",))
+
+
 def casos_defecto(tmp: Path) -> None:
     """S3: --consumer-root y --core toman sus valores por defecto."""
     env = Entorno(tmp)
@@ -750,6 +870,7 @@ def main() -> int:
         casos_colisiones(tmp)
         casos_articulo_colision(tmp)
         casos_ruta_de_pack(tmp)
+        casos_pista_migracion(tmp)
         casos_dry_run(tmp)
         casos_idempotencia(tmp)
         casos_errores(tmp)
