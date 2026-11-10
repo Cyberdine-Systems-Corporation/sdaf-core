@@ -5,7 +5,7 @@
 >
 > **Adoptar** es pinnear este core, copiar un escenario de config y ejecutar bootstrap. **Upgrade** es mover el pin y alinear `sdaf.version`.
 
-**En esta página:** [Versionado](#versionado) · [Adopción](#adopción-canónica) · [Upgrade](#upgrade) · [Migración 0.1→0.2](#migración-de-citas-handbook-01x-020) · [Pack](#pack-de-stack)
+**En esta página:** [Versionado](#versionado) · [Adopción](#adopción-canónica) · [Upgrade](#upgrade) · [Migración 0.1→0.2](#migración-de-citas-handbook-01x-020) · [Pack](#pack-de-stack) · [Migrar a 0.6.0](#migrar-de-05x-a-060)
 
 ## Versionado
 
@@ -160,7 +160,7 @@ Si `stack.pack` ≠ `null`, cumplir [`contrato-pack-stack.md`](contrato-pack-sta
 
 ### Materialización en el consumidor
 
-Preferir **symlinks relativos** (Git mode `120000`) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, [`scripts/materialize.py`](../scripts/materialize.py), y su contrato y guía de uso están en [`materializacion.md`](materializacion.md): orden core → packs → overlay, ruta normada de los aportes, registro `.sdaf-origin`, detección de colisiones y `--dry-run`. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver [Fuera de 0.5.x](#fuera-de-05x)). `AGENTS.md` y las reglas de editor no los materializa ese script: los materializa [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md).
+Preferir **symlinks relativos** (Git mode `120000`) de las skills, los agentes y los prompts del core y de los packs hacia la raíz del consumidor. El core publica el script que lo hace, [`scripts/materialize.py`](../scripts/materialize.py), y su contrato y guía de uso están en [`materializacion.md`](materializacion.md): orden core → packs → overlay, ruta normada de los aportes, registro `.sdaf-origin`, detección de colisiones y `--dry-run`. Ningún tag publicado lo incluye todavía: llega con la línea 0.6.0 (ver [Fuera de 0.5.x](#fuera-de-05x)); quien ya materializó por otro medio sigue [Migrar de 0.5.x a 0.6.0](#migrar-de-05x-a-060). `AGENTS.md` y las reglas de editor no los materializa ese script: los materializa [`sdaf-bootstrap`](../skills/sdaf-bootstrap/SKILL.md).
 
 Copia literal solo como fallback documentado: el script la usa si el sistema no permite enlaces simbólicos y registra su origen en `.sdaf-origin`.
 
@@ -306,6 +306,113 @@ Al pinnear `v0.5.3`:
 3. Quien quiera comprobar Gate 0 en el PR: seguir [Comprobar Gate 0 en el PR](#comprobar-gate-0-en-el-pr). El comprobador no aprueba nada ni sustituye la revisión de la persona responsable.
 
 No rompe citas. `sdaf.version` sigue en `"0.5.0"`.
+
+## Migrar de 0.5.x a 0.6.0
+
+La línea `0.6.0` es opt-in y **sin publicar**: ningún tag publicado la incluye todavía. Estos pasos valen cuando exista el tag y, antes, para ensayar la migración contra el árbol de `main` del core. Quien se quede en `0.5.x` no está obligado.
+
+### Qué cambia para un consumidor
+
+| Novedad | Qué supone para el consumidor | Dónde se explica |
+|---------|-------------------------------|------------------|
+| `stack.packs` | Lista de referencias `id@version` (puede ser `[]`). `stack.pack` sigue valiendo como alias **obsoleto**: `validate-config.py` avisa `stack.pack está obsoleto; usar stack.packs: [...]`, y declarar los dos a la vez es un error. | [Catálogo de la config](../sdaf.config.schema.yaml), [relación con `stack.packs`](contrato-pack-stack.md#relación-con-stackpacks) |
+| `stack.units` (opcional) | Varias unidades de código con nombre. No puede convivir con `stack.src_path` ni `stack.tests_path`. | [Catálogo de la config](../sdaf.config.schema.yaml), [escenario 10](../examples/README.md) |
+| `stack.overlay.replaces` (opcional) | Declara los ids de extensión cuyo contrato de agente es propio y sustituye al del pack. | [Colisiones](materializacion.md#colisiones) |
+| Manifiesto de pack `sdaf-pack.yaml` | Cada pack declara qué aporta y con qué línea del core es compatible. `validate-config.py --pack-manifest` lo cruza con la config; desde `sdaf.version` `"0.6.0"`, un pack declarado sin manifiesto entre los pasados avisa. | [Contrato de pack](contrato-pack-stack.md#cruzar-la-config-con-los-manifiestos) |
+| `scripts/materialize.py` | Materializa agentes, prompts y skills del core y de los packs, con registro `.sdaf-origin`. | [Materialización](materializacion.md) |
+| `check-architecture` (opt-in) | Coherencia entre la línea base, los ADRs, `stack.units` y las specs. | [Comprobar la coherencia](#comprobar-la-coherencia-de-adrs-unidades-y-specs) |
+
+### Pasos
+
+1. Subir el pin del core al tag de la línea `0.6.0` y el de cada pack a una versión con `sdaf-pack.yaml` cuyo rango `core` incluya `0.6.0`; si no lo incluye, `--pack-manifest` falla.
+2. Poner `sdaf.version` a `"0.6.0"`.
+3. Pasar de `stack.pack` a `stack.packs`, conservando el pack y su versión:
+
+   ```diff
+    stack:
+   -  pack: sdaf-stack-example@0.1.0
+   +  packs:
+   +    - sdaf-stack-example@0.1.0
+   ```
+
+4. Validar la config con los manifiestos: `python .sdaf/scripts/validate-config.py sdaf.config.yaml --pack-manifest packs/example/sdaf-pack.yaml`.
+5. Si los agentes, prompts y skills ya estaban materializados por otro medio, seguir [la sección siguiente](#si-ya-materializó-los-aportes-por-otro-medio) antes de ejecutar `materialize.py`.
+6. Opcional: activar `check-architecture` en la action y, si el repo tiene varias carpetas de código, declarar `stack.units`.
+
+### Si ya materializó los aportes por otro medio
+
+Esta guía recomendaba para `0.5.x` enlaces simbólicos (Git `120000`) o copias. Ese material **no tiene registro** `.sdaf-origin`, así que `materialize.py` lo trata como suyo del consumidor (overlay) y da `FAIL` en cada destino, sin escribir nada. La norma de colisiones no se repite aquí: está en [Colisiones](materializacion.md#colisiones). El procedimiento (rutas y ids ficticios; el core en `.sdaf/` y un pack en `packs/example/`):
+
+1. Ver qué destinos chocan. Cada `FAIL <destino>: ...` es uno, y termina con la pista de migración:
+
+   ```text
+   $ python .sdaf/scripts/materialize.py --pack packs/example --dry-run
+   INFO el sistema no permite enlaces simbólicos: se copia
+   FAIL agents/architecture-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay; declare 'example-extension' en stack.overlay.replaces para sustituirlo; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL agents/specification-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL prompts/agents/example-extension-agent.md: colisión entre el pack sdaf-stack-example y el overlay en un prompt; las skills y los prompts no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL prompts/agents/specification-agent.md: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL skills/core-skill: el overlay ocupa un destino del núcleo; los ids del núcleo no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL skills/example-skill: colisión entre el pack sdaf-stack-example y el overlay en una skill; las skills y los prompts no se sustituyen; si es un aporte materializado antes de 0.6.0, elimínelo y vuelva a ejecutar (docs/materializacion.md#migrar-aportes-ya-materializados)
+   FAIL no se escribió nada
+   ```
+
+   La línea `INFO` solo sale donde el sistema no permite crear enlaces simbólicos (Windows sin privilegio): `auto` copia.
+
+2. Revisar la lista. Solo se eliminan los destinos que vienen del core o de un pack; lo propio del consumidor se conserva. Si un destino listado es un contrato de agente de extensión que el consumidor mantiene a propósito, no se elimina: se declara su id en `stack.overlay.replaces`. Con `sh`, los destinos salen solos:
+
+   ```text
+   $ python .sdaf/scripts/materialize.py --pack packs/example --dry-run | sed -n 's/^FAIL \([^:]*\): .*/\1/p'
+   agents/architecture-agent.md
+   agents/example-extension-agent.md
+   agents/specification-agent.md
+   prompts/agents/example-extension-agent.md
+   prompts/agents/specification-agent.md
+   skills/core-skill
+   skills/example-skill
+   ```
+
+3. Quitarlos con `git rm -r -q -- <destinos>` (sirve igual para enlaces `120000` que para copias; `git rm` se niega si el destino tiene cambios sin confirmar: revíselos antes). Los ficheros propios, como `agents/local-agent.md` o `skills/local-skill/`, quedan donde están.
+4. Repetir `--dry-run`: ya no hay colisiones y el plan solo crea:
+
+   ```text
+   $ python .sdaf/scripts/materialize.py --pack packs/example --dry-run
+   INFO el sistema no permite enlaces simbólicos: se copia
+   INFO plan: crear agents/architecture-agent.md <- core [copy]
+   INFO plan: crear agents/example-extension-agent.md <- pack:sdaf-stack-example [copy]
+   INFO plan: crear agents/specification-agent.md <- core [copy]
+   INFO plan: crear prompts/agents/example-extension-agent.md <- pack:sdaf-stack-example [copy]
+   INFO plan: crear prompts/agents/specification-agent.md <- core [copy]
+   INFO plan: crear skills/core-skill <- core [copy]
+   INFO plan: crear skills/example-skill <- pack:sdaf-stack-example [copy]
+   OK  dry-run: 7 acciones planificadas, no se escribió nada
+   ```
+
+5. Ejecutar sin `--dry-run`:
+
+   ```text
+   $ python .sdaf/scripts/materialize.py --pack packs/example
+   INFO el sistema no permite enlaces simbólicos: se copia
+   OK  agents/architecture-agent.md <- core [copy]
+   OK  agents/example-extension-agent.md <- pack:sdaf-stack-example [copy]
+   OK  agents/specification-agent.md <- core [copy]
+   OK  prompts/agents/example-extension-agent.md <- pack:sdaf-stack-example [copy]
+   OK  prompts/agents/specification-agent.md <- core [copy]
+   OK  skills/core-skill <- core [copy]
+   OK  skills/example-skill <- pack:sdaf-stack-example [copy]
+   OK  7 elementos materializados desde 2 capas (.sdaf-origin)
+   ```
+
+6. Versionar `.sdaf-origin` junto con los enlaces o copias (`git add .sdaf-origin agents prompts skills`). Una segunda ejecución da `sin cambios` en todos y deja el árbol y el registro idénticos ([Re-ejecución](materializacion.md#re-ejecución-e-idempotencia)).
+
+El mismo procedimiento, resumido, está en [Migrar aportes ya materializados](materializacion.md#migrar-aportes-ya-materializados).
+
+### Notas de la migración
+
+- **`stack.units` y los ficheros transversales.** Con `stack.units`, `check-worklog-presence.py` mira solo las rutas de las unidades: un fichero bajo `src/` o `tests/` que no cae en ninguna deja de exigir worklog (por ejemplo, uno de configuración común a todo el código). Declarar en las unidades las rutas que antes cubría `src_path`/`tests_path`, o añadir una unidad que los cubra.
+- **Espejos de editor.** `materialize.py` no crea ni actualiza los espejos de editor (reglas y skills que el editor lee de su propia ruta, como `.cursor/rules/` y `.cursor/skills/`). Quien los use debe mantenerlos aparte, incluidas las skills que `0.6.0` aporta y el consumidor no tenía: nadie las espeja por él.
+- **`check-gate0` es opt-in** y exige PBIs con la plantilla de `0.5.x` ([`templates/pbi.md`](../templates/pbi.md)). `--pbi ID` busca el ID en la tabla `Campo | Valor` de la cabecera: un PBI anterior a la plantilla no se encuentra por ID y, pasado por ruta, da `FAIL` en G0.4 hasta que tenga la cabecera completa ([Comprobar Gate 0 en el PR](#comprobar-gate-0-en-el-pr)).
 
 ## Fuera de 0.5.x
 
